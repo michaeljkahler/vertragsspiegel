@@ -2,7 +2,7 @@
 
 Wertungsfreie, visuelle Aufbereitung des Pakets Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, heruntergebrochen auf Artikel und Abschnitte, mit Umfang und Verknüpfungen.
 
-Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository (geplant): `github.com/michaeljkahler/vertragsspiegel`, Seite `michaeljkahler.github.io/vertragsspiegel/`. Arbeitstitel «Vertragsspiegel», Entscheid offen (Ziffer 13).
+Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
 
 ## 1. Stand
 
@@ -17,7 +17,7 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    2. Umfang: rund 1100 Zettel je Sprache, Rohtexte in drei Sprachen.
    3. Kommt das Paket zur Volksabstimmung, kann ein Abstimmungsspiegel auf einzelne Zettel verlinken.
 5. Kontrolle: Skripte `scripts/fedlex_pruefen.py` und `scripts/parlament_pruefen.py` und Auftrag `docs/AUFTRAG_fedlex-kontrolle.md` liegen bereit. Ausgangsstand vom 1. Oktober 2026 in `daten/fedlex_stand.json` (33 Werke) und `daten/parlament_stand.json` (14 Entwürfe, 8 Beschlüsse).
-6. Entscheid vom 1. Oktober 2026: Die Kontrolle läuft als geplante Aufgabe in der Cloud auf dem GitHub-Repository. Einrichtung: `docs/AUFTRAG_claude-code-einrichtung.md`.
+6. Entscheid vom 1. Oktober 2026: Die Kontrolle läuft als geplante Aufgabe in der Cloud auf dem GitHub-Repository. Einrichtung: `docs/AUFTRAG_claude-code-einrichtung.md`. Eingerichtet am 1. Oktober 2026: Repository angelegt (erster Commit `90373f5`), Aufgabe «Vertragsspiegel Kontrolle» mittwochs 06:50, erster Lauf ohne Änderung.
 7. Parlament, Stand Webservice 1. Oktober 2026: Der Ständerat hat am 28. bis 30. September 2026 beraten. Entwurf 1 (Bundesbeschluss Stabilisierung): «Beschluss abweichend vom Entwurf». Entwürfe 5 bis 8 und 10: «Beschluss gemäss Entwurf». Für die Entwürfe zu Elektrizität, Lebensmittelsicherheit, Gesundheit und Erasmus+ ist im Webservice noch kein Beschluss eingetragen.
 
 ## 2. Ziel
@@ -201,9 +201,9 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 
 ## 12. Etappen
 
-1. Repository anlegen, Prototyp übernehmen, GitHub Pages einrichten, Fedlex-Kontrolle als geplante Aufgabe starten.
+1. Repository anlegen, Prototyp übernehmen, Fedlex-Kontrolle als geplante Aufgabe starten. Abgeschlossen am 1. Oktober 2026.
 2. Pipeline: `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py`; Fehlerbilder 1 bis 6 aus Ziffer 9 beheben.
-3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen.
+3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt.
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
 5. Französisch und Italienisch.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
@@ -211,8 +211,8 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 
 ## 13. Offene Entscheide
 
-1. Name und Adresse: «Vertragsspiegel», Repository `vertragsspiegel`?
-2. Projektordner «Bilaterale III» als Wurzel des Repositorys belassen oder umbenennen?
+1. Name und Adresse: «Vertragsspiegel», Repository `vertragsspiegel`. Entschieden am 1. Oktober 2026.
+2. Projektordner «Bilaterale III» bleibt Wurzel des Repositorys. Entschieden am 1. Oktober 2026.
 3. Zeitpunkt für Französisch und Italienisch.
-4. Rohdaten (PDF, Text, je Sprache rund 25 MB) aus dem Repository ausschliessen wie im Politspiegel? Vorschlag: ja, `laden.py` stellt sie wieder her.
+4. Rohdaten (PDF, Text, je Sprache rund 25 MB) sind aus dem Repository ausgeschlossen (`.gitignore`), `laden.py` stellt sie wieder her. Entschieden am 1. Oktober 2026.
 5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein.
