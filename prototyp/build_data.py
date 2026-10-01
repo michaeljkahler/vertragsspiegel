@@ -1,11 +1,12 @@
 """Baut den Datensatz für die Musterseite aus den Fedlex-Volltexten (BBl 2026 615–644).
 
-Dokumentebene: gezählt. Gliederung, Verweise, EU-Rechtsakte, SR-Nummern: Rohextraktion per Regex.
+Dokumentebene: gezählt. Gliederung, Verweise, EU-Rechtsakte, SR-Nummern, Bögen: Rohextraktion per Regex.
+Texte aus prototyp/an/ oder, falls nicht vorhanden, aus daten/text/de/ (scripts/laden.py).
 """
 import json, re, collections, pathlib
 
 S = pathlib.Path(__file__).parent
-AN = S / 'an'
+AN = S / 'an' if (S / 'an' / '615.txt').exists() else S.parent / 'daten' / 'text' / 'de'
 titles = {b['act']['value'].rsplit('/', 1)[1]: b['title']['value']
           for b in json.load(open(S / 'bbl53.json'))['results']['bindings']}
 
@@ -87,6 +88,7 @@ ANH = re.compile(r'^\s*Anhang\s+([IVXLC]+|\d+[a-z]?)\s*$')
 
 docs_out, leaves, tree_groups = [], [], {g: [] for g, _ in GRUPPEN}
 eu_all, sr_all = set(), set()
+FULL = {}  # ungekürzter Wortlaut je Zettel, für die Fundstellen der Bögen
 
 for did, kurz, typ, grp in DOCS:
     raw = open(AN / f'{did}.txt', encoding='utf8').read()
@@ -140,6 +142,7 @@ for did, kurz, typ, grp in DOCS:
             refs = [] if t['name'] != 'Hauptteil' and nr is None else sorted(set(re.findall(r'(?:Artikels?|Art\.)\s+(\d+[a-z]?)(?!\s*(?:Abs\.\s*\d+\s*)?(?:der|des|BV|AEUV|EUV|EMRK))', txt[len(lab):])))
             leaves.append(dict(id=lid, doc=did, teil=t['name'], label=lab, nr=nr, woerter=words(txt),
                                text=trim(txt, 650), eu=e, sr=s, refs=refs))
+            FULL[lid] = txt
             t.setdefault('leafids', []).append(lid)
         if t.get('leafids'):
             teile_out.append(dict(name=t['name'], leaves=t['leafids']))
@@ -261,6 +264,164 @@ for e in entries:
                     erlaeutert.append(dict(kap=f"{e['nr']} {e['titel']}", doc=d))
 erlaeutert = sorted([dict(t) for t in {tuple(x.items()) for x in erlaeutert}], key=lambda x: (x['kap'], x['doc']))
 
+# ------------------------------------------------------------------ Bögen mit Fundstellen (Reiter «Bezüge»)
+# Botschaft: Text je Abschnitt über die Wortpositionen rekonstruieren (seitenanteilig, Grenzen ungenau)
+tok = [m.start() for m in re.finditer(r'\w+', raw)] + [len(raw)]
+cum = 0
+for l in leaves:
+    if l['doc'] != 615:
+        continue
+    a, b = cum, cum + l['woerter']
+    FULL[l['id']] = raw[tok[min(a, len(tok) - 1)]:tok[min(b, len(tok) - 1)]]
+    cum = b
+
+
+def flach(t):
+    t = '\n'.join(z for z in t.split('\n') if not NOISE.search(z))
+    t = re.sub(r'-\n\s*(?=[a-zäöü])', '', t)
+    t = re.sub(r'-\n\s*(?=[A-ZÄÖÜ])', '-', t)
+    t = re.sub(r'\s+', ' ', t).strip()
+    return re.sub(r'(IP|ÄP)-\s+', r'\1-', t)
+
+
+FLACH = {k: flach(v) for k, v in FULL.items()}
+for l in leaves:
+    if l['doc'] == 615:
+        l['eu'] = sorted(set(EU.findall(FLACH[l['id']])))
+
+
+def stelle(lid, m0, m1, fenster=200):
+    """Ausschnitt um die Fundstelle: [Text, Beginn, Ende der Markierung]."""
+    t = FLACH[lid]
+    a, b = max(0, m0 - fenster), min(len(t), m1 + fenster)
+    if a > 0:
+        a = t.find(' ', a) + 1
+    if b < len(t):
+        b = t.rfind(' ', m0, b) if t.rfind(' ', m0, b) > m1 else b
+    vor, nach = ('… ' if a > 0 else ''), (' …' if b < len(t) else '')
+    return [vor + t[a:b] + nach, len(vor) + m0 - a, len(vor) + m1 - a]
+
+
+def anfang(lid, n=420):
+    t = FLACH[lid]
+    if len(t) <= n:
+        return [t, 0, 0]
+    return [t[:t.rfind(' ', 0, n)] + ' …', 0, 0]
+
+
+bydoc = collections.defaultdict(list)
+for l in leaves:
+    bydoc[l['doc']].append(l)
+
+
+def artikel(doc, nr, teil=None):
+    c = [x for x in bydoc[doc] if x['nr'] == nr]
+    c.sort(key=lambda x: (x['teil'] != (teil or 'Hauptteil'), x['teil'] != 'Hauptteil'))
+    return c[0] if c else None
+
+
+bogen = []
+# 1. Artikelverweis im selben Dokument. Verweis gilt als extern, wenn im selben Satzteil ein anderer Erlass folgt
+#    («Artikel 54 Absatz 1 und 166 Absatz 2 der Bundesverfassung», «Art. 3 der Verordnung (EU) …»).
+EXTERN = re.compile(r'[^.;:()]{0,90}?(?:\b(?:der|des|dieser|dieses)\s+(?:Bundesverfassung|Verordnung|Richtlinie|Durchführungs|Delegierten|'
+                    r'Bundesgesetz|Gesetz|Beschluss|Übereinkommen|Vertrag|Statut|Rahmenabkommen|Zollkodex)|\b(?:BV|AEUV|EUV|EMRK|SR)\b|'
+                    r'\b[A-ZÄÖÜ][A-Za-zäöü]*G\b(?!-))')
+intern_extern = 0
+for l in leaves:
+    if l['doc'] == 615 or not l['refs']:
+        continue
+    t = FLACH[l['id']]
+    kopf = len(flach(l['label']))
+    gueltig = []
+    for r in l['refs']:
+        z = artikel(l['doc'], r, l['teil'])
+        if not z or z['id'] == l['id']:
+            continue
+        treffer = [m for m in re.compile(r'(?:Artikels?|Art\.)\s+' + re.escape(r) + r'\b').finditer(t, kopf)
+                   if not EXTERN.match(t, m.end())]
+        if not treffer:
+            intern_extern += 1
+            continue
+        m = treffer[0]
+        gueltig.append(r)
+        bogen.append(dict(t='intern', a=l['id'], b=z['id'], sa=stelle(l['id'], m.start(), m.end()), sb=anfang(z['id'])))
+    l['refs'] = gueltig
+
+# 2. Botschaft nennt Artikel eines Abkommens
+ABK = [('IP-FZA', 618), ('ÄP-FZA', 617), ('IP-MRA', 620), ('IP-LandVA', 622), ('IP-LuftVA', 625),
+       ('FZA', 617), ('MRA', 619), ('LandVA', 621), ('LuftVA', 624), ('EUPA', 628), ('EUSPA-Abkommens?', 629),
+       ('EUSPA', 629), ('Stromabkommens?', 632), ('StromA', 632), ('Gesundheitsabkommens?', 636), ('Beitragsabkommens?', 630)]
+ARTB = re.compile(r'\b(?:Art\.|Artikel|Artikeln)\s+(\d+[a-z]?)(?:\s+(?:Abs\.|Absatz|Absätze)\s+\d+[a-z]?(?:\s+(?:und|bis)\s+\d+)?)?'
+                  r'(?:\s+(?:Bst\.|Buchstabe)\s+[a-z])?\s+(?:des\s+|der\s+)?(' + '|'.join(a for a, _ in ABK) + r')\b')
+botschaft_offen = 0
+for l in bydoc[615]:
+    gesehen = set()
+    for m in ARTB.finditer(FLACH[l['id']]):
+        doc = next(d for a, d in ABK if re.fullmatch(a, m.group(2)))
+        z = artikel(doc, m.group(1))
+        if not z:
+            botschaft_offen += 1
+            continue
+        if z['id'] in gesehen:
+            continue
+        gesehen.add(z['id'])
+        bogen.append(dict(t='botschaft', a=l['id'], b=z['id'], sa=stelle(l['id'], m.start(), m.end()), sb=anfang(z['id'])))
+
+# 3. Gleicher EU-Rechtsakt in Zetteln verschiedener Dokumente (je Zettelpaar ein Bogen)
+idx = collections.defaultdict(list)
+for l in leaves:
+    for e in l['eu']:
+        idx[e].append(l)
+paare = collections.defaultdict(set)
+for e, ls in idx.items():
+    for i, x in enumerate(ls):
+        for y in ls[i + 1:]:
+            if x['doc'] != y['doc']:
+                paare[(x['id'], y['id'])].add(e)
+
+
+def eu_stelle(lid, e):
+    m = re.search(r'(?<![\d/])' + re.escape(e) + r'(?![\d])', FLACH[lid])
+    return stelle(lid, m.start(), m.end()) if m else anfang(lid)
+
+
+for (a, b), es in paare.items():
+    e = sorted(es)[0]
+    bogen.append(dict(t='eu', a=a, b=b, eu=sorted(es), sa=eu_stelle(a, e), sb=eu_stelle(b, e)))
+
+# 4. Bundesbeschluss genehmigt (Art. 1)
+GEN_KEY = {617: ('Änderungsprotokoll', 'Freizügigkeit'), 618: ('Institutionelle', 'Freizügigkeit'),
+           619: ('Änderungsprotokoll', 'gegenseitige Anerkennung'), 620: ('Institutionelle', 'gegenseitige Anerkennung'),
+           621: ('Änderungsprotokoll', 'Schiene und Strasse'), 622: ('Institutionelle', 'Schiene und Strasse'),
+           623: ('Beihilfen', 'Schiene und Strasse'), 624: ('Änderungsprotokoll', 'Luftverkehr'),
+           625: ('Institutionelle', 'Luftverkehr'), 626: ('Beihilfen', 'Luftverkehr'),
+           627: ('Änderungsprotokoll', 'landwirtschaftlichen'), 628: ('Abkommen', 'Programmen der Union'),
+           629: ('Abkommen', 'Weltraumprogramm'), 630: ('Abkommen', 'finanziellen Beitrag'), 632: ('Abkommen', 'Elektrizität'),
+           634: ('Protokoll', 'Lebensmittelsicherheit'), 636: ('Abkommen', 'Gesundheit'), 638: ('Protokoll', 'parlamentarische')}
+for bb, ds in GENEHMIGT.items():
+    q = artikel(bb, '1')
+    t = FLACH[q['id']]
+    for d in ds:
+        art, key = GEN_KEY[d]
+        sa = anfang(q['id'])
+        for m in re.finditer(re.escape(key), t):
+            if art in t[max(0, m.start() - 320):m.start()]:
+                vor = t.rfind(art, 0, m.start())
+                sa = stelle(q['id'], vor, m.end(), 120)
+                break
+        bogen.append(dict(t='genehmigt', a=q['id'], b=f'D{d}', sa=sa, sb=None))
+
+# 5. Botschaft-Kapitel 2.x erläutert Dokument
+kapitel = {}
+for e in erlaeutert:
+    nr = e['kap'].split()[0]
+    zl = [l for l in bydoc[615] if l['nr'] and (l['nr'] == nr or l['nr'].startswith(nr + '.'))]
+    if not zl:
+        continue
+    kapitel[nr] = dict(titel=e['kap'], von=zl[0]['id'], bis=zl[-1]['id'])
+    bogen.append(dict(t='erlaeutert', a=f'K{nr}', b=f"D{e['doc']}", sa=anfang(zl[0]['id']), sb=None))
+bogen_zahl = collections.Counter(b['t'] for b in bogen)
+
 # ------------------------------------------------------------------ Matrix: gemeinsam genannte EU-Rechtsakte je Dokumentpaar
 doc_eu = collections.defaultdict(set)
 for l in leaves:
@@ -306,13 +467,15 @@ stats = dict(dokumente=len(DOCS), seiten=sum(d['seiten'] for d in docs_out), woe
              zettel=len(leaves), eu=len(eu_all | bot_raw_eu), sr=len(sr_all | set(SR.findall(raw))))
 data = dict(stats=stats, gruppen=[dict(id=g, name=n) for g, n in GRUPPEN], docs=docs_out, tree=tree_groups,
             leaves=leaves, genehmigt=GENEHMIGT, erlaeutert=erlaeutert, matrix=dict(ids=ids, werte=matrix), sankey=sankey,
-            doc_eu={str(k): sorted(v) for k, v in doc_eu.items()})
+            doc_eu={str(k): sorted(v) for k, v in doc_eu.items()},
+            bogen=bogen, kapitel=kapitel, bogen_offen=dict(botschaft=botschaft_offen, intern_extern=intern_extern))
 json.dump(data, open(S / 'vertragsspiegel_daten.json', 'w', encoding='utf8'), ensure_ascii=False, separators=(',', ':'))
 print(stats)
 print('Botschaft-Einträge', len(entries), 'Kapitel', [k['name'][:40] for k in bot_kap])
 print('Blätter je Dok', collections.Counter(l['doc'] for l in leaves).most_common(8))
 print('Sankey', len(sankey), collections.Counter(s['gruppe'] for s in sankey))
 print('erläutert', len(erlaeutert))
+print('Bögen', dict(bogen_zahl), 'total', len(bogen), '| Botschaft-Nennungen ohne Ziel', botschaft_offen, '| interne Verweise als extern verworfen', intern_extern)
 print('Matrix max', max(max(r) for r in matrix))
 print('Grösse JSON KB', (S / 'vertragsspiegel_daten.json').stat().st_size // 1024)
 bw = sum(l['woerter'] for l in leaves if l['doc'] == 615)

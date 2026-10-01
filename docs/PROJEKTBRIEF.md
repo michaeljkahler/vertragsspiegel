@@ -19,6 +19,7 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
 5. Kontrolle: Skripte `scripts/fedlex_pruefen.py` und `scripts/parlament_pruefen.py` und Auftrag `docs/AUFTRAG_fedlex-kontrolle.md` liegen bereit. Ausgangsstand vom 1. Oktober 2026 in `daten/fedlex_stand.json` (33 Werke) und `daten/parlament_stand.json` (14 Entwürfe, 8 Beschlüsse).
 6. Entscheid vom 1. Oktober 2026: Die Kontrolle läuft als geplante Aufgabe in der Cloud auf dem GitHub-Repository. Einrichtung: `docs/AUFTRAG_claude-code-einrichtung.md`. Eingerichtet am 1. Oktober 2026: Repository angelegt (erster Commit `90373f5`), Aufgabe «Vertragsspiegel Kontrolle» mittwochs 06:50, erster Lauf ohne Änderung.
 7. Parlament, Stand Webservice 1. Oktober 2026: Der Ständerat hat am 28. bis 30. September 2026 beraten. Entwurf 1 (Bundesbeschluss Stabilisierung): «Beschluss abweichend vom Entwurf». Entwürfe 5 bis 8 und 10: «Beschluss gemäss Entwurf». Für die Entwürfe zu Elektrizität, Lebensmittelsicherheit, Gesundheit und Erasmus+ ist im Webservice noch kein Beschluss eingetragen.
+8. Prototyp, Reiter «Bezüge» vom 1. Oktober 2026: Bogendiagramm aller Zettel auf einer Linie (Länge = Wörter) mit 1299 Bögen in fünf Arten. Klick auf einen Bogen zeigt beide Enden mit der Fundstelle im Wortlaut und öffnet den Zettel. Rohextraktion; 98 Artikelnennungen der Botschaft ohne Ziel im Paket, 92 Artikelverweise als Verweis auf einen anderen Erlass verworfen.
 
 ## 2. Ziel
 
@@ -58,6 +59,7 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 | 1 | Umfang (Icicle) | Paket, Vorlage, Dokument, Teil, Zettel; Fläche gleich Wörter | Übersichtsfeld neu (Ziffer 5.1); grössere Schrift |
 | 2 | Verknüpfungen (Matrix) | Dokument × Dokument | neues Mass «Artikelverweise zwischen Dokumenten»; bisherige Masse «gemeinsame EU-Rechtsakte» und «genehmigt und erläutert» bleiben |
 | 3 | Umsetzung (Sankey) | Abkommen, Bundesbeschluss, Bundesgesetz | Gesetzesliste vollständig (36 geändert, 3 neu) |
+| 3a | Bezüge (Bogendiagramm) | alle Zettel auf einer Linie, Länge = Wörter; Bögen oben: Artikelverweise im selben Dokument; unten: Botschaft nennt Artikel, gleicher EU-Rechtsakt, genehmigt, erläutert | im Prototyp vorhanden; Klick auf einen Bogen zeigt beide Enden mit Fundstelle; Artikelverweise zwischen Dokumenten ergänzen, sobald `verweise.py` sie liefert |
 | 4 | Zettel | Wortlaut, Fundstelle, ein- und ausgehende Verweise, genannte EU-Rechtsakte und SR-Erlasse | Wortlaut ungekürzt; grössere Schrift; Link auf die Fedlex-Stelle |
 | 5 | Lokaler Graph | Umfeld eines Zettels in zwei Schritten | neu aufgebaut und erläutert (Ziffer 5.2) |
 | 6 | Tabelle | alle Dokumente mit Seiten, Wörtern, Zetteln | unverändert |

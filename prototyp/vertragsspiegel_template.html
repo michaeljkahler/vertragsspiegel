@@ -8,7 +8,7 @@
 :root{
   --grund:#FFFFFF; --flaeche:#F7F8FA; --karte:#FFFFFF; --text:#12161C; --text-leise:#5A626D; --linie:#E2E6EB;
   --fokus:#12161C;
-  --c-stab:#eb6834; --c-strom:#2a78d6; --c-lms:#eda100; --c-ges:#e87ba4; --c-botschaft:#7d8794; --c-weitere:#b4bcc6; --c-gesetz:#5A626D;
+  --c-stab:#eb6834; --c-strom:#2a78d6; --c-lms:#eda100; --c-ges:#e87ba4; --c-botschaft:#7d8794; --c-weitere:#b4bcc6; --c-gesetz:#5A626D; --c-neutral:#5A626D;
   --seq-0:#F1F3F6; --seq-1:#D6DCE4; --seq-2:#AEB8C5; --seq-3:#7F8C9C; --seq-4:#525E6E; --seq-5:#2B3440;
   --f-display:Archivo,"Public Sans","Helvetica Neue",Arial,sans-serif;
   --f-text:"Public Sans","Helvetica Neue",Arial,sans-serif;
@@ -16,12 +16,12 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
-  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF; --c-neutral:#9AA3AF;
   --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
-  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF; --c-neutral:#9AA3AF;
   --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
   color-scheme:dark}
 *{box-sizing:border-box}
@@ -102,6 +102,32 @@ td.zahl,th.zahl{text-align:right}
 .methode{margin-top:28px;border-top:1px solid var(--linie);padding-top:16px;font-size:13.5px;color:var(--text-leise);max-width:110ch}
 .methode h2{font-family:var(--f-display);font-size:16px;color:var(--text);margin:0 0 6px}
 .methode ol{margin:0;padding-left:20px;display:grid;gap:4px}
+/* Bezüge */
+.bz-leiste{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin:0 0 8px}
+.bz-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bz-chips button{font:500 13.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:999px;padding:5px 11px;min-height:36px;cursor:pointer;font-variant-numeric:tabular-nums}
+.bz-chips button b{font-weight:600}
+.bz-chips button[aria-pressed="false"]{color:var(--text-leise);background:var(--flaeche);text-decoration:line-through}
+.bz-zoom{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.bz-zoom button{font:600 14px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:8px;min-width:38px;min-height:36px;padding:0 10px;cursor:pointer}
+.bz-zoom span{font-size:13px;color:var(--text-leise);font-variant-numeric:tabular-nums}
+#bz-diagramm{touch-action:none}
+#bz-diagramm svg,#bz-uebersicht svg{display:block;width:100%}
+.bz-ue{font-size:12.5px;color:var(--text-leise);margin:6px 0 2px 2px}
+.bz-seit{font-size:12.5px;fill:var(--text-leise)}
+.bz-doclabel{font-size:12.5px;font-weight:600;fill:var(--text);pointer-events:none}
+.bogenkarte{display:grid;gap:12px}
+.bogenkarte .regel{margin:4px 0 0;font-size:13.5px;color:var(--text-leise)}
+.ende{border:1px solid var(--linie);border-radius:8px;padding:10px 12px;display:grid;gap:6px;background:var(--flaeche)}
+.ende .rolle{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+.ende .ort{font-size:12.5px;color:var(--text-leise)}
+.ende .titel{font-family:var(--f-display);font-weight:600;font-size:16px;line-height:1.3}
+.ende .stelle{font-size:15px;line-height:1.6;max-height:240px;overflow:auto;background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:8px 10px}
+.ende mark{background:color-mix(in oklab, var(--text) 14%, transparent);color:var(--text);border-radius:2px;padding:0 2px;box-shadow:inset 0 -2px 0 var(--text)}
+.ende .knoepfe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13.5px}
+.ende .knoepfe button,.zurueck{font:600 13.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:5px 10px;min-height:34px;cursor:pointer}
+.zurueck{justify-self:start}
+.pfeil{font-size:14px;color:var(--text-leise);text-align:center;line-height:1}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -121,6 +147,7 @@ td.zahl,th.zahl{text-align:right}
     <div class="reiter" role="tablist" aria-label="Ansicht">
       <button role="tab" id="tab-umfang" aria-selected="true" aria-controls="v-umfang">Umfang</button>
       <button role="tab" id="tab-verkn" aria-selected="false" aria-controls="v-verkn">Verknüpfungen</button>
+      <button role="tab" id="tab-bezuege" aria-selected="false" aria-controls="v-bezuege">Bezüge</button>
       <button role="tab" id="tab-umsetz" aria-selected="false" aria-controls="v-umsetz">Umsetzung</button>
       <button role="tab" id="tab-tabelle" aria-selected="false" aria-controls="v-tabelle">Tabelle</button>
     </div>
@@ -157,6 +184,21 @@ td.zahl,th.zahl{text-align:right}
         <div class="detail" id="mx-detail"></div>
       </section>
 
+      <section id="v-bezuege" role="tabpanel" aria-labelledby="tab-bezuege" hidden>
+        <div class="ansichtkopf">
+          <h2>Bezüge auf einer Linie <span class="marke">Rohextraktion</span></h2>
+          <p>Alle Zettel hintereinander, Länge = Wörter. Oben: Artikelverweise im selben Dokument. Unten: Bezüge zwischen Dokumenten. Klick auf einen Bogen zeigt beide Enden mit der Fundstelle, Klick auf ein Dokument vergrössert es.</p>
+        </div>
+        <div class="bz-leiste">
+          <div class="bz-chips" id="bz-chips" role="group" aria-label="Bogenarten ein- und ausblenden"></div>
+          <div class="bz-zoom"><button id="bz-plus" aria-label="Vergrössern">+</button><button id="bz-minus" aria-label="Verkleinern">−</button><button id="bz-alles">Gesamtansicht</button><span id="bz-stand"></span></div>
+        </div>
+        <div id="bz-diagramm"></div>
+        <p class="bz-ue">Übersicht: Rahmen verschieben oder aufziehen</p>
+        <div id="bz-uebersicht"></div>
+        <ul class="legende" id="bz-legende"></ul>
+      </section>
+
       <section id="v-umsetz" role="tabpanel" aria-labelledby="tab-umsetz" hidden>
         <div class="ansichtkopf">
           <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span></h2>
@@ -184,6 +226,7 @@ td.zahl,th.zahl{text-align:right}
       <li>Wörter: Zählung aller Wortzeichenfolgen im PDF-Text. Die Kennzahlen enthalten Kopf- und Fusszeilen, die Flächen im Umfang nicht.</li>
       <li>Gliederung: Abkommen und Bundesbeschlüsse nach «Art.» und «Anhang», Botschaft nach dem Inhaltsverzeichnis bis zur dritten Ziffernebene, Wörter seitenanteilig.</li>
       <li>Verknüpfungen: nur Verweise, die im Wortlaut stehen. «Genehmigt» aus Art. 1 der Bundesbeschlüsse, «erläutert» aus den Kapitelüberschriften 2.x der Botschaft.</li>
+      <li>Bezüge: Linie aus allen Zetteln nach BBl-Nummer und Gliederung, Länge nach Wörtern. Bogenarten und Regeln im Zettelbereich beim Klick auf einen Bogen. Fundstellen sind Ausschnitte aus dem Wortlaut, in der Botschaft seitenanteilig abgegrenzt.</li>
       <li>Farben bezeichnen die Vorlage. Grösse bezeichnet nur die Wortzahl. Reihenfolge nach BBl-Nummer und Gliederung.</li>
       <li>Wortlaut im Zettel gekürzt auf 650 Wörter, bei der Botschaft auf 140 Wörter.</li>
     </ol>
@@ -337,8 +380,11 @@ function fokussiereDoc(did){
 
 /* ---------- Zettel ---------- */
 const zEl = document.getElementById('zettel');
-function waehle(id, zoom){
+let bogenZurueck = null;
+function waehle(id, zoom, vonBogen){
   gewaehlt = id;
+  bogenZurueck = vonBogen || null;
+  if (!vonBogen && typeof bzSel !== 'undefined') bzSel = null;
   const l = leafById.get(id);
   if (zoom) {
     const n = root.leaves().find(x=>x.data.leaf===id);
@@ -346,6 +392,7 @@ function waehle(id, zoom){
   }
   zeichneIcicle(!!zoom);
   zeichneZettel(l);
+  if (typeof bzFaerben === 'function') bzFaerben();
 }
 function zeichneZettel(l){
   const d = docById.get(l.doc);
@@ -354,7 +401,9 @@ function zeichneZettel(l){
   const gen = approvedBy[l.doc] ? docById.get(approvedBy[l.doc]) : null;
   const erl = erlByDoc.get(l.doc) || [];
   const chipLeaf = x => `<button data-leaf="${x.id}">${esc(x.label.length>48? x.label.slice(0,47)+'…' : x.label)}</button>`;
+  const nBz = (typeof bzJeZettel !== 'undefined' && bzJeZettel.get(l.id)) || 0;
   zEl.innerHTML = `
+    ${bogenZurueck ? '<button class="zurueck" id="zurueck">← Zurück zum Bogen</button>' : ''}
     <div>
       <div class="ort"><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${esc(gName[d.gruppe])} › ${esc(d.kurz)}${l.teil && l.teil!=='Hauptteil' && l.teil!==l.label ? ' › '+esc(l.teil) : ''}</div>
       <h3>${esc(l.label)}</h3>
@@ -362,6 +411,7 @@ function zeichneZettel(l){
     <div class="meta"><span>BBl 2026 ${d.id}</span><span>${fmt(l.woerter)} Wörter</span><a href="${d.eli}" target="_blank" rel="noopener">Fedlex</a></div>
     ${l.text ? `<div class="wortlaut" tabindex="0" aria-label="Wortlaut">${esc(l.text)}</div>` : `<p class="leer">Für diesen Abschnitt liegt in der Musteransicht kein Wortlaut vor.</p>`}
     <div><h4>Lokaler Graph <span class="marke">Rohextraktion</span></h4><div id="graph"></div><ul class="legende" id="gr-legende"></ul></div>
+    <div><h4>Bögen</h4>${nBz ? `<div class="chips"><button id="bz-zeigen">${fmt(nBz)} Bögen im Bezugsdiagramm zeigen</button></div>` : '<span class="leer">Keine Bögen.</span>'}</div>
     <div><h4>Verweist auf</h4>${aus.length ? `<div class="chips">${aus.map(chipLeaf).join('')}</div>` : '<span class="leer">Keine Artikelverweise im selben Dokument erkannt.</span>'}</div>
     <div><h4>Wird verwiesen von</h4>${ein.length ? `<div class="chips">${ein.slice(0,12).map(chipLeaf).join('')}</div>` : '<span class="leer">Keine eingehenden Verweise erkannt.</span>'}</div>
     <div><h4>Genannte EU-Rechtsakte</h4>${l.eu.length ? `<div class="chips">${l.eu.map(e=>`<a href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=${encodeURIComponent(e)}" target="_blank" rel="noopener">${esc(e)}</a>`).join('')}</div>` : '<span class="leer">Keine.</span>'}</div>
@@ -369,6 +419,8 @@ function zeichneZettel(l){
     <div><h4>Dokument</h4><div class="chips">${gen ? `<button data-doc="${gen.id}">Genehmigt durch ${esc(gen.kurz)}</button>` : ''}${erl.map(e=>`<button data-doc="615">Erläutert in Botschaft ${esc(e.kap)}</button>`).join('')}<button data-doc="${d.id}">${esc(d.kurz)} im Umfang zeigen</button></div></div>`;
   zEl.querySelectorAll('button[data-leaf]').forEach(b=>b.onclick=()=>waehle(b.dataset.leaf, true));
   zEl.querySelectorAll('button[data-doc]').forEach(b=>b.onclick=()=>fokussiereDoc(+b.dataset.doc));
+  const zb = zEl.querySelector('#zurueck'); if (zb) { const b = bogenZurueck; zb.onclick = ()=>{ bzSel = b; zeigeBogen(b); bzFaerben(); }; }
+  const bz = zEl.querySelector('#bz-zeigen'); if (bz) bz.onclick = ()=>{ zeigeReiter('bezuege'); bzSel = null; bzFaerben(); bzZoomDoc(l.doc); };
   zeichneGraph(l, aus, ein, gen, erl);
 }
 
@@ -523,12 +575,194 @@ function zeichneTabelle(){
 }
 
 /* ---------- Reiter ---------- */
-const reiter = ['umfang','verkn','umsetz','tabelle'];
+/* ---------- Bezüge (Bogendiagramm) ---------- */
+const BZ_TYPEN = {
+  intern:     {name:'Artikelverweis im selben Dokument', von:'Verweis in', nach:'Verwiesener Artikel',
+               regel:'Ein Artikel nennt «Art. N» desselben Dokuments. Verweise auf andere Erlasse im selben Satzteil sind ausgeschlossen.'},
+  botschaft:  {name:'Botschaft nennt Artikel', von:'Botschaft', nach:'Genannter Artikel',
+               regel:'Ein Abschnitt der Botschaft nennt «Art. N» mit dem Kürzel eines Abkommens, und der Artikel ist im Paket enthalten.'},
+  eu:         {name:'Gleicher EU-Rechtsakt', von:'Zettel 1', nach:'Zettel 2',
+               regel:'Zwei Zettel aus verschiedenen Dokumenten nennen dieselbe Nummer eines EU-Rechtsakts.'},
+  genehmigt:  {name:'Bundesbeschluss genehmigt', von:'Genehmigung', nach:'Genehmigtes Dokument',
+               regel:'Art. 1 eines Bundesbeschlusses genehmigt ein Abkommen oder Protokoll.'},
+  erlaeutert: {name:'Botschaft-Kapitel erläutert', von:'Botschaft', nach:'Erläutertes Dokument',
+               regel:'Ein Kapitel 2.x der Botschaft trägt im Titel den Gegenstand eines Dokuments.'},
+};
+const bzAktiv = Object.fromEntries(Object.keys(BZ_TYPEN).map(k=>[k,true]));
+const POS = new Map(), docPos = new Map(); let BZ_TOTAL = 0;
+D.docs.forEach(d=>{ const a = BZ_TOTAL; (leavesByDoc.get(d.id)||[]).forEach(l=>{ const w = Math.max(l.woerter,1); POS.set(l.id,[BZ_TOTAL,w]); BZ_TOTAL += w; }); docPos.set(d.id,[a, BZ_TOTAL-a]); });
+function bzEnde(r){
+  if (r[0]==='D'){ const id = +r.slice(1), p = docPos.get(id); return {art:'dok', doc:id, pos:p[0]+p[1]/2}; }
+  if (r[0]==='K'){ const k = D.kapitel[r.slice(1)], a = POS.get(k.von), b = POS.get(k.bis); return {art:'kap', doc:615, kap:k, pos:(a[0]+b[0]+b[1])/2}; }
+  const p = POS.get(r), l = leafById.get(r); return {art:'zettel', doc:l.doc, leaf:r, pos:p[0]+p[1]/2};
+}
+function bzFarbe(t, a, b){
+  const ga = docById.get(a.doc).gruppe, gb = docById.get(b.doc).gruppe;
+  if (t==='intern') return ga;
+  const g = [ga,gb].filter(x=>x!=='botschaft');
+  if (!g.length) return 'botschaft';
+  return g.every(x=>x===g[0]) ? g[0] : 'neutral';
+}
+const BZ = D.bogen.map((s,i)=>{ const A = bzEnde(s.a), B = bzEnde(s.b); return {i, t:s.t, s, A, B, x0:Math.min(A.pos,B.pos), x1:Math.max(A.pos,B.pos), oben:s.t==='intern', g:bzFarbe(s.t,A,B)}; })
+  .filter(b=> b.x1 - b.x0 > 0.5);
+const bzZahl = d3.rollup(BZ, v=>v.length, b=>b.t);
+const bzJeZettel = new Map(); BZ.forEach(b=>[b.A.leaf,b.B.leaf].forEach(id=>{ if (id) bzJeZettel.set(id, (bzJeZettel.get(id)||0)+1); }));
+const bzJeDoc = new Map(); BZ.forEach(b=>{ bzJeDoc.set(b.A.doc,(bzJeDoc.get(b.A.doc)||0)+1); if (b.B.doc!==b.A.doc) bzJeDoc.set(b.B.doc,(bzJeDoc.get(b.B.doc)||0)+1); });
+let bzHoverDoc = null, bzSel = null, bzHover = null;
+
+document.getElementById('bz-chips').innerHTML = Object.entries(BZ_TYPEN).map(([k,t])=>`<button data-typ="${k}" aria-pressed="true">${esc(t.name)} <b>${fmt(bzZahl.get(k)||0)}</b></button>`).join('');
+document.getElementById('bz-chips').addEventListener('click', ev=>{ const b = ev.target.closest('button'); if (!b) return; const k = b.dataset.typ; bzAktiv[k] = !bzAktiv[k]; b.setAttribute('aria-pressed', bzAktiv[k]); bzBoegen(); });
+document.getElementById('bz-legende').innerHTML = D.gruppen.map(g=>`<li><i style="background:${gVar(g.id)}"></i>${esc(g.name)}</li>`).join('') +
+  `<li><svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true"><path d="M2,11 A11,9 0 0 1 24,11" fill="none" stroke="var(--c-neutral)" stroke-width="1.6"/></svg>Bogen zwischen zwei Vorlagen</li>`;
+
+const bzHost = d3.select('#bz-diagramm'), bzOHost = d3.select('#bz-uebersicht');
+let bzW, bzH, bzHo, bzHu, bzY, bzX, bzXZ, bzZoom, bzSvg, bzGDocs, bzGTrenn, bzGLab, bzGB, bzGHit, bzOSvg, bzBrush;
+const BZ_ML = 4, BZ_MR = 4, BZ_BALKEN = 24;
+function bzAufbauen(){
+  bzW = Math.max(bzHost.node().clientWidth, 320);
+  const schmal = bzW < 640;
+  bzHo = schmal ? 100 : 140; bzHu = schmal ? 220 : 320;
+  bzY = bzHo + 24; bzH = bzY + BZ_BALKEN + bzHu + 22;
+  bzX = d3.scaleLinear([0,BZ_TOTAL],[BZ_ML, bzW-BZ_MR]); bzXZ = bzX;
+  bzHost.selectAll('*').remove(); bzOHost.selectAll('*').remove();
+  bzSvg = bzHost.append('svg').attr('viewBox',`0 0 ${bzW} ${bzH}`).attr('height',bzH).attr('role','img')
+    .attr('aria-label',`Bogendiagramm: ${D.docs.length} Dokumente auf einer Linie, ${BZ.length} Bögen`);
+  bzSvg.append('defs').append('clipPath').attr('id','bz-clip').append('rect').attr('x',BZ_ML).attr('y',0).attr('width',bzW-BZ_ML-BZ_MR).attr('height',bzH);
+  const g = bzSvg.append('g').attr('clip-path','url(#bz-clip)');
+  g.append('rect').attr('width',bzW).attr('height',bzH).attr('fill','transparent');
+  bzGB = g.append('g').attr('fill','none'); bzGHit = g.append('g').attr('fill','none');
+  bzGDocs = g.append('g'); bzGTrenn = g.append('path').attr('stroke','var(--grund)').attr('stroke-width',1); bzGLab = g.append('g');
+  bzSvg.append('text').attr('class','bz-seit').attr('x',BZ_ML+4).attr('y',14).text('oben: Artikelverweise im selben Dokument');
+  bzSvg.append('text').attr('class','bz-seit').attr('x',BZ_ML+4).attr('y',bzH-6).text('unten: Bezüge zwischen Dokumenten');
+  bzGB.selectAll('path').data(BZ, b=>b.i).join('path').attr('stroke', b=>`var(--c-${b.g})`).attr('stroke-linecap','round');
+  bzGHit.selectAll('path').data(BZ, b=>b.i).join('path').attr('stroke','transparent').attr('stroke-width',9).style('pointer-events','stroke').style('cursor','pointer')
+    .on('pointerenter pointermove', (ev,b)=>{ bzHover = b; bzFaerben(); showTip(ev, bzTipp(b)); })
+    .on('pointerleave', ()=>{ bzHover = null; bzFaerben(); hideTip(); })
+    .on('click', (ev,b)=>{ hideTip(); bzSel = b; bzFaerben(); zeigeBogen(b); });
+  bzGDocs.selectAll('rect').data(D.docs, d=>d.id).join('rect').attr('y',bzY).attr('height',BZ_BALKEN).attr('rx',3).style('cursor','pointer')
+    .attr('fill', d=>tint(d.gruppe, 72))
+    .on('pointerenter pointermove', (ev,d)=>{ bzHoverDoc = d.id; bzFaerben(); showTip(ev, `<b>${esc(d.kurz)}</b><span>BBl 2026 ${d.id} · ${esc(gName[d.gruppe])}</span><br>${fmt(docPos.get(d.id)[1])} Wörter · ${fmt((leavesByDoc.get(d.id)||[]).length)} Zettel · ${fmt(bzJeDoc.get(d.id)||0)} Bögen<br><span>Klick: Dokument vergrössern</span>`); })
+    .on('pointerleave', ()=>{ bzHoverDoc = null; bzFaerben(); hideTip(); })
+    .on('click', (ev,d)=>bzZoomDoc(d.id));
+  bzZoom = d3.zoom().scaleExtent([1,800]).extent([[BZ_ML,0],[bzW-BZ_MR,bzH]]).translateExtent([[BZ_ML,0],[bzW-BZ_MR,bzH]])
+    .on('zoom', ev=>{ bzXZ = ev.transform.rescaleX(bzX); bzZeichne(); if (ev.sourceEvent) bzRahmen(); });
+  bzSvg.call(bzZoom).on('dblclick.zoom', null);
+  const OH = 36;
+  bzOSvg = bzOHost.append('svg').attr('viewBox',`0 0 ${bzW} ${OH}`).attr('height',OH).attr('aria-label','Übersicht mit Ausschnittsrahmen');
+  bzOSvg.append('g').selectAll('rect').data(D.docs).join('rect').attr('x', d=>bzX(docPos.get(d.id)[0]))
+    .attr('width', d=>Math.max(0.6, bzX(docPos.get(d.id)[0]+docPos.get(d.id)[1])-bzX(docPos.get(d.id)[0])-0.6)).attr('y',8).attr('height',20).attr('fill', d=>tint(d.gruppe,72));
+  bzBrush = d3.brushX().extent([[BZ_ML,2],[bzW-BZ_MR,OH-2]]).on('brush end', ev=>{
+    if (!ev.sourceEvent) return;
+    const s = ev.selection || [BZ_ML, bzW-BZ_MR], k = (bzW-BZ_MR-BZ_ML)/Math.max(1, s[1]-s[0]);
+    bzSvg.call(bzZoom.transform, d3.zoomIdentity.translate(BZ_ML - k*s[0], 0).scale(k));
+  });
+  bzOSvg.append('g').attr('class','bz-rahmen').call(bzBrush).call(bzBrush.move, [BZ_ML, bzW-BZ_MR]);
+  bzOSvg.select('.bz-rahmen .selection').attr('fill','var(--text)').attr('fill-opacity',.08).attr('stroke','var(--text)').attr('stroke-width',1.5);
+  bzZeichne();
+}
+function bzRahmen(){ const t = d3.zoomTransform(bzSvg.node()); bzOSvg.select('.bz-rahmen').call(bzBrush.move, [(BZ_ML-t.x)/t.k, (bzW-BZ_MR-t.x)/t.k]); }
+function bzZeichne(){
+  bzGDocs.selectAll('rect').attr('x', d=>bzXZ(docPos.get(d.id)[0])).attr('width', d=>{ const p = docPos.get(d.id); return Math.max(0.5, bzXZ(p[0]+p[1])-bzXZ(p[0])-1); });
+  let p = '';
+  for (const [id,[s,w]] of POS){ if (s===0) continue; const a = bzXZ(s); if (a < BZ_ML || a > bzW-BZ_MR) continue; if (bzXZ(s+w)-a >= 4) p += `M${a.toFixed(1)},${bzY+3}V${bzY+BZ_BALKEN-3}`; }
+  bzGTrenn.attr('d', p);
+  const lab = D.docs.map(d=>{ const [s,w] = docPos.get(d.id), a = Math.max(bzXZ(s),BZ_ML), b = Math.min(bzXZ(s+w),bzW-BZ_MR); return {d, a, w:b-a}; }).filter(o=>o.w>0);
+  bzGLab.selectAll('text').data(lab, o=>o.d.id).join('text').attr('class','bz-doclabel').attr('y',bzY+BZ_BALKEN/2+4.5).attr('x',o=>o.a+6)
+    .text(o=>{ const max = Math.floor((o.w-12)/7.4); if (max < 3) return ''; return o.d.kurz.length>max ? o.d.kurz.slice(0,max-1)+'…' : o.d.kurz; });
+  bzBoegen();
+  const t = d3.zoomTransform(bzSvg.node());
+  document.getElementById('bz-stand').textContent = t.k > 1.01 ? `${fmt(bzXZ.invert(bzW-BZ_MR)-bzXZ.invert(BZ_ML))} von ${fmt(BZ_TOTAL)} Wörtern sichtbar` : '';
+}
+function bzPfad(b){
+  const x1 = bzXZ(b.x0), x2 = bzXZ(b.x1);
+  if (x2 < BZ_ML-2 || x1 > bzW-BZ_MR+2) return null;
+  const rx = (x2-x1)/2; if (rx < 0.4) return null;
+  const Hs = b.oben ? bzHo : bzHu, ry = Hs*rx/(rx+Hs);   // kurze Bögen nahezu halbkreisförmig, lange höchstens bis zur Bandhöhe
+  const y = b.oben ? bzY-2 : bzY+BZ_BALKEN+2;
+  return `M${x1.toFixed(1)},${y}A${rx.toFixed(1)},${ry.toFixed(1)} 0 0 ${b.oben?1:0} ${x2.toFixed(1)},${y}`;
+}
+function bzBoegen(){
+  if (!bzSvg) return;
+  const ds = new Map(BZ.map(b=>[b.i, bzAktiv[b.t] ? bzPfad(b) : null]));
+  [bzGB, bzGHit].forEach(g=>g.selectAll('path').attr('d', b=>ds.get(b.i)).attr('display', b=>ds.get(b.i) ? null : 'none'));
+  bzFaerben();
+}
+function bzFaerben(){
+  if (!bzSvg) return;
+  let fokus = null;
+  if (bzHoverDoc !== null) fokus = b => b.A.doc===bzHoverDoc || b.B.doc===bzHoverDoc;
+  else if (bzHover) fokus = b => b.i===bzHover.i || (bzSel && b.i===bzSel.i);
+  else if (bzSel) fokus = b => b.i===bzSel.i;
+  else if (gewaehlt) { const hat = BZ.some(b=>b.A.leaf===gewaehlt || b.B.leaf===gewaehlt); if (hat) fokus = b => b.A.leaf===gewaehlt || b.B.leaf===gewaehlt; }
+  const stark = b => b.t==='genehmigt' || b.t==='erlaeutert';
+  bzGB.selectAll('path')
+    .attr('stroke-opacity', b=> fokus ? (fokus(b) ? .95 : .05) : (stark(b) ? .7 : .34))
+    .attr('stroke-width', b=> fokus && fokus(b) ? 2.2 : (stark(b) ? 1.6 : 1));
+  if (fokus) bzGB.selectAll('path').filter(fokus).raise();
+}
+function bzEndeName(e){
+  if (e.art==='dok') return docById.get(e.doc).kurz+' (ganzes Dokument)';
+  if (e.art==='kap') return 'Botschaft, Kapitel '+e.kap.titel;
+  return docById.get(e.doc).kurz+', '+leafById.get(e.leaf).label;
+}
+function bzTipp(b){
+  const eu = b.s.eu ? `<br><span>EU-Rechtsakt${b.s.eu.length>1?'e':''}: ${b.s.eu.slice(0,6).map(esc).join(', ')}${b.s.eu.length>6?' …':''}</span>` : '';
+  return `<b>${esc(BZ_TYPEN[b.t].name)}</b>${esc(bzEndeName(b.A))}<br>${b.t==='eu'?'↔':'→'} ${esc(bzEndeName(b.B))}${eu}<br><span>Klick: beide Enden mit Fundstelle anzeigen</span>`;
+}
+function bzZoomDoc(id){
+  if (!bzSvg) return;
+  const [s,w] = docPos.get(id), pad = w*0.04, s0 = bzX(Math.max(0,s-pad)), s1 = bzX(Math.min(BZ_TOTAL, s+w+pad));
+  const k = Math.min(800, (bzW-BZ_MR-BZ_ML)/Math.max(1, s1-s0));
+  bzSvg.transition().duration(matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 600)
+    .call(bzZoom.transform, d3.zoomIdentity.translate(BZ_ML - k*s0, 0).scale(k)).on('end', bzRahmen);
+}
+document.getElementById('bz-plus').onclick = ()=>bzSvg.transition().duration(250).call(bzZoom.scaleBy, 2).on('end', bzRahmen);
+document.getElementById('bz-minus').onclick = ()=>bzSvg.transition().duration(250).call(bzZoom.scaleBy, .5).on('end', bzRahmen);
+document.getElementById('bz-alles').onclick = ()=>bzSvg.transition().duration(400).call(bzZoom.transform, d3.zoomIdentity).on('end', bzRahmen);
+
+/* Bogen im Zettelbereich: beide Enden mit Fundstelle */
+function markiert(s){ const [t,a,b] = s; return b > a ? esc(t.slice(0,a))+'<mark>'+esc(t.slice(a,b))+'</mark>'+esc(t.slice(b)) : esc(t); }
+function endeHtml(e, stelle, rolle){
+  const d = docById.get(e.doc);
+  let titel, ort, knoepfe;
+  if (e.art==='zettel'){
+    const l = leafById.get(e.leaf);
+    titel = l.label; ort = `${d.gruppe==='botschaft' ? '' : gName[d.gruppe]+' › '}${d.kurz}${l.teil && l.teil!=='Hauptteil' && l.teil!==l.label ? ' › '+l.teil : ''}`;
+    knoepfe = `<button data-oeffne="${l.id}">Zettel öffnen</button><button data-umfang="${l.id}">Im Umfang zeigen</button>`;
+  } else if (e.art==='dok'){
+    titel = d.kurz; ort = `${gName[d.gruppe]} › ganzes Dokument`;
+    knoepfe = `<button data-doc="${d.id}">Dokument im Umfang zeigen</button>`;
+  } else {
+    titel = 'Kapitel '+e.kap.titel; ort = 'Botschaft';
+    knoepfe = `<button data-oeffne="${e.kap.von}">Kapitel öffnen</button>`;
+  }
+  const st = stelle ? `<div class="stelle" tabindex="0">${markiert(stelle)}</div>` : (e.art==='dok' ? `<div class="stelle">${esc(d.titel)}</div>` : '');
+  return `<div class="ende"><div class="rolle">${esc(rolle)}</div><div class="ort"><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${esc(ort)} · BBl 2026 ${d.id}</div>
+    <div class="titel">${esc(titel)}</div>${st}<div class="knoepfe">${knoepfe}<a href="${d.eli}" target="_blank" rel="noopener">Fedlex</a></div></div>`;
+}
+function zeigeBogen(b){
+  const T = BZ_TYPEN[b.t];
+  const eu = b.s.eu ? `<div class="meta">EU-Rechtsakt${b.s.eu.length>1?'e':''}: ${b.s.eu.map(e=>`<a href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=${encodeURIComponent(e)}" target="_blank" rel="noopener">${esc(e)}</a>`).join(', ')}</div>` : '';
+  zEl.innerHTML = `<div class="bogenkarte">
+    <div><div class="ort">Bogen <span class="marke">Rohextraktion</span></div><h3>${esc(T.name)}</h3><p class="regel">${esc(T.regel)}</p></div>
+    ${eu}
+    ${endeHtml(b.A, b.s.sa, T.von)}
+    <div class="pfeil" aria-hidden="true">${b.t==='eu' ? '↕' : '↓'}</div>
+    ${endeHtml(b.B, b.s.sb, T.nach)}
+  </div>`;
+  zEl.querySelectorAll('button[data-oeffne]').forEach(x=>x.onclick = ()=>waehle(x.dataset.oeffne, false, b));
+  zEl.querySelectorAll('button[data-umfang]').forEach(x=>x.onclick = ()=>waehle(x.dataset.umfang, true));
+  zEl.querySelectorAll('button[data-doc]').forEach(x=>x.onclick = ()=>fokussiereDoc(+x.dataset.doc));
+  if (innerWidth < 1100) zEl.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+const reiter = ['umfang','verkn','bezuege','umsetz','tabelle'];
 const gezeichnet = {};
 function zeigeReiter(k){
   reiter.forEach(r=>{ document.getElementById('tab-'+r).setAttribute('aria-selected', r===k); document.getElementById('v-'+r).hidden = r!==k; });
   if (k==='verkn' && !gezeichnet.verkn) { zeichneMatrix(); gezeichnet.verkn = true; }
   if (k==='umsetz' && !gezeichnet.umsetz) { zeichneSankey(); gezeichnet.umsetz = true; }
+  if (k==='bezuege' && !gezeichnet.bezuege) { bzAufbauen(); gezeichnet.bezuege = true; }
   if (k==='tabelle' && !gezeichnet.tabelle) { zeichneTabelle(); gezeichnet.tabelle = true; }
   if (k==='umfang') zeichneIcicle(false);
   try { localStorage.setItem('vs-reiter', k); } catch(e) {}
@@ -546,6 +780,6 @@ zeichneIcicle(false);
 waehle(start.id, false);
 let gespeichert = null; try { gespeichert = localStorage.getItem('vs-reiter'); } catch(e) {}
 if (gespeichert && reiter.includes(gespeichert) && gespeichert!=='umfang') zeigeReiter(gespeichert);
-let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ zeichneIcicle(false); if (gezeichnet.umsetz) zeichneSankey(); }, 150); });
+let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ zeichneIcicle(false); if (gezeichnet.umsetz) zeichneSankey(); if (gezeichnet.bezuege && !document.getElementById('v-bezuege').hidden) bzAufbauen(); else gezeichnet.bezuege = false; }, 150); });
 })();
 </script>
