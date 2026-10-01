@@ -1,0 +1,45 @@
+# Veröffentlicht den Ordner site/ als GitHub Pages, wie im Politspiegel.
+#
+# Warum ein Arbeitsablauf und nicht «Deploy from a branch»: Pages kann bei der
+# einfachen Variante nur den Wurzelordner oder /docs ausliefern, nicht /site.
+# docs/ enthält hier die Projektdokumentation, und die Wurzel auszuliefern
+# hiesse, das ganze Repository zu veröffentlichen. Dieser Ablauf nimmt genau
+# site/ und sonst nichts.
+#
+# Er baut nichts. site/ liegt fertig im Repository und wird von
+# scripts/bauen.py erzeugt; hier wird es nur weitergereicht.
+# Voraussetzung: In den Einstellungen des Repositorys unter Pages ist als
+# Quelle «GitHub Actions» gewählt.
+
+name: Seite veröffentlichen
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Läuft ein Push, während ein anderer noch veröffentlicht, gewinnt der neuere.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  veroeffentlichen:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - id: deployment
+        uses: actions/deploy-pages@v4

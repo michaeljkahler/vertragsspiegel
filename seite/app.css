@@ -1,0 +1,228 @@
+/* Vertragsspiegel. Farben, Schriften und Flächen wie im Politspiegel (Projektbrief Ziffer 5.3).
+   Farbe bezeichnet nur die Vorlage (Ziffer 6.1): Stabilisierung Orange, Elektrizität Blau,
+   Lebensmittelsicherheit Gelb, Gesundheit Magenta; Botschaft, Weitere und Begleitgeschäft grau. */
+:root{
+  --grund:#FFFFFF; --flaeche:#F7F8FA; --karte:#FFFFFF; --text:#12161C; --text-leise:#5A626D; --linie:#E2E6EB;
+  --fokus:#12161C;
+  --c-stab:#eb6834; --c-strom:#2a78d6; --c-lms:#eda100; --c-ges:#e87ba4;
+  --c-botschaft:#7d8794; --c-weitere:#b4bcc6; --c-begleit:#98a2ae; --c-gesetz:#5A626D; --c-neutral:#5A626D;
+  --seq-0:#F1F3F6; --seq-1:#D6DCE4; --seq-2:#AEB8C5; --seq-3:#7F8C9C; --seq-4:#525E6E; --seq-5:#2B3440;
+  --f-display:Archivo,"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --radius:8px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181;
+  --c-botschaft:#8a94a3; --c-weitere:#566070; --c-begleit:#6d7787; --c-gesetz:#9AA3AF; --c-neutral:#9AA3AF;
+  --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181;
+  --c-botschaft:#8a94a3; --c-weitere:#566070; --c-begleit:#6d7787; --c-gesetz:#9AA3AF; --c-neutral:#9AA3AF;
+  --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--grund);color:var(--text);font-family:var(--f-text);font-size:16px;line-height:1.55}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600}
+a{color:inherit;text-underline-offset:2px}
+a:hover{color:var(--text-leise)}
+button{font-family:var(--f-text)}
+:focus-visible{outline:2px solid var(--fokus);outline-offset:2px}
+.huelle{max-width:1560px;margin:0 auto;padding:0 max(16px,2.5vw) 80px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Kopf */
+.kopf{border-bottom:1px solid var(--linie);padding:28px 0 22px;display:grid;gap:10px}
+.zurueck-heim{display:inline-flex;align-items:center;gap:6px;justify-self:start;font-family:var(--f-display);font-size:13px;font-weight:600;
+  color:var(--text-leise);text-decoration:none;border:1px solid var(--linie);border-radius:999px;padding:5px 12px}
+.zurueck-heim:hover{color:var(--text);border-color:var(--text-leise)}
+.marke-kopf{font-size:13px;letter-spacing:.10em;text-transform:uppercase;color:var(--text-leise);font-family:var(--f-display);font-weight:600}
+.kopf h1{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:0;text-wrap:balance}
+.lead{margin:0;font-size:18px;color:var(--text-leise);max-width:80ch}
+.stand{font-size:13.5px;color:var(--text-leise);margin:0}
+.hinweis{display:flex;gap:10px;align-items:flex-start;background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);
+  padding:10px 12px;font-size:14.5px;max-width:120ch}
+.hinweis svg{flex:none;margin-top:3px}
+.kennzahlen{display:flex;flex-wrap:wrap;gap:6px 24px;margin:4px 0 0;padding:0;list-style:none;font-variant-numeric:tabular-nums}
+.kennzahlen li{display:flex;align-items:baseline;gap:6px}
+.kennzahlen b{font-family:var(--f-display);font-size:22px;font-weight:600}
+.kennzahlen span{color:var(--text-leise);font-size:14px}
+
+/* Leiste mit Reitern und Suche */
+.leiste{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding-block:16px}
+.reiter{display:flex;gap:4px;flex-wrap:wrap;background:var(--flaeche);border:1px solid var(--linie);border-radius:10px;padding:3px}
+.reiter button{font:600 15px var(--f-text);color:var(--text-leise);background:transparent;border:0;border-radius:7px;padding:8px 14px;min-height:42px;cursor:pointer}
+.reiter button[aria-selected="true"]{background:var(--karte);color:var(--text);box-shadow:0 0 0 1px var(--linie)}
+.suche{position:relative;flex:1 1 300px;max-width:480px}
+.suche input{width:100%;font:16px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:10px;padding:10px 12px 10px 36px;min-height:44px}
+.suche > svg{position:absolute;left:12px;top:14px;pointer-events:none}
+.treffer{position:absolute;z-index:30;left:0;right:0;top:50px;background:var(--karte);border:1px solid var(--linie);border-radius:10px;
+  box-shadow:0 10px 28px rgb(0 0 0 / .14);max-height:420px;overflow:auto;padding:4px}
+.treffer .kopfzeile{padding:6px 10px;font-size:13px;color:var(--text-leise)}
+.treffer button{display:block;width:100%;text-align:left;font:15px var(--f-text);color:var(--text);background:none;border:0;border-radius:6px;padding:8px 10px;cursor:pointer}
+.treffer button:hover,.treffer button:focus-visible{background:var(--flaeche)}
+.treffer small{display:block;color:var(--text-leise);font-size:13px}
+.treffer mark,.wortlaut mark{background:color-mix(in oklab,var(--c-lms) 38%,transparent);color:inherit;border-radius:2px}
+
+/* Raster: Ansicht und Zettel; Zettelspalte 480 px ab 1280 px (Ziffer 5.3) */
+.raster{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
+@media (min-width:1280px){.raster{grid-template-columns:minmax(0,1fr) 480px}}
+.flaeche{background:var(--karte);border:1px solid var(--linie);border-radius:12px;padding:18px;min-width:0}
+.flaeche h2{font-size:19px;margin:0}
+.ansichtkopf{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.ansichtkopf p,.erkl{margin:0;color:var(--text-leise);font-size:14.5px;max-width:90ch}
+.marke{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-leise);
+  border:1px solid var(--linie);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:2px;font-family:var(--f-text)}
+.legende{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--text);margin:10px 0 0;padding:0;list-style:none}
+.legende li{display:flex;align-items:center;gap:6px}
+.legende i{width:13px;height:13px;border-radius:3px;display:inline-block}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+svg text{font-family:var(--f-text)}
+.laden{color:var(--text-leise);font-size:14.5px;padding:24px 0}
+
+/* Umfang: Übersichtsfeld neben dem Icicle (Ziffer 5.1) */
+.pfad{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:14px;margin-bottom:8px;min-height:32px}
+.pfad button{font:600 14px var(--f-text);color:var(--text);background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:4px 9px;cursor:pointer}
+.pfad span{color:var(--text-leise)}
+.umfang-raster{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px}
+@media (max-width:700px){.umfang-raster{grid-template-columns:72px minmax(0,1fr);gap:8px}}
+.uebersicht-kopf{font-size:12.5px;color:var(--text-leise);margin:0 0 4px;line-height:1.3}
+#uebersicht svg{display:block;width:100%;cursor:crosshair}
+.ic-rect{cursor:pointer}
+.ic-label{font-size:13.5px;fill:var(--text);pointer-events:none}
+.ic-sub{font-size:13px;fill:var(--text-leise);pointer-events:none;font-variant-numeric:tabular-nums}
+
+/* Tooltip */
+.tip{position:fixed;z-index:60;pointer-events:none;background:var(--karte);color:var(--text);border:1px solid var(--linie);border-radius:8px;
+  box-shadow:0 6px 20px rgb(0 0 0 / .16);padding:8px 10px;font-size:14px;max-width:360px;font-variant-numeric:tabular-nums}
+.tip b{display:block;font-weight:600;margin-bottom:2px}
+.tip span{color:var(--text-leise)}
+
+/* Matrix, Sankey, Tabelle */
+.mx-label{font-size:13px;fill:var(--text)}
+.mx-cell{cursor:pointer}
+.schalter{display:inline-flex;flex-wrap:wrap;gap:2px;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:2px}
+.schalter button{font:600 14px var(--f-text);color:var(--text-leise);background:none;border:0;border-radius:6px;padding:6px 10px;min-height:36px;cursor:pointer}
+.schalter button[aria-pressed="true"]{background:var(--karte);color:var(--text);box-shadow:0 0 0 1px var(--linie)}
+.detail{margin-top:14px;font-size:14.5px}
+.detail ol{margin:6px 0 0;padding-left:22px;display:grid;gap:6px}
+.detail .stelle{color:var(--text-leise);font-size:14px}
+.sk-label{font-size:13px;fill:var(--text);paint-order:stroke;stroke:var(--karte);stroke-width:3px;stroke-linejoin:round}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--linie);vertical-align:top}
+th{font-weight:600;color:var(--text-leise);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+td.zahl,th.zahl{text-align:right}
+.punkt{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:0}
+h3.tabtitel{font-size:17px;margin:28px 0 8px}
+
+/* Zettel */
+.zettel{display:grid;gap:14px;align-content:start;grid-auto-rows:max-content}
+@media (min-width:1280px){.zettel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}}
+.zettel .ort{font-size:13.5px;color:var(--text-leise);line-height:1.4}
+.zettel h3{font-size:22px;line-height:1.25;margin:4px 0 0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--text-leise);font-variant-numeric:tabular-nums}
+.wortlaut{font-size:16px;line-height:1.6;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:12px 14px;max-height:460px;overflow:auto}
+.wortlaut p{margin:0 0 .55em}
+.wortlaut p:last-child{margin:0}
+.fussnoten{font-size:14px;line-height:1.5;color:var(--text-leise);margin:8px 0 0;padding:8px 0 0;border-top:1px solid var(--linie)}
+.fussnoten p{margin:0 0 4px}
+.fussnoten sup{font-weight:600;color:var(--text)}
+.zettel h4{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);margin:0 0 6px;font-weight:600;font-family:var(--f-text)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a,.chips button{font:14px var(--f-text);color:var(--text);background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:4px 9px;text-decoration:none;cursor:pointer;text-align:left}
+.leer{color:var(--text-leise);font-size:14px}
+.knopf{font:600 14px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:6px 11px;min-height:36px;cursor:pointer}
+
+/* Lokaler Graph (Ziffer 5.2) */
+.gr-filter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.gr-filter button{font:500 13.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:999px;padding:4px 10px;min-height:34px;cursor:pointer}
+.gr-filter button[aria-pressed="false"]{color:var(--text-leise);background:var(--flaeche);text-decoration:line-through}
+#graph svg{display:block;width:100%;height:auto}
+.gr-label{font-size:12.5px;fill:var(--text);paint-order:stroke;stroke:var(--karte);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.gr-sektor{font-size:12px;fill:var(--text-leise);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.gr-node{cursor:pointer}
+.gr-erkl{font-size:14px;color:var(--text-leise);margin:8px 0 0;display:grid;gap:6px}
+.gr-erkl p{margin:0}
+.liste{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px}
+.liste li{border-left:3px solid var(--linie);padding:2px 0 2px 10px}
+.liste .art{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+.liste button.ziel{font:inherit;color:var(--text);background:none;border:0;padding:0;text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.liste .stelle{display:block;color:var(--text-leise);font-size:13.5px}
+
+/* Bezüge (Bogendiagramm) */
+.bz-leiste{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin:0 0 8px}
+.bz-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bz-chips button{font:500 14px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:999px;padding:5px 11px;min-height:38px;cursor:pointer;font-variant-numeric:tabular-nums}
+.bz-chips button[aria-pressed="false"]{color:var(--text-leise);background:var(--flaeche);text-decoration:line-through}
+.bz-zoom{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.bz-zoom button{font:600 15px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:8px;min-width:40px;min-height:38px;padding:0 10px;cursor:pointer}
+.bz-zoom span{font-size:13.5px;color:var(--text-leise);font-variant-numeric:tabular-nums}
+#bz-diagramm{touch-action:none}
+#bz-diagramm svg,#bz-uebersicht svg{display:block;width:100%}
+.bz-ue{font-size:13px;color:var(--text-leise);margin:6px 0 2px 2px}
+.bz-seit{font-size:13px;fill:var(--text-leise)}
+.bz-doclabel{font-size:13px;font-weight:600;fill:var(--text);pointer-events:none}
+.bogenkarte{display:grid;gap:12px}
+.bogenkarte .regel{margin:4px 0 0;font-size:14.5px;color:var(--text-leise)}
+.ende{border:1px solid var(--linie);border-radius:8px;padding:10px 12px;display:grid;gap:6px;background:var(--flaeche)}
+.ende .rolle{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+.ende .titel{font-family:var(--f-display);font-weight:600;font-size:17px;line-height:1.3}
+.ende .stelle{font-size:15px;line-height:1.6;background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:8px 10px}
+.ende .knoepfe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
+.pfeil{font-size:15px;color:var(--text-leise);text-align:center;line-height:1}
+
+/* Grundlagen und Fuss */
+.methode{margin-top:32px;border-top:1px solid var(--linie);padding-top:18px;font-size:15px;color:var(--text-leise);max-width:120ch}
+.methode h2{font-size:18px;color:var(--text);margin:0 0 8px}
+.methode ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.fuss{margin-top:40px;padding-top:20px;border-top:1px solid var(--linie);font-size:14px;color:var(--text-leise);line-height:1.55}
+.fuss p{margin:0 0 10px}
+.fuss-kanal a{color:var(--text);font-weight:600;text-decoration:none}
+.impressum{margin-top:18px;padding-top:16px;border-top:1px solid var(--linie);font-size:13.5px}
+.impressum b{color:var(--text)}
+.melden-inline{display:inline-flex;align-items:center;gap:6px;margin-left:10px;appearance:none;border:1px solid var(--linie);border-radius:999px;
+  background:var(--karte);color:var(--text);font:600 13px var(--f-display);padding:4px 10px;cursor:pointer}
+
+/* Testphase-Eckband, Melden: wie im Politspiegel */
+:root{--tp-eck:168px;--tp-mitte:62px}
+.testphase{position:fixed;z-index:900;width:var(--tp-eck);height:var(--tp-eck);overflow:hidden;pointer-events:none}
+.testphase span{position:absolute;display:block;width:300px;padding:5px 0;background:#C62828;color:#FFFFFF;
+  font-family:Archivo,"Public Sans","Helvetica Neue",Arial,sans-serif;font-size:12.5px;font-weight:650;
+  letter-spacing:.09em;text-transform:uppercase;text-align:center;box-shadow:0 1px 10px rgba(17,24,32,.28);transform-origin:center}
+.tp-unten-links{bottom:0;left:0}
+.tp-unten-links span{left:0;bottom:0;transform:translate(calc(-50% + var(--tp-mitte)),calc(50% - var(--tp-mitte))) rotate(45deg)}
+.tp-oben-rechts{top:0;right:0}
+.tp-oben-rechts span{right:0;top:0;transform:translate(calc(50% - var(--tp-mitte)),calc(-50% + var(--tp-mitte))) rotate(45deg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .testphase span{background:#E04B4B;color:#1A0808}}
+:root[data-theme="dark"] .testphase span{background:#E04B4B;color:#1A0808}
+@media (max-width:640px){:root{--tp-eck:108px;--tp-mitte:40px}.testphase span{font-size:9px;padding:3px 0;letter-spacing:.04em}}
+@media print{.testphase{display:none}}
+.melden-knopf{position:fixed;z-index:850;right:18px;bottom:64px;display:inline-flex;align-items:center;gap:7px;
+  padding:8px 12px;border-radius:999px;border:1px solid rgba(17,24,32,.18);background:#FFFFFF;color:#2A3441;
+  font:600 12.5px/1 Archivo,"Public Sans","Helvetica Neue",Arial,sans-serif;cursor:pointer;box-shadow:0 2px 10px rgba(17,24,32,.14)}
+.melden{position:fixed;inset:0;margin:auto;z-index:1001;height:fit-content;max-height:calc(100vh - 32px);overflow:auto;
+  border:0;border-radius:14px;padding:0;max-width:min(560px,92vw);width:100%;box-shadow:0 20px 60px rgba(17,24,32,.3);background:#FFFFFF;color:#111820}
+.melden-schleier{position:fixed;inset:0;z-index:1000;background:rgba(17,24,32,.45)}
+body.melden-offen{overflow:hidden}
+.melden form{padding:24px 26px 20px;display:flex;flex-direction:column;gap:12px}
+.melden h2{margin:0;font-size:20px}
+.melden-hinweis{margin:0;font-size:14px;line-height:1.5;color:#4A5563}
+.melden label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#2A3441}
+.melden textarea,.melden input[type=email],.melden input[type=text],.melden select{font:400 15px/1.45 var(--f-text);padding:9px 11px;border:1px solid rgba(17,24,32,.25);border-radius:8px;background:#FFFFFF;color:#111820;resize:vertical}
+.melden-falle{position:absolute;left:-9999px;opacity:0}
+.melden-status{margin:0;min-height:1.3em;font-size:13.5px;color:#7A2E2E}
+.melden-zeile{display:flex;justify-content:flex-end;gap:10px}
+.melden-ab,.melden-los{font:600 13.5px/1 var(--f-display);padding:10px 16px;border-radius:999px;cursor:pointer;border:1px solid rgba(17,24,32,.25);background:#FFFFFF;color:#2A3441}
+.melden-los{background:#1F4E9C;border-color:#1F4E9C;color:#FFFFFF}
+.melden-los[disabled]{opacity:.6;cursor:wait}
+.melden-klein{margin:4px 0 0;font-size:11.5px;line-height:1.45;color:#6B7684}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .melden-knopf,:root:not([data-theme="light"]) .melden{background:#1A2230;color:#E6EAF0;border-color:rgba(230,234,240,.2)}
+  :root:not([data-theme="light"]) .melden-hinweis,:root:not([data-theme="light"]) .melden label{color:#B9C2CE}
+  :root:not([data-theme="light"]) .melden textarea,:root:not([data-theme="light"]) .melden select,:root:not([data-theme="light"]) .melden input[type=text],:root:not([data-theme="light"]) .melden input[type=email],:root:not([data-theme="light"]) .melden-ab{background:#111820;color:#E6EAF0;border-color:rgba(230,234,240,.25)}}
+@media (max-width:640px){.melden-knopf{bottom:70px;right:12px;padding:8px 10px;font-size:12px}}
+@media print{.melden-knopf,.melden{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

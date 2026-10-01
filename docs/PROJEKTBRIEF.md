@@ -26,6 +26,7 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    3. 7649 Kanten: 1775 Artikelverweise, 2172 Nennungen von EU-Rechtsakten und SR-Erlassen, 535 Erläuterungen, 46 Änderungen von Bundesgesetzen, 18 Genehmigungen, dazu die Gliederung.
    4. Fehler in den Vorlagen und Grenzen der Extraktion: `docs/KORREKTUREN.md`.
    5. Der Reiter «Bezüge» (Ziffer 1.8, Ansicht 3a) liest noch die Rohextraktion des Prototyps; die Artikelverweise zwischen Dokumenten aus `daten/kanten.json` sind für Etappe 3 bereit.
+10. Etappe 3, Stand 1. Oktober 2026: Seite aus `seite/`, gebaut mit `scripts/bauen.py` nach `site/`, Ansichten nach Ziffer 5 auf den Daten von Etappe 2, auch der Reiter «Bezüge». Gestaltungsentscheide: `docs/DESIGN_entscheide.md`. Auslieferung über `.github/workflows/pages.yml`.
 
 ## 2. Ziel
 
