@@ -6,6 +6,7 @@ daten/github_zugang.json
 # Rohdaten: amtliche Texte, öffentlich auf Fedlex. Rund 25 MB je Sprache; laden.py stellt sie wieder her.
 daten/pdf/
 daten/text/
+daten/xml/
 prototyp/an/
 
 # Arbeitsdateien
