@@ -2,16 +2,27 @@
 
 Paket Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, gegliedert in Artikel und Abschnitte, mit Umfang und Verknüpfungen. Wertungsfrei, jede Angabe bis zur Fundstelle auf Fedlex verfolgbar. Teil des Umfelds des [Politspiegels](https://michaeljkahler.github.io/politspiegel/).
 
-Stand 1. Oktober 2026: Aufbau. Einstieg: [`docs/PROJEKTBRIEF.md`](docs/PROJEKTBRIEF.md).
+Stand 1. Oktober 2026: Aufbau, Pipeline (Etappe 2) steht. Einstieg: [`docs/PROJEKTBRIEF.md`](docs/PROJEKTBRIEF.md).
 
 ## Ordner
 
 | Ordner | Inhalt |
 |---|---|
-| `docs/` | Projektbrief, Aufträge für die Einrichtung und die wiederkehrende Kontrolle |
-| `scripts/` | `fedlex_pruefen.py`, `parlament_pruefen.py` |
-| `daten/` | Stand der letzten Kontrollen; Rohdaten unter `daten/pdf/` und `daten/text/` sind nicht versioniert |
+| `docs/` | Projektbrief, Aufträge für die Einrichtung und die wiederkehrende Kontrolle, Korrekturprotokoll |
+| `scripts/` | Kontrolle (`fedlex_pruefen.py`, `parlament_pruefen.py`) und Pipeline (`laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py`) |
+| `daten/` | Stand der Kontrollen, Herkunft der Texte (`quellen.json`), Zettel (`zettel.json`), Kanten (`kanten.json`), EUR-Lex-Titel (`eurlex.json`); Rohdaten unter `daten/pdf/`, `daten/text/`, `daten/xml/` sind nicht versioniert |
 | `prototyp/` | Musteransicht vom 1. Oktober 2026 mit Datenaufbereitung |
+
+## Pipeline
+
+```
+python3 scripts/laden.py               # Texte von Fedlex, pdftotext aus Poppler (Windows: winget install oschwartz10612.Poppler)
+python3 scripts/gliedern.py            # Zettel je Artikel, Anhangsteil und Ziffer der Botschaft → daten/zettel.json
+python3 scripts/verweise.py --eurlex   # Kanten, EU-Rechtsakte gegen EUR-Lex geprüft → daten/kanten.json
+python3 scripts/pruefen.py             # Selbstprüfung nach Projektbrief Ziffer 9; Abbruchcode 2 bei Abweichung
+```
+
+`gliedern.py --zeigen 632` zeigt die Gliederung eines Werks. Fehler der Vorlagen und Grenzen der Extraktion: [`docs/KORREKTUREN.md`](docs/KORREKTUREN.md).
 
 ## Kontrolle
 

@@ -23,6 +23,11 @@ import sys
 from paket import DATEN, utf8_ausgabe
 
 GESETZE_GEAENDERT, GESETZE_NEU = 36, 3
+# Fehler in der Vorlage, im Korrekturprotokoll (docs/KORREKTUREN.md) gemeldet: kein Abbruch, aber Ausweis
+VORLAGEFEHLER_EU = {
+    '32024L01366': '632 Anhang I Nr. 15: CELEX «32024 L 01366» statt 32024R1366',
+    '32022R3271': '615 Ziff. 2.13: «(EU) 2022/3271», gemeint wohl 2022/2371',
+}
 
 
 def nummer_teile(nr):
@@ -110,9 +115,17 @@ def main():
                                      neu=[g['titel'] for g in neu], geaendert=[g['titel'] for g in geaendert])
         eu = k.get('eu_rechtsakte', {})
         ohne = sorted(n for n, v in eu.items() if not v.get('celex'))
-        ergebnis['5_eu'] = dict(ok=not ohne, befunde=[f'ohne CELEX: {n}' for n in ohne[:50]], anzahl=len(eu))
+        unbekannt = sorted(n for n, v in eu.items() if v.get('gefunden') is False and n not in VORLAGEFEHLER_EU)
+        bekannt = sorted(n for n, v in eu.items() if v.get('gefunden') is False and n in VORLAGEFEHLER_EU)
+        geprueft = any('gefunden' in v for v in eu.values())
+        ergebnis['5_eu'] = dict(ok=not ohne and not unbekannt and geprueft, anzahl=len(eu),
+                                befunde=[f'ohne CELEX: {n}' for n in ohne]
+                                + [f"auf EUR-Lex nicht gefunden: {n} ({', '.join(eu[n]['zitate'][:2])})" for n in unbekannt]
+                                + [f'Fehler der Vorlage (Korrekturprotokoll): {VORLAGEFEHLER_EU[n]}' for n in bekannt]
+                                + ([] if geprueft else ['nicht gegen EUR-Lex geprüft (verweise.py --eurlex)']))
         rnd = random.Random(k.get('stand', ''))
-        probe = rnd.sample(kanten, min(20, len(kanten)))
+        inhaltlich = [x for x in kanten if x['art'] != 'teil_von']     # Gliederungskanten sind nicht strittig
+        probe = rnd.sample(inhaltlich, min(20, len(inhaltlich)))
         ergebnis['6_stichprobe'] = dict(ok=True, befunde=[], probe=[
             f"{x['art']}: {x['von']} → {x['nach']} | {x.get('stelle', '')[:80]}" for x in probe])
     else:

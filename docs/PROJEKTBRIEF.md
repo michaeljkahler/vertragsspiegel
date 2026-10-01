@@ -19,6 +19,11 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
 5. Kontrolle: Skripte `scripts/fedlex_pruefen.py` und `scripts/parlament_pruefen.py` und Auftrag `docs/AUFTRAG_fedlex-kontrolle.md` liegen bereit. Ausgangsstand vom 1. Oktober 2026 in `daten/fedlex_stand.json` (33 Werke) und `daten/parlament_stand.json` (14 Entwürfe, 8 Beschlüsse).
 6. Entscheid vom 1. Oktober 2026: Die Kontrolle läuft als geplante Aufgabe in der Cloud auf dem GitHub-Repository. Einrichtung: `docs/AUFTRAG_claude-code-einrichtung.md`. Eingerichtet am 1. Oktober 2026: Repository angelegt (erster Commit `90373f5`), Aufgabe «Vertragsspiegel Kontrolle» mittwochs 06:50, erster Lauf ohne Änderung.
 7. Parlament, Stand Webservice 1. Oktober 2026: Der Ständerat hat am 28. bis 30. September 2026 beraten. Entwurf 1 (Bundesbeschluss Stabilisierung): «Beschluss abweichend vom Entwurf». Entwürfe 5 bis 8 und 10: «Beschluss gemäss Entwurf». Für die Entwürfe zu Elektrizität, Lebensmittelsicherheit, Gesundheit und Erasmus+ ist im Webservice noch kein Beschluss eingetragen.
+8. Etappe 2, Stand 1. Oktober 2026: Pipeline `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py` steht, Prüfungen 9.1 bis 9.6 bestanden.
+   1. 33 Werke (BBl 2026 615–644 und das Begleitgeschäft 2099, 2100, 2174), 3103 Zettel. Feiner als die Musteransicht: Rechtsakte in den Anhängen und die Erläuterungen der Botschaft zu einzelnen Artikeln sind eigene Zettel.
+   2. Wörter: 677 564 roh wie in Ziffer 1.1; ohne Kopf- und Fusszeilen, Fussnotenzeichen und Trennstriche 642 186. Die Zettel zählen Wortlaut und Fussnoten.
+   3. 7649 Kanten: 1775 Artikelverweise, 2172 Nennungen von EU-Rechtsakten und SR-Erlassen, 535 Erläuterungen, 46 Änderungen von Bundesgesetzen, 18 Genehmigungen, dazu die Gliederung.
+   4. Fehler in den Vorlagen und Grenzen der Extraktion: `docs/KORREKTUREN.md`.
 
 ## 2. Ziel
 
@@ -176,6 +181,15 @@ Bekannte Fehlerbilder der Rohextraktion vom 1. Oktober 2026:
 4. Artikelverweise zwischen Dokumenten werden nicht erkannt.
 5. Die Wörter der Botschaft sind seitenanteilig auf die Abschnitte verteilt, nicht abschnittsgenau.
 6. EU-Rechtsakte sind als Nummer erfasst, nicht als CELEX-Nummer. Erkannt sind 466 Nummern, die EDA-Übersicht nennt 94 Gesetzgebungsakte. Die Differenz ist nicht aufgeschlüsselt.
+
+Stand nach Etappe 2 (1. Oktober 2026):
+
+1. Behoben: Artikel in Anhängen, Anlagen, Beilagen und Protokollen gehören zu ihrem Teil (`fga/2026/632/anh_i/anl/art_9`).
+2. Behoben: Gesetzesnamen über Zeilenumbrüche vollständig, Gesetze mit gleicher SR-Nummer einmal gezählt.
+3. Behoben: 3 neue und 36 geänderte Bundesgesetze, 46 Zuordnungen Bundesbeschluss–Gesetz. Das Lebensmittelgesetz ist eine Totalrevision und zählt als geändert, die Änderung des Beihilfeüberwachungsgesetzes in 631 als Zuordnung zum neuen BHÜG.
+4. Behoben: Artikelverweise zwischen Dokumenten über Bezugswerk und Abkürzung («Artikel 14a FZA», «Art. 5 E-BHÜG», «des Abkommens» im Protokoll zu einem bestehenden Abkommen).
+5. Behoben: jede Ziffer des Inhaltsverzeichnisses der Botschaft (alle Ebenen) ist ein Zettel mit abschnittsgenauer Wortzahl.
+6. Teilweise: 493 EU-Rechtsakte mit CELEX-Nummer, 491 auf EUR-Lex bestätigt, 2 Fehler der Vorlage. Der Abgleich mit den 94 Gesetzgebungsakten der EDA-Übersicht fehlt noch, weil die Übersicht nicht im Repository liegt.
 
 ## 10. Verknüpfung mit dem Politspiegel
 
