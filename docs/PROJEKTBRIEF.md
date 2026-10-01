@@ -19,11 +19,13 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
 5. Kontrolle: Skripte `scripts/fedlex_pruefen.py` und `scripts/parlament_pruefen.py` und Auftrag `docs/AUFTRAG_fedlex-kontrolle.md` liegen bereit. Ausgangsstand vom 1. Oktober 2026 in `daten/fedlex_stand.json` (33 Werke) und `daten/parlament_stand.json` (14 Entwürfe, 8 Beschlüsse).
 6. Entscheid vom 1. Oktober 2026: Die Kontrolle läuft als geplante Aufgabe in der Cloud auf dem GitHub-Repository. Einrichtung: `docs/AUFTRAG_claude-code-einrichtung.md`. Eingerichtet am 1. Oktober 2026: Repository angelegt (erster Commit `90373f5`), Aufgabe «Vertragsspiegel Kontrolle» mittwochs 06:50, erster Lauf ohne Änderung.
 7. Parlament, Stand Webservice 1. Oktober 2026: Der Ständerat hat am 28. bis 30. September 2026 beraten. Entwurf 1 (Bundesbeschluss Stabilisierung): «Beschluss abweichend vom Entwurf». Entwürfe 5 bis 8 und 10: «Beschluss gemäss Entwurf». Für die Entwürfe zu Elektrizität, Lebensmittelsicherheit, Gesundheit und Erasmus+ ist im Webservice noch kein Beschluss eingetragen.
-8. Etappe 2, Stand 1. Oktober 2026: Pipeline `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py` steht, Prüfungen 9.1 bis 9.6 bestanden.
+8. Prototyp, Reiter «Bezüge» vom 1. Oktober 2026: Bogendiagramm aller Zettel auf einer Linie (Länge = Wörter) mit 1299 Bögen in fünf Arten. Klick auf einen Bogen zeigt beide Enden mit der Fundstelle im Wortlaut und öffnet den Zettel. Rohextraktion; 98 Artikelnennungen der Botschaft ohne Ziel im Paket, 92 Artikelverweise als Verweis auf einen anderen Erlass verworfen.
+9. Etappe 2, Stand 1. Oktober 2026: Pipeline `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py` steht, Prüfungen 9.1 bis 9.6 bestanden.
    1. 33 Werke (BBl 2026 615–644 und das Begleitgeschäft 2099, 2100, 2174), 3103 Zettel. Feiner als die Musteransicht: Rechtsakte in den Anhängen und die Erläuterungen der Botschaft zu einzelnen Artikeln sind eigene Zettel.
    2. Wörter: 677 564 roh wie in Ziffer 1.1; ohne Kopf- und Fusszeilen, Fussnotenzeichen und Trennstriche 642 186. Die Zettel zählen Wortlaut und Fussnoten.
    3. 7649 Kanten: 1775 Artikelverweise, 2172 Nennungen von EU-Rechtsakten und SR-Erlassen, 535 Erläuterungen, 46 Änderungen von Bundesgesetzen, 18 Genehmigungen, dazu die Gliederung.
    4. Fehler in den Vorlagen und Grenzen der Extraktion: `docs/KORREKTUREN.md`.
+   5. Der Reiter «Bezüge» (Ziffer 1.8, Ansicht 3a) liest noch die Rohextraktion des Prototyps; die Artikelverweise zwischen Dokumenten aus `daten/kanten.json` sind für Etappe 3 bereit.
 
 ## 2. Ziel
 
@@ -63,6 +65,7 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 | 1 | Umfang (Icicle) | Paket, Vorlage, Dokument, Teil, Zettel; Fläche gleich Wörter | Übersichtsfeld neu (Ziffer 5.1); grössere Schrift |
 | 2 | Verknüpfungen (Matrix) | Dokument × Dokument | neues Mass «Artikelverweise zwischen Dokumenten»; bisherige Masse «gemeinsame EU-Rechtsakte» und «genehmigt und erläutert» bleiben |
 | 3 | Umsetzung (Sankey) | Abkommen, Bundesbeschluss, Bundesgesetz | Gesetzesliste vollständig (36 geändert, 3 neu) |
+| 3a | Bezüge (Bogendiagramm) | alle Zettel auf einer Linie, Länge = Wörter; Bögen oben: Artikelverweise im selben Dokument; unten: Botschaft nennt Artikel, gleicher EU-Rechtsakt, genehmigt, erläutert | im Prototyp vorhanden; Klick auf einen Bogen zeigt beide Enden mit Fundstelle; Artikelverweise zwischen Dokumenten ergänzen, sobald `verweise.py` sie liefert |
 | 4 | Zettel | Wortlaut, Fundstelle, ein- und ausgehende Verweise, genannte EU-Rechtsakte und SR-Erlasse | Wortlaut ungekürzt; grössere Schrift; Link auf die Fedlex-Stelle |
 | 5 | Lokaler Graph | Umfeld eines Zettels in zwei Schritten | neu aufgebaut und erläutert (Ziffer 5.2) |
 | 6 | Tabelle | alle Dokumente mit Seiten, Wörtern, Zetteln | unverändert |
