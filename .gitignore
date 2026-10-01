@@ -1,0 +1,15 @@
+# Zugangsdaten: nie versionieren. Diese Regel steht absichtlich zuoberst.
+daten/github_zugang.json
+*_zugang.json
+.env
+
+# Rohdaten: amtliche Texte, öffentlich auf Fedlex. Rund 25 MB je Sprache; laden.py stellt sie wieder her.
+daten/pdf/
+daten/text/
+prototyp/an/
+
+# Arbeitsdateien
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

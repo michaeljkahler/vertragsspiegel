@@ -1,0 +1,1328 @@
+{
+ "as": {},
+ "bbl_neu": {
+  "eli/fga/2026/2099": {
+   "datum": "2026-08-04",
+   "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates"
+  },
+  "eli/fga/2026/2100": {
+   "datum": "2026-08-04",
+   "titel": "Bundesbeschluss über die Abkommen über die Stabilisierung der Beziehungen zwischen der Schweiz und der EU (Bilaterale III) (Entwurf)"
+  },
+  "eli/fga/2026/2174": {
+   "datum": "2026-08-17",
+   "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates vom 29. Juni 2026. Stellungnahme des Bundesrates"
+  }
+ },
+ "geprueft": "2026-10-01",
+ "werke": {
+  "eli/fga/2026/2099": {
+   "anhaenge": {},
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/de/html/fedlex-data-admin-ch-eli-fga-2026-2099-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2099-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/de/xml/fedlex-data-admin-ch-eli-fga-2026-2099-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/fr/html/fedlex-data-admin-ch-eli-fga-2026-2099-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2099-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/fr/xml/fedlex-data-admin-ch-eli-fga-2026-2099-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/it/html/fedlex-data-admin-ch-eli-fga-2026-2099-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2099-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2099/it/xml/fedlex-data-admin-ch-eli-fga-2026-2099-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-08-04T06:39:15.645+02:00",
+   "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates",
+   "umfang": "complete"
+  },
+  "eli/fga/2026/2100": {
+   "anhaenge": {},
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/de/html/fedlex-data-admin-ch-eli-fga-2026-2100-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2100-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/de/xml/fedlex-data-admin-ch-eli-fga-2026-2100-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/fr/html/fedlex-data-admin-ch-eli-fga-2026-2100-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2100-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/fr/xml/fedlex-data-admin-ch-eli-fga-2026-2100-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/it/html/fedlex-data-admin-ch-eli-fga-2026-2100-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2100-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2100/it/xml/fedlex-data-admin-ch-eli-fga-2026-2100-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-08-04T06:40:20.220+02:00",
+   "titel": "Bundesbeschluss über die Abkommen über die Stabilisierung der Beziehungen zwischen der Schweiz und der EU (Bilaterale III) (Entwurf)",
+   "umfang": "complete"
+  },
+  "eli/fga/2026/2174": {
+   "anhaenge": {},
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/de/html/fedlex-data-admin-ch-eli-fga-2026-2174-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2174-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/de/xml/fedlex-data-admin-ch-eli-fga-2026-2174-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/fr/html/fedlex-data-admin-ch-eli-fga-2026-2174-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2174-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/fr/xml/fedlex-data-admin-ch-eli-fga-2026-2174-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/it/html/fedlex-data-admin-ch-eli-fga-2026-2174-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2174-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/it/xml/fedlex-data-admin-ch-eli-fga-2026-2174-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-08-17T08:04:17.474+02:00",
+   "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates vom 29. Juni 2026. Stellungnahme des Bundesrates",
+   "umfang": "complete"
+  },
+  "eli/fga/2026/615": {
+   "anhaenge": {
+    "eli/fgae/2026/42": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/42/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-42-de-pdf-a-2.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/42/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-42-fr-pdf-a-2.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/42/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-42-it-pdf-a-2.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/de/html/fedlex-data-admin-ch-eli-fga-2026-615-de-html-2.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-615-de-pdf-a-2.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/de/xml/fedlex-data-admin-ch-eli-fga-2026-615-de-xml-2.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/fr/html/fedlex-data-admin-ch-eli-fga-2026-615-fr-html-2.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-615-fr-pdf-a-2.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/fr/xml/fedlex-data-admin-ch-eli-fga-2026-615-fr-xml-2.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/it/html/fedlex-data-admin-ch-eli-fga-2026-615-it-html-2.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-615-it-pdf-a-2.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/615/it/xml/fedlex-data-admin-ch-eli-fga-2026-615-it-xml-2.xml"
+    }
+   },
+   "geaendert": "2026-03-18T10:27:30.011+01:00",
+   "titel": "Botschaft über das Paket «Stabilisierung und Weiterentwicklung der Beziehungen Schweiz–EU (Bilaterale III)»",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/616": {
+   "anhaenge": {
+    "eli/fgae/2026/43": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/43/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-43-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/43/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-43-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/43/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-43-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/de/html/fedlex-data-admin-ch-eli-fga-2026-616-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-616-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/de/xml/fedlex-data-admin-ch-eli-fga-2026-616-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/fr/html/fedlex-data-admin-ch-eli-fga-2026-616-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-616-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/fr/xml/fedlex-data-admin-ch-eli-fga-2026-616-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/it/html/fedlex-data-admin-ch-eli-fga-2026-616-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-616-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/616/it/xml/fedlex-data-admin-ch-eli-fga-2026-616-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:36:57.397+01:00",
+   "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung der Abkommen über die Stabilisierung der Beziehungen zwischen der Schweiz und der EU (Bilaterale III) (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/617": {
+   "anhaenge": {
+    "eli/fgae/2026/44": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/44/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-44-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/44/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-44-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/44/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-44-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/de/html/fedlex-data-admin-ch-eli-fga-2026-617-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-617-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/de/xml/fedlex-data-admin-ch-eli-fga-2026-617-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/fr/html/fedlex-data-admin-ch-eli-fga-2026-617-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-617-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/fr/xml/fedlex-data-admin-ch-eli-fga-2026-617-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/it/html/fedlex-data-admin-ch-eli-fga-2026-617-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-617-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/617/it/xml/fedlex-data-admin-ch-eli-fga-2026-617-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:38:21.157+01:00",
+   "titel": "Änderungsprotokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft einerseits und der Europäischen Gemeinschaft und ihren Mitgliedstaaten andererseits über die Freizügigkeit",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/618": {
+   "anhaenge": {
+    "eli/fgae/2026/45": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/45/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-45-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/45/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-45-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/45/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-45-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/de/html/fedlex-data-admin-ch-eli-fga-2026-618-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-618-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/de/xml/fedlex-data-admin-ch-eli-fga-2026-618-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/fr/html/fedlex-data-admin-ch-eli-fga-2026-618-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-618-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/fr/xml/fedlex-data-admin-ch-eli-fga-2026-618-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/it/html/fedlex-data-admin-ch-eli-fga-2026-618-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-618-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/618/it/xml/fedlex-data-admin-ch-eli-fga-2026-618-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:40:00.595+01:00",
+   "titel": "Institutionelles Protokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft einerseits und der Europäischen Gemeinschaft und ihren Mitgliedstaaten andererseits über die Freizügigkeit",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/619": {
+   "anhaenge": {
+    "eli/fgae/2026/46": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/46/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-46-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/46/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-46-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/46/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-46-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/de/html/fedlex-data-admin-ch-eli-fga-2026-619-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-619-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/de/xml/fedlex-data-admin-ch-eli-fga-2026-619-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/fr/html/fedlex-data-admin-ch-eli-fga-2026-619-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-619-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/fr/xml/fedlex-data-admin-ch-eli-fga-2026-619-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/it/html/fedlex-data-admin-ch-eli-fga-2026-619-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-619-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/619/it/xml/fedlex-data-admin-ch-eli-fga-2026-619-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:41:25.842+01:00",
+   "titel": "Änderungsprotokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die gegenseitige Anerkennung von Konformitätsbewertungen",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/620": {
+   "anhaenge": {
+    "eli/fgae/2026/47": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/47/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-47-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/47/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-47-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/47/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-47-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/de/html/fedlex-data-admin-ch-eli-fga-2026-620-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-620-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/de/xml/fedlex-data-admin-ch-eli-fga-2026-620-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/fr/html/fedlex-data-admin-ch-eli-fga-2026-620-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-620-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/fr/xml/fedlex-data-admin-ch-eli-fga-2026-620-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/it/html/fedlex-data-admin-ch-eli-fga-2026-620-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-620-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/620/it/xml/fedlex-data-admin-ch-eli-fga-2026-620-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:43:04.208+01:00",
+   "titel": "Institutionelles Protokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die gegenseitige Anerkennung von Konformitätsbewertungen",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/621": {
+   "anhaenge": {
+    "eli/fgae/2026/48": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/48/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-48-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/48/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-48-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/48/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-48-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/de/html/fedlex-data-admin-ch-eli-fga-2026-621-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-621-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/de/xml/fedlex-data-admin-ch-eli-fga-2026-621-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/fr/html/fedlex-data-admin-ch-eli-fga-2026-621-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-621-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/fr/xml/fedlex-data-admin-ch-eli-fga-2026-621-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/it/html/fedlex-data-admin-ch-eli-fga-2026-621-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-621-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/621/it/xml/fedlex-data-admin-ch-eli-fga-2026-621-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:44:25.011+01:00",
+   "titel": "Änderungsprotokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Güter- und Personenverkehr auf Schiene und Strasse",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/622": {
+   "anhaenge": {
+    "eli/fgae/2026/49": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/49/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-49-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/49/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-49-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/49/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-49-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/de/html/fedlex-data-admin-ch-eli-fga-2026-622-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-622-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/de/xml/fedlex-data-admin-ch-eli-fga-2026-622-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/fr/html/fedlex-data-admin-ch-eli-fga-2026-622-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-622-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/fr/xml/fedlex-data-admin-ch-eli-fga-2026-622-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/it/html/fedlex-data-admin-ch-eli-fga-2026-622-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-622-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/622/it/xml/fedlex-data-admin-ch-eli-fga-2026-622-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:46:03.024+01:00",
+   "titel": "Institutionelles Protokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Güter- und Personenverkehr auf Schiene und Strasse",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/623": {
+   "anhaenge": {
+    "eli/fgae/2026/50": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/50/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-50-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/50/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-50-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/50/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-50-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/de/html/fedlex-data-admin-ch-eli-fga-2026-623-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-623-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/de/xml/fedlex-data-admin-ch-eli-fga-2026-623-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/fr/html/fedlex-data-admin-ch-eli-fga-2026-623-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-623-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/fr/xml/fedlex-data-admin-ch-eli-fga-2026-623-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/it/html/fedlex-data-admin-ch-eli-fga-2026-623-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-623-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/623/it/xml/fedlex-data-admin-ch-eli-fga-2026-623-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:48:16.245+01:00",
+   "titel": "Protokoll über staatliche Beihilfen zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Güter- und Personenverkehr auf Schiene und Strasse",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/624": {
+   "anhaenge": {
+    "eli/fgae/2026/51": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/51/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-51-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/51/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-51-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/51/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-51-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/de/html/fedlex-data-admin-ch-eli-fga-2026-624-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-624-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/de/xml/fedlex-data-admin-ch-eli-fga-2026-624-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/fr/html/fedlex-data-admin-ch-eli-fga-2026-624-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-624-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/fr/xml/fedlex-data-admin-ch-eli-fga-2026-624-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/it/html/fedlex-data-admin-ch-eli-fga-2026-624-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-624-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/624/it/xml/fedlex-data-admin-ch-eli-fga-2026-624-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:49:49.840+01:00",
+   "titel": "Änderungsprotokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Luftverkehr",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/625": {
+   "anhaenge": {
+    "eli/fgae/2026/52": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/52/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-52-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/52/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-52-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/52/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-52-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/de/html/fedlex-data-admin-ch-eli-fga-2026-625-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-625-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/de/xml/fedlex-data-admin-ch-eli-fga-2026-625-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/fr/html/fedlex-data-admin-ch-eli-fga-2026-625-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-625-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/fr/xml/fedlex-data-admin-ch-eli-fga-2026-625-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/it/html/fedlex-data-admin-ch-eli-fga-2026-625-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-625-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/625/it/xml/fedlex-data-admin-ch-eli-fga-2026-625-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:51:33.166+01:00",
+   "titel": "Institutionelles Protokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Luftverkehr",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/626": {
+   "anhaenge": {
+    "eli/fgae/2026/53": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/53/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-53-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/53/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-53-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/53/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-53-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/de/html/fedlex-data-admin-ch-eli-fga-2026-626-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-626-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/de/xml/fedlex-data-admin-ch-eli-fga-2026-626-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/fr/html/fedlex-data-admin-ch-eli-fga-2026-626-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-626-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/fr/xml/fedlex-data-admin-ch-eli-fga-2026-626-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/it/html/fedlex-data-admin-ch-eli-fga-2026-626-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-626-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/626/it/xml/fedlex-data-admin-ch-eli-fga-2026-626-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:53:13.334+01:00",
+   "titel": "Protokoll über staatliche Beihilfen zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Luftverkehr",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/627": {
+   "anhaenge": {
+    "eli/fgae/2026/54": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/54/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-54-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/54/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-54-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/54/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-54-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/de/html/fedlex-data-admin-ch-eli-fga-2026-627-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-627-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/de/xml/fedlex-data-admin-ch-eli-fga-2026-627-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/fr/html/fedlex-data-admin-ch-eli-fga-2026-627-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-627-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/fr/xml/fedlex-data-admin-ch-eli-fga-2026-627-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/it/html/fedlex-data-admin-ch-eli-fga-2026-627-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-627-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/627/it/xml/fedlex-data-admin-ch-eli-fga-2026-627-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:54:38.882+01:00",
+   "titel": "Änderungsprotokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Handel mit landwirtschaftlichen Erzeugnissen",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/628": {
+   "anhaenge": {
+    "eli/fgae/2026/55": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/55/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-55-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/55/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-55-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/55/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-55-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/de/html/fedlex-data-admin-ch-eli-fga-2026-628-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-628-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/de/xml/fedlex-data-admin-ch-eli-fga-2026-628-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/fr/html/fedlex-data-admin-ch-eli-fga-2026-628-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-628-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/fr/xml/fedlex-data-admin-ch-eli-fga-2026-628-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/it/html/fedlex-data-admin-ch-eli-fga-2026-628-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-628-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/628/it/xml/fedlex-data-admin-ch-eli-fga-2026-628-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:56:16.176+01:00",
+   "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft einerseits und der Europäischen Union und der Europäischen Atomgemeinschaft andererseits über die Teilnahme der Schweizerischen Eidgenossenschaft an Programmen der Union",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/629": {
+   "anhaenge": {
+    "eli/fgae/2026/56": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/56/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-56-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/56/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-56-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/56/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-56-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/de/html/fedlex-data-admin-ch-eli-fga-2026-629-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-629-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/de/xml/fedlex-data-admin-ch-eli-fga-2026-629-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/fr/html/fedlex-data-admin-ch-eli-fga-2026-629-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-629-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/fr/xml/fedlex-data-admin-ch-eli-fga-2026-629-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/it/html/fedlex-data-admin-ch-eli-fga-2026-629-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-629-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/629/it/xml/fedlex-data-admin-ch-eli-fga-2026-629-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:58:02.074+01:00",
+   "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Union über die Modalitäten und Bedingungen für die Beteiligung der Schweizerischen Eidgenossenschaft an der Agentur der Europäischen Union für das Weltraumprogramm",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/630": {
+   "anhaenge": {
+    "eli/fgae/2026/57": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/57/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-57-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/57/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-57-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/57/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-57-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/de/html/fedlex-data-admin-ch-eli-fga-2026-630-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-630-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/de/xml/fedlex-data-admin-ch-eli-fga-2026-630-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/fr/html/fedlex-data-admin-ch-eli-fga-2026-630-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-630-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/fr/xml/fedlex-data-admin-ch-eli-fga-2026-630-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/it/html/fedlex-data-admin-ch-eli-fga-2026-630-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-630-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/630/it/xml/fedlex-data-admin-ch-eli-fga-2026-630-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T06:59:27.082+01:00",
+   "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Union über den regelmässigen finanziellen Beitrag der Schweiz zur Verringerung der wirtschaftlichen und sozialen Ungleichheiten in der Europäischen Union",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/631": {
+   "anhaenge": {
+    "eli/fgae/2026/58": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/58/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-58-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/58/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-58-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/58/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-58-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/de/html/fedlex-data-admin-ch-eli-fga-2026-631-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-631-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/de/xml/fedlex-data-admin-ch-eli-fga-2026-631-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/fr/html/fedlex-data-admin-ch-eli-fga-2026-631-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-631-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/fr/xml/fedlex-data-admin-ch-eli-fga-2026-631-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/it/html/fedlex-data-admin-ch-eli-fga-2026-631-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-631-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/631/it/xml/fedlex-data-admin-ch-eli-fga-2026-631-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:01:06.705+01:00",
+   "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung des Abkommens zwischen der Schweiz und der EU über Elektrizität (Bilaterale III) (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/632": {
+   "anhaenge": {
+    "eli/fgae/2026/59": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/59/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-59-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/59/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-59-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/59/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-59-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/de/html/fedlex-data-admin-ch-eli-fga-2026-632-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-632-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/de/xml/fedlex-data-admin-ch-eli-fga-2026-632-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/fr/html/fedlex-data-admin-ch-eli-fga-2026-632-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-632-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/fr/xml/fedlex-data-admin-ch-eli-fga-2026-632-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/it/html/fedlex-data-admin-ch-eli-fga-2026-632-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-632-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/632/it/xml/fedlex-data-admin-ch-eli-fga-2026-632-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:02:36.449+01:00",
+   "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Union über Elektrizität",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/633": {
+   "anhaenge": {
+    "eli/fgae/2026/60": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/60/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-60-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/60/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-60-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/60/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-60-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/de/html/fedlex-data-admin-ch-eli-fga-2026-633-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-633-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/de/xml/fedlex-data-admin-ch-eli-fga-2026-633-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/fr/html/fedlex-data-admin-ch-eli-fga-2026-633-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-633-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/fr/xml/fedlex-data-admin-ch-eli-fga-2026-633-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/it/html/fedlex-data-admin-ch-eli-fga-2026-633-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-633-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/633/it/xml/fedlex-data-admin-ch-eli-fga-2026-633-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:04:40.018+01:00",
+   "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung des Protokolls zwischen der Schweiz und der EU über die Lebensmittelsicherheit (Bilaterale III) (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/634": {
+   "anhaenge": {
+    "eli/fgae/2026/61": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/61/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-61-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/61/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-61-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/61/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-61-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/de/html/fedlex-data-admin-ch-eli-fga-2026-634-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-634-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/de/xml/fedlex-data-admin-ch-eli-fga-2026-634-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/fr/html/fedlex-data-admin-ch-eli-fga-2026-634-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-634-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/fr/xml/fedlex-data-admin-ch-eli-fga-2026-634-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/it/html/fedlex-data-admin-ch-eli-fga-2026-634-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-634-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/634/it/xml/fedlex-data-admin-ch-eli-fga-2026-634-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:06:24.368+01:00",
+   "titel": "Protokoll zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über den Handel mit landwirtschaftlichen Erzeugnissen zur Errichtung eines gemeinsamen Lebensmittelsicherheitsraums",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/635": {
+   "anhaenge": {
+    "eli/fgae/2026/62": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/62/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-62-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/62/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-62-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/62/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-62-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/de/html/fedlex-data-admin-ch-eli-fga-2026-635-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-635-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/de/xml/fedlex-data-admin-ch-eli-fga-2026-635-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/fr/html/fedlex-data-admin-ch-eli-fga-2026-635-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-635-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/fr/xml/fedlex-data-admin-ch-eli-fga-2026-635-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/it/html/fedlex-data-admin-ch-eli-fga-2026-635-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-635-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/635/it/xml/fedlex-data-admin-ch-eli-fga-2026-635-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:08:01.175+01:00",
+   "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung des Abkommens zwischen der Schweiz und der EU über die Gesundheit (Bilaterale III) (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/636": {
+   "anhaenge": {
+    "eli/fgae/2026/63": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/63/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-63-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/63/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-63-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/63/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-63-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/de/html/fedlex-data-admin-ch-eli-fga-2026-636-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-636-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/de/xml/fedlex-data-admin-ch-eli-fga-2026-636-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/fr/html/fedlex-data-admin-ch-eli-fga-2026-636-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-636-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/fr/xml/fedlex-data-admin-ch-eli-fga-2026-636-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/it/html/fedlex-data-admin-ch-eli-fga-2026-636-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-636-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/636/it/xml/fedlex-data-admin-ch-eli-fga-2026-636-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:10:00.707+01:00",
+   "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Union über die Gesundheit",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/637": {
+   "anhaenge": {
+    "eli/fgae/2026/64": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/64/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-64-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/64/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-64-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/64/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-64-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/de/html/fedlex-data-admin-ch-eli-fga-2026-637-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-637-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/de/xml/fedlex-data-admin-ch-eli-fga-2026-637-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/fr/html/fedlex-data-admin-ch-eli-fga-2026-637-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-637-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/fr/xml/fedlex-data-admin-ch-eli-fga-2026-637-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/it/html/fedlex-data-admin-ch-eli-fga-2026-637-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-637-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/637/it/xml/fedlex-data-admin-ch-eli-fga-2026-637-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:11:33.769+01:00",
+   "titel": "Bundesbeschluss über die Genehmigung des Protokolls zwischen der Schweiz und der EU über die parlamentarische Zusammenarbeit (Bilaterale III) (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/638": {
+   "anhaenge": {
+    "eli/fgae/2026/65": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/65/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-65-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/65/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-65-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/65/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-65-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/de/html/fedlex-data-admin-ch-eli-fga-2026-638-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-638-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/de/xml/fedlex-data-admin-ch-eli-fga-2026-638-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/fr/html/fedlex-data-admin-ch-eli-fga-2026-638-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-638-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/fr/xml/fedlex-data-admin-ch-eli-fga-2026-638-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/it/html/fedlex-data-admin-ch-eli-fga-2026-638-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-638-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/638/it/xml/fedlex-data-admin-ch-eli-fga-2026-638-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:12:58.136+01:00",
+   "titel": "Protokoll zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Union über die parlamentarische Zusammenarbeit",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/639": {
+   "anhaenge": {
+    "eli/fgae/2026/66": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/66/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-66-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/66/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-66-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/66/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-66-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/de/html/fedlex-data-admin-ch-eli-fga-2026-639-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-639-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/de/xml/fedlex-data-admin-ch-eli-fga-2026-639-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/fr/html/fedlex-data-admin-ch-eli-fga-2026-639-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-639-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/fr/xml/fedlex-data-admin-ch-eli-fga-2026-639-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/it/html/fedlex-data-admin-ch-eli-fga-2026-639-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-639-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/639/it/xml/fedlex-data-admin-ch-eli-fga-2026-639-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:14:55.548+01:00",
+   "titel": "Bundesbeschluss über den Verpflichtungskredit für den Bereich der Kohäsion im Rahmen des Schweizer Beitrags zur Verringerung der wirtschaftlichen und sozialen Ungleichheiten in der EU für die Jahre 2030–2036 (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/640": {
+   "anhaenge": {
+    "eli/fgae/2026/67": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/67/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-67-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/67/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-67-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/67/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-67-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/de/html/fedlex-data-admin-ch-eli-fga-2026-640-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-640-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/de/xml/fedlex-data-admin-ch-eli-fga-2026-640-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/fr/html/fedlex-data-admin-ch-eli-fga-2026-640-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-640-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/fr/xml/fedlex-data-admin-ch-eli-fga-2026-640-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/it/html/fedlex-data-admin-ch-eli-fga-2026-640-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-640-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/640/it/xml/fedlex-data-admin-ch-eli-fga-2026-640-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:16:37.573+01:00",
+   "titel": "Bundesbeschluss über den Verpflichtungskredit für den Bereich der Migration im Rahmen des Schweizer Beitrags zur Verringerung der wirtschaftlichen und sozialen Ungleichheiten in der EU für die Jahre 2030–2036 (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/641": {
+   "anhaenge": {
+    "eli/fgae/2026/68": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/68/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-68-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/68/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-68-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/68/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-68-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/de/html/fedlex-data-admin-ch-eli-fga-2026-641-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-641-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/de/xml/fedlex-data-admin-ch-eli-fga-2026-641-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/fr/html/fedlex-data-admin-ch-eli-fga-2026-641-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-641-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/fr/xml/fedlex-data-admin-ch-eli-fga-2026-641-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/it/html/fedlex-data-admin-ch-eli-fga-2026-641-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-641-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/641/it/xml/fedlex-data-admin-ch-eli-fga-2026-641-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:18:16.539+01:00",
+   "titel": "Bundesbeschluss über den Verpflichtungskredit für die einmalige zusätzliche finanzielle Verpflichtung im Bereich der Kohäsion im Rahmen des Abkommens über den regelmässigen finanziellen Beitrag der Schweiz zur Verringerung der wirtschaftlichen und sozialen Ungleichheiten in der EU (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/642": {
+   "anhaenge": {
+    "eli/fgae/2026/69": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/69/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-69-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/69/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-69-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/69/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-69-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/de/html/fedlex-data-admin-ch-eli-fga-2026-642-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-642-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/de/xml/fedlex-data-admin-ch-eli-fga-2026-642-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/fr/html/fedlex-data-admin-ch-eli-fga-2026-642-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-642-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/fr/xml/fedlex-data-admin-ch-eli-fga-2026-642-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/it/html/fedlex-data-admin-ch-eli-fga-2026-642-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-642-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/642/it/xml/fedlex-data-admin-ch-eli-fga-2026-642-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:19:47.597+01:00",
+   "titel": "Bundesbeschluss über einen Verpflichtungskredit für die Finanzierung der Schweizer Beteiligung am EU-Bildungsprogramm Erasmus+ im Jahr 2027 (Entwurf)",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/643": {
+   "anhaenge": {
+    "eli/fgae/2026/70": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/70/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-70-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/70/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-70-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/70/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-70-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/de/html/fedlex-data-admin-ch-eli-fga-2026-643-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-643-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/de/xml/fedlex-data-admin-ch-eli-fga-2026-643-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/fr/html/fedlex-data-admin-ch-eli-fga-2026-643-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-643-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/fr/xml/fedlex-data-admin-ch-eli-fga-2026-643-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/it/html/fedlex-data-admin-ch-eli-fga-2026-643-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-643-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/643/it/xml/fedlex-data-admin-ch-eli-fga-2026-643-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:21:16.162+01:00",
+   "titel": "Gemeinsame Erklärung der Schweizerischen Eidgenossenschaft und der Europäischen Union über die Einrichtung eines hochrangigen Dialogs über das umfassende bilaterale Paket und die mögliche Weiterentwicklung der bilateralen Beziehungen zwischen der Schweiz und der Europäischen Union",
+   "umfang": "by-reference"
+  },
+  "eli/fga/2026/644": {
+   "anhaenge": {
+    "eli/fgae/2026/71": {
+     "dateien": {
+      "de": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/71/de/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-71-de-pdf-a.pdf"
+      },
+      "fr": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/71/fr/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-71-fr-pdf-a.pdf"
+      },
+      "it": {
+       "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fgae/2026/71/it/pdf-a/fedlex-data-admin-ch-eli-fgae-2026-71-it-pdf-a.pdf"
+      }
+     },
+     "geaendert": ""
+    }
+   },
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/de/html/fedlex-data-admin-ch-eli-fga-2026-644-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-644-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/de/xml/fedlex-data-admin-ch-eli-fga-2026-644-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/fr/html/fedlex-data-admin-ch-eli-fga-2026-644-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-644-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/fr/xml/fedlex-data-admin-ch-eli-fga-2026-644-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/it/html/fedlex-data-admin-ch-eli-fga-2026-644-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-644-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/644/it/xml/fedlex-data-admin-ch-eli-fga-2026-644-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-03-18T07:22:47.499+01:00",
+   "titel": "Gemeinsame Erklärung von Vertretern der Schweizerischen Eidgenossenschaft und der Europäischen Union zum Umfang der Partnerschaft und der Zusammenarbeit im Zeitraum von Ende 2024 bis zum Inkrafttreten des umfassenden bilateralen Pakets",
+   "umfang": "by-reference"
+  }
+ }
+}

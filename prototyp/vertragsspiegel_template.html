@@ -1,0 +1,551 @@
+<title>Vertragsspiegel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: Kopf mit Kennzahlen, darunter Ansicht links und Zettel rechts (ab 1100px), sonst gestapelt.
+   Farben und Schriften wie Politspiegel; Paketteile kategorial, Botschaft und Übriges neutral. */
+:root{
+  --grund:#FFFFFF; --flaeche:#F7F8FA; --karte:#FFFFFF; --text:#12161C; --text-leise:#5A626D; --linie:#E2E6EB;
+  --fokus:#12161C;
+  --c-stab:#eb6834; --c-strom:#2a78d6; --c-lms:#eda100; --c-ges:#e87ba4; --c-botschaft:#7d8794; --c-weitere:#b4bcc6; --c-gesetz:#5A626D;
+  --seq-0:#F1F3F6; --seq-1:#D6DCE4; --seq-2:#AEB8C5; --seq-3:#7F8C9C; --seq-4:#525E6E; --seq-5:#2B3440;
+  --f-display:Archivo,"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --radius:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF;
+  --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --grund:#12161C; --flaeche:#171C24; --karte:#1B212B; --text:#EEF1F5; --text-leise:#9AA3AF; --linie:#2C3440; --fokus:#EEF1F5;
+  --c-stab:#d95926; --c-strom:#3987e5; --c-lms:#c98500; --c-ges:#d55181; --c-botschaft:#8a94a3; --c-weitere:#566070; --c-gesetz:#9AA3AF;
+  --seq-0:#1F2630; --seq-1:#2E3846; --seq-2:#46536A; --seq-3:#6B7A92; --seq-4:#9AA8BC; --seq-5:#D3DCE8;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--grund);color:var(--text);font-family:var(--f-text);font-size:15px;line-height:1.5;margin:0}
+.huelle{max-width:1440px;margin:0 auto;padding-inline:max(16px,3vw);padding-block:20px 48px}
+a{color:var(--text);text-underline-offset:2px}
+a:hover{color:var(--text-leise)}
+:focus-visible{outline:2px solid var(--fokus);outline-offset:2px}
+.kopf{display:grid;gap:10px;padding-bottom:18px;border-bottom:1px solid var(--linie)}
+.oberzeile{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+.unterzeile{color:var(--text-leise);margin:0;max-width:75ch}
+.hinweis{display:flex;gap:10px;align-items:flex-start;background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);padding:10px 12px;font-size:13.5px;max-width:110ch}
+.hinweis svg{flex:none;margin-top:2px}
+.kennzahlen{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0;padding:0;list-style:none;font-variant-numeric:tabular-nums}
+.kennzahlen li{display:flex;align-items:baseline;gap:6px}
+.kennzahlen b{font-family:var(--f-display);font-size:20px;font-weight:600}
+.kennzahlen span{color:var(--text-leise);font-size:13px}
+.leiste{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding-block:14px}
+.reiter{display:flex;gap:4px;flex-wrap:wrap;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:3px}
+.reiter button{font:600 14px var(--f-text);color:var(--text-leise);background:transparent;border:0;border-radius:6px;padding:8px 14px;min-height:40px;cursor:pointer}
+.reiter button[aria-selected="true"]{background:var(--karte);color:var(--text);box-shadow:0 0 0 1px var(--linie)}
+.suche{position:relative;flex:1 1 280px;max-width:420px}
+.suche label{position:absolute;left:-9999px}
+.suche input{width:100%;font:15px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:8px;padding:9px 12px 9px 34px;min-height:42px}
+.suche svg{position:absolute;left:11px;top:13px;pointer-events:none}
+.treffer{position:absolute;z-index:20;left:0;right:0;top:46px;background:var(--karte);border:1px solid var(--linie);border-radius:8px;box-shadow:0 8px 24px rgb(0 0 0 / .12);max-height:340px;overflow:auto;padding:4px}
+.treffer button{display:block;width:100%;text-align:left;font:14px var(--f-text);color:var(--text);background:none;border:0;border-radius:6px;padding:8px 10px;cursor:pointer}
+.treffer button:hover,.treffer button:focus-visible{background:var(--flaeche)}
+.treffer small{display:block;color:var(--text-leise);font-size:12px}
+.raster{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media (min-width:1100px){.raster{grid-template-columns:minmax(0,1fr) 400px}}
+.flaeche{background:var(--karte);border:1px solid var(--linie);border-radius:10px;padding:16px;min-width:0}
+.flaeche h2{font-family:var(--f-display);font-size:18px;font-weight:600;margin:0}
+.ansichtkopf{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.ansichtkopf p{margin:0;color:var(--text-leise);font-size:13.5px;max-width:80ch}
+.marke{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-leise);border:1px solid var(--linie);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:2px}
+.pfad{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:13px;margin-bottom:8px;min-height:30px}
+.pfad button{font:600 13px var(--f-text);color:var(--text);background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:4px 8px;cursor:pointer}
+.pfad span{color:var(--text-leise)}
+.legende{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--text);margin-top:10px;padding:0;list-style:none}
+.legende li{display:flex;align-items:center;gap:6px}
+.legende i{width:12px;height:12px;border-radius:3px;display:inline-block}
+svg text{font-family:var(--f-text)}
+.ic-rect{cursor:pointer}
+.ic-label{font-size:12px;fill:var(--text);pointer-events:none}
+.ic-sub{font-size:11px;fill:var(--text-leise);pointer-events:none;font-variant-numeric:tabular-nums}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--karte);color:var(--text);border:1px solid var(--linie);border-radius:8px;box-shadow:0 6px 20px rgb(0 0 0 / .14);padding:8px 10px;font-size:13px;max-width:320px;font-variant-numeric:tabular-nums}
+.tip b{display:block;font-weight:600;margin-bottom:2px}
+.tip span{color:var(--text-leise)}
+.mx-label{font-size:11.5px;fill:var(--text)}
+.mx-cell{cursor:pointer}
+.schalter{display:inline-flex;gap:2px;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:2px}
+.schalter button{font:600 13px var(--f-text);color:var(--text-leise);background:none;border:0;border-radius:6px;padding:6px 10px;min-height:34px;cursor:pointer}
+.schalter button[aria-pressed="true"]{background:var(--karte);color:var(--text);box-shadow:0 0 0 1px var(--linie)}
+.detail{margin-top:12px;font-size:13.5px;color:var(--text)}
+.detail ol{margin:6px 0 0;padding-left:22px;columns:2 220px;font-variant-numeric:tabular-nums}
+.sk-label{font-size:11.5px;fill:var(--text);paint-order:stroke;stroke:var(--karte);stroke-width:3px;stroke-linejoin:round}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--linie);vertical-align:top}
+th{font-weight:600;color:var(--text-leise);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+td.zahl,th.zahl{text-align:right}
+.punkt{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:0}
+/* Zettel */
+.zettel{display:grid;gap:12px;align-content:start;grid-auto-rows:max-content}
+@media (min-width:1100px){.zettel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}}
+.zettel .ort{font-size:12.5px;color:var(--text-leise)}
+.zettel h3{font-family:var(--f-display);font-size:20px;font-weight:600;line-height:1.2;margin:2px 0 0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--text-leise);font-variant-numeric:tabular-nums}
+.wortlaut{font-size:14px;line-height:1.6;white-space:pre-line;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:10px 12px;max-height:260px;overflow:auto}
+.zettel h4{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);margin:0 0 4px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a,.chips button{font:13px var(--f-text);color:var(--text);background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:3px 8px;text-decoration:none;cursor:pointer}
+.leer{color:var(--text-leise);font-size:13px}
+.gr-label{font-size:11px;fill:var(--text);paint-order:stroke;stroke:var(--karte);stroke-width:3px;stroke-linejoin:round}
+.gr-node{cursor:pointer}
+.methode{margin-top:28px;border-top:1px solid var(--linie);padding-top:16px;font-size:13.5px;color:var(--text-leise);max-width:110ch}
+.methode h2{font-family:var(--f-display);font-size:16px;color:var(--text);margin:0 0 6px}
+.methode ol{margin:0;padding-left:20px;display:grid;gap:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="huelle">
+  <header class="kopf">
+    <div class="oberzeile">Politspiegel · Entwurf</div>
+    <h1>Vertragsspiegel</h1>
+    <p class="unterzeile">Paket Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, Fassung vom 13. März 2026, BBl 2026 615–644.</p>
+    <div class="hinweis" role="note">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <div>Musteransicht. Umfang aus den Fedlex-PDF gezählt. Gliederung, Verweise, EU-Rechtsakte, SR-Nummern und Gesetzesliste sind automatisch extrahiert und nicht von Hand geprüft.</div>
+    </div>
+    <ul class="kennzahlen" id="kennzahlen"></ul>
+  </header>
+
+  <div class="leiste">
+    <div class="reiter" role="tablist" aria-label="Ansicht">
+      <button role="tab" id="tab-umfang" aria-selected="true" aria-controls="v-umfang">Umfang</button>
+      <button role="tab" id="tab-verkn" aria-selected="false" aria-controls="v-verkn">Verknüpfungen</button>
+      <button role="tab" id="tab-umsetz" aria-selected="false" aria-controls="v-umsetz">Umsetzung</button>
+      <button role="tab" id="tab-tabelle" aria-selected="false" aria-controls="v-tabelle">Tabelle</button>
+    </div>
+    <div class="suche">
+      <label for="suchfeld">Volltextsuche</label>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="var(--text-leise)" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="var(--text-leise)" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="suchfeld" type="search" placeholder="Artikel, Abschnitt oder Wortlaut suchen" autocomplete="off">
+      <div class="treffer" id="treffer" hidden></div>
+    </div>
+  </div>
+
+  <div class="raster">
+    <main class="flaeche" id="ansicht">
+      <section id="v-umfang" role="tabpanel" aria-labelledby="tab-umfang">
+        <div class="ansichtkopf">
+          <h2>Umfang nach Gliederung</h2>
+          <p>Höhe = Anzahl Wörter. Spalten von links: Paket, Vorlage, Dokument, Teil, Artikel oder Abschnitt. Klick auf ein Feld vergrössert es, Klick auf ein Blatt öffnet den Zettel.</p>
+        </div>
+        <nav class="pfad" id="pfad" aria-label="Position"></nav>
+        <div id="icicle"></div>
+        <ul class="legende" id="legende"></ul>
+      </section>
+
+      <section id="v-verkn" role="tabpanel" aria-labelledby="tab-verkn" hidden>
+        <div class="ansichtkopf">
+          <h2>Verknüpfungen zwischen Dokumenten <span class="marke">Rohextraktion</span></h2>
+          <div class="schalter" role="group" aria-label="Mass">
+            <button id="mx-eu" aria-pressed="true">Gemeinsame EU-Rechtsakte</button>
+            <button id="mx-struk" aria-pressed="false">Genehmigt und erläutert</button>
+          </div>
+        </div>
+        <p class="ansichtkopf" id="mx-erkl" style="margin:0 0 10px;color:var(--text-leise);font-size:13.5px"></p>
+        <div class="scroller"><div id="matrix"></div></div>
+        <div class="detail" id="mx-detail"></div>
+      </section>
+
+      <section id="v-umsetz" role="tabpanel" aria-labelledby="tab-umsetz" hidden>
+        <div class="ansichtkopf">
+          <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span></h2>
+          <p>Links Abkommen und Protokolle, Mitte die genehmigenden Bundesbeschlüsse, rechts die neuen oder geänderten Bundesgesetze aus deren Anhängen. Jede Linie ist eine Zuordnung. Die Gesetzesliste ist unvollständig: amtlich sind es 36 geänderte und 3 neue Bundesgesetze.</p>
+        </div>
+        <div class="scroller"><div id="sankey"></div></div>
+      </section>
+
+      <section id="v-tabelle" role="tabpanel" aria-labelledby="tab-tabelle" hidden>
+        <div class="ansichtkopf">
+          <h2>Alle Dokumente</h2>
+          <p>Reihenfolge nach BBl-Nummer. Wörter und Seiten aus dem Fedlex-PDF.</p>
+        </div>
+        <div class="scroller"><table id="tabelle"></table></div>
+      </section>
+    </main>
+
+    <aside class="flaeche zettel" id="zettel" aria-live="polite"></aside>
+  </div>
+
+  <section class="methode">
+    <h2>Grundlagen</h2>
+    <ol>
+      <li>Quelle: Fedlex, BBl 2026 615–644 vom 18. März 2026, Volltexte aus den Anhängen fgae 2026/42–71 (PDF, deutsch).</li>
+      <li>Wörter: Zählung aller Wortzeichenfolgen im PDF-Text. Die Kennzahlen enthalten Kopf- und Fusszeilen, die Flächen im Umfang nicht.</li>
+      <li>Gliederung: Abkommen und Bundesbeschlüsse nach «Art.» und «Anhang», Botschaft nach dem Inhaltsverzeichnis bis zur dritten Ziffernebene, Wörter seitenanteilig.</li>
+      <li>Verknüpfungen: nur Verweise, die im Wortlaut stehen. «Genehmigt» aus Art. 1 der Bundesbeschlüsse, «erläutert» aus den Kapitelüberschriften 2.x der Botschaft.</li>
+      <li>Farben bezeichnen die Vorlage. Grösse bezeichnet nur die Wortzahl. Reihenfolge nach BBl-Nummer und Gliederung.</li>
+      <li>Wortlaut im Zettel gekürzt auf 650 Wörter, bei der Botschaft auf 140 Wörter.</li>
+    </ol>
+  </section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+<script type="application/json" id="daten">__DATEN__</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('daten').textContent);
+const fmt = n => Math.round(n).toLocaleString('de-CH').replace(/[’']/g,' ');
+const pct = (a,b) => (a/b*100).toLocaleString('de-CH',{maximumFractionDigits:1, minimumFractionDigits:1}) + ' %';
+const leafById = new Map(D.leaves.map(l=>[l.id,l]));
+const docById = new Map(D.docs.map(d=>[d.id,d]));
+const gName = Object.fromEntries(D.gruppen.map(g=>[g.id,g.name]));
+const gVar = g => `var(--c-${g})`;
+const tint = (g,p) => `color-mix(in oklab, ${gVar(g)} ${p}%, var(--karte))`;
+const leavesByDoc = d3.group(D.leaves, l=>l.doc);
+const approvedBy = {}; Object.entries(D.genehmigt).forEach(([bb,arr])=>arr.forEach(d=>approvedBy[d]=+bb));
+const erlByDoc = d3.group(D.erlaeutert, e=>e.doc);
+const euIndex = new Map(); D.leaves.forEach(l=>l.eu.forEach(e=>{ if(!euIndex.has(e)) euIndex.set(e,[]); euIndex.get(e).push(l.id); }));
+const tip = document.getElementById('tip');
+function showTip(ev, html){ tip.innerHTML = html; tip.hidden = false; moveTip(ev); }
+function moveTip(ev){ const w = tip.offsetWidth, h = tip.offsetHeight; let x = ev.clientX + 14, y = ev.clientY + 14;
+  if (x + w > innerWidth - 8) x = ev.clientX - w - 14; if (y + h > innerHeight - 8) y = ev.clientY - h - 14; tip.style.left = x+'px'; tip.style.top = y+'px'; }
+function hideTip(){ tip.hidden = true; }
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- Kennzahlen ---------- */
+const st = D.stats;
+const kz = [[st.dokumente,'Dokumente'],[st.seiten,'Seiten'],[st.woerter,'Wörter'],[st.zettel,'Zettel'],[st.eu,'EU-Rechtsakt-Nummern'],[st.sr,'SR-Nummern']];
+document.getElementById('kennzahlen').innerHTML = kz.map(([n,l])=>`<li><b>${fmt(n)}</b><span>${l}</span></li>`).join('');
+
+/* ---------- Hierarchie ---------- */
+function docNode(did, teile){
+  const d = docById.get(did);
+  const kids = teile.length === 1 ? teile[0].leaves.map(leafNode) :
+    teile.map(t=>({name:t.name, kind:'teil', doc:did, children:t.leaves.map(leafNode)}));
+  return {name:d.kurz, kind:'doc', doc:did, children:kids};
+}
+function leafNode(id){ const l = leafById.get(id); return {name:l.label, kind:'blatt', leaf:id, doc:l.doc, value:Math.max(l.woerter,1)}; }
+const rootData = {name:'Paket Schweiz–EU', kind:'paket', children: D.gruppen.map(g=>{
+  let children;
+  if (g.id === 'botschaft') {
+    const bt = D.tree.botschaft[0];
+    children = bt.kapitel.map(k=>{
+      const kids = k.leaves.map(leafNode).concat(k.ziffern.map(z=> z.leaves.length===1 ? leafNode(z.leaves[0]) : {name:z.name, kind:'teil', doc:615, children:z.leaves.map(leafNode)}));
+      return kids.length===1 ? kids[0] : {name:k.name, kind:'teil', doc:615, children:kids};
+    });
+  } else {
+    children = D.tree[g.id].map(t=>docNode(t.doc, t.teile));
+  }
+  return {name:g.name, kind:'gruppe', g:g.id, children};
+})};
+const root = d3.hierarchy(rootData).sum(d=>d.value||0);
+root.each(d=>{ let a = d; while (a.depth > 1) a = a.parent; d.g = d.depth===0 ? null : a.data.g; });
+const total = root.value;
+
+/* ---------- Legende ---------- */
+document.getElementById('legende').innerHTML = D.gruppen.map(g=>{
+  const n = root.children.find(c=>c.data.g===g.id);
+  return `<li><i style="background:${gVar(g.id)}"></i>${esc(g.name)} <span style="color:var(--text-leise)">${pct(n.value,total)}</span></li>`;
+}).join('');
+
+/* ---------- Suche ---------- */
+let treffer = null;
+const suchfeld = document.getElementById('suchfeld'), trefferBox = document.getElementById('treffer');
+suchfeld.addEventListener('input', ()=>{
+  const q = suchfeld.value.trim().toLowerCase();
+  if (q.length < 2) { treffer = null; trefferBox.hidden = true; zeichneIcicle(false); return; }
+  const hits = D.leaves.filter(l => l.label.toLowerCase().includes(q) || l.text.toLowerCase().includes(q));
+  treffer = new Set(hits.map(h=>h.id));
+  trefferBox.innerHTML = `<div style="padding:6px 10px;font-size:12px;color:var(--text-leise)">${fmt(hits.length)} Zettel</div>` +
+    hits.slice(0,12).map(h=>`<button data-leaf="${h.id}">${esc(h.label)}<small>${esc(docById.get(h.doc).kurz)}${h.teil && h.teil!=='Hauptteil' ? ' · '+esc(h.teil) : ''}</small></button>`).join('');
+  trefferBox.hidden = false;
+  zeichneIcicle(false);
+});
+trefferBox.addEventListener('click', ev=>{ const b = ev.target.closest('button[data-leaf]'); if(!b) return; trefferBox.hidden = true; waehle(b.dataset.leaf, true); });
+document.addEventListener('click', ev=>{ if (!ev.target.closest('.suche')) trefferBox.hidden = true; });
+suchfeld.addEventListener('focus', ()=>{ if (treffer) trefferBox.hidden = false; });
+
+/* ---------- Icicle ---------- */
+const icEl = document.getElementById('icicle');
+let fokus = root, gewaehlt = null;
+const H = 560, GAP = 2;
+function layout(W){
+  const cols = 4;
+  const colW = W / cols;
+  d3.partition().size([H, (root.height + 1) * colW])(root);
+  return colW;
+}
+function zeichneIcicle(animiert){
+  const W = Math.max(icEl.clientWidth, 320);
+  layout(W);
+  const p = fokus;
+  const schmal = Math.min(150, W*0.18), breit = (W - schmal) / 3;
+  root.each(d=>{ const rel = d.depth - p.depth; const y0 = rel<=0 ? 0 : schmal + (rel-1)*breit;
+    d.t = {x0:(d.x0-p.x0)/(p.x1-p.x0)*H, x1:(d.x1-p.x0)/(p.x1-p.x0)*H, y0: rel<0 ? -9999 : y0, y1: rel<0 ? -9999 : (rel===0 ? schmal : y0+breit)}; });
+  let svg = d3.select(icEl).select('svg');
+  if (svg.empty()) svg = d3.select(icEl).append('svg').attr('role','img').attr('aria-label','Icicle: Umfang des Pakets nach Gliederung in Wörtern');
+  svg.attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').attr('height',H);
+  const nodes = root.descendants().filter(d=> d.t.y0 >= 0 && d.t.y0 < W - 1 && d.t.x1 > 0 && d.t.x0 < H && (d.t.x1-d.t.x0) > 0.4);
+  const g = svg.selectAll('g.ic').data(nodes, d=>d.data.leaf || d.ancestors().map(a=>a.data.name).join('|'));
+  g.exit().remove();
+  const ge = g.enter().append('g').attr('class','ic');
+  ge.append('rect').attr('class','ic-rect').attr('rx',3);
+  ge.append('text').attr('class','ic-label');
+  ge.append('text').attr('class','ic-sub');
+  const all = ge.merge(g);
+  const t = animiert && !matchMedia('(prefers-reduced-motion: reduce)').matches ? svg.transition().duration(450) : null;
+  const pos = sel => (t ? sel.transition(t) : sel);
+  pos(all).attr('transform', d=>`translate(${d.t.y0},${d.t.x0})`);
+  const hit = d => !treffer || d.depth===0 || (d.data.leaf ? treffer.has(d.data.leaf) : d.leaves().some(l=>treffer.has(l.data.leaf)));
+  pos(all.select('rect'))
+    .attr('width', d=>Math.max(0, d.t.y1-d.t.y0-GAP))
+    .attr('height', d=>Math.max(0, d.t.x1-d.t.x0-GAP))
+    .attr('fill', d=> d.depth===0 ? 'var(--flaeche)' : tint(d.g, d.data.leaf ? 34 : (d.depth===1 ? 70 : 52)))
+    .attr('stroke', d=> d.data.leaf && d.data.leaf===gewaehlt ? 'var(--text)' : 'none')
+    .attr('stroke-width', 2)
+    .attr('opacity', d=> hit(d) ? 1 : 0.22);
+  all.select('rect').attr('tabindex', d=> (d.t.x1-d.t.x0) > 10 ? 0 : null)
+    .attr('aria-label', d=>`${d.data.name}, ${fmt(d.value)} Wörter`)
+    .on('pointerenter pointermove', (ev,d)=>{
+      const par = d.parent;
+      showTip(ev, `<b>${esc(d.data.name)}</b>${fmt(d.value)} Wörter<br><span>${pct(d.value,total)} des Pakets${par && par.depth>0 ? ', '+pct(d.value,par.value)+' von '+esc(par.data.name) : ''}</span>`);
+    })
+    .on('pointerleave', hideTip)
+    .on('click', (ev,d)=>klick(d))
+    .on('keydown', (ev,d)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); klick(d); } });
+  all.select('.ic-label').attr('x',6).attr('y',15)
+    .text(d=>{ const w = d.t.y1-d.t.y0-12, h = d.t.x1-d.t.x0; if (h < 17 || w < 30) return ''; const max = Math.floor(w/6.6); return d.data.name.length>max ? d.data.name.slice(0,Math.max(1,max-1))+'…' : d.data.name; });
+  all.select('.ic-sub').attr('x',6).attr('y',30)
+    .text(d=>{ const w = d.t.y1-d.t.y0-12, h = d.t.x1-d.t.x0; if (h < 34 || w < 70) return ''; return fmt(d.value)+' Wörter'; });
+  // Pfad
+  const pfad = document.getElementById('pfad');
+  pfad.innerHTML = fokus.ancestors().reverse().map((a,i,arr)=> i<arr.length-1 ? `<button data-i="${i}">${esc(a.data.name)}</button><span aria-hidden="true">›</span>` : `<strong>${esc(a.data.name)}</strong>`).join('');
+  pfad.querySelectorAll('button').forEach(b=> b.onclick = ()=>{ fokus = fokus.ancestors().reverse()[+b.dataset.i]; zeichneIcicle(true); });
+}
+function klick(d){
+  if (d.data.leaf) { waehle(d.data.leaf, false); return; }
+  fokus = (fokus === d && d.parent) ? d.parent : d;
+  zeichneIcicle(true);
+}
+function fokussiereDoc(did){
+  const n = root.descendants().find(d=>d.data.kind==='doc' && d.data.doc===did) || root.descendants().find(d=>d.depth===1 && d.data.g==='botschaft');
+  if (n) { fokus = n; zeigeReiter('umfang'); zeichneIcicle(true); }
+}
+
+/* ---------- Zettel ---------- */
+const zEl = document.getElementById('zettel');
+function waehle(id, zoom){
+  gewaehlt = id;
+  const l = leafById.get(id);
+  if (zoom) {
+    const n = root.leaves().find(x=>x.data.leaf===id);
+    if (n) { fokus = n.parent && n.parent.parent ? n.parent.parent : root; zeigeReiter('umfang'); }
+  }
+  zeichneIcicle(!!zoom);
+  zeichneZettel(l);
+}
+function zeichneZettel(l){
+  const d = docById.get(l.doc);
+  const ein = (l.nr ? (leavesByDoc.get(l.doc)||[]).filter(x=>x.id!==l.id && x.refs.includes(l.nr)) : []);
+  const aus = l.refs.map(r=>(leavesByDoc.get(l.doc)||[]).find(x=>x.nr===r && x.teil===l.teil) || (leavesByDoc.get(l.doc)||[]).find(x=>x.nr===r)).filter(Boolean).filter(x=>x.id!==l.id);
+  const gen = approvedBy[l.doc] ? docById.get(approvedBy[l.doc]) : null;
+  const erl = erlByDoc.get(l.doc) || [];
+  const chipLeaf = x => `<button data-leaf="${x.id}">${esc(x.label.length>48? x.label.slice(0,47)+'…' : x.label)}</button>`;
+  zEl.innerHTML = `
+    <div>
+      <div class="ort"><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${esc(gName[d.gruppe])} › ${esc(d.kurz)}${l.teil && l.teil!=='Hauptteil' && l.teil!==l.label ? ' › '+esc(l.teil) : ''}</div>
+      <h3>${esc(l.label)}</h3>
+    </div>
+    <div class="meta"><span>BBl 2026 ${d.id}</span><span>${fmt(l.woerter)} Wörter</span><a href="${d.eli}" target="_blank" rel="noopener">Fedlex</a></div>
+    ${l.text ? `<div class="wortlaut" tabindex="0" aria-label="Wortlaut">${esc(l.text)}</div>` : `<p class="leer">Für diesen Abschnitt liegt in der Musteransicht kein Wortlaut vor.</p>`}
+    <div><h4>Lokaler Graph <span class="marke">Rohextraktion</span></h4><div id="graph"></div><ul class="legende" id="gr-legende"></ul></div>
+    <div><h4>Verweist auf</h4>${aus.length ? `<div class="chips">${aus.map(chipLeaf).join('')}</div>` : '<span class="leer">Keine Artikelverweise im selben Dokument erkannt.</span>'}</div>
+    <div><h4>Wird verwiesen von</h4>${ein.length ? `<div class="chips">${ein.slice(0,12).map(chipLeaf).join('')}</div>` : '<span class="leer">Keine eingehenden Verweise erkannt.</span>'}</div>
+    <div><h4>Genannte EU-Rechtsakte</h4>${l.eu.length ? `<div class="chips">${l.eu.map(e=>`<a href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=${encodeURIComponent(e)}" target="_blank" rel="noopener">${esc(e)}</a>`).join('')}</div>` : '<span class="leer">Keine.</span>'}</div>
+    <div><h4>Genannte SR-Nummern</h4>${l.sr.length ? `<div class="chips">${l.sr.map(s=>`<span class="chips"><a href="https://www.fedlex.admin.ch/de/search?text=${encodeURIComponent('SR '+s)}" target="_blank" rel="noopener">SR ${esc(s)}</a></span>`).join('')}</div>` : '<span class="leer">Keine.</span>'}</div>
+    <div><h4>Dokument</h4><div class="chips">${gen ? `<button data-doc="${gen.id}">Genehmigt durch ${esc(gen.kurz)}</button>` : ''}${erl.map(e=>`<button data-doc="615">Erläutert in Botschaft ${esc(e.kap)}</button>`).join('')}<button data-doc="${d.id}">${esc(d.kurz)} im Umfang zeigen</button></div></div>`;
+  zEl.querySelectorAll('button[data-leaf]').forEach(b=>b.onclick=()=>waehle(b.dataset.leaf, true));
+  zEl.querySelectorAll('button[data-doc]').forEach(b=>b.onclick=()=>fokussiereDoc(+b.dataset.doc));
+  zeichneGraph(l, aus, ein, gen, erl);
+}
+
+/* ---------- Lokaler Graph (radial, deterministisch) ---------- */
+const TYP = {
+  zettel:{form:'kreis'}, dok:{form:'quadrat'}, eu:{form:'raute'}, sr:{form:'dreieck'}, bot:{form:'kreis'}
+};
+function zeichneGraph(l, aus, ein, gen, erl){
+  const W = 420, Hh = 340, cx = W/2, cy = Hh/2;
+  const nodes = [], links = [];
+  const add = (id, label, typ, g, ring, parentId, extra={}) => { if (nodes.find(n=>n.id===id)) return; nodes.push({id,label,typ,g,ring,parentId,...extra}); };
+  add('c', l.label, 'zettel', docById.get(l.doc).gruppe, 0, null, {leaf:l.id});
+  const d = docById.get(l.doc);
+  add('doc'+d.id, d.kurz, 'dok', d.gruppe, 1, 'c', {doc:d.id}); links.push({s:'c', t:'doc'+d.id, art:'teil'});
+  aus.slice(0,5).forEach(x=>{ add('L'+x.id, x.label, 'zettel', d.gruppe, 1, 'c', {leaf:x.id}); links.push({s:'c', t:'L'+x.id, art:'verweis'}); });
+  ein.slice(0,3).forEach(x=>{ add('L'+x.id, x.label, 'zettel', d.gruppe, 1, 'c', {leaf:x.id}); links.push({s:'L'+x.id, t:'c', art:'verweis'}); });
+  l.eu.slice(0,5).forEach(e=>{
+    add('E'+e, e, 'eu', null, 1, 'c'); links.push({s:'c', t:'E'+e, art:'nennt'});
+    (euIndex.get(e)||[]).filter(id=>id!==l.id && leafById.get(id).doc!==l.doc).slice(0,2).forEach(id=>{
+      const x = leafById.get(id); add('L'+id, docById.get(x.doc).kurz+', '+x.label, 'zettel', docById.get(x.doc).gruppe, 2, 'E'+e, {leaf:id, kurz:docById.get(x.doc).kurz}); links.push({s:'L'+id, t:'E'+e, art:'nennt'});
+    });
+  });
+  l.sr.slice(0,3).forEach(s=>{ add('S'+s, 'SR '+s, 'sr', null, 1, 'c'); links.push({s:'c', t:'S'+s, art:'nennt'}); });
+  if (gen) { add('doc'+gen.id, gen.kurz, 'dok', gen.gruppe, 2, 'doc'+d.id, {doc:gen.id}); links.push({s:'doc'+gen.id, t:'doc'+d.id, art:'genehmigt'}); }
+  erl.slice(0,2).forEach((e,i)=>{ add('B'+i, 'Botschaft '+e.kap, 'bot', 'botschaft', 2, 'doc'+d.id, {doc:615}); links.push({s:'B'+i, t:'doc'+d.id, art:'erlaeutert'}); });
+  // Positionen
+  const ordnung = {dok:0, zettel:1, eu:2, sr:3, bot:4};
+  const r1 = nodes.filter(n=>n.ring===1).sort((a,b)=>ordnung[a.typ]-ordnung[b.typ]);
+  const R1 = 86, R2 = 136;
+  r1.forEach((n,i)=>{ n.a = -Math.PI/2 + i/r1.length*2*Math.PI; n.x = cx + R1*Math.cos(n.a); n.y = cy + R1*Math.sin(n.a); });
+  nodes[0].x = cx; nodes[0].y = cy;
+  const byParent = d3.group(nodes.filter(n=>n.ring===2), n=>n.parentId);
+  byParent.forEach((arr,pid)=>{ const p = nodes.find(n=>n.id===pid); arr.forEach((n,i)=>{ const off = (i-(arr.length-1)/2)*0.32; n.a = p.a + off; n.x = cx + R2*Math.cos(n.a); n.y = cy + R2*Math.sin(n.a); }); });
+  const svg = d3.select('#graph').append('svg').attr('viewBox',`0 0 ${W} ${Hh}`).attr('width','100%').attr('role','img').attr('aria-label','Lokaler Graph des Zettels');
+  const nid = new Map(nodes.map(n=>[n.id,n]));
+  const dash = {teil:'2 3', verweis:null, nennt:null, genehmigt:'6 4', erlaeutert:'6 4'};
+  svg.append('defs').append('marker').attr('id','pfeil').attr('viewBox','0 0 8 8').attr('refX',7).attr('refY',4).attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto')
+    .append('path').attr('d','M0,0L8,4L0,8z').attr('fill','var(--text-leise)');
+  svg.append('g').selectAll('line').data(links).join('line')
+    .attr('x1',k=>nid.get(k.s).x).attr('y1',k=>nid.get(k.s).y)
+    .attr('x2',k=>{ const a=nid.get(k.s), b=nid.get(k.t); const L=Math.hypot(b.x-a.x,b.y-a.y)||1; return b.x-(b.x-a.x)/L*9; })
+    .attr('y2',k=>{ const a=nid.get(k.s), b=nid.get(k.t); const L=Math.hypot(b.x-a.x,b.y-a.y)||1; return b.y-(b.y-a.y)/L*9; })
+    .attr('stroke','var(--text-leise)').attr('stroke-width',1.3).attr('stroke-dasharray',k=>dash[k.art]).attr('marker-end','url(#pfeil)');
+  const gN = svg.append('g').selectAll('g').data(nodes).join('g').attr('class','gr-node').attr('transform',n=>`translate(${n.x},${n.y})`)
+    .attr('tabindex', n=> (n.leaf && n.id!=='c') || n.doc ? 0 : null);
+  const fill = n => n.g ? tint(n.g, n.id==='c'?100:60) : 'var(--karte)';
+  gN.each(function(n){
+    const s = d3.select(this), r = n.id==='c' ? 9 : 6.5;
+    if (n.typ==='dok') s.append('rect').attr('x',-r).attr('y',-r).attr('width',2*r).attr('height',2*r).attr('rx',2);
+    else if (n.typ==='eu') s.append('path').attr('d',`M0,${-r-1}L${r+1},0L0,${r+1}L${-r-1},0Z`);
+    else if (n.typ==='sr') s.append('path').attr('d',`M0,${-r-1}L${r+1},${r}L${-r-1},${r}Z`);
+    else s.append('circle').attr('r',r);
+    s.select(':first-child').attr('fill',fill(n)).attr('stroke', n.g ? gVar(n.g) : 'var(--text-leise)').attr('stroke-width',1.5);
+  });
+  gN.append('text').attr('class','gr-label')
+    .attr('x', n=> n.id==='c' ? 0 : (Math.cos(n.a) >= -0.1 ? 10 : -10))
+    .attr('y', n=> n.id==='c' ? -14 : 3.5)
+    .attr('text-anchor', n=> n.id==='c' ? 'middle' : (Math.cos(n.a) >= -0.1 ? 'start' : 'end'))
+    .style('font-weight', n=> n.id==='c' ? 600 : 400)
+    .text(n=>{ const s = n.kurz || n.label; const m = n.id==='c' ? 34 : (n.ring===2 ? 15 : 20); return s.length>m ? s.slice(0,m-1)+'…' : s; });
+  gN.on('pointerenter pointermove',(ev,n)=>showTip(ev, `<b>${esc(n.label)}</b><span>${({zettel:'Zettel',dok:'Dokument',eu:'EU-Rechtsakt',sr:'SR-Erlass',bot:'Botschaft'})[n.typ]}</span>`)).on('pointerleave',hideTip)
+    .on('click',(ev,n)=>{ hideTip(); if (n.leaf && n.id!=='c') waehle(n.leaf, true); else if (n.doc) fokussiereDoc(n.doc); })
+    .on('keydown',(ev,n)=>{ if(ev.key==='Enter'){ if (n.leaf && n.id!=='c') waehle(n.leaf, true); else if (n.doc) fokussiereDoc(n.doc); } });
+  document.getElementById('gr-legende').innerHTML = [
+    ['<svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="var(--karte)" stroke="var(--text-leise)" stroke-width="1.5"/></svg>','Zettel'],
+    ['<svg width="14" height="14"><rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="var(--karte)" stroke="var(--text-leise)" stroke-width="1.5"/></svg>','Dokument'],
+    ['<svg width="14" height="14"><path d="M7,1L13,7L7,13L1,7Z" fill="var(--karte)" stroke="var(--text-leise)" stroke-width="1.5"/></svg>','EU-Rechtsakt'],
+    ['<svg width="14" height="14"><path d="M7,1.5L13,12.5L1,12.5Z" fill="var(--karte)" stroke="var(--text-leise)" stroke-width="1.5"/></svg>','SR-Erlass'],
+    ['<svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="var(--text-leise)" stroke-width="1.5"/></svg>','verweist, nennt'],
+    ['<svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="var(--text-leise)" stroke-width="1.5" stroke-dasharray="6 4"/></svg>','genehmigt, erläutert'],
+    ['<svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="var(--text-leise)" stroke-width="1.5" stroke-dasharray="2 3"/></svg>','Teil von'],
+  ].map(([s,t])=>`<li>${s}${t}</li>`).join('');
+}
+
+/* ---------- Matrix ---------- */
+let mxModus = 'eu';
+function zeichneMatrix(){
+  const ids = D.matrix.ids, n = ids.length;
+  const C = 17, L = 200, T = 200;
+  const W = L + n*C + 10, Hm = T + n*C + 10;
+  const host = d3.select('#matrix'); host.selectAll('*').remove();
+  const svg = host.append('svg').attr('viewBox',`0 0 ${W} ${Hm}`).attr('width',W).attr('height',Hm).attr('role','img').attr('aria-label','Matrix der Verknüpfungen zwischen Dokumenten');
+  let wert, maxV, erkl;
+  if (mxModus==='eu') {
+    wert = (i,j)=> D.matrix.werte[i][j]; maxV = d3.max(D.matrix.werte.flat());
+    erkl = 'Zelle = Anzahl EU-Rechtsakt-Nummern, die in beiden Dokumenten genannt werden. Symmetrisch. Klick auf eine Zelle listet die Nummern.';
+  } else {
+    wert = (i,j)=>{ const a=ids[i], b=ids[j]; if ((D.genehmigt[a]||[]).includes(b)) return 1; if (a===615 && (erlByDoc.get(b)||[]).length) return 1; return 0; };
+    maxV = 1; erkl = 'Zeile → Spalte. Bundesbeschluss genehmigt Abkommen oder Protokoll (Art. 1). Botschaft erläutert das Dokument in einem eigenen Kapitel 2.x.';
+  }
+  document.getElementById('mx-erkl').textContent = erkl;
+  const stufen = ['var(--seq-0)','var(--seq-1)','var(--seq-2)','var(--seq-3)','var(--seq-4)','var(--seq-5)'];
+  const farbe = v => v===0 ? 'var(--flaeche)' : (maxV===1 ? 'var(--seq-4)' : stufen[Math.min(5, 1+Math.floor((v-1)/Math.max(1,maxV)*5))]);
+  const kurz = id => docById.get(id).kurz;
+  svg.append('g').selectAll('text').data(ids).join('text').attr('class','mx-label')
+    .attr('x',L-8).attr('y',(d,i)=>T+i*C+C*0.7).attr('text-anchor','end').text(d=>`${kurz(d)}`);
+  svg.append('g').selectAll('rect').data(ids).join('rect').attr('x',L-6).attr('y',(d,i)=>T+i*C+4).attr('width',4).attr('height',C-8).attr('fill',d=>gVar(docById.get(d).gruppe));
+  svg.append('g').selectAll('text').data(ids).join('text').attr('class','mx-label')
+    .attr('transform',(d,i)=>`translate(${L+i*C+C*0.7},${T-8}) rotate(-60)`).text(d=>kurz(d));
+  svg.append('g').selectAll('rect').data(ids).join('rect').attr('x',(d,i)=>L+i*C+4).attr('y',T-6).attr('width',C-8).attr('height',4).attr('fill',d=>gVar(docById.get(d).gruppe));
+  const cells = [];
+  for (let i=0;i<n;i++) for (let j=0;j<n;j++) cells.push({i,j,v:wert(i,j)});
+  svg.append('g').selectAll('rect').data(cells).join('rect').attr('class','mx-cell')
+    .attr('x',c=>L+c.j*C+1).attr('y',c=>T+c.i*C+1).attr('width',C-2).attr('height',C-2).attr('rx',2)
+    .attr('fill',c=> c.i===c.j ? 'var(--linie)' : farbe(c.v))
+    .on('pointerenter pointermove',(ev,c)=>{ const a=kurz(ids[c.i]), b=kurz(ids[c.j]);
+      showTip(ev, c.i===c.j ? `<b>${esc(a)}</b>` : mxModus==='eu' ? `<b>${esc(a)} × ${esc(b)}</b>${fmt(c.v)} gemeinsame EU-Rechtsakt-Nummern` : `<b>${esc(a)} → ${esc(b)}</b>${c.v ? (ids[c.i]===615?'erläutert':'genehmigt') : 'keine Verknüpfung'}`); })
+    .on('pointerleave',hideTip)
+    .on('click',(ev,c)=>{ if (mxModus!=='eu' || c.i===c.j) return; const a=ids[c.i], b=ids[c.j];
+      const gem = (D.doc_eu[a]||[]).filter(x=>(D.doc_eu[b]||[]).includes(x));
+      document.getElementById('mx-detail').innerHTML = `<strong>${esc(kurz(a))} × ${esc(kurz(b))}:</strong> ${fmt(gem.length)} gemeinsame Nummern${gem.length?`<ol>${gem.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:''}`; });
+  // Legende
+  const lg = svg.append('g').attr('transform',`translate(8,${T-130})`);
+  if (mxModus==='eu') {
+    lg.append('text').attr('class','mx-label').attr('y',0).text('Gemeinsame Nummern');
+    const grenzen = [0,1,2,3,4,5].map(k=> k===0 ? '0' : `${Math.ceil((k-1)*maxV/5)+1}–${Math.ceil(k*maxV/5)}`);
+    ['var(--flaeche)'].concat(stufen.slice(1)).forEach((f,k)=>{ lg.append('rect').attr('x',0).attr('y',8+k*16).attr('width',12).attr('height',12).attr('rx',2).attr('fill',f).attr('stroke','var(--linie)');
+      lg.append('text').attr('class','mx-label').attr('x',18).attr('y',18+k*16).text(grenzen[k]); });
+  }
+}
+document.getElementById('mx-eu').onclick = ()=>{ mxModus='eu'; document.getElementById('mx-eu').setAttribute('aria-pressed','true'); document.getElementById('mx-struk').setAttribute('aria-pressed','false'); document.getElementById('mx-detail').innerHTML=''; zeichneMatrix(); };
+document.getElementById('mx-struk').onclick = ()=>{ mxModus='struk'; document.getElementById('mx-struk').setAttribute('aria-pressed','true'); document.getElementById('mx-eu').setAttribute('aria-pressed','false'); document.getElementById('mx-detail').innerHTML=''; zeichneMatrix(); };
+
+/* ---------- Sankey ---------- */
+function zeichneSankey(){
+  const host = d3.select('#sankey'); host.selectAll('*').remove();
+  const W = Math.max(document.getElementById('v-umsetz').clientWidth, 720), Hs = 720;
+  const nodes = [], links = [], idx = new Map();
+  const node = (key, name, g, typ, doc) => { if (!idx.has(key)) { idx.set(key, nodes.length); nodes.push({key,name,g,typ,doc}); } return idx.get(key); };
+  Object.entries(D.genehmigt).forEach(([bb,arr])=>{ arr.forEach(d=>{ const dd = docById.get(d); links.push({source:node('d'+d, dd.kurz, dd.gruppe,'dok',d), target:node('b'+bb, docById.get(+bb).kurz, docById.get(+bb).gruppe,'bb',+bb), value:1}); }); });
+  D.sankey.forEach(s=>{ links.push({source:node('b'+s.bb, docById.get(s.bb).kurz, s.gruppe,'bb',s.bb), target:node('g'+s.gesetz, s.gesetz, null,'gesetz'), value:1}); });
+  const sk = d3.sankey().nodeId(d=>d.index).nodeWidth(12).nodePadding(7).nodeAlign(d3.sankeyLeft).nodeSort(null).linkSort(null).extent([[215,8],[W-250,Hs-8]]);
+  const g = sk({nodes:nodes.map(d=>({...d})), links:links.map(d=>({...d}))});
+  const svg = host.append('svg').attr('viewBox',`0 0 ${W} ${Hs}`).attr('width',W).attr('height',Hs).attr('role','img').attr('aria-label','Sankey von Abkommen über Bundesbeschlüsse zu Bundesgesetzen');
+  svg.append('g').attr('fill','none').selectAll('path').data(g.links).join('path')
+    .attr('d', d3.sankeyLinkHorizontal()).attr('stroke', d=> gVar(d.source.g)).attr('stroke-opacity',0.35).attr('stroke-width', d=>Math.max(1.5,d.width))
+    .on('pointerenter pointermove',(ev,d)=>showTip(ev, `<b>${esc(d.source.name)} → ${esc(d.target.name)}</b><span>${d.target.typ==='bb'?'genehmigt durch':'neu oder geändert durch'}</span>`)).on('pointerleave',hideTip);
+  const n = svg.append('g').selectAll('g').data(g.nodes).join('g');
+  n.append('rect').attr('x',d=>d.x0).attr('y',d=>d.y0).attr('width',d=>d.x1-d.x0).attr('height',d=>Math.max(2,d.y1-d.y0)).attr('rx',2)
+    .attr('fill', d=> d.g ? gVar(d.g) : 'var(--c-gesetz)');
+  n.append('text').attr('class','sk-label').attr('x',d=> d.typ==='dok' ? d.x0-6 : d.x1+6).attr('y',d=>(d.y0+d.y1)/2+4)
+    .attr('text-anchor',d=> d.typ==='dok' ? 'end' : 'start').text(d=> d.name.length>40 ? d.name.slice(0,39)+'…' : d.name);
+  n.on('pointerenter pointermove',(ev,d)=>showTip(ev, `<b>${esc(d.name)}</b><span>${d.typ==='gesetz' ? (d.targetLinks.length+' Bundesbeschluss'+(d.targetLinks.length>1?'e':'')) : d.typ==='bb' ? (d.targetLinks.length+' genehmigte Dokumente, '+d.sourceLinks.length+' Gesetze') : 'genehmigt durch '+esc(d.sourceLinks[0]?.target.name||'')}</span>`)).on('pointerleave',hideTip);
+}
+
+/* ---------- Tabelle ---------- */
+function zeichneTabelle(){
+  const anz = d3.rollup(D.leaves, v=>v.length, l=>l.doc);
+  const rows = D.docs.map(d=>`<tr><td>${d.id}</td><td><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${esc(d.kurz)}</td><td>${esc(d.typ)}</td><td>${esc(gName[d.gruppe])}</td><td class="zahl">${fmt(d.seiten)}</td><td class="zahl">${fmt(d.woerter)}</td><td class="zahl">${pct(d.woerter, st.woerter)}</td><td class="zahl">${fmt(anz.get(d.id)||0)}</td><td><a href="${d.eli}" target="_blank" rel="noopener">Fedlex</a></td></tr>`).join('');
+  document.getElementById('tabelle').innerHTML = `<thead><tr><th>BBl 2026</th><th>Dokument</th><th>Typ</th><th>Vorlage</th><th class="zahl">Seiten</th><th class="zahl">Wörter</th><th class="zahl">Anteil</th><th class="zahl">Zettel</th><th>Quelle</th></tr></thead><tbody>${rows}</tbody>
+  <tfoot><tr><td></td><td><strong>Total</strong></td><td></td><td></td><td class="zahl"><strong>${fmt(st.seiten)}</strong></td><td class="zahl"><strong>${fmt(st.woerter)}</strong></td><td class="zahl">100,0 %</td><td class="zahl"><strong>${fmt(st.zettel)}</strong></td><td></td></tr></tfoot>`;
+}
+
+/* ---------- Reiter ---------- */
+const reiter = ['umfang','verkn','umsetz','tabelle'];
+const gezeichnet = {};
+function zeigeReiter(k){
+  reiter.forEach(r=>{ document.getElementById('tab-'+r).setAttribute('aria-selected', r===k); document.getElementById('v-'+r).hidden = r!==k; });
+  if (k==='verkn' && !gezeichnet.verkn) { zeichneMatrix(); gezeichnet.verkn = true; }
+  if (k==='umsetz' && !gezeichnet.umsetz) { zeichneSankey(); gezeichnet.umsetz = true; }
+  if (k==='tabelle' && !gezeichnet.tabelle) { zeichneTabelle(); gezeichnet.tabelle = true; }
+  if (k==='umfang') zeichneIcicle(false);
+  try { localStorage.setItem('vs-reiter', k); } catch(e) {}
+}
+reiter.forEach(r=> document.getElementById('tab-'+r).onclick = ()=>zeigeReiter(r));
+document.querySelector('[role=tablist]').addEventListener('keydown', ev=>{
+  if (!['ArrowRight','ArrowLeft'].includes(ev.key)) return;
+  const i = reiter.findIndex(r=>document.getElementById('tab-'+r).getAttribute('aria-selected')==='true');
+  const k = reiter[(i + (ev.key==='ArrowRight'?1:reiter.length-1)) % reiter.length]; zeigeReiter(k); document.getElementById('tab-'+k).focus();
+});
+
+/* ---------- Start ---------- */
+const start = D.leaves.filter(l=>l.doc===632).sort((a,b)=>(b.eu.length+b.refs.length+b.sr.length)-(a.eu.length+a.refs.length+a.sr.length))[0];
+zeichneIcicle(false);
+waehle(start.id, false);
+let gespeichert = null; try { gespeichert = localStorage.getItem('vs-reiter'); } catch(e) {}
+if (gespeichert && reiter.includes(gespeichert) && gespeichert!=='umfang') zeigeReiter(gespeichert);
+let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ zeichneIcicle(false); if (gezeichnet.umsetz) zeichneSankey(); }, 150); });
+})();
+</script>
