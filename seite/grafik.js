@@ -37,7 +37,7 @@ const NOTIZ = {
   umfeld: 'Bezüge des geöffneten Zettels nach Art, mit Reichweite. Querformat: links eingehend, rechts ausgehend.',
   netz: 'Knoten auf einem Kreis in Paketreihenfolge, Fläche = Wörter, Linienbreite = Anzahl Bezüge. Stufe «Zettel» zeigt das Umfeld als Netz.',
   matrix: 'Dokument × Dokument mit dem gewählten Mass, in festen Klassen wie auf der Seite.',
-  bezuege: 'Alle Zettel auf einer Linie, Länge = Wörter, mit den eingeblendeten Bogenarten und dem Ausschnitt der Seite. Im Hochformat senkrecht.',
+  bezuege: 'Alle Zettel auf einer Linie, Länge = Wörter, mit den eingeblendeten Bogenarten und dem Ausschnitt der Seite.',
   umsetzung: 'Abkommen, genehmigende Bundesbeschlüsse und die Bundesgesetze in ihren Anhängen; wahlweise ein Bundesbeschluss.',
   thema: 'Zettel und Fundstellen eines Themas nach Textart und Dokument, in Paketreihenfolge, mit den Begriffen.',
   wortlaut: 'Ganzer Artikel oder ein ganzer Absatz, ohne Kürzung, mit Fundstelle.',
@@ -521,7 +521,7 @@ function gMatrix(x, W, H) {
     text(x, t, ex + 30 * u, ey + 17 * u, {s: 17 * u}); });
 }
 
-/* ---------- 6. Bezüge auf einer Linie (Hochformat senkrecht) ---------- */
+/* ---------- 6. Bezüge auf einer Linie, in allen Formaten waagrecht ---------- */
 function gBezuege(x, W, H) {
   const v = V(), {BZ, docPos, BZ_TOTAL, BZ_TYPEN} = v.bz(), akt = v.bzAktiv, tr = v.treffer;
   const sicht = v.bzSicht() || [0, BZ_TOTAL], s0 = Math.max(0, sicht[0]), s1 = Math.min(BZ_TOTAL, sicht[1]), ganz = s0 <= 1 && s1 >= BZ_TOTAL - 1;
@@ -529,42 +529,38 @@ function gBezuege(x, W, H) {
   const boegen = BZ.filter(b => akt[b.t] && b.x1 > s0 && b.x0 < s1);
   const sichtbar = v.D.docs.filter(d => { const [a, w] = docPos.get(d.nr); return a + w > s0 && a < s1; });
   const gruppen = new Set(boegen.map(b => b.g).filter(g => g !== 'neutral'));
-  const quer = W > H;
   const B = rahmen(x, W, H, {titel: ganz ? 'Bezüge im ganzen Paket' : `Bezüge: ${sichtbar.map(d => d.kurz).slice(0, 3).join(', ')}${sichtbar.length > 3 ? ' …' : ''}`,
     ueber: 'Alle Zettel auf einer Linie, Länge = Wörter',
-    gezeigt: `${fmt(boegen.length)} Bögen: ${typen.map(t => BZ_TYPEN[t].name).join(', ')}. ${quer ? 'Oben' : 'Links'}: Artikelverweise im selben Dokument; ${quer ? 'unten' : 'rechts'}: Bezüge zwischen Dokumenten.${ganz ? '' : ` Ausschnitt: ${fmt(s1 - s0)} von ${fmt(BZ_TOTAL)} Wörtern.`}`,
+    gezeigt: `${fmt(boegen.length)} Bögen: ${typen.map(t => BZ_TYPEN[t].name).join(', ')}. Oben: Artikelverweise im selben Dokument; unten: Bezüge zwischen Dokumenten. Die Höhe eines Bogens folgt seiner Spannweite.${ganz ? '' : ` Ausschnitt: ${fmt(s1 - s0)} von ${fmt(BZ_TOTAL)} Wörtern.`}`,
     markiert: true, legende: [...legendeGruppen(gruppen), {f: FARBE.neutral, t: 'zwischen zwei Vorlagen', linie: true}], roh: true});
-  const u = B.u, balk = 34 * u;
-  const lang = quer ? B.x1 - B.x0 : B.y1 - B.y0, quer2 = quer ? B.y1 - B.y0 : B.x1 - B.x0;
-  const seiteA = (quer2 - balk) * 0.34, seiteB = quer2 - balk - seiteA - 8 * u;
-  const p = w => (w - s0) / (s1 - s0) * lang;
-  const L0 = quer ? B.x0 : B.y0, achse = (quer ? B.y0 : B.x0) + seiteA;     // Beginn des Balkens quer zur Linie
-  x.save(); x.beginPath(); x.rect(B.x0, B.y0 - 4 * u, B.x1 - B.x0, B.y1 - B.y0 + 8 * u); x.clip();
-  const sortiert = [...boegen].sort((a, b) => (tr ? (tr.has(a.A.i) || tr.has(a.B.i)) - (tr.has(b.A.i) || tr.has(b.B.i)) : 0) || (b.x1 - b.x0) - (a.x1 - a.x0));
+  const u = B.u, balk = 34 * u, lang = B.x1 - B.x0, hoehe = B.y1 - B.y0;
+  // Oben die kurzen Bögen innerhalb eines Dokuments, unten die langen zwischen Dokumenten: unten mehr Platz
+  const seiteA = (hoehe - balk) * (W > H ? 0.3 : 0.24), seiteB = hoehe - balk - seiteA - 8 * u;
+  const p = w => (w - s0) / (s1 - s0) * lang, achse = B.y0 + seiteA;
+  // Bogenhöhe wächst mit der Spannweite und flacht ab; der längste Bogen jeder Seite füllt ihre Höhe
+  const KF = lang * 0.15, f = r => r / (r + KF);
+  const rMax = oben => Math.max(1, ...boegen.filter(b => !!BZ_TYPEN[b.t].oben === oben).map(b => (p(Math.min(b.x1, s1)) - p(Math.max(b.x0, s0))) / 2));
+  const fA = f(rMax(true)), fB = f(rMax(false));
+  x.save(); x.beginPath(); x.rect(B.x0, B.y0 - 4 * u, lang, hoehe + 8 * u); x.clip();
+  const markiert = b => tr && (tr.has(b.A.i) || tr.has(b.B.i));
+  const sortiert = [...boegen].sort((a, b) => (markiert(a) - markiert(b)) || (b.x1 - b.x0) - (a.x1 - a.x0));
   x.lineCap = 'round';
   sortiert.forEach(b => {
     const a1 = p(b.x0), a2 = p(b.x1), r = (a2 - a1) / 2; if (r < 0.3) return;
-    const oben = BZ_TYPEN[b.t].oben, Hs = oben ? seiteA - 6 * u : seiteB, h = Hs * r / (r + Hs);
-    const markiert = tr && (tr.has(b.A.i) || tr.has(b.B.i)), stark = b.t === 'genehmigt' || b.t === 'zwischen';
-    x.globalAlpha = tr ? (markiert ? 0.6 : 0.035) : stark ? 0.6 : 0.28;
-    x.strokeStyle = farbe(b.g); x.lineWidth = (tr ? (markiert ? 1.8 : 1) : stark ? 1.8 : 1.1) * u;
-    const m = L0 + a1 + r;
-    x.beginPath();
-    if (quer) { const yy = oben ? achse - 3 * u : achse + balk + 3 * u; x.ellipse(m, yy, r, h, 0, oben ? Math.PI : 0, oben ? 2 * Math.PI : Math.PI); }
-    else { const xx = oben ? achse - 3 * u : achse + balk + 3 * u; x.ellipse(xx, m, h, r, 0, oben ? Math.PI / 2 : -Math.PI / 2, oben ? 1.5 * Math.PI : Math.PI / 2); }
-    x.stroke();
+    const oben = !!BZ_TYPEN[b.t].oben, Hs = oben ? seiteA - 6 * u : seiteB, h = Hs * Math.min(1, f(r) / (oben ? fA : fB));
+    const stark = b.t === 'genehmigt' || b.t === 'zwischen';
+    x.globalAlpha = tr ? (markiert(b) ? 0.6 : 0.035) : stark ? 0.6 : 0.28;
+    x.strokeStyle = farbe(b.g); x.lineWidth = (tr ? (markiert(b) ? 1.8 : 1) : stark ? 1.8 : 1.1) * u;
+    x.beginPath(); x.ellipse(B.x0 + a1 + r, oben ? achse - 3 * u : achse + balk + 3 * u, r, h, 0, oben ? Math.PI : 0, oben ? 2 * Math.PI : Math.PI); x.stroke();
   });
   x.globalAlpha = 1;
   // Dokumente als Balken auf der Linie
   sichtbar.forEach(d => {
     const [a, w] = docPos.get(d.nr), q0 = Math.max(0, p(a)), q1 = Math.min(lang, p(a + w));
-    const hatT = !tr || [...tr].some(i => v.Z[i].d === d.nr);
-    x.globalAlpha = hatT ? 1 : 0.35; x.fillStyle = mischen(farbe(d.gruppe), 72);
-    if (quer) x.fillRect(L0 + q0, achse, Math.max(0.8, q1 - q0 - 1.5 * u), balk); else x.fillRect(achse, L0 + q0, balk, Math.max(0.8, q1 - q0 - 1.5 * u));
+    x.globalAlpha = !tr || [...tr].some(i => v.Z[i].d === d.nr) ? 1 : 0.35; x.fillStyle = mischen(farbe(d.gruppe), 72);
+    x.fillRect(B.x0 + q0, achse, Math.max(0.8, q1 - q0 - 1.5 * u), balk);
     x.globalAlpha = 1;
-    const platz = q1 - q0;
-    if (quer && platz > 70 * u) text(x, d.kurz, L0 + q0 + 8 * u, achse + balk / 2 + 6 * u, {w: 600, s: 16 * u, max: platz - 16 * u});
-    if (!quer && platz > 24 * u) { x.save(); x.translate(achse + balk / 2 + 6 * u, L0 + q0 + 8 * u); x.rotate(Math.PI / 2); text(x, d.kurz, 0, 0, {w: 600, s: 16 * u, max: platz - 16 * u}); x.restore(); }
+    if (q1 - q0 > 70 * u) text(x, d.kurz, B.x0 + q0 + 8 * u, achse + balk / 2 + 6 * u, {w: 600, s: 16 * u, max: q1 - q0 - 16 * u});
   });
   x.restore();
 }

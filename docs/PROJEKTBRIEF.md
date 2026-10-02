@@ -157,7 +157,7 @@ Aufbau wie im Finanzspiegel (`politspiegel/finanzspiegel/grafik.js`): Knopf «Gr
    3. Umfeld des geöffneten Zettels: Gliederung (Querformat links eingehend, rechts ausgehend) oder Netz, mit Reichweite.
    4. Netz auf vier Stufen: Vorlagen, Dokumente, Artikel eines Dokuments, Zettel.
    5. Matrix der Verknüpfungen.
-   6. Bezüge auf einer Linie, mit den eingeblendeten Bogenarten und dem Ausschnitt; im Hochformat senkrecht.
+   6. Bezüge auf einer Linie, mit den eingeblendeten Bogenarten und dem Ausschnitt; in allen Formaten waagrecht.
    7. Umsetzung (Sankey), alle Bundesbeschlüsse oder einer.
    8. Thema in Zahlen: Zettel, Fundstellen, Anteil am Paket, nach Textart und nach Dokument in Paketreihenfolge, Begriffe.
    9. Wortlautkarte: ganzer Text oder ein ganzer Absatz, ohne Kürzung, mit Fundstelle. Passt der Text nicht, sagt die Grafik das, statt zu kürzen.

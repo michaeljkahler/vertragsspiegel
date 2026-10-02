@@ -69,20 +69,17 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
   if (!m) return '615-rest';
   return m[1] === '2' && m[2] ? `615-2.${m[2]}` : `615-${m[1]}`;
 }
-// Trennstrich am Seitenende: «Abkom-» und «mens» stehen in den Daten in zwei Absätzen (Rohextraktion, docs/KORREKTUREN.md).
-// Für die Anzeige wird das Wort wieder zusammengesetzt, ausser vor einem Bindewort («Güter- und Personenverkehr»).
-const seitenumbruch = t => t.replace(/([A-Za-zÄÖÜäöüß]{2,})-\n(?!(?:und|oder|bis|sowie|bzw|als|noch|wie|resp|beziehungsweise)[^A-Za-zÄÖÜäöüß])([a-zäöüß]{2,})/g, '$1$2');
 function ladeText(id) {
   const t = textteil(id);
-  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=ed67d2ecb1`).then(r => r.json()));
-  return texte.get(t).then(x => { const e = x[id] || ['', []]; return [seitenumbruch(e[0]), e[1]]; });
+  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=59b79c10ca`).then(r => r.json()));
+  return texte.get(t).then(x => x[id] || ['', []]);
 }
 let alleTexte = null;
 function ladeAlleTexte() {
   if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(t => {
-    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=ed67d2ecb1`).then(r => r.json()));
+    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=59b79c10ca`).then(r => r.json()));
     return texte.get(t);
-  })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, [seitenumbruch(v[0]), v[1]]))); return m; });
+  })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, v))); return m; });
   return alleTexte;
 }
 
@@ -104,7 +101,7 @@ function refName(r, lang) {
 }
 let gesetzById;
 
-fetch('daten/index.json?v=ed67d2ecb1').then(r => r.json()).then(start).catch(e => {
+fetch('daten/index.json?v=59b79c10ca').then(r => r.json()).then(start).catch(e => {
   $('#laden').textContent = 'Die Daten konnten nicht geladen werden (' + e.message + '). Bitte die Seite neu laden.';
 });
 
