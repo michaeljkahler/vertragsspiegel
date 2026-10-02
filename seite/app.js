@@ -72,18 +72,61 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
 // Trennstrich am Seitenende: «Abkom-» und «mens» stehen in den Daten in zwei Absätzen (Rohextraktion, docs/KORREKTUREN.md).
 // Für die Anzeige wird das Wort wieder zusammengesetzt, ausser vor einem Bindewort («Güter- und Personenverkehr»).
 const seitenumbruch = t => t.replace(/([A-Za-zÄÖÜäöüß]{2,})-\n(?!(?:und|oder|bis|sowie|bzw|als|noch|wie|resp|beziehungsweise)[^A-Za-zÄÖÜäöüß])([a-zäöüß]{2,})/g, '$1$2');
+// Wortlaut je Sprache (Etappe 5): deutsch daten/text/, französisch und italienisch daten/<sp>/text/
+function holeTeil(t) {
+  const k = sprache + ':' + t;
+  if (!texte.has(k)) texte.set(k, fetch(`daten/${sprache === 'de' ? '' : sprache + '/'}text/${t}.json?v=__VERSION__`).then(r => r.json()));
+  return texte.get(k);
+}
 function ladeText(id) {
-  const t = textteil(id);
-  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=__VERSION__`).then(r => r.json()));
-  return texte.get(t).then(x => { const e = x[id] || ['', []]; return [seitenumbruch(e[0]), e[1]]; });
+  return holeTeil(textteil(id)).then(x => { const e = x[id] || ['', []]; return [seitenumbruch(e[0]), e[1]]; });
 }
 let alleTexte = null;
 function ladeAlleTexte() {
-  if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(t => {
-    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=__VERSION__`).then(r => r.json()));
-    return texte.get(t);
-  })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, [seitenumbruch(v[0]), v[1]]))); return m; });
+  if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(holeTeil))
+    .then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, [seitenumbruch(v[0]), v[1]]))); return m; });
   return alleTexte;
+}
+
+/* ---------- Sprache des Wortlauts (Etappe 5) ---------- */
+// Gliederung, Kanten und Themen stammen aus der deutschen Fassung; je Sprache wechseln Bezeichnung, Wörter,
+// Seiten, Pfad und Wortlaut der Zettel sowie PDF, Seiten und Wörter der Dokumente.
+const SPRACHEN = {de: 'Deutsch', fr: 'Französisch', it: 'Italienisch'};
+const BLATT = {de: 'BBl', fr: 'FF', it: 'FF'};
+let sprache = 'de', DE_Z = null, DE_DOC = null, DE_KZ = null;
+const SPR = {};
+let sucheSprache = () => {};
+async function setzeSprache(sp) {
+  if (!SPRACHEN[sp]) sp = 'de';
+  if (sp !== 'de' && !SPR[sp]) {
+    try { SPR[sp] = await fetch(`daten/${sp}/index.json?v=__VERSION__`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    catch (e) { sp = 'de'; }
+  }
+  sprache = sp; alleTexte = null;
+  const S = SPR[sp];
+  Z.forEach((z, i) => {
+    const o = DE_Z[i];
+    if (!S) { z.l = o.l; z.w = o.w; z.s = o.s; z.p = o.p; z.o = 0; return; }
+    const e = S.z[i];
+    z.o = e[3]; z.l = e[0] || o.l; z.w = e[1]; z.s = e[2]; z.p = o.p.map(x => S.p[z.d + '|' + x] || x);
+  });
+  D.docs.forEach(d => {
+    const o = DE_DOC.get(d.nr), e = S && S.docs[d.nr];
+    d.pdf = e ? e[0] : o.pdf; d.seiten = e ? e[1] : o.seiten; d.woerter = e ? e[2] : o.woerter;
+  });
+  const paket = D.docs.filter(d => d.nr >= 615 && d.nr <= 644);
+  Object.assign(D.kennzahlen, DE_KZ, S ? {seiten: paket.reduce((s, d) => s + d.seiten, 0), woerter: paket.reduce((s, d) => s + d.woerter, 0)} : {});
+  document.querySelectorAll('#sprache [data-sp]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sp === sprache));
+  document.documentElement.dataset.sprache = sprache;
+  try { localStorage.setItem('vs-sprache', sprache); } catch (e) { /* */ }
+  // alles neu, was Bezeichnungen oder Wörter zeigt
+  kennzahlen(); baum(); legende();
+  fokus = root; if (gewaehlt !== null) fokusAufZettel(gewaehlt);
+  BZ = null; bzSvg = null; Object.keys(gezeichnet).forEach(k => { gezeichnet[k] = false; });
+  if (aktiv) zeigeReiter(aktiv);
+  if (listeOffen) zeigeListe(); else if (gewaehlt !== null) zeichneZettel(gewaehlt); else startseite();
+  sucheSprache();
+  hashSchreiben();
 }
 
 const ART = {
@@ -131,7 +174,11 @@ function start(daten) {
     const m = euNennung.get(k.nach); if (!m.has(d)) m.set(d, k.von);
   });
   $('#laden').remove();
+  DE_Z = Z.map(z => ({l: z.l, w: z.w, s: z.s, p: z.p}));
+  DE_DOC = new Map(D.docs.map(d => [d.nr, {pdf: d.pdf, seiten: d.seiten, woerter: d.woerter}]));
+  DE_KZ = {...D.kennzahlen};
   kennzahlen(); baum(); legende(); suche(); reiterAufbauen(); graphFilter(); findenAufbauen(); verknAufbauen();
+  $('#sprache').onclick = ev => { const b = ev.target.closest('[data-sp]'); if (b && b.dataset.sp !== sprache) setzeSprache(b.dataset.sp); };
   const h = hashLesen();
   filt.thema = h.thema ? T.find(t => t.id === h.thema) || null : null;
   filt.art = TEXTART[h.art] ? h.art : null;
@@ -144,8 +191,12 @@ function start(daten) {
   else startseite();
   let gespeichert = null; try { gespeichert = localStorage.getItem('vs-reiter'); } catch (e) { /* */ }
   if (gespeichert && REITER.includes(gespeichert) && gespeichert !== 'umfang' && h.zettel === null) zeigeReiter(gespeichert);
+  // Sprache: aus dem Anker (&fr, &it), sonst die zuletzt gewählte
+  let sp = h.sprache; if (!sp) { try { sp = localStorage.getItem('vs-sprache'); } catch (e) { /* */ } }
+  if (sp && sp !== 'de' && SPRACHEN[sp]) setzeSprache(sp);
   addEventListener('hashchange', () => {
     const n = hashLesen(), t = n.thema ? T.find(x => x.id === n.thema) || null : null, a = TEXTART[n.art] ? n.art : null;
+    if (n.sprache && n.sprache !== sprache) setzeSprache(n.sprache);    // ein Anker ohne Sprache behält die gewählte
     if (t !== filt.thema || a !== filt.art) { filt.thema = t; filt.art = a; findenStand(); filterAnwenden({liste: n.zettel === null && !!(t || a)}); }
     if (n.zettel !== null && n.zettel !== gewaehlt) waehle(n.zettel, true);
     else if (n.zettel === null && !t && !a && gewaehlt !== null) startseite();
@@ -168,8 +219,9 @@ function startseite() {
 }
 // Anker (Projektbrief Ziffer 10.4): #fga-2026-632-art_4, ergänzt um &thema-<id> und &text-<art> (Ziffer 5.4)
 function hashLesen() {
-  const r = {zettel: null, thema: null, art: null};
+  const r = {zettel: null, thema: null, art: null, sprache: null};
   decodeURIComponent(location.hash.slice(1)).split('&').filter(Boolean).forEach(t => {
+    if (SPRACHEN[t]) { r.sprache = t; return; }                     // &de, &fr, &it
     if (t.startsWith('thema-')) { r.thema = t.slice(6); return; }
     if (t.startsWith('text-')) { r.art = t.slice(5); return; }
     const m = /^fga-2026-(\d+)-(.+)$/.exec(t);
@@ -183,6 +235,7 @@ function hashSchreiben() {
   if (gewaehlt !== null && !listeOffen) t.push(anker(Z[gewaehlt].i));
   if (filt.thema) t.push('thema-' + filt.thema.id);
   if (filt.art) t.push('text-' + filt.art);
+  if (sprache !== 'de') t.push(sprache);
   const h = t.length ? '#' + t.join('&') : location.pathname + location.search;
   if (location.hash !== (t.length ? h : '')) history.replaceState(null, '', h);
 }
@@ -379,7 +432,8 @@ function pdfLink(d, seite) { return d.pdf ? `${d.pdf}#page=${seite}` : d.eli; }
 const regexText = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 function hervorheben(t, q) {
   const r = [];
-  if (filt.thema) for (const m of t.matchAll(filt.thema.rx)) if (m[0]) r.push([m.index, m.index + m[0].length, 'th']);
+  // Themenbegriffe sind deutsch; im französischen und italienischen Wortlaut wird nur der Zettel markiert
+  if (filt.thema && sprache === 'de') for (const m of t.matchAll(filt.thema.rx)) if (m[0]) r.push([m.index, m.index + m[0].length, 'th']);
   if (q && q.length >= 2) for (const m of t.matchAll(new RegExp(regexText(q), 'gi'))) r.push([m.index, m.index + m[0].length, 'q']);
   if (!r.length) return esc(t);
   r.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
@@ -401,13 +455,16 @@ function zeichneZettel(i) {
       <div class="ort"><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${ortVon(z)}</div>
       <h3>${esc(z.l)}</h3>
     </div>
-    <div class="meta"><span>BBl 2026 ${d.nr}</span><span>${fmt(z.w)} Wörter</span>
+    <div class="meta"><span>${BLATT[sprache]} 2026 ${d.nr}</span><span>${fmt(z.w)} Wörter</span>
       ${seiten ? `<a href="${esc(pdfLink(d, z.s[0]))}" target="_blank" rel="noopener">PDF, ${seiten}</a>` : ''}
       <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a>
       <a href="#${esc(anker(z.i))}" title="Direkter Link auf diesen Zettel">Link</a>
       <button type="button" class="knopf klein" data-grafik="wortlaut" style="margin-left:0">Wortlaut als Grafik</button></div>
+    ${sprache === 'de' ? '' : `<p class="hinweis-klein sprachhinweis">Wortlaut ${SPRACHEN[sprache].toLowerCase()}, amtliche Fassung.
+      Gliederung, Verknüpfungen und deren Fundstellen stammen aus der deutschen Fassung.${z.o ? ` Dieser Abschnitt hat in der
+      ${sprache === 'fr' ? 'französischen' : 'italienischen'} Fassung keine eigene Überschrift; sein Wortlaut steht im vorangehenden Zettel.` : ''}</p>`}
     <div class="fund" id="fund" hidden></div>
-    <div class="wortlaut" id="wortlaut" tabindex="0" aria-label="Wortlaut"><span class="leer">Wortlaut wird geladen …</span></div>
+    <div class="wortlaut" id="wortlaut" tabindex="0" aria-label="Wortlaut" lang="${sprache}"><span class="leer">Wortlaut wird geladen …</span></div>
     <section class="uf-teil" aria-labelledby="uf-titel">
       <div class="uf-kopfzeile"><h4 id="uf-titel">Umfeld: womit dieser Text verknüpft ist <span class="marke">Rohextraktion</span></h4>
         <button type="button" class="knopf klein" data-grafik="umfeld" style="margin-left:0">Als Grafik</button>
@@ -886,6 +943,7 @@ function suche() {
     box.hidden = !box.innerHTML;
   }
   let alleGeladen = false, zeit;
+  sucheSprache = () => { alleGeladen = false; if (feld.value.trim().length >= 2) suchen(); };   // neue Sprache: neu suchen
   feld.addEventListener('input', () => { clearTimeout(zeit); zeit = setTimeout(suchen, 180); });
   box.addEventListener('click', ev => {
     const t = ev.target.closest('button[data-thema]');

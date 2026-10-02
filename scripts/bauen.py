@@ -37,6 +37,54 @@ def textteil(zid):
     return f'615-{m.group(1)}.{m.group(2)}' if m.group(1) == '2' and m.group(2) else f'615-{m.group(1)}'
 
 
+SPRACHEN = ('fr', 'it')
+# Gliederungswörter im Pfad, wenn kein Zettel mit derselben Bezeichnung die Übersetzung liefert
+PFAD_WORT = {
+    'fr': [(r'^Anhang\b', 'Annexe'), (r'^Anlage\b', 'Appendice'), (r'^Teil\b', 'Partie'), (r'^Titel\b', 'Titre'),
+           (r'^Kapitel\b', 'Chapitre'), (r'^Abschnitt\b', 'Section'), (r'^Ziff\.', 'ch.'), (r'^Protokoll\b', 'Protocole')],
+    'it': [(r'^Anhang\b', 'Allegato'), (r'^Anlage\b', 'Appendice'), (r'^Teil\b', 'Parte'), (r'^Titel\b', 'Titolo'),
+           (r'^Kapitel\b', 'Capitolo'), (r'^Abschnitt\b', 'Sezione'), (r'^Ziff\.', 'n.'), (r'^Protokoll\b', 'Protocollo')],
+}
+
+
+def sprachdaten(sp, zettel):
+    """Französisch oder Italienisch für die Seite: je Zettel Bezeichnung, Wörter, Seiten und ob er eine eigene
+    Stelle hat (ausrichten.py), in der Reihenfolge von index.json; dazu die Pfade und die Dokumente.
+    None, wenn daten/zettel_<sp>.json fehlt."""
+    pfad = DATEN / f'zettel_{sp}.json'
+    if not pfad.exists():
+        return None, None
+    sd = json.loads(pfad.read_text(encoding='utf8'))
+    je = {z['id']: z for z in sd['zettel']}
+    q = quellen(sp)
+    z_aus, texte, pfade = [], collections.defaultdict(dict), {}
+    # Pfad: ein Eintrag ist die Bezeichnung eines übergeordneten Zettels («Teil V: Institutionelle Bestimmungen»,
+    # «2.11 Stromabkommen»); dessen Bezeichnung in der Sprache, sonst nur das Gliederungswort übersetzt
+    label_de = collections.defaultdict(dict)
+    for z in zettel:
+        s = je.get(z['id'])
+        if s and s['label'] and not s.get('ohne_stelle'):
+            label_de[z['dok']].setdefault(z['label'], s['label'])
+    for z in zettel:
+        s = je.get(z['id'], {})
+        z_aus.append([s.get('label') or '', s.get('woerter', 0), s.get('seiten', []), 1 if s.get('ohne_stelle') else 0])
+        texte[textteil(z['id'])][z['id']] = [s.get('text', ''), [[f['nr'], f['text']] for f in s.get('fussnoten', [])]]
+        for p in z['pfad']:
+            schluessel = f"{z['dok']}|{p}"
+            if schluessel in pfade:
+                continue
+            ueb = label_de[z['dok']].get(p)
+            if not ueb:
+                ueb = p
+                for muster, wort in PFAD_WORT[sp]:
+                    if re.match(muster, p):
+                        ueb = re.sub(muster, wort, p).split(':')[0]       # deutscher Titel nach dem Doppelpunkt entfällt
+                        break
+            pfade[schluessel] = ueb
+    docs = {d['nr']: [q.get(str(d['nr']), {}).get('pdf', ''), d['seiten'], d['woerter']] for d in sd['dokumente']}
+    return dict(z=z_aus, p=pfade, docs=docs), texte
+
+
 def kompakt_json(obj):
     return json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
 
@@ -44,6 +92,9 @@ def kompakt_json(obj):
 def version(index):
     """Kennung für den Cache: ändert sich mit den Daten und den Vorlagen."""
     h = hashlib.sha1(kompakt_json(index).encode())
+    for sp in SPRACHEN:                                  # Wortlaut fr/it ändert die Kennung ebenfalls
+        if (DATEN / f'zettel_{sp}.json').exists():
+            h.update((DATEN / f'zettel_{sp}.json').read_bytes())
     for datei in sorted(SEITE.glob('*')):
         if datei.is_file():
             h.update(datei.read_bytes())
@@ -129,6 +180,17 @@ def main():
         texte[textteil(z['id'])][z['id']] = [z['text'], [[f['nr'], f['text']] for f in z['fussnoten']]]
     for teil, inhalt in texte.items():
         (SITE / 'daten' / 'text' / f'{teil}.json').write_text(kompakt_json(inhalt), encoding='utf8')
+    # Französisch und Italienisch (Etappe 5): site/daten/<sp>/index.json und site/daten/<sp>/text/<teil>.json
+    sprachen = []
+    for sp in SPRACHEN:
+        sdaten, stexte = sprachdaten(sp, zettel)
+        if sdaten is None:
+            continue
+        sprachen.append(sp)
+        (SITE / 'daten' / sp / 'text').mkdir(parents=True, exist_ok=True)
+        (SITE / 'daten' / sp / 'index.json').write_text(kompakt_json(sdaten), encoding='utf8')
+        for teil, inhalt in stexte.items():
+            (SITE / 'daten' / sp / 'text' / f'{teil}.json').write_text(kompakt_json(inhalt), encoding='utf8')
     (SITE / 'kennzahlen.json').write_text(json.dumps(kennzahlen, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
 
     fmt = lambda n: f'{n:,}'.replace(',', ' ')
@@ -145,7 +207,7 @@ def main():
 
     groesse = sum(p.stat().st_size for p in SITE.rglob('*') if p.is_file())
     print(f"site/: {len(zettel)} Zettel, {len(kanten)} Kanten, {len(eu_paare)} EU-Werkpaare, {len(themen)} Themen, "
-          f"{len(texte)} Textdateien, "
+          f"{len(texte)} Textdateien je Sprache, Sprachen de {' '.join(sprachen)}, "
           f"index.json {(SITE / 'daten' / 'index.json').stat().st_size // 1024} KB, gesamt {groesse // 1024} KB")
 
 

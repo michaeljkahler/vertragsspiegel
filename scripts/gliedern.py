@@ -2,9 +2,9 @@
 
 Alle Werke:                   python3 scripts/gliedern.py
 Gliederung eines Werks:       python3 scripts/gliedern.py --zeigen 632
-Andere Sprache:               python3 scripts/gliedern.py --sprache fr
+Französisch, Italienisch:     python3 scripts/ausrichten.py (an den deutschen Zetteln ausgerichtet, Etappe 5)
 
-Liest daten/text/<sprache>/<nr>.txt (von laden.py), schreibt daten/zettel.json.
+Liest daten/text/de/<nr>.txt (von laden.py), schreibt daten/zettel.json.
 
 Ablauf je Werk:
   1. Seiten zerlegen: Kopfzeilen, Fusszeilen und Fussnoten vom Rumpf trennen. Fussnoten sind im
@@ -32,11 +32,13 @@ from paket import (DATEN, DOKUMENTE, GRUPPEN, fliesstext, hoch, quellen, text_pf
 
 # ------------------------------------------------------------------ Seiten zerlegen
 
-KOPF_MARKE = re.compile(r'«%ASFF_YYYY_ID»|\bAS 202\d\s*$|\bBBl(?: 202\d)?(?: \d+)?\s*$')
-FUSS = re.compile(r'^\s*(?:\d+\s*/\s*\d+|20\d\d-[\d.…]+(?:\s+(?:«%ASFF_YYYY_ID»|AS 20\d\d|BBl 20\d\d(?: \d+)?))?'
-                  r'|SR\s*[.…]+|AS 202\d|«%ASFF_YYYY_ID»)\s*$')
+# Druckmarken in drei Sprachen: BBl/FF (Bundesblatt), AS/RO/RU (Amtliche Sammlung), SR/RS
+KOPF_MARKE = re.compile(r'«%ASFF_YYYY_ID»|\b(?:AS|RO|RU) 202\d\s*$|\b(?:BBl|FF)(?: 202\d)?(?: \d+)?\s*$')
+FUSS = re.compile(r'^\s*(?:\d+\s*/\s*\d+|20\d\d-[\d.…]+(?:\s+(?:«%ASFF_YYYY_ID»|(?:AS|RO|RU) 20\d\d|(?:BBl|FF) 20\d\d(?: \d+)?))?'
+                  r'|(?:SR|RS)\s*[.…]+|(?:AS|RO|RU) 202\d|«%ASFF_YYYY_ID»)\s*$')
 FN_START = re.compile(r'^ ?(\d{1,4})(\s+)(\S.*)$')
-VOR_MARKE = r'(?:(?<=[A-Za-zÄÖÜäöüß\)\]»«.,;:…’\'])|(?<=(?<!\d)(?:1[89]|20)\d\d))'
+BUCHST = 'A-Za-zÀ-ÖØ-öø-ÿŒœ'                      # Buchstaben mit Umlaut und Akzent (DE, FR, IT)
+VOR_MARKE = r'(?:(?<=[' + BUCHST + r'\)\]»«.,;:…’\'])|(?<=(?<!\d)(?:1[89]|20)\d\d))'
 
 
 def norm(s):
@@ -86,7 +88,12 @@ KEIN_ZEICHEN_DAVOR = re.compile(
     r'Nummer|Randziffer|Seite|Seiten|vom|bis|und|oder|von|zu|ABl|L|C|SR|AS|BBl|BGE|E|Anhang|Anhänge|Tabelle|'
     r'Abbildung|Grafik|Kapitel|Teil|Protokoll|Fr|Mio|Mrd|CHF|EUR|USD|Prozent|rund|etwa|ca|über|unter|mindestens|'
     r'höchstens|Jahr|Jahre|Jahren|im|am|in|auf|mit|für|ab|Stufe|Phase|Version|Gruppe|Klasse|Kategorie|Punkt|'
-    r'Paragraf|Rubrik|Position|Code|Nummern|Buchstabe|Satz|Unterabsatz|Sätze)\W*$', re.I)
+    r'Paragraf|Rubrik|Position|Code|Nummern|Buchstabe|Satz|Unterabsatz|Sätze|'
+    # französisch und italienisch
+    r'al|let|ch|par|chiffre|chiffres|alinéa|article|articles|annexe|chapitre|partie|section|tableau|figure|du|des|'
+    r'de|au|aux|et|ou|à|le|la|les|dans|sur|pour|env|RS|RO|FF|JO|cpv|lett|n|cifra|numero|paragrafo|articolo|articoli|'
+    r'allegato|capitolo|parte|sezione|tabella|figura|del|della|dei|alla|e|o|a|nel|nella|per|RU|GU|mio|mia|mrd)\W*$',
+    re.I)
 
 
 def marke_suchen(zeilen, k, ab):
@@ -112,7 +119,7 @@ def marke_suchen(zeilen, k, ab):
             vor = t[m.start() - 1] if m.start() > 0 else ' '
             ziffern = m.group(1)
             if not ziffern:
-                ok = bool(re.match(r"[A-Za-zÄÖÜäöüß)\]»«.,;:…’'€%]", vor))        # «BV)1», «FZA98», «Mrd. €541»
+                ok = bool(re.match(r"[" + BUCHST + r")\]»«.,;:…’'€%]", vor))     # «BV)1», «FZA98», «Mrd. €541»
                 if vor in '.,' and m.start() > 1 and t[m.start() - 2].isdigit():
                     ok = False                                                  # «1.2», «4,5»
             else:
@@ -123,7 +130,8 @@ def marke_suchen(zeilen, k, ab):
     for i in range(zi, len(zeilen)):
         for m in lose.finditer(zeilen[i].text, sp if i == zi else 0):
             davor = m.group(1)
-            wort = re.search(r'[A-Za-zÄÖÜäöüß).,;:»]$', davor) or (re.search(r'[A-Za-zÄÖÜäöüß]', davor) and davor[-1].isdigit())
+            wort = re.search(r'[' + BUCHST + r').,;:»]$', davor) or (re.search(r'[' + BUCHST + r']', davor)
+                                                                   and davor[-1].isdigit())
             zahl = re.fullmatch(r'(1[89]|20)\d\d[,.;:)]?|\d{2,4}/\d{1,4}[,.;:)]?', davor)   # «von 1994 110», «2018/958 271.»
             if (wort or zahl) and not KEIN_ZEICHEN_DAVOR.match(davor):
                 return i, m.start(2), m.end(2)
@@ -162,31 +170,51 @@ def zerlegen(roh, nr):
             zeilen.pop()
         rest = []
         for z in zeilen:
-            if re.match(r'^\s*SR\s*[.…]+\s*$', z):        # SR-Platzhalter auf der ersten Seite
+            if re.match(r'^\s*(?:SR|RS)\s*[.…]+\s*$', z):   # SR-Platzhalter auf der ersten Seite
                 entfernt.append(z)
             else:
                 rest.append(z)
         zeilen = rest
         # Fussnotenblock am Seitenende: erst streng fortlaufend, sonst mit kleinen Sprüngen (Fehler der Vorlage)
         kand = [(i, int(m.group(1))) for i, z in enumerate(zeilen) if (m := FN_START.match(z))]
-        start, streng = None, True
-        for streng in (True, False):
+        start, streng, ausreisser = None, True, None
+        # dritter Durchgang: eine einzelne falsch gedruckte Nummer im Block (615 it: «734», «36», «737»)
+        for modus in ('streng', 'locker', 'ausreisser'):
+            streng = modus == 'streng'
             for j, (i, k) in enumerate(kand):
                 folge = [kk for _, kk in kand[j:]]
+                ausreisser = None
                 if streng:
                     if k != naechste or folge != list(range(naechste, naechste + len(folge))):
                         continue
-                else:
+                elif modus == 'locker':
                     if not naechste <= k <= naechste + 3 or any(not 0 <= b - a <= 3 for a, b in zip(folge, folge[1:])):
                         continue
-                # Im Block ist jede Zeile eine Fussnote oder eingerückt (Folgezeile einer Fussnote)
-                if any(x.strip() and not FN_START.match(x) and not x.startswith('  ') for x in zeilen[i:]):
+                else:
+                    falsch = [x for x in range(1, len(folge)) if not 0 <= folge[x] - folge[x - 1] <= 3]
+                    if not naechste <= k <= naechste + 3 or not falsch:
+                        continue
+                    x = falsch[0]
+                    ok = x + 1 == len(folge) or 1 <= folge[x + 1] - folge[x - 1] <= 4
+                    rest = folge[:x] + folge[x + 1:]
+                    if not ok or any(not 0 <= b - a <= 3 for a, b in zip(rest, rest[1:])) or len(falsch) > 2:
+                        continue
+                    ausreisser = kand[j + x][0]          # Zeile der falschen Nummer
+                # Im Block ist jede Zeile eine Fussnote oder eingerückt (Folgezeile einer Fussnote). Ausnahme
+                # (633 fr S. 45): Folgezeilen ohne Einzug, wenn die Nummern lückenlos sind, zwei Leerzeilen
+                # vorausgehen und das Zeichen im Text darüber steht
+                eingerueckt = not any(x.strip() and not FN_START.match(x) and not x.startswith('  ')
+                                      for x in zeilen[i:])
+                if not eingerueckt and not (streng and i >= 2 and not zeilen[i - 1].strip()
+                                            and not zeilen[i - 2].strip()):
                     continue
                 # Das erste Zeichen steht im Text darüber, oder der Block ist kurz und folgt auf eine Leerzeile
                 davor = [Zeile(si, x) for x in zeilen[:i]]
                 voll = [x for x in zeilen if x.strip()]
                 kurz = len([x for x in zeilen[i:] if x.strip()]) <= 0.5 * len(voll)
                 marke = marke_suchen(davor, k, (0, 0))
+                if not eingerueckt and not marke:
+                    continue
                 if marke or (streng and kurz and (i == 0 or not zeilen[i - 1].strip())):
                     start = i
                     break
@@ -210,9 +238,12 @@ def zerlegen(roh, nr):
             erste.anfang = True
         # Fussnoten der Seite einlesen; Schlüssel ist eine laufende Nummer, die Nummer im Werk bleibt Bezeichnung
         neue, cur = [], None
-        for z in block:
+        for bi, z in enumerate(block):
             m = FN_START.match(z)
             k = int(m.group(1)) if m else None
+            if m and ausreisser is not None and start + bi == ausreisser:
+                auffaellig.append(f'S. {si}: Fussnote «{k}» nach {naechste - 1}, gelesen als {naechste}')
+                k = naechste
             if m and (k == naechste or (not streng and naechste - 1 <= k <= naechste + 3 and (cur is None or k >= cur[1]))):
                 if k != naechste:
                     auffaellig.append(f'S. {si}: Fussnote {k} nach {naechste - 1}')
@@ -762,6 +793,8 @@ def erlaeuterte_artikel(zeilen, a, b):
         m = ARTIKEL_ERL.match(t)
         if m and not re.search(r'\)\.?$|\.$', t):
             rest = norm(m.group(2) or '')
+            if rest.count(')') > rest.count('('):       # Fortsetzung einer Klammer nach dem Seitenumbruch:
+                continue                                # «(s. / Art. 25 E-BHÜG) erfährt die …»
             if nach_leer or GLIED_ERL.match(vor) or (re.search(r'[.:;)»]$', vor) and re.match(r'[A-ZÄÖÜ«(]', rest)
                                                        and len(t) <= 78 and not re.match(r'(Abs|Bst|Ziff|BV|FZA)\b', rest)):
                 funde.append((beginn, m.group(1), rest, f'Art. {m.group(1)} {rest}'.strip()))
@@ -865,6 +898,9 @@ def main():
     utf8_ausgabe()
     args = sys.argv[1:]
     sprache = args[args.index('--sprache') + 1] if '--sprache' in args else 'de'
+    if sprache != 'de':
+        print('Französisch und Italienisch werden mit scripts/ausrichten.py an den deutschen Zetteln ausgerichtet.')
+        sys.exit(1)
     zeigen = int(args[args.index('--zeigen') + 1]) if '--zeigen' in args else None
     q = quellen(sprache)
     dokumente, alle, berichte = [], [], []

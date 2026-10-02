@@ -17,17 +17,35 @@ Stand 1. Oktober 2026, Fassung «by-reference» vom 18. März 2026.
 | 5 | 625 IP-LuftVA | 4 | `fga/2026/625/art_4` | Sachüberschrift «Teilnahme and er Ausarbeitung von Rechtsakten der Union» statt «an der». | Wortlaut unverändert. |
 | 6 | 615 Botschaft | 518–519 | `fga/2026/615/ziff_2.5.7.1.1/art_40aquater` | Die Botschaft erläutert einen «Art. 40aquater» des Eisenbahngesetzes. Der Entwurf (616 Anhang 6 Ziff. 6) enthält keinen solchen Artikel; der erläuterte Inhalt (die RailCom informiert das BAV über Antrag und Entscheid) steht dort als letzter Satz von Art. 40ater Abs. 2bis. | Keine Kante «erläutert»; einzige Erläuterung ohne Ziel in `daten/kanten.json` unter `offen`. |
 
+### Französische und italienische Fassung (Etappe 5, 2. Oktober 2026)
+
+| Nr. | Sprache, Werk | Zettel | Befund | Behandlung |
+|---|---|---|---|---|
+| 7 | fr 620 IP-MRA | `fga/2026/620/art_13` | Art. 13 «Contribution financière» ist als «Art. 3» nummeriert. | Kein eigener Zettel; der Wortlaut steht im Zettel zu Art. 12. |
+| 8 | fr 620 IP-MRA | `fga/2026/620/anh/anl/art_ii_1` | Die Überschrift «Art. II.1» fehlt; Art. II.2 bis II.6 sind vorhanden. | Wortlaut im vorangehenden Zettel. |
+| 9 | fr 625 IP-LuftVA | `fga/2026/625/art_1` | «Art.1» ohne Leerzeichen; die Ziffer wird als Fussnotenzeichen gelesen. | Wortlaut im Ingress. |
+| 10 | fr 632 Stromabkommen | `fga/2026/632/anh_iii/abschnitt_c` | In Anhang III fehlt die Überschrift «Section C». | Wortlaut im Zettel zu Section B. |
+| 11 | fr, it 626 Beihilfeprotokoll LuftVA | `fga/2026/626/anh_ii` | Die Überschrift «Annexe II» bzw. «Allegato II» fehlt. | Wortlaut im vorangehenden Zettel. |
+| 12 | it 631 BB Elektrizität | `fga/2026/631/anh/ziff_6`, `…/anh/beil` | «6 Legge …» ohne Punkt nach der Ziffer; die Überschrift der Beilage fehlt. | Wortlaut im vorangehenden Zettel. |
+| 13 | it 633 BB Lebensmittelsicherheit | `fga/2026/633/anh_2/ziff_3/art_33a` | «… degli animali.Art. 33a Requisiti …»: Artikelkopf ohne Zeilenumbruch an den Satz davor gehängt. | Wortlaut im vorangehenden Zettel. |
+| 14 | it 615 Botschaft | S. 819 | Fussnote «36» zwischen 734 und 737. | Als 735 gelesen und gemeldet; ohne diese Regel brach die Fussnotenkette ab Seite 819 ab. |
+
+Die französische Fassung von 616 hat 155 Fussnoten, die deutsche 184; das ist kein Fehler, die Fassungen setzen Fussnoten verschieden.
+
 ## 2. Grenzen der Extraktion
 
 1. Fussnotenzeichen, die im Text nicht gefunden werden: Botschaft Fussnoten 60, 65, 262, 602, 603, 606, 612, 613, 732, 936 (meist in Grafiken oder Tabellen), 633 Fussnote 72, 2100 Fussnote 3 («Art. 197 Ziff. 17³» ist von der Ziffer 173 nicht zu unterscheiden). Die Fussnote kommt zum letzten Zettel der Seite.
 2. Artikelverweise ohne Bezugswerk werden nur innerhalb desselben Teils aufgelöst. Verweise auf Erlasse ausserhalb des Pakets (BV, OR, EU-Rechtsakte, nicht geänderte Artikel der Grundabkommen) bleiben ohne Kante; ihre Zahl steht in `daten/kanten.json` unter `offen`.
 3. In der Botschaft werden Verweise mit Bezugswerk aufgelöst («Art. 5 E-BHÜG», «Artikel 14a FZA»). Seit 2. Oktober 2026 auch Verweise ohne Zusatz in einer Ziffer, die ein bestimmtes Werk erläutert (Erläuterungen zu einzelnen Artikeln eines Gesetzes oder Abkommens): Sie gelten als Verweis auf dieses Werk, aber nur, wenn der Satz kein anderes Werk nennt (Gesetz, Verordnung, Richtlinie, Abkommen, Protokoll, Anhang, eine Abkürzung wie BV oder VwVG) und vor dem Verweis weder EU-Recht noch bisheriges Recht («dem bisherigen Artikel 3») steht. Regel «Botschaft ohne Zusatz: Bezugswerk der Ziffer», 418 Kanten. Rund 1800 Verweise bleiben ohne Kante, vor allem im allgemeinen Teil, in Ziffern über mehrere Werke und in Sätzen über EU-Recht.
-4. Erläuterungen der Botschaft zu einzelnen Artikeln: 516 von 517 einem Artikel zugeordnet (bis 2. Oktober 2026: 496). Offen ist nur «Art. 40aquater» EBG, ein Fehler der Vorlage (Abschnitt 1, Nr. 6).
+4. Erläuterungen der Botschaft zu einzelnen Artikeln: 515 von 516 einem Artikel zugeordnet (bis 2. Oktober 2026: 496 von 517; eine davon war keine Erläuterung, Abschnitt 3, Nr. 3.9). Offen ist nur «Art. 40aquater» EBG, ein Fehler der Vorlage (Abschnitt 1, Nr. 6).
 5. Tabellen (Anhang III FZA, Anhänge MRA) verlieren beim Textauszug ihre Spalten. Der Wortlaut ist vollständig, die Anordnung nicht.
 6. Trennstrich am Seitenende (gefunden am 2. Oktober 2026): Ein am Seitenende getrenntes Wort stand in `daten/zettel.json` in zwei Absätzen («Abkom-» und «mens»), 797 Fälle. Behoben am 2. Oktober 2026 in `paket.py` (`fliesstext`): Endet ein Absatz vor einer Leerzeile mit Trennstrich und beginnt der nächste klein, werden die Teile verbunden. Gesamtwortzahl 648 727 → 647 928, Prüfung 9.1 für alle 33 Werke bestanden, Stichprobe 30 von 30 verbundenen Wörtern richtig. Übrig sind 4 Stellen: zwei in Tabellen der Botschaft und zwei vor einem Bindewort («Geschäfts- und Fabrikationsgeheimnis»), die so stehen bleiben. `themen.py` neu gezählt.
 7. EU-Rechtsakte: `daten/kanten.json` führt 492 Rechtsakte. Seit 2. Oktober 2026 hat jeder eine Kante «nennt»: Rechtsakt-Einträge in den Anhängen, deren Titel keine Nummer zitiert («Beschluss Nr. H14 der Verwaltungskommission …»), zeigen auf die CELEX-Nummer des Eintrags, wenn EUR-Lex sie kennt (Regel «EU-Rechtsakt, CELEX-Nummer des Eintrags», 4 Kanten). Ausnahme ist 32024L01366, ein Fehler der Vorlage (Abschnitt 1, Nr. 3).
 8. «Beschluss Nr. 2/2019 des Landverkehrsausschusses Gemeinschaft/Schweiz» (621, Gemeinsame Erklärung) wurde bis 2. Oktober 2026 als EU-Beschluss 32019D0002 gelesen; EUR-Lex lieferte dazu einen fremden Beschluss der EZB. Beschlüsse von Ausschüssen («…ausschusses») zählen nicht mehr als EU-Rechtsakt. Daraus folgt: Ein Treffer auf EUR-Lex bestätigt nur, dass die Nummer besteht, nicht dass sie gemeint ist.
 9. EDA-Übersicht der EU-Gesetzgebungsakte (13. März 2026): 95 Einträge in 7 Verhandlungsgruppen, alle 95 im Paket genannt. Abgleich mit `scripts/eda_abgleich.py`, Ergebnis in `daten/eda_liste.json`, Teil von Prüfung 9.5. Der Projektbrief nannte 94; die Übersicht selbst zählt 95.
+10. Französisch und Italienisch (Etappe 5): Die Zettel werden nicht neu gegliedert, sondern an den deutschen ausgerichtet (`scripts/ausrichten.py`): Für jeden deutschen Zettel wird seine erste Zeile in der anderen Sprache gesucht (Artikelnummer, Ziffer, CELEX-Nummer, «Annexe I», «Art. 1, ch. 5»). In den EU-Abkommen heisst ein eingefügter Artikel deutsch «Art. 24a», französisch und italienisch «Art. 24 bis» («nonies» fr, «novies» it). Ergebnis: 3123 von 3132 Zettel französisch, 3127 italienisch mit eigener Stelle; die übrigen stehen in Abschnitt 1 (Nr. 7 bis 13) oder haben in der Botschaft keine eigene Überschrift (fr: Erläuterungen zu Art. 8k EntsG, 9a PBG, 16 EUPA; Zwischentitel in 633). Ihr Wortlaut steht im vorangehenden Zettel, die Seite sagt das. Wörter je Werk wie Prüfung 9.1, Prüfung 7 in `pruefen.py`.
+11. Französisch und Italienisch: Verknüpfungen, Themen und Fundstellen stammen aus der deutschen Fassung. Die Themenbegriffe sind deutsch; im französischen und italienischen Wortlaut wird nur der Zettel als Treffer markiert, nicht das Wort.
+12. Trennstrich am Zeilenende in Französisch und Italienisch: Steht das Wort mit Bindestrich anderswo im Korpus auf einer Zeile («vingt-six»), bleibt der Strich, sonst gilt er als Silbentrennung.
 
 ## 3. Stichproben
 
@@ -63,3 +81,4 @@ Regel nach Ziffer 9.6: 20 zufällige Kanten je Bau, ohne Gliederungskanten («te
    6. 628 EUPA, Protokolle I bis III: «Artikel 1 dieses Protokolls» zeigte auf das Abkommen statt auf das Protokoll (13 Kanten).
    7. «Beschluss Nr. 2/2019 des Landverkehrsausschusses» als EU-Rechtsakt gelesen (Abschnitt 2, Nr. 8).
    8. 621 ÄP-LandVA: Die acht zitierten Artikel haben ihre Sachüberschrift auf der Zeile unter «Art. 24a»; sie fehlte im Titel des Zettels. Wortlaut und Wortzahl unverändert.
+   9. 615 Ziff. 2.2.8: Die Zeile «Art. 25 E-BHÜG) erfährt die Überwachungsbehörde …» nach einem Seitenumbruch galt als Erläuterung zu Art. 25; sie setzt eine Klammer der Vorseite fort. Eine Zeile, deren Rest mehr schliessende als öffnende Klammern hat, beginnt keine Erläuterung mehr.

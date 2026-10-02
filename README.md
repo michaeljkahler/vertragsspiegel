@@ -9,8 +9,8 @@ Stand 1. Oktober 2026: Aufbau, Pipeline (Etappe 2) und Ansichten (Etappe 3) steh
 | Ordner | Inhalt |
 |---|---|
 | `docs/` | Projektbrief, Aufträge für die Einrichtung und die wiederkehrende Kontrolle, Korrekturprotokoll |
-| `scripts/` | Kontrolle (`fedlex_pruefen.py`, `parlament_pruefen.py`) und Pipeline (`laden.py`, `gliedern.py`, `verweise.py`, `eda_abgleich.py`, `pruefen.py`, `themen.py`, `bauen.py`) |
-| `daten/` | Stand der Kontrollen, Herkunft der Texte (`quellen.json`), Zettel (`zettel.json`), Kanten (`kanten.json`), EUR-Lex-Titel (`eurlex.json`), Abgleich mit der EDA-Übersicht (`eda_liste.json`); Rohdaten unter `daten/pdf/`, `daten/text/`, `daten/xml/` sind nicht versioniert |
+| `scripts/` | Kontrolle (`fedlex_pruefen.py`, `parlament_pruefen.py`) und Pipeline (`laden.py`, `gliedern.py`, `verweise.py`, `eda_abgleich.py`, `ausrichten.py`, `pruefen.py`, `themen.py`, `bauen.py`) |
+| `daten/` | Stand der Kontrollen, Herkunft der Texte (`quellen.json`), Zettel (`zettel.json`, französisch und italienisch `zettel_fr.json`, `zettel_it.json`), Kanten (`kanten.json`), EUR-Lex-Titel (`eurlex.json`), Abgleich mit der EDA-Übersicht (`eda_liste.json`); Rohdaten unter `daten/pdf/`, `daten/text/`, `daten/xml/` sind nicht versioniert |
 | `seite/` | Vorlagen der Seite (HTML, CSS, JavaScript); `grafik.js` erzeugt Grafiken für Social Media, Präsentation und Bericht |
 | `site/` | veröffentlichte Seite, erzeugt von `bauen.py`, ausgeliefert über GitHub Pages |
 | `prototyp/` | Musteransicht vom 1. Oktober 2026 mit Datenaufbereitung |
@@ -22,6 +22,8 @@ python3 scripts/laden.py               # Texte von Fedlex, pdftotext aus Poppler
 python3 scripts/gliedern.py            # Zettel je Artikel, Anhangsteil und Ziffer der Botschaft → daten/zettel.json
 python3 scripts/verweise.py --eurlex   # Kanten, EU-Rechtsakte gegen EUR-Lex geprüft → daten/kanten.json
 python3 scripts/eda_abgleich.py        # 95 EU-Gesetzgebungsakte der EDA-Übersicht gegen die Kanten → daten/eda_liste.json
+python3 scripts/laden.py --sprache fr  # dasselbe für Französisch, ebenso it
+python3 scripts/ausrichten.py          # Wortlaut fr und it an den deutschen Zetteln ausrichten → daten/zettel_fr.json, zettel_it.json
 python3 scripts/pruefen.py             # Selbstprüfung nach Projektbrief Ziffer 9; Abbruchcode 2 bei Abweichung
 python3 scripts/themen.py              # Themenkatalog prüfen, Fundstellen zählen → daten/themen_treffer.json
 python3 scripts/bauen.py               # Seite site/ aus seite/ und den Daten (bricht ab, wenn der Themenkatalog fehlerhaft ist)

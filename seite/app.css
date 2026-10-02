@@ -373,3 +373,7 @@ body.melden-offen{overflow:hidden}
 @media print{.melden-knopf,.melden{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .start-wege{margin:0;padding-left:20px;display:grid;gap:4px}
+/* Sprache des Wortlauts (Etappe 5): rechts neben der Suche */
+.leiste .sprache{margin-left:auto}
+.sprache button{min-width:42px;letter-spacing:.04em}
+.sprachhinweis{font-size:13.5px}

@@ -38,10 +38,16 @@ Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
 14. Rückmeldung Michael vom 2. Oktober 2026: Themenkatalog freigegeben (Ziffer 13.6); die Seite ist an Testpersonen verschickt; der Kasten im Politspiegel (Etappe 7) besteht; Etappe 5 umsetzen; Etappe 2 sorgfältig nachführen.
 15. Nachführung Etappe 2 vom 2. Oktober 2026, Einzelheiten in `docs/KORREKTUREN.md` (Abschnitt 3, 2. Oktober):
    1. EDA-Übersicht abgeglichen: alle 95 Gesetzgebungsakte im Paket genannt.
-   2. Gliederung: Änderungsprotokolle LandVA und MRA vollständig nach Ziffern, sechs Artikel mit einfachem Leerzeichen nach der Nummer erkannt, zwei falsche Kapitel entfernt; Trennstriche am Seitenende aufgelöst. 3133 Zettel, 647 928 Wörter.
-   3. Verweise: Artikelnummern mit «bis», «ter», «quater» werden nicht mehr gekürzt; Botschaft ohne Zusatz über das Bezugswerk der Ziffer (418 Kanten, Stichprobe 40 von 40); Protokolle im EUPA mit eigenem Geltungsbereich. 8114 Kanten, davon 2186 Artikelverweise und 556 Erläuterungen.
-   4. Erläuterungen der Botschaft zu einzelnen Artikeln: 516 von 517 zugeordnet; die letzte erläutert einen Artikel, den der Entwurf nicht enthält (Fehler der Vorlage).
+   2. Gliederung: Änderungsprotokolle LandVA und MRA vollständig nach Ziffern, sechs Artikel mit einfachem Leerzeichen nach der Nummer erkannt, zwei falsche Kapitel entfernt; Trennstriche am Seitenende aufgelöst; eine Scheinerläuterung in Ziffer 2.2.8 entfernt. 3132 Zettel, 647 927 Wörter.
+   3. Verweise: Artikelnummern mit «bis», «ter», «quater» werden nicht mehr gekürzt; Botschaft ohne Zusatz über das Bezugswerk der Ziffer (418 Kanten, Stichprobe 40 von 40); Protokolle im EUPA mit eigenem Geltungsbereich. 8112 Kanten, davon 2186 Artikelverweise und 555 Erläuterungen.
+   4. Erläuterungen der Botschaft zu einzelnen Artikeln: 515 von 516 zugeordnet; die letzte erläutert einen Artikel, den der Entwurf nicht enthält (Fehler der Vorlage).
    5. Prüfungen 9.1 bis 9.6 bestanden, Stichprobe 20 von 20.
+16. Etappe 5, Stand 2. Oktober 2026: Französisch und Italienisch, Entscheid Michael vom selben Tag: zuerst der Wortlaut mit Umschalter, Bedienung deutsch; Themen aus der deutschen Zuordnung.
+   1. `laden.py --sprache fr|it` lädt die 33 Werke; `ausrichten.py` richtet den Wortlaut an den deutschen Zetteln aus, damit jeder Zettel in allen Sprachen dieselbe Kennung hat (`daten/zettel_fr.json`, `daten/zettel_it.json`).
+   2. Französisch 3123, italienisch 3127 von 3132 Zetteln mit eigener Stelle; 836 009 und 752 033 Wörter. Die übrigen Zettel haben in der Vorlage keine eigene Überschrift (`docs/KORREKTUREN.md`, Abschnitt 1, Nr. 7 bis 14).
+   3. Seite: Umschalter DE, FR, IT neben der Suche; Anker `&fr`, `&it`. Es wechseln Wortlaut, Fussnoten, Bezeichnungen, Gliederung, Wörter, Seiten und PDF; Verknüpfungen, Themen und Fundstellen bleiben aus der deutschen Fassung, der Zettel sagt das.
+   4. Prüfung 7 in `pruefen.py`: gleiche Kennungen, Wörter je Werk, höchstens 1 % der Zettel ohne eigene Stelle.
+   5. Offen: Bedienung und Erklärtexte auf Französisch und Italienisch, Themenbegriffe in beiden Sprachen (je mit Freigabe).
 
 ## 2. Ziel
 
@@ -209,6 +215,8 @@ vertragsspiegel/
     laden.py                     PDF, später XML von Fedlex holen
     gliedern.py                  Texte in Zettel teilen
     verweise.py                  Kanten extrahieren
+    eda_abgleich.py              EU-Gesetzgebungsakte der EDA-Übersicht abgleichen (Ziffer 9.5)
+    ausrichten.py                Französisch und Italienisch an den deutschen Zetteln ausrichten (Etappe 5)
     pruefen.py                   Selbstprüfung (Ziffer 9)
     themen.py                    Themenkatalog prüfen, Fundstellen zählen (Ziffer 5.4)
     bauen.py                     site/ erzeugen
@@ -291,7 +299,7 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 2. Pipeline: `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py`; Fehlerbilder 1 bis 6 aus Ziffer 9 beheben.
 3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt. Ergänzung vom 2. Oktober 2026: Umfeld (Ziffer 5.2), Finden (Ziffer 5.4), Netz und Grafiken (Ziffer 5.5).
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
-5. Französisch und Italienisch.
+5. Französisch und Italienisch. Stand 2. Oktober 2026: Wortlaut mit Umschalter umgesetzt (Ziffer 1.16); Bedienung und Themenbegriffe offen.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
 7. Kasten im Politspiegel, Testphase, Bekanntmachung. Stand 2. Oktober 2026: Kasten besteht, Testphase läuft (Seite an Testpersonen verschickt), Bekanntmachung offen.
 

@@ -1,6 +1,6 @@
 {
  "stand": "2026-10-02",
- "zettel_gesamt": 3133,
+ "zettel_gesamt": 3132,
  "themen": [
   {
    "id": "datenschutz",
@@ -1507,7 +1507,7 @@
    "name": "Landwirtschaft",
    "zettel_anzahl": 185,
    "treffer": 486,
-   "woerter": 102539,
+   "woerter": 102538,
    "begriffe": [
     {
      "anzeige": "Landwirtschaft",
@@ -1753,7 +1753,7 @@
    "name": "Lebensmittelsicherheit",
    "zettel_anzahl": 388,
    "treffer": 1654,
-   "woerter": 125511,
+   "woerter": 125510,
    "begriffe": [
     {
      "anzeige": "Lebensmittel",
@@ -2533,7 +2533,7 @@
    "name": "Mitwirkung von Kantonen und Parlament",
    "zettel_anzahl": 91,
    "treffer": 192,
-   "woerter": 57029,
+   "woerter": 57028,
    "begriffe": [
     {
      "anzeige": "Mitwirkung der Kantone",
@@ -3275,7 +3275,7 @@
   {
    "id": "beihilfen",
    "name": "Staatliche Beihilfen",
-   "zettel_anzahl": 358,
+   "zettel_anzahl": 357,
    "treffer": 3871,
    "woerter": 138430,
    "begriffe": [
@@ -3283,19 +3283,19 @@
      "anzeige": "Beihilfen",
      "muster": "[Bb]eihilfe",
      "treffer": 2617,
-     "zettel": 320
+     "zettel": 319
     },
     {
      "anzeige": "BHÜG",
      "muster": "BHÜG",
      "treffer": 424,
-     "zettel": 111
+     "zettel": 110
     },
     {
      "anzeige": "Überwachungsbehörde",
      "muster": "Überwachungsbehörde",
      "treffer": 684,
-     "zettel": 159
+     "zettel": 158
     },
     {
      "anzeige": "Wettbewerbskommission (WEKO)",
@@ -3406,14 +3406,13 @@
     ["fga/2026/615/ziff_2.2.8/art_16", 11],
     ["fga/2026/615/ziff_2.2.8/art_17", 11],
     ["fga/2026/615/ziff_2.2.8/art_18", 20],
-    ["fga/2026/615/ziff_2.2.8/art_19", 16],
-    ["fga/2026/615/ziff_2.2.8/art_25", 6],
+    ["fga/2026/615/ziff_2.2.8/art_19", 22],
     ["fga/2026/615/ziff_2.2.8/art_20", 18],
     ["fga/2026/615/ziff_2.2.8/art_21", 28],
     ["fga/2026/615/ziff_2.2.8/art_22", 11],
     ["fga/2026/615/ziff_2.2.8/art_23", 29],
     ["fga/2026/615/ziff_2.2.8/art_24", 46],
-    ["fga/2026/615/ziff_2.2.8/art_25_2", 104],
+    ["fga/2026/615/ziff_2.2.8/art_25", 104],
     ["fga/2026/615/ziff_2.2.8/art_26", 8],
     ["fga/2026/615/ziff_2.2.8/art_27", 46],
     ["fga/2026/615/ziff_2.2.8/art_28", 14],
@@ -3706,7 +3705,7 @@
    "name": "Streitbeilegung, Schiedsgericht und EuGH",
    "zettel_anzahl": 458,
    "treffer": 2219,
-   "woerter": 171982,
+   "woerter": 171981,
    "begriffe": [
     {
      "anzeige": "Schiedsgericht",
@@ -5089,7 +5088,7 @@
    "name": "Volksrechte und Referendum",
    "zettel_anzahl": 95,
    "treffer": 227,
-   "woerter": 54085,
+   "woerter": 54084,
    "begriffe": [
     {
      "anzeige": "Referendum",

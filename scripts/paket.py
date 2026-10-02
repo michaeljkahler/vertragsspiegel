@@ -73,28 +73,39 @@ def hoch(n):
     return str(n).translate(HOCH)
 
 
+BUCHST = 'A-Za-zÀ-ÖØ-öø-ÿŒœ'                      # Buchstaben mit Umlaut und Akzent (DE, FR, IT)
+# Französisch und Italienisch: Zusammensetzungen mit Bindestrich aus dem Korpus («vingt-six»), von ausrichten.py
+# gesetzt. Steht eine davon am Zeilenende getrennt, bleibt der Bindestrich. Deutsch: leer, Regeln unten.
+BINDESTRICH = set()
+
+
 def fliesstext(zeilen):
     """Zeilen aus pdftotext -layout zu Absätzen. Silbentrennung am Zeilenende wird aufgelöst,
     Leerzeilen und Aufzählungen beginnen einen neuen Absatz."""
     absaetze, cur, leer = [], '', False
+    # Akzente nur in Französisch und Italienisch: im deutschen Anhang III FZA verbände es Tabellenzellen
+    strich = re.compile(r'[' + (BUCHST if BINDESTRICH else 'A-Za-zÄÖÜäöüß') + r']-$')
     for z in zeilen:
         t = ' '.join(z.split())
         if not t:
-            if cur and re.search(r'[A-Za-zÄÖÜäöüß]-$', cur):
+            if cur and strich.search(cur):
                 leer = True                              # Trennung vor einem Seitenumbruch: Absatz bleibt offen
             elif cur:
                 absaetze.append(cur)
                 cur = ''
             continue
-        erstes = re.match(r'[\wäöüÄÖÜß]+', t)
-        trennung = bool(cur and re.search(r'[A-Za-zÄÖÜäöüß]-$', cur) and erstes and erstes.group(0)[0].islower()
+        erstes = re.match(r'\w+', t)
+        trennung = bool(cur and strich.search(cur) and erstes and erstes.group(0)[0].islower()
                         and erstes.group(0) not in BINDEWORT and not re.match(r'^(?:[a-z]|[ivx]+)[.)]\s', t))
         if leer and not trennung:                        # nach der Leerzeile doch ein neuer Absatz
             absaetze.append(cur)
             cur = ''
         leer = False
+        vorne = re.search(r'[' + BUCHST + r']+-$', cur) if trennung and BINDESTRICH else None
         if not cur:
             cur = t
+        elif vorne and (vorne.group(0) + erstes.group(0)).lower() in BINDESTRICH:
+            cur = cur + t                                # «vingt-» + «six»: Bindestrich bleibt
         elif trennung:
             cur = cur[:-1] + t                           # Silbentrennung, auch über Seiten: «Abkom-» + «mens.»
         elif AUFZAEHLUNG.match(t) or cur.endswith(':'):

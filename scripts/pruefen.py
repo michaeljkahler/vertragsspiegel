@@ -13,6 +13,8 @@ Liest daten/zettel.json (gliedern.py) und, falls vorhanden, daten/kanten.json (v
   5. EU-Rechtsakte: jede erkannte Nummer hat eine CELEX-Nummer (aus kanten.json), und jeder der 95
      Gesetzgebungsakte der EDA-Übersicht (daten/eda_liste.json, eda_abgleich.py) ist im Paket genannt.
   6. Stichprobe: 20 zufällige Kanten zum Nachprüfen von Hand, Ergebnis ins Korrekturprotokoll.
+  7. Französisch, Italienisch (daten/zettel_fr.json, zettel_it.json): gleiche Kennungen, Wörter je Werk,
+     höchstens 1 % der Zettel ohne eigene Stelle; die Zettel ohne Stelle werden einzeln gemeldet.
 Prüfungen 4 bis 6 laufen erst, wenn kanten.json besteht.
 """
 import collections
@@ -139,6 +141,29 @@ def main():
             f"{x['art']}: {x['von']} → {x['nach']} | {x.get('stelle', '')[:80]}" for x in probe])
     else:
         ergebnis['4_gesetze'] = ergebnis['5_eu'] = ergebnis['6_stichprobe'] = dict(ok=True, befunde=['kanten.json fehlt, übersprungen'])
+
+    # 7. Französisch und Italienisch (Etappe 5, ausrichten.py): dieselben Kennungen wie deutsch, Wörter je Werk
+    # gleich der Zählung über den Rumpf, höchstens 1 % der Zettel ohne eigene Stelle
+    ids = [z['id'] for z in zettel]
+    for sp in ('fr', 'it'):
+        pfad = DATEN / f'zettel_{sp}.json'
+        if not pfad.exists():
+            continue
+        s = json.loads(pfad.read_text(encoding='utf8'))
+        befunde = []
+        if [z['id'] for z in s['zettel']] != ids:
+            befunde.append('Kennungen weichen von der deutschen Fassung ab (ausrichten.py neu laufen lassen)')
+        summe = collections.Counter()
+        for z in s['zettel']:
+            summe[z['dok']] += z['woerter']
+        befunde += [f"{d['nr']}: Zettel {summe[d['nr']]}, Werk {d['woerter']}" for d in s['dokumente']
+                    if summe[d['nr']] != d['woerter']]
+        ohne = [z['id'] for z in s['zettel'] if z.get('ohne_stelle')]
+        if len(ohne) > 0.01 * len(ids):
+            befunde.append(f'{len(ohne)} Zettel ohne eigene Stelle, mehr als 1 %')
+        ergebnis[f'7_{sp}'] = dict(ok=not befunde, befunde=befunde + [f'ohne eigene Stelle: {x}' for x in ohne],
+                                   anzahl=len(ids) - len(ohne))
+        ergebnis[f'7_{sp}']['ok'] = not befunde
 
     if '--json' in sys.argv:
         print(json.dumps(ergebnis, ensure_ascii=False, indent=1))

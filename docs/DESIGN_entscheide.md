@@ -82,6 +82,16 @@ Netz (Fassung Etappe 3, unverändert):
 3. **Stufe «Vorlagen»:** Bezüge zwischen Dokumenten derselben Gruppe als «intern» beim Knoten. Beim Mass «gemeinsame EU-Rechtsakte» zählt die Zahl der verschiedenen Rechtsakte, nicht die Summe der Dokumentpaare.
 4. **Stufe «Ein Dokument»:** nur Artikel mit einem Verweis innerhalb des Dokuments; Klick auf ein Dokument im Netz der Dokumente führt dorthin.
 
+## 4d. Sprache des Wortlauts (Etappe 5)
+
+1. **Umschalter DE, FR, IT** in der Leiste neben der Suche, als Schalter wie «Textart». Grund: Er wirkt auf alle Ansichten wie die Suche, gehört also nicht in den Zettel.
+2. **Was wechselt:** Wortlaut und Fussnoten, Bezeichnungen in Gliederung, Umfeld, Listen und Grafiken, Wörter (also die Grössen im Umfang), Seiten, PDF-Link und Amtsblatt («FF 2026 632»). Kennzahlen Seiten und Wörter zählen die gewählte Sprache.
+3. **Was bleibt:** Kennungen, Gliederung, Verknüpfungen und ihre Fundstellen, Themenzuordnung, Bedienung und Erklärtexte (deutsch). Der Zettel sagt in einem Satz, dass Gliederung und Verknüpfungen aus der deutschen Fassung stammen.
+4. **Anker** `&fr`, `&it` am Zettelanker (`#fga-2026-632-art_4&fr`), sonst die zuletzt gewählte Sprache aus dem Browser. Ein Anker ohne Sprache behält die gewählte, damit interne Links nicht zurückschalten.
+5. **Themen in FR und IT:** Zettel markiert, Wörter nicht, weil die Begriffe deutsch sind.
+6. **Zettel ohne eigene Stelle** (in der Vorlage fehlt die Überschrift): leerer Wortlaut mit Hinweis, der Text steht im vorangehenden Zettel. Grund: lieber eine sichtbare Lücke als eine falsche Grenze.
+7. `lang`-Attribut am Wortlaut, damit Silbentrennung und Vorleseprogramme die Sprache kennen.
+
 ## 5. Verknüpfungen (Matrix)
 
 1. **Neues Mass «Artikelverweise»** als Voreinstellung; Zeile → Spalte, Klick listet die Verweise mit Fundstelle.
