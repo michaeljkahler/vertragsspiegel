@@ -10,7 +10,8 @@ Liest daten/zettel.json (gliedern.py) und, falls vorhanden, daten/kanten.json (v
      weil sie nur die geänderten Artikel enthalten. Abweichungen werden einzeln gemeldet.
   3. Botschaft: jede Ziffer des Inhaltsverzeichnisses hat einen Zettel.
   4. Gesetze: 36 geänderte und 3 neue Bundesgesetze laut Botschaft (aus kanten.json).
-  5. EU-Rechtsakte: jede erkannte Nummer hat eine CELEX-Nummer (aus kanten.json).
+  5. EU-Rechtsakte: jede erkannte Nummer hat eine CELEX-Nummer (aus kanten.json), und jeder der 95
+     Gesetzgebungsakte der EDA-Übersicht (daten/eda_liste.json, eda_abgleich.py) ist im Paket genannt.
   6. Stichprobe: 20 zufällige Kanten zum Nachprüfen von Hand, Ergebnis ins Korrekturprotokoll.
 Prüfungen 4 bis 6 laufen erst, wenn kanten.json besteht.
 """
@@ -118,11 +119,19 @@ def main():
         unbekannt = sorted(n for n, v in eu.items() if v.get('gefunden') is False and n not in VORLAGEFEHLER_EU)
         bekannt = sorted(n for n, v in eu.items() if v.get('gefunden') is False and n in VORLAGEFEHLER_EU)
         geprueft = any('gefunden' in v for v in eu.values())
-        ergebnis['5_eu'] = dict(ok=not ohne and not unbekannt and geprueft, anzahl=len(eu),
+        # Abgleich mit der EDA-Übersicht der EU-Gesetzgebungsakte (eda_abgleich.py): jeder Eintrag im Paket genannt
+        epfad = DATEN / 'eda_liste.json'
+        genannt = {x['nach'][6:] for x in kanten if x['art'] == 'nennt' and x['nach'].startswith('celex:')}
+        eda = json.loads(epfad.read_text(encoding='utf8'))['eintraege'] if epfad.exists() else []
+        eda_fehlt = [f"EDA-Übersicht {e['gruppe']} Nr. {e['nr']} nicht im Paket: {e['celex']} ({e['zitat']})"
+                     for e in eda if e['celex'] not in genannt]
+        ergebnis['5_eu'] = dict(ok=not ohne and not unbekannt and geprueft and bool(eda) and not eda_fehlt,
+                                anzahl=len(eu), eda=f'{len(eda) - len(eda_fehlt)} von {len(eda)}',
                                 befunde=[f'ohne CELEX: {n}' for n in ohne]
                                 + [f"auf EUR-Lex nicht gefunden: {n} ({', '.join(eu[n]['zitate'][:2])})" for n in unbekannt]
                                 + [f'Fehler der Vorlage (Korrekturprotokoll): {VORLAGEFEHLER_EU[n]}' for n in bekannt]
-                                + ([] if geprueft else ['nicht gegen EUR-Lex geprüft (verweise.py --eurlex)']))
+                                + ([] if geprueft else ['nicht gegen EUR-Lex geprüft (verweise.py --eurlex)'])
+                                + ([] if eda else ['EDA-Übersicht fehlt (eda_abgleich.py)']) + eda_fehlt)
         rnd = random.Random(k.get('stand', ''))
         inhaltlich = [x for x in kanten if x['art'] != 'teil_von']     # Gliederungskanten sind nicht strittig
         probe = rnd.sample(inhaltlich, min(20, len(inhaltlich)))

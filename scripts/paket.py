@@ -76,16 +76,27 @@ def hoch(n):
 def fliesstext(zeilen):
     """Zeilen aus pdftotext -layout zu Absätzen. Silbentrennung am Zeilenende wird aufgelöst,
     Leerzeilen und Aufzählungen beginnen einen neuen Absatz."""
-    absaetze, cur = [], ''
+    absaetze, cur, leer = [], '', False
     for z in zeilen:
         t = ' '.join(z.split())
         if not t:
-            if cur:
+            if cur and re.search(r'[A-Za-zÄÖÜäöüß]-$', cur):
+                leer = True                              # Trennung vor einem Seitenumbruch: Absatz bleibt offen
+            elif cur:
                 absaetze.append(cur)
-            cur = ''
+                cur = ''
             continue
+        erstes = re.match(r'[\wäöüÄÖÜß]+', t)
+        trennung = bool(cur and re.search(r'[A-Za-zÄÖÜäöüß]-$', cur) and erstes and erstes.group(0)[0].islower()
+                        and erstes.group(0) not in BINDEWORT and not re.match(r'^(?:[a-z]|[ivx]+)[.)]\s', t))
+        if leer and not trennung:                        # nach der Leerzeile doch ein neuer Absatz
+            absaetze.append(cur)
+            cur = ''
+        leer = False
         if not cur:
             cur = t
+        elif trennung:
+            cur = cur[:-1] + t                           # Silbentrennung, auch über Seiten: «Abkom-» + «mens.»
         elif AUFZAEHLUNG.match(t) or cur.endswith(':'):
             absaetze.append(cur)
             cur = t

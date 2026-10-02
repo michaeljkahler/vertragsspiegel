@@ -1,13 +1,13 @@
 {
  "stand": "2026-10-02",
- "zettel_gesamt": 3103,
+ "zettel_gesamt": 3133,
  "themen": [
   {
    "id": "datenschutz",
    "name": "Datenschutz",
    "zettel_anzahl": 71,
-   "treffer": 171,
-   "woerter": 35401,
+   "treffer": 172,
+   "woerter": 35369,
    "begriffe": [
     {
      "anzeige": "Datenschutz",
@@ -18,14 +18,14 @@
     {
      "anzeige": "Personendaten",
      "muster": "Personendaten",
-     "treffer": 63,
+     "treffer": 64,
      "zettel": 39
     }
    ],
    "suchbegriffe": [
     {
      "wort": "Daten",
-     "im_wortlaut": 637
+     "im_wortlaut": 639
     },
     {
      "wort": "Privatsphäre",
@@ -99,7 +99,7 @@
     ["fga/2026/631/anh/ziff_6/art_24_abs_1_einleitungssatz_sowie_2_bst_abis_und_b", 2],
     ["fga/2026/632/art_49", 1],
     ["fga/2026/633/anh_1/art_75", 2],
-    ["fga/2026/633/anh_1/art_76", 1],
+    ["fga/2026/633/anh_1/art_76", 2],
     ["fga/2026/633/anh_1/art_77", 1],
     ["fga/2026/633/anh_1/art_78", 1],
     ["fga/2026/633/anh_1/art_79", 2],
@@ -114,19 +114,19 @@
    "id": "beitrag",
    "name": "Finanzieller Beitrag der Schweiz (Kohäsion)",
    "zettel_anzahl": 201,
-   "treffer": 635,
-   "woerter": 94687,
+   "treffer": 640,
+   "woerter": 94468,
    "begriffe": [
     {
      "anzeige": "Schweizer Beitrag",
      "muster": "Schweizer Beitr[aä]g",
-     "treffer": 221,
+     "treffer": 225,
      "zettel": 88
     },
     {
      "anzeige": "Kohäsion",
      "muster": "Kohäsion",
-     "treffer": 183,
+     "treffer": 184,
      "zettel": 75
     },
     {
@@ -201,7 +201,7 @@
     ["fga/2026/615/ziff_2.4.6.1", 1],
     ["fga/2026/615/ziff_2.9.3.3", 5],
     ["fga/2026/615/ziff_2.9.5", 1],
-    ["fga/2026/615/ziff_2.9.6/art_4", 2],
+    ["fga/2026/615/ziff_2.9.6/art_4", 3],
     ["fga/2026/615/ziff_2.9.8.1.1", 2],
     ["fga/2026/615/ziff_2.9.9.7", 1],
     ["fga/2026/615/ziff_2.10", 1],
@@ -211,8 +211,8 @@
     ["fga/2026/615/ziff_2.10.4.1", 4],
     ["fga/2026/615/ziff_2.10.4.2", 1],
     ["fga/2026/615/ziff_2.10.4.3", 11],
-    ["fga/2026/615/ziff_2.10.4.4", 4],
-    ["fga/2026/615/ziff_2.10.5.1", 17],
+    ["fga/2026/615/ziff_2.10.4.4", 5],
+    ["fga/2026/615/ziff_2.10.5.1", 18],
     ["fga/2026/615/ziff_2.10.5.2", 3],
     ["fga/2026/615/ziff_2.10.5.3", 7],
     ["fga/2026/615/ziff_2.10.5.5", 12],
@@ -266,14 +266,14 @@
     ["fga/2026/615/ziff_2.10.9.2.4", 17],
     ["fga/2026/615/ziff_2.10.9.2.5", 2],
     ["fga/2026/615/ziff_2.10.9.2.6", 1],
-    ["fga/2026/615/ziff_2.10.9.3", 2],
+    ["fga/2026/615/ziff_2.10.9.3", 3],
     ["fga/2026/615/ziff_2.10.10", 2],
     ["fga/2026/615/ziff_2.10.10.1", 2],
     ["fga/2026/615/ziff_2.10.10.1.1", 10],
     ["fga/2026/615/ziff_2.10.10.1.2", 7],
     ["fga/2026/615/ziff_2.10.10.1.3", 2],
     ["fga/2026/615/ziff_2.10.10.2", 1],
-    ["fga/2026/615/ziff_2.10.10.3", 8],
+    ["fga/2026/615/ziff_2.10.10.3", 9],
     ["fga/2026/615/ziff_2.10.10.4", 1],
     ["fga/2026/615/ziff_2.10.10.5", 1],
     ["fga/2026/615/ziff_2.10.11.2.1", 1],
@@ -304,7 +304,7 @@
     ["fga/2026/616/art_1", 2],
     ["fga/2026/616/anh_3", 4],
     ["fga/2026/616/anh_3/art_1", 2],
-    ["fga/2026/616/anh_3/art_9", 1],
+    ["fga/2026/616/anh_3/art_10", 1],
     ["fga/2026/616/anh_3/ziff_1", 1],
     ["fga/2026/616/anh_3/ziff_2/art_1_abs_2_bst_b", 1],
     ["fga/2026/617/art_2", 2],
@@ -383,7 +383,7 @@
    "name": "Forschung, Bildung und Weltraum (EU-Programme)",
    "zettel_anzahl": 221,
    "treffer": 1309,
-   "woerter": 124439,
+   "woerter": 124192,
    "begriffe": [
     {
      "anzeige": "Horizon Europe",
@@ -483,7 +483,7 @@
     },
     {
      "wort": "Bildung",
-     "im_wortlaut": 620
+     "im_wortlaut": 622
     }
    ],
    "zettel": [
@@ -639,7 +639,7 @@
     ["fga/2026/616/art_3", 1],
     ["fga/2026/616/anh_1/art_8", 1],
     ["fga/2026/616/anh_2/art_3", 1],
-    ["fga/2026/616/anh_3/art_9", 1],
+    ["fga/2026/616/anh_3/art_10", 1],
     ["fga/2026/616/anh_6/ziff_4/art_34d_abs_2_und_2bis", 4],
     ["fga/2026/616/anh_6/ziff_5", 1],
     ["fga/2026/616/anh_6/ziff_5/art_61a", 1],
@@ -714,13 +714,13 @@
    "id": "gesundheit",
    "name": "Gesundheit",
    "zettel_anzahl": 129,
-   "treffer": 465,
-   "woerter": 69394,
+   "treffer": 468,
+   "woerter": 69328,
    "begriffe": [
     {
      "anzeige": "Gesundheitsabkommen",
      "muster": "Gesundheitsabkommen",
-     "treffer": 194,
+     "treffer": 195,
      "zettel": 91
     },
     {
@@ -732,7 +732,7 @@
     {
      "anzeige": "Gesundheitssicherheit",
      "muster": "Gesundheitssicherheit",
-     "treffer": 51,
+     "treffer": 52,
      "zettel": 22
     },
     {
@@ -744,7 +744,7 @@
     {
      "anzeige": "grenzüberschreitende Gesundheitsgefahren",
      "muster": "grenzüberschreitende[nr]? (?:schwerwiegende[nr]? )?Gesundheitsgefahr",
-     "treffer": 33,
+     "treffer": 34,
      "zettel": 20
     },
     {
@@ -781,7 +781,7 @@
     },
     {
      "wort": "Epidemie",
-     "im_wortlaut": 7
+     "im_wortlaut": 8
     }
    ],
    "zettel": [
@@ -789,7 +789,7 @@
     ["fga/2026/615/ziff_1.1", 2],
     ["fga/2026/615/ziff_1.3.4", 2],
     ["fga/2026/615/ziff_1.4.2", 1],
-    ["fga/2026/615/ziff_1.6.1", 9],
+    ["fga/2026/615/ziff_1.6.1", 10],
     ["fga/2026/615/ziff_1.7.1", 1],
     ["fga/2026/615/ziff_2.1.1", 5],
     ["fga/2026/615/ziff_2.1.4.3", 2],
@@ -823,7 +823,7 @@
     ["fga/2026/615/ziff_2.10.6/art_3", 1],
     ["fga/2026/615/ziff_2.10.9.1.1", 1],
     ["fga/2026/615/ziff_2.13.1", 29],
-    ["fga/2026/615/ziff_2.13.2", 20],
+    ["fga/2026/615/ziff_2.13.2", 21],
     ["fga/2026/615/ziff_2.13.3", 15],
     ["fga/2026/615/ziff_2.13.4.1", 10],
     ["fga/2026/615/ziff_2.13.4.2", 2],
@@ -838,7 +838,7 @@
     ["fga/2026/615/ziff_2.13.6.1.1", 5],
     ["fga/2026/615/ziff_2.13.6.1.2", 21],
     ["fga/2026/615/ziff_2.13.6.1.3", 5],
-    ["fga/2026/615/ziff_2.13.6.1.4", 11],
+    ["fga/2026/615/ziff_2.13.6.1.4", 12],
     ["fga/2026/615/ziff_2.13.6.2", 12],
     ["fga/2026/615/ziff_2.13.7.1.1", 15],
     ["fga/2026/615/ziff_2.13.7.1.2", 3],
@@ -921,7 +921,7 @@
    "name": "Kosten und Personal des Bundes",
    "zettel_anzahl": 114,
    "treffer": 264,
-   "woerter": 66695,
+   "woerter": 66612,
    "begriffe": [
     {
      "anzeige": "finanzielle Auswirkungen",
@@ -969,7 +969,7 @@
    "suchbegriffe": [
     {
      "wort": "Kosten",
-     "im_wortlaut": 527
+     "im_wortlaut": 528
     },
     {
      "wort": "Personal",
@@ -977,7 +977,7 @@
     },
     {
      "wort": "Stellen",
-     "im_wortlaut": 941
+     "im_wortlaut": 945
     },
     {
      "wort": "Bürokratie",
@@ -985,7 +985,7 @@
     },
     {
      "wort": "Verwaltung",
-     "im_wortlaut": 560
+     "im_wortlaut": 561
     },
     {
      "wort": "Ausgaben",
@@ -1118,7 +1118,7 @@
    "name": "Kündigung der Abkommen",
    "zettel_anzahl": 28,
    "treffer": 72,
-   "woerter": 13366,
+   "woerter": 13357,
    "begriffe": [
     {
      "anzeige": "Kündigung des Abkommens oder Protokolls",
@@ -1197,9 +1197,9 @@
   {
    "id": "verkehr",
    "name": "Land- und Luftverkehr",
-   "zettel_anzahl": 192,
-   "treffer": 981,
-   "woerter": 105441,
+   "zettel_anzahl": 195,
+   "treffer": 984,
+   "woerter": 104729,
    "begriffe": [
     {
      "anzeige": "Landverkehr",
@@ -1210,25 +1210,25 @@
     {
      "anzeige": "Luftverkehr",
      "muster": "Luftverkehr",
-     "treffer": 252,
+     "treffer": 253,
      "zettel": 99
     },
     {
      "anzeige": "Eisenbahn",
      "muster": "Eisenbahn",
      "treffer": 147,
-     "zettel": 42
+     "zettel": 44
     },
     {
      "anzeige": "Schiene",
      "muster": "Schiene",
      "treffer": 212,
-     "zettel": 85
+     "zettel": 86
     },
     {
      "anzeige": "Kabotage",
      "muster": "Kabotage",
-     "treffer": 35,
+     "treffer": 36,
      "zettel": 21
     },
     {
@@ -1258,8 +1258,8 @@
     {
      "anzeige": "Personenverkehr",
      "muster": "Personenverkehr",
-     "treffer": 144,
-     "zettel": 68
+     "treffer": 145,
+     "zettel": 69
     }
    ],
    "suchbegriffe": [
@@ -1301,7 +1301,7 @@
     },
     {
      "wort": "Verlagerung",
-     "im_wortlaut": 21
+     "im_wortlaut": 22
     }
    ],
    "zettel": [
@@ -1363,7 +1363,7 @@
     ["fga/2026/615/ziff_2.5.6.3", 3],
     ["fga/2026/615/ziff_2.5.6.4", 11],
     ["fga/2026/615/ziff_2.5.7.1.1", 1],
-    ["fga/2026/615/ziff_2.5.7.1.1/art_9b", 9],
+    ["fga/2026/615/ziff_2.5.7.1.1/art_9b", 10],
     ["fga/2026/615/ziff_2.5.7.1.1/art_40ater", 7],
     ["fga/2026/615/ziff_2.5.7.1.1/art_40aquater", 2],
     ["fga/2026/615/ziff_2.5.7.1.2/art_9a", 7],
@@ -1385,7 +1385,7 @@
     ["fga/2026/615/ziff_2.6.2", 25],
     ["fga/2026/615/ziff_2.6.3", 9],
     ["fga/2026/615/ziff_2.6.4.1", 6],
-    ["fga/2026/615/ziff_2.6.4.3", 7],
+    ["fga/2026/615/ziff_2.6.4.3", 8],
     ["fga/2026/615/ziff_2.6.4.4", 3],
     ["fga/2026/615/ziff_2.6.5", 3],
     ["fga/2026/615/ziff_2.6.6.1", 8],
@@ -1399,7 +1399,7 @@
     ["fga/2026/615/ziff_2.6.9.1", 3],
     ["fga/2026/615/ziff_2.6.9.2", 1],
     ["fga/2026/615/ziff_2.6.9.3", 2],
-    ["fga/2026/615/ziff_2.6.9.3.1", 14],
+    ["fga/2026/615/ziff_2.6.9.3.1", 15],
     ["fga/2026/615/ziff_2.6.9.3.2", 2],
     ["fga/2026/615/ziff_2.6.9.3.3", 11],
     ["fga/2026/615/ziff_2.6.9.5", 9],
@@ -1448,11 +1448,14 @@
     ["fga/2026/619/art_3", 9],
     ["fga/2026/620/art_19", 9],
     ["fga/2026/621/ingress", 18],
-    ["fga/2026/621/art_1", 11],
-    ["fga/2026/621/art_1/art_24a", 14],
-    ["fga/2026/621/art_1/art_29a", 3],
-    ["fga/2026/621/art_1/art_42", 4],
-    ["fga/2026/621/art_1/art_53a", 24],
+    ["fga/2026/621/art_1/ziff_1", 5],
+    ["fga/2026/621/art_1/ziff_2", 2],
+    ["fga/2026/621/art_1/ziff_6", 4],
+    ["fga/2026/621/art_1/ziff_7/art_24a", 14],
+    ["fga/2026/621/art_1/ziff_8/art_29a", 3],
+    ["fga/2026/621/art_1/ziff_11/art_42", 1],
+    ["fga/2026/621/art_1/ziff_12", 3],
+    ["fga/2026/621/art_1/ziff_18", 24],
     ["fga/2026/621/art_2", 7],
     ["fga/2026/621/erkl_1", 5],
     ["fga/2026/622/ingress", 2],
@@ -1463,7 +1466,7 @@
     ["fga/2026/623/art_4", 2],
     ["fga/2026/623/art_9", 2],
     ["fga/2026/623/art_10", 7],
-    ["fga/2026/623/anh_i/kapitel_1", 2],
+    ["fga/2026/623/anh_i/abschnitt_c", 2],
     ["fga/2026/623/anh_ii/abschnitt_a", 2],
     ["fga/2026/623/erkl_1", 2],
     ["fga/2026/624/ingress", 2],
@@ -1504,7 +1507,7 @@
    "name": "Landwirtschaft",
    "zettel_anzahl": 185,
    "treffer": 486,
-   "woerter": 102643,
+   "woerter": 102539,
    "begriffe": [
     {
      "anzeige": "Landwirtschaft",
@@ -1749,13 +1752,13 @@
    "id": "lebensmittel",
    "name": "Lebensmittelsicherheit",
    "zettel_anzahl": 388,
-   "treffer": 1647,
-   "woerter": 125963,
+   "treffer": 1654,
+   "woerter": 125511,
    "begriffe": [
     {
      "anzeige": "Lebensmittel",
      "muster": "Lebensmittel",
-     "treffer": 1214,
+     "treffer": 1218,
      "zettel": 345
     },
     {
@@ -1785,7 +1788,7 @@
     {
      "anzeige": "Futtermittel",
      "muster": "Futtermittel",
-     "treffer": 78,
+     "treffer": 81,
      "zettel": 41
     },
     {
@@ -1814,7 +1817,7 @@
     },
     {
      "wort": "Essen",
-     "im_wortlaut": 1041
+     "im_wortlaut": 1045
     },
     {
      "wort": "Nahrungsmittel",
@@ -1822,7 +1825,7 @@
     },
     {
      "wort": "Lebensmittelsicherheit",
-     "im_wortlaut": 605
+     "im_wortlaut": 606
     },
     {
      "wort": "Tierwohl",
@@ -1885,14 +1888,14 @@
     ["fga/2026/615/ziff_2.12.4.2", 9],
     ["fga/2026/615/ziff_2.12.4.3", 10],
     ["fga/2026/615/ziff_2.12.4.4", 7],
-    ["fga/2026/615/ziff_2.12.5", 19],
+    ["fga/2026/615/ziff_2.12.5", 20],
     ["fga/2026/615/ziff_2.12.6/praeambel", 5],
     ["fga/2026/615/ziff_2.12.6/art_1", 3],
     ["fga/2026/615/ziff_2.12.6/art_2", 9],
     ["fga/2026/615/ziff_2.12.6/art_4", 1],
     ["fga/2026/615/ziff_2.12.6/art_5", 5],
     ["fga/2026/615/ziff_2.12.6/art_6", 4],
-    ["fga/2026/615/ziff_2.12.6/art_7", 15],
+    ["fga/2026/615/ziff_2.12.6/art_7", 17],
     ["fga/2026/615/ziff_2.12.6/art_8", 2],
     ["fga/2026/615/ziff_2.12.6/art_9", 8],
     ["fga/2026/615/ziff_2.12.6/art_11", 2],
@@ -2085,7 +2088,7 @@
     ["fga/2026/633/anh_1/art_6", 1],
     ["fga/2026/633/anh_1/art_9", 8],
     ["fga/2026/633/anh_1/art_10", 9],
-    ["fga/2026/633/anh_1/art_11", 1],
+    ["fga/2026/633/anh_1/art_11", 2],
     ["fga/2026/633/anh_1/art_12", 13],
     ["fga/2026/633/anh_1/art_13", 7],
     ["fga/2026/633/anh_1/art_16", 2],
@@ -2099,7 +2102,7 @@
     ["fga/2026/633/anh_1/art_31", 3],
     ["fga/2026/633/anh_1/art_32", 2],
     ["fga/2026/633/anh_1/art_33", 3],
-    ["fga/2026/633/anh_1/art_34", 2],
+    ["fga/2026/633/anh_1/art_34", 3],
     ["fga/2026/633/anh_1/art_35", 2],
     ["fga/2026/633/anh_1/art_36", 3],
     ["fga/2026/633/anh_1/art_37", 2],
@@ -2135,14 +2138,14 @@
     ["fga/2026/633/anh_1/art_82", 2],
     ["fga/2026/633/anh_1/art_83", 8],
     ["fga/2026/633/anh_1/art_84", 1],
-    ["fga/2026/633/anh_1/art_89", 1],
+    ["fga/2026/633/anh_1/art_89", 2],
     ["fga/2026/633/anh_1/art_94", 1],
     ["fga/2026/633/anh_2/ziff_1/art_147a_abs_2_bst_e", 1],
     ["fga/2026/633/anh_2/ziff_2/art_40a_abs_1_bst_e", 1],
     ["fga/2026/633/anh_2/ziff_3", 3],
     ["fga/2026/633/anh_2/ziff_3/art_15a", 7],
     ["fga/2026/633/anh_2/ziff_3/art_21", 3],
-    ["fga/2026/633/anh_2/ziff_3/art_28_abs_1_einleitungssatz_betrifft_nur_den_französischen_text_sowie_bst_d", 1],
+    ["fga/2026/633/anh_2/ziff_3/art_32a", 1],
     ["fga/2026/633/anh_2/ziff_4", 2],
     ["fga/2026/633/anh_2/ziff_4/art_141_abs_9", 1],
     ["fga/2026/633/anh_2/ziff_4/art_148", 1],
@@ -2163,7 +2166,7 @@
     ["fga/2026/634/art_2", 7],
     ["fga/2026/634/art_5", 10],
     ["fga/2026/634/art_6", 2],
-    ["fga/2026/634/art_7", 4],
+    ["fga/2026/634/art_7", 5],
     ["fga/2026/634/art_8", 1],
     ["fga/2026/634/art_9", 2],
     ["fga/2026/634/art_10", 2],
@@ -2232,19 +2235,19 @@
    "id": "lohnschutz",
    "name": "Lohnschutz und Entsendung",
    "zettel_anzahl": 164,
-   "treffer": 774,
-   "woerter": 103761,
+   "treffer": 777,
+   "woerter": 103624,
    "begriffe": [
     {
      "anzeige": "Lohnschutz",
      "muster": "Lohnschutz",
-     "treffer": 97,
+     "treffer": 98,
      "zettel": 38
     },
     {
      "anzeige": "Entsendung",
      "muster": "[Ee]ntsend",
-     "treffer": 197,
+     "treffer": 198,
      "zettel": 78
     },
     {
@@ -2274,7 +2277,7 @@
     {
      "anzeige": "Dienstleistungserbringer",
      "muster": "Dienstleistungserbringer",
-     "treffer": 104,
+     "treffer": 105,
      "zettel": 36
     },
     {
@@ -2343,7 +2346,7 @@
     },
     {
      "wort": "Arbeitnehmer",
-     "im_wortlaut": 304
+     "im_wortlaut": 307
     },
     {
      "wort": "FlaM",
@@ -2351,7 +2354,7 @@
     },
     {
      "wort": "Arbeitsmarkt",
-     "im_wortlaut": 62
+     "im_wortlaut": 63
     },
     {
      "wort": "Schweizer Löhne",
@@ -2411,7 +2414,7 @@
     ["fga/2026/615/ziff_2.3.8.4.1/art_2", 11],
     ["fga/2026/615/ziff_2.3.8.4.1/art_2_2", 2],
     ["fga/2026/615/ziff_2.3.8.4.1/art_2a", 17],
-    ["fga/2026/615/ziff_2.3.8.4.1/art_5a", 2],
+    ["fga/2026/615/ziff_2.3.8.4.1/art_5a", 3],
     ["fga/2026/615/ziff_2.3.8.4.1/art_6", 6],
     ["fga/2026/615/ziff_2.3.8.4.1/art_6a", 1],
     ["fga/2026/615/ziff_2.3.8.4.1/art_6b", 12],
@@ -2457,7 +2460,7 @@
     ["fga/2026/615/ziff_2.13.6.1.4", 1],
     ["fga/2026/615/ziff_2.13.8.1.2", 1],
     ["fga/2026/615/ziff_2.14.4.1", 1],
-    ["fga/2026/615/ziff_3.2.1.2", 5],
+    ["fga/2026/615/ziff_3.2.1.2", 6],
     ["fga/2026/615/ziff_3.2.1.3", 2],
     ["fga/2026/615/ziff_3.3.2", 5],
     ["fga/2026/615/ziff_3.3.5", 1],
@@ -2470,7 +2473,7 @@
     ["fga/2026/616/anh_2/beil/ziff_2/art_15_abs_1_und_1bis", 3],
     ["fga/2026/616/anh_2/beil/ziff_3", 1],
     ["fga/2026/616/anh_4/art_21b", 2],
-    ["fga/2026/616/anh_4/art_122e", 8],
+    ["fga/2026/616/anh_4/art_122e", 9],
     ["fga/2026/616/anh_4/beil/ziff_3", 1],
     ["fga/2026/616/anh_5/ziff_i", 2],
     ["fga/2026/616/anh_5/art_1_sachüberschrift_sowie_abs_2bis_und_4", 2],
@@ -2529,8 +2532,8 @@
    "id": "mitwirkung",
    "name": "Mitwirkung von Kantonen und Parlament",
    "zettel_anzahl": 91,
-   "treffer": 189,
-   "woerter": 57089,
+   "treffer": 192,
+   "woerter": 57029,
    "begriffe": [
     {
      "anzeige": "Mitwirkung der Kantone",
@@ -2547,26 +2550,26 @@
     {
      "anzeige": "parlamentarische Zusammenarbeit",
      "muster": "parlamentarische[nr]? Zusammenarbeit",
-     "treffer": 35,
-     "zettel": 22
+     "treffer": 36,
+     "zettel": 23
     },
     {
      "anzeige": "hochrangiger Dialog",
      "muster": "hochrangige[nr]? Dialog",
-     "treffer": 57,
-     "zettel": 25
+     "treffer": 58,
+     "zettel": 26
     },
     {
      "anzeige": "Föderalismus",
      "muster": "Föderalismus",
-     "treffer": 19,
+     "treffer": 20,
      "zettel": 18
     }
    ],
    "suchbegriffe": [
     {
      "wort": "Kantone",
-     "im_wortlaut": 673
+     "im_wortlaut": 677
     },
     {
      "wort": "Parlament",
@@ -2578,14 +2581,14 @@
     },
     {
      "wort": "Föderalismus",
-     "im_wortlaut": 20
+     "im_wortlaut": 21
     }
    ],
    "zettel": [
     ["fga/2026/615/uebersicht", 2],
     ["fga/2026/615/inhaltsverzeichnis", 3],
     ["fga/2026/615/ziff_1.1", 1],
-    ["fga/2026/615/ziff_1.2", 2],
+    ["fga/2026/615/ziff_1.2", 3],
     ["fga/2026/615/ziff_1.3.2", 2],
     ["fga/2026/615/ziff_1.3.3", 8],
     ["fga/2026/615/ziff_1.3.4", 2],
@@ -2605,7 +2608,7 @@
     ["fga/2026/615/ziff_2.1.7", 1],
     ["fga/2026/615/ziff_2.1.7.1", 7],
     ["fga/2026/615/ziff_2.1.7.2.5", 2],
-    ["fga/2026/615/ziff_2.1.8", 1],
+    ["fga/2026/615/ziff_2.1.8", 2],
     ["fga/2026/615/ziff_2.1.9.2", 1],
     ["fga/2026/615/ziff_2.2.4.1", 2],
     ["fga/2026/615/ziff_2.2.6.1", 1],
@@ -2632,7 +2635,7 @@
     ["fga/2026/615/ziff_2.13.4.4", 1],
     ["fga/2026/615/ziff_2.14.1", 4],
     ["fga/2026/615/ziff_2.14.3", 7],
-    ["fga/2026/615/ziff_2.14.4.1", 1],
+    ["fga/2026/615/ziff_2.14.4.1", 2],
     ["fga/2026/615/ziff_2.14.4.2", 1],
     ["fga/2026/615/ziff_2.14.4.3", 7],
     ["fga/2026/615/ziff_2.14.4.4", 6],
@@ -2679,13 +2682,13 @@
    "id": "freizuegigkeit",
    "name": "Personenfreizügigkeit und Aufenthalt",
    "zettel_anzahl": 200,
-   "treffer": 1139,
-   "woerter": 129323,
+   "treffer": 1143,
+   "woerter": 129175,
    "begriffe": [
     {
      "anzeige": "Freizügigkeit",
      "muster": "[Ff]reizügigkeit",
-     "treffer": 228,
+     "treffer": 229,
      "zettel": 114
     },
     {
@@ -2703,7 +2706,7 @@
     {
      "anzeige": "Aufenthaltsrecht",
      "muster": "Aufenthaltsrecht",
-     "treffer": 114,
+     "treffer": 115,
      "zettel": 48
     },
     {
@@ -2733,13 +2736,13 @@
     {
      "anzeige": "Ausweisung, Landesverweisung",
      "muster": "Ausweisung|Landesverweisung",
-     "treffer": 65,
+     "treffer": 66,
      "zettel": 18
     },
     {
      "anzeige": "Grenzgänger",
      "muster": "Grenzgänger",
-     "treffer": 146,
+     "treffer": 147,
      "zettel": 30
     }
    ],
@@ -2829,10 +2832,10 @@
     ["fga/2026/615/ziff_2.3.7.5.1", 11],
     ["fga/2026/615/ziff_2.3.8.1", 1],
     ["fga/2026/615/ziff_2.3.8.1.1/art_2", 9],
-    ["fga/2026/615/ziff_2.3.8.1.1/art_15a", 41],
+    ["fga/2026/615/ziff_2.3.8.1.1/art_15a", 42],
     ["fga/2026/615/ziff_2.3.8.1.1/art_21b", 23],
     ["fga/2026/615/ziff_2.3.8.1.1/art_29a", 2],
-    ["fga/2026/615/ziff_2.3.8.1.1/art_41c", 37],
+    ["fga/2026/615/ziff_2.3.8.1.1/art_41c", 38],
     ["fga/2026/615/ziff_2.3.8.1.1/art_41d", 13],
     ["fga/2026/615/ziff_2.3.8.1.1/art_41e", 36],
     ["fga/2026/615/ziff_2.3.8.1.1/art_61a", 22],
@@ -2897,7 +2900,7 @@
     ["fga/2026/616/anh_4/art_61f", 7],
     ["fga/2026/616/anh_4/art_64_abs_1_bst_d", 2],
     ["fga/2026/616/anh_4/art_64d_abs_2_bst_g", 1],
-    ["fga/2026/616/anh_4/art_71_abs_1_einleitungssatz", 1],
+    ["fga/2026/616/anh_4/art_71_abs_1_einleitungssatz", 2],
     ["fga/2026/616/anh_4/art_97_abs_3_bst_dbis_4_und_5", 4],
     ["fga/2026/616/anh_4/art_99_abs_1", 2],
     ["fga/2026/616/anh_4/art_118_abs_1", 4],
@@ -2974,7 +2977,7 @@
     ["fga/2026/2099/ziff_2.2", 1],
     ["fga/2026/2099/ziff_3.3", 10],
     ["fga/2026/2099/ziff_3.5", 8],
-    ["fga/2026/2099/ziff_4", 5],
+    ["fga/2026/2099/ziff_4", 6],
     ["fga/2026/2100/art_197_ziff_173", 2],
     ["fga/2026/2174/ziff_1", 1],
     ["fga/2026/2174/ziff_2.2", 11]
@@ -2984,19 +2987,19 @@
    "id": "schutzklausel",
    "name": "Schutzklausel",
    "zettel_anzahl": 34,
-   "treffer": 216,
-   "woerter": 41680,
+   "treffer": 218,
+   "woerter": 41617,
    "begriffe": [
     {
      "anzeige": "Schutzklausel",
      "muster": "Schutzklausel",
-     "treffer": 110,
+     "treffer": 111,
      "zettel": 23
     },
     {
      "anzeige": "Schutzmassnahmen",
      "muster": "Schutzmassnahme",
-     "treffer": 77,
+     "treffer": 78,
      "zettel": 22
     },
     {
@@ -3044,7 +3047,7 @@
     ["fga/2026/615/ziff_2.3.6.2.2/art_1_ziff_8", 2],
     ["fga/2026/615/ziff_2.3.6.2.2/art_1_ziff_9", 26],
     ["fga/2026/615/ziff_2.3.7.1.1", 11],
-    ["fga/2026/615/ziff_2.3.7.3.1", 23],
+    ["fga/2026/615/ziff_2.3.7.3.1", 24],
     ["fga/2026/615/ziff_2.3.8.1.1/art_2", 1],
     ["fga/2026/615/ziff_2.3.8.1.1/art_21b", 42],
     ["fga/2026/615/ziff_2.3.9.1.2", 1],
@@ -3054,7 +3057,7 @@
     ["fga/2026/615/ziff_2.4.6.2", 2],
     ["fga/2026/615/ziff_2.5.6.2/art_1_ziff_12", 1],
     ["fga/2026/615/ziff_2.11.6.15.2", 1],
-    ["fga/2026/615/ziff_2.12.9.5/art_30", 1],
+    ["fga/2026/615/ziff_2.12.9.5/art_30", 2],
     ["fga/2026/615/ziff_3.2.1.2", 1],
     ["fga/2026/615/ziff_3.3.2", 4],
     ["fga/2026/615/ziff_4.1", 2],
@@ -3070,7 +3073,7 @@
    "name": "Sozialversicherungen und Sozialhilfe",
    "zettel_anzahl": 125,
    "treffer": 401,
-   "woerter": 79282,
+   "woerter": 79195,
    "begriffe": [
     {
      "anzeige": "Verordnung 883/2004",
@@ -3272,14 +3275,14 @@
   {
    "id": "beihilfen",
    "name": "Staatliche Beihilfen",
-   "zettel_anzahl": 359,
-   "treffer": 3856,
-   "woerter": 138355,
+   "zettel_anzahl": 358,
+   "treffer": 3871,
+   "woerter": 138430,
    "begriffe": [
     {
      "anzeige": "Beihilfen",
      "muster": "[Bb]eihilfe",
-     "treffer": 2608,
+     "treffer": 2617,
      "zettel": 320
     },
     {
@@ -3291,7 +3294,7 @@
     {
      "anzeige": "Überwachungsbehörde",
      "muster": "Überwachungsbehörde",
-     "treffer": 678,
+     "treffer": 684,
      "zettel": 159
     },
     {
@@ -3385,7 +3388,7 @@
     ["fga/2026/615/ziff_2.2.7.5", 5],
     ["fga/2026/615/ziff_2.2.7.6", 14],
     ["fga/2026/615/ziff_2.2.8", 12],
-    ["fga/2026/615/ziff_2.2.8/art_1", 81],
+    ["fga/2026/615/ziff_2.2.8/art_1", 82],
     ["fga/2026/615/ziff_2.2.8/art_2", 173],
     ["fga/2026/615/ziff_2.2.8/art_3", 65],
     ["fga/2026/615/ziff_2.2.8/art_4", 59],
@@ -3406,7 +3409,7 @@
     ["fga/2026/615/ziff_2.2.8/art_19", 16],
     ["fga/2026/615/ziff_2.2.8/art_25", 6],
     ["fga/2026/615/ziff_2.2.8/art_20", 18],
-    ["fga/2026/615/ziff_2.2.8/art_21", 27],
+    ["fga/2026/615/ziff_2.2.8/art_21", 28],
     ["fga/2026/615/ziff_2.2.8/art_22", 11],
     ["fga/2026/615/ziff_2.2.8/art_23", 29],
     ["fga/2026/615/ziff_2.2.8/art_24", 46],
@@ -3432,12 +3435,12 @@
     ["fga/2026/615/ziff_2.2.8/art_45", 80],
     ["fga/2026/615/ziff_2.2.8/art_46", 12],
     ["fga/2026/615/ziff_2.2.8/art_47", 22],
-    ["fga/2026/615/ziff_2.2.8/art_48", 52],
+    ["fga/2026/615/ziff_2.2.8/art_48", 53],
     ["fga/2026/615/ziff_2.2.8/art_50", 59],
     ["fga/2026/615/ziff_2.2.8/art_51", 28],
     ["fga/2026/615/ziff_2.2.8/art_52", 34],
     ["fga/2026/615/ziff_2.2.8/art_53", 20],
-    ["fga/2026/615/ziff_2.2.8/art_54", 11],
+    ["fga/2026/615/ziff_2.2.8/art_54", 12],
     ["fga/2026/615/ziff_2.2.8/art_55", 1],
     ["fga/2026/615/ziff_2.2.8/art_56", 22],
     ["fga/2026/615/ziff_2.2.9.1/art_82", 22],
@@ -3471,7 +3474,7 @@
     ["fga/2026/615/ziff_2.2.12.6", 1],
     ["fga/2026/615/ziff_2.2.12.6.1", 1],
     ["fga/2026/615/ziff_2.2.12.7", 7],
-    ["fga/2026/615/ziff_2.3.3", 1],
+    ["fga/2026/615/ziff_2.3.3", 2],
     ["fga/2026/615/ziff_2.3.6.2.2/art_1_ziff_6_2", 2],
     ["fga/2026/615/ziff_2.3.9.1.1", 3],
     ["fga/2026/615/ziff_2.3.10.6.1", 2],
@@ -3499,11 +3502,12 @@
     ["fga/2026/615/ziff_2.6.4.3", 1],
     ["fga/2026/615/ziff_2.6.4.4", 1],
     ["fga/2026/615/ziff_2.6.5", 3],
-    ["fga/2026/615/ziff_2.6.6.3", 32],
+    ["fga/2026/615/ziff_2.6.6.3", 33],
     ["fga/2026/615/ziff_2.6.7.1", 10],
     ["fga/2026/615/ziff_2.6.9.1", 1],
     ["fga/2026/615/ziff_2.6.9.2", 9],
     ["fga/2026/615/ziff_2.6.9.3.3", 5],
+    ["fga/2026/615/ziff_2.6.9.5", 1],
     ["fga/2026/615/ziff_2.6.10", 1],
     ["fga/2026/615/ziff_2.6.10.1", 1],
     ["fga/2026/615/ziff_2.6.10.2", 3],
@@ -3569,8 +3573,8 @@
     ["fga/2026/616/anh_1/art_10", 3],
     ["fga/2026/616/anh_1/art_11", 3],
     ["fga/2026/616/anh_1/art_12", 3],
-    ["fga/2026/616/anh_1/art_13", 2],
-    ["fga/2026/616/anh_1/art_14", 2],
+    ["fga/2026/616/anh_1/art_13", 4],
+    ["fga/2026/616/anh_1/art_14", 3],
     ["fga/2026/616/anh_1/art_15", 2],
     ["fga/2026/616/anh_1/art_16", 1],
     ["fga/2026/616/anh_1/art_17", 4],
@@ -3581,7 +3585,7 @@
     ["fga/2026/616/anh_1/art_22", 4],
     ["fga/2026/616/anh_1/art_23", 3],
     ["fga/2026/616/anh_1/art_24", 9],
-    ["fga/2026/616/anh_1/art_25", 16],
+    ["fga/2026/616/anh_1/art_25", 17],
     ["fga/2026/616/anh_1/art_26", 4],
     ["fga/2026/616/anh_1/art_27", 9],
     ["fga/2026/616/anh_1/art_28", 1],
@@ -3604,8 +3608,8 @@
     ["fga/2026/616/anh_1/art_46", 2],
     ["fga/2026/616/anh_1/art_47", 2],
     ["fga/2026/616/anh_1/art_48", 13],
-    ["fga/2026/616/anh_1/art_49", 10],
-    ["fga/2026/616/anh_1/art_50", 10],
+    ["fga/2026/616/anh_1/art_49", 11],
+    ["fga/2026/616/anh_1/art_50", 11],
     ["fga/2026/616/anh_1/art_51", 5],
     ["fga/2026/616/anh_1/art_52", 3],
     ["fga/2026/616/anh_1/art_54", 3],
@@ -3613,13 +3617,13 @@
     ["fga/2026/616/anh_1/beil", 1],
     ["fga/2026/616/anh_1/beil/ziff_1/art_82_bst_bbis", 4],
     ["fga/2026/616/anh_1/beil/ziff_1/art_83_bst_k_und_m", 5],
-    ["fga/2026/616/anh_1/beil/ziff_1/art_98a", 9],
+    ["fga/2026/616/anh_1/beil/ziff_1/art_98a", 10],
     ["fga/2026/616/anh_1/beil/ziff_1/art_103_abs_2_bst_e", 3],
     ["fga/2026/616/anh_1/beil/ziff_2/art_31a", 8],
     ["fga/2026/616/anh_1/beil/ziff_2/art_33_abs_1_bst_b_ziff_11_und_abs_2", 10],
     ["fga/2026/616/anh_1/beil/ziff_2/art_37_abs_2", 2],
     ["fga/2026/616/anh_1/beil/ziff_2/art_37a", 4],
-    ["fga/2026/616/anh_1/beil/ziff_2/art_37b", 9],
+    ["fga/2026/616/anh_1/beil/ziff_2/art_37b", 10],
     ["fga/2026/616/anh_1/beil/ziff_2/art_37c", 4],
     ["fga/2026/616/anh_1/beil/ziff_3/art_18_abs_2_erster_satz", 5],
     ["fga/2026/616/anh_1/beil/ziff_5/art_5_abs_2_zweiter_satz", 2],
@@ -3642,8 +3646,7 @@
     ["fga/2026/623/art_7", 4],
     ["fga/2026/623/art_10", 1],
     ["fga/2026/623/anh_i/abschnitt_b", 2],
-    ["fga/2026/623/anh_i/abschnitt_c", 1],
-    ["fga/2026/623/anh_i/kapitel_1", 1],
+    ["fga/2026/623/anh_i/abschnitt_c", 2],
     ["fga/2026/623/anh_i/abschnitt_d", 6],
     ["fga/2026/623/anh_ii/abschnitt_a", 4],
     ["fga/2026/623/anh_ii/abschnitt_b", 1],
@@ -3659,8 +3662,7 @@
     ["fga/2026/626/art_7", 4],
     ["fga/2026/626/art_10", 1],
     ["fga/2026/626/anh_i/abschnitt_b", 2],
-    ["fga/2026/626/anh_i/abschnitt_c", 1],
-    ["fga/2026/626/anh_i/kapitel_1", 2],
+    ["fga/2026/626/anh_i/abschnitt_c", 3],
     ["fga/2026/626/anh_i/abschnitt_d", 6],
     ["fga/2026/626/anh_ii/abschnitt_a", 5],
     ["fga/2026/626/anh_ii/abschnitt_b", 1],
@@ -3703,20 +3705,20 @@
    "id": "streitbeilegung",
    "name": "Streitbeilegung, Schiedsgericht und EuGH",
    "zettel_anzahl": 458,
-   "treffer": 2206,
-   "woerter": 172146,
+   "treffer": 2219,
+   "woerter": 171982,
    "begriffe": [
     {
      "anzeige": "Schiedsgericht",
      "muster": "Schiedsgericht",
-     "treffer": 1258,
+     "treffer": 1265,
      "zettel": 317
     },
     {
      "anzeige": "Streitbeilegung",
      "muster": "Streitbeilegung",
-     "treffer": 175,
-     "zettel": 107
+     "treffer": 177,
+     "zettel": 108
     },
     {
      "anzeige": "Gerichtshof, EuGH",
@@ -3727,8 +3729,8 @@
     {
      "anzeige": "Ausgleichsmassnahmen",
      "muster": "Ausgleichsmassnahme",
-     "treffer": 322,
-     "zettel": 111
+     "treffer": 326,
+     "zettel": 112
     },
     {
      "anzeige": "einheitliche Auslegung",
@@ -3754,7 +3756,7 @@
     },
     {
      "wort": "Gericht",
-     "im_wortlaut": 1914
+     "im_wortlaut": 1921
     },
     {
      "wort": "EuGH",
@@ -3781,7 +3783,7 @@
     ["fga/2026/615/inhaltsverzeichnis", 7],
     ["fga/2026/615/ziff_1.1", 1],
     ["fga/2026/615/ziff_1.2", 1],
-    ["fga/2026/615/ziff_1.6.1", 13],
+    ["fga/2026/615/ziff_1.6.1", 14],
     ["fga/2026/615/ziff_1.7.3", 2],
     ["fga/2026/615/ziff_2.1.1", 24],
     ["fga/2026/615/ziff_2.1.2.1", 12],
@@ -3809,9 +3811,9 @@
     ["fga/2026/615/ziff_2.1.6.4.6", 8],
     ["fga/2026/615/ziff_2.1.7.1", 3],
     ["fga/2026/615/ziff_2.1.7.2.3", 7],
-    ["fga/2026/615/ziff_2.1.7.2.5", 1],
+    ["fga/2026/615/ziff_2.1.7.2.5", 2],
     ["fga/2026/615/ziff_2.1.8", 9],
-    ["fga/2026/615/ziff_2.1.8.1", 8],
+    ["fga/2026/615/ziff_2.1.8.1", 9],
     ["fga/2026/615/ziff_2.1.8.2", 2],
     ["fga/2026/615/ziff_2.1.8.6", 2],
     ["fga/2026/615/ziff_2.2.5", 2],
@@ -3863,7 +3865,7 @@
     ["fga/2026/615/ziff_2.7.3", 5],
     ["fga/2026/615/ziff_2.7.4.3", 5],
     ["fga/2026/615/ziff_2.7.4.4", 3],
-    ["fga/2026/615/ziff_2.7.5", 1],
+    ["fga/2026/615/ziff_2.7.5", 2],
     ["fga/2026/615/ziff_2.7.6", 2],
     ["fga/2026/615/ziff_2.7.6/art_1_ziff_3", 11],
     ["fga/2026/615/ziff_2.7.6/art_1_ziff_9", 1],
@@ -3875,7 +3877,7 @@
     ["fga/2026/615/ziff_2.8.6.1/art_11_14", 1],
     ["fga/2026/615/ziff_2.9.6/art_5", 1],
     ["fga/2026/615/ziff_2.9.6/art_11", 1],
-    ["fga/2026/615/ziff_2.10.5.4", 11],
+    ["fga/2026/615/ziff_2.10.5.4", 12],
     ["fga/2026/615/ziff_2.10.6/art_3", 1],
     ["fga/2026/615/ziff_2.10.6/art_4_5", 2],
     ["fga/2026/615/ziff_2.10.6/art_5_6", 2],
@@ -3905,7 +3907,7 @@
     ["fga/2026/615/ziff_3.1.3", 4],
     ["fga/2026/615/ziff_3.2.1.1", 5],
     ["fga/2026/615/ziff_3.2.1.2", 2],
-    ["fga/2026/615/ziff_3.3.2", 5],
+    ["fga/2026/615/ziff_3.3.2", 6],
     ["fga/2026/615/ziff_4.1", 14],
     ["fga/2026/615/ziff_4.2.2.1.2", 9],
     ["fga/2026/615/ziff_4.2.2.1.3", 3],
@@ -3940,7 +3942,7 @@
     ["fga/2026/618/anh/anl/art_iii_7", 1],
     ["fga/2026/618/anh/anl/art_iii_8", 7],
     ["fga/2026/618/anh/anl/art_iii_9", 21],
-    ["fga/2026/618/anh/anl/art_iii_10", 12],
+    ["fga/2026/618/anh/anl/art_iii_10", 13],
     ["fga/2026/618/anh/anl/art_iii_11", 8],
     ["fga/2026/618/anh/anl/art_iii_12", 4],
     ["fga/2026/618/anh/anl/art_iii_13", 8],
@@ -3974,7 +3976,7 @@
     ["fga/2026/620/anh/anl/art_iii_7", 1],
     ["fga/2026/620/anh/anl/art_iii_8", 6],
     ["fga/2026/620/anh/anl/art_iii_9", 21],
-    ["fga/2026/620/anh/anl/art_iii_10", 12],
+    ["fga/2026/620/anh/anl/art_iii_10", 13],
     ["fga/2026/620/anh/anl/art_iii_11", 8],
     ["fga/2026/620/anh/anl/art_iii_12", 4],
     ["fga/2026/620/anh/anl/art_iii_13", 8],
@@ -4044,7 +4046,7 @@
     ["fga/2026/625/anh/anl/art_iii_7", 1],
     ["fga/2026/625/anh/anl/art_iii_8", 6],
     ["fga/2026/625/anh/anl/art_iii_9", 21],
-    ["fga/2026/625/anh/anl/art_iii_10", 12],
+    ["fga/2026/625/anh/anl/art_iii_10", 13],
     ["fga/2026/625/anh/anl/art_iii_11", 8],
     ["fga/2026/625/anh/anl/art_iii_12", 4],
     ["fga/2026/625/anh/anl/art_iii_13", 8],
@@ -4075,7 +4077,7 @@
     ["fga/2026/627/anh/art_iii_6", 10],
     ["fga/2026/627/anh/art_iii_7", 1],
     ["fga/2026/627/anh/art_iii_8", 6],
-    ["fga/2026/627/anh/art_iii_9", 12],
+    ["fga/2026/627/anh/art_iii_9", 13],
     ["fga/2026/627/anh/art_iii_10", 8],
     ["fga/2026/627/anh/art_iii_11", 4],
     ["fga/2026/627/anh/art_iii_12", 8],
@@ -4113,7 +4115,7 @@
     ["fga/2026/630/prot_1/art_iii_6", 10],
     ["fga/2026/630/prot_1/art_iii_7", 1],
     ["fga/2026/630/prot_1/art_iii_8", 6],
-    ["fga/2026/630/prot_1/art_iii_9", 12],
+    ["fga/2026/630/prot_1/art_iii_9", 13],
     ["fga/2026/630/prot_1/art_iii_10", 8],
     ["fga/2026/630/prot_1/art_iii_11", 4],
     ["fga/2026/630/prot_1/art_iii_12", 8],
@@ -4150,7 +4152,7 @@
     ["fga/2026/632/prot_1/art_iii_7", 1],
     ["fga/2026/632/prot_1/art_iii_8", 6],
     ["fga/2026/632/prot_1/art_iii_9", 21],
-    ["fga/2026/632/prot_1/art_iii_10", 12],
+    ["fga/2026/632/prot_1/art_iii_10", 13],
     ["fga/2026/632/prot_1/art_iii_11", 8],
     ["fga/2026/632/prot_1/art_iii_12", 4],
     ["fga/2026/632/prot_1/art_iii_13", 8],
@@ -4184,7 +4186,7 @@
     ["fga/2026/634/anh_ii/anl_1/art_iii_7", 1],
     ["fga/2026/634/anh_ii/anl_1/art_iii_8", 6],
     ["fga/2026/634/anh_ii/anl_1/art_iii_9", 21],
-    ["fga/2026/634/anh_ii/anl_1/art_iii_10", 12],
+    ["fga/2026/634/anh_ii/anl_1/art_iii_10", 13],
     ["fga/2026/634/anh_ii/anl_1/art_iii_11", 8],
     ["fga/2026/634/anh_ii/anl_1/art_iii_12", 4],
     ["fga/2026/634/anh_ii/anl_1/art_iii_13", 10],
@@ -4242,8 +4244,8 @@
    "id": "strom",
    "name": "Strom",
    "zettel_anzahl": 357,
-   "treffer": 2053,
-   "woerter": 143638,
+   "treffer": 2055,
+   "woerter": 143449,
    "begriffe": [
     {
      "anzeige": "Strom…",
@@ -4260,7 +4262,7 @@
     {
      "anzeige": "Grundversorgung",
      "muster": "Grundversorgung",
-     "treffer": 172,
+     "treffer": 173,
      "zettel": 56
     },
     {
@@ -4278,8 +4280,8 @@
     {
      "anzeige": "Übertragungsnetz",
      "muster": "Übertragungsnetz",
-     "treffer": 61,
-     "zettel": 33
+     "treffer": 62,
+     "zettel": 34
     },
     {
      "anzeige": "Swissgrid",
@@ -4297,7 +4299,7 @@
    "suchbegriffe": [
     {
      "wort": "Energie",
-     "im_wortlaut": 408
+     "im_wortlaut": 409
     },
     {
      "wort": "Strommarkt",
@@ -4317,7 +4319,7 @@
     },
     {
      "wort": "Versorgungssicherheit",
-     "im_wortlaut": 58
+     "im_wortlaut": 59
     },
     {
      "wort": "Kraftwerk",
@@ -4563,7 +4565,7 @@
     ["fga/2026/615/ziff_4.2.1", 2],
     ["fga/2026/615/ziff_4.2.3.1", 1],
     ["fga/2026/615/ziff_5.2", 3],
-    ["fga/2026/615/ziff_5.3", 17],
+    ["fga/2026/615/ziff_5.3", 18],
     ["fga/2026/615/ziff_5.4", 1],
     ["fga/2026/615/abkuerzungen", 15],
     ["fga/2026/615/anh_2.11_1", 23],
@@ -4600,7 +4602,7 @@
     ["fga/2026/631/anh/ziff_5/art_17e_abs_2", 2],
     ["fga/2026/631/anh/ziff_5/art_18_abs_4bis_8_und_9", 8],
     ["fga/2026/631/anh/ziff_5/art_20_abs_2_bst_e", 2],
-    ["fga/2026/631/anh/ziff_5/art_22_abs_1_2_bst_bbis_c_dbis_und_dter_2bis_3_und_5", 6],
+    ["fga/2026/631/anh/ziff_5/art_22_abs_1_2_bst_bbis_c_dbis_und_dter_2bis_3_und_5", 7],
     ["fga/2026/631/anh/ziff_5/art_22b", 7],
     ["fga/2026/631/anh/ziff_5/art_23a", 1],
     ["fga/2026/631/anh/ziff_5/art_23b", 2],
@@ -4691,15 +4693,15 @@
   {
    "id": "produkte",
    "name": "Technische Handelshemmnisse (Produktzulassung)",
-   "zettel_anzahl": 103,
-   "treffer": 403,
-   "woerter": 65787,
+   "zettel_anzahl": 101,
+   "treffer": 404,
+   "woerter": 65692,
    "begriffe": [
     {
      "anzeige": "Konformitätsbewertung",
      "muster": "Konformitätsbewertung",
-     "treffer": 91,
-     "zettel": 51
+     "treffer": 92,
+     "zettel": 49
     },
     {
      "anzeige": "gegenseitige Anerkennung",
@@ -4787,7 +4789,7 @@
     ["fga/2026/615/ziff_2.4.5", 5],
     ["fga/2026/615/ziff_2.4.6.1", 28],
     ["fga/2026/615/ziff_2.4.6.2", 59],
-    ["fga/2026/615/ziff_2.4.6.3", 4],
+    ["fga/2026/615/ziff_2.4.6.3", 5],
     ["fga/2026/615/ziff_2.4.7", 1],
     ["fga/2026/615/ziff_2.4.8.1.2", 7],
     ["fga/2026/615/ziff_2.4.8.2", 1],
@@ -4832,12 +4834,10 @@
     ["fga/2026/618/art_19", 4],
     ["fga/2026/619/ingress", 4],
     ["fga/2026/619/art_1/ziff_1/art_1", 2],
-    ["fga/2026/619/art_1/ziff_2/art_3", 1],
-    ["fga/2026/619/abschnitt_iv", 2],
-    ["fga/2026/619/abschnitt_v", 1],
-    ["fga/2026/619/art_9", 4],
-    ["fga/2026/619/art_10", 2],
-    ["fga/2026/619/art_11", 11],
+    ["fga/2026/619/art_1/ziff_2/art_3", 4],
+    ["fga/2026/619/art_1/ziff_3/art_9", 4],
+    ["fga/2026/619/art_1/ziff_4/art_10", 2],
+    ["fga/2026/619/art_1/ziff_5/art_11", 11],
     ["fga/2026/619/art_2/ziff_2", 3],
     ["fga/2026/619/art_3", 2],
     ["fga/2026/620/ingress", 2],
@@ -4869,15 +4869,15 @@
   {
    "id": "rechtsuebernahme",
    "name": "Übernahme von EU-Recht",
-   "zettel_anzahl": 146,
-   "treffer": 278,
-   "woerter": 101891,
+   "zettel_anzahl": 147,
+   "treffer": 280,
+   "woerter": 102194,
    "begriffe": [
     {
      "anzeige": "Rechtsübernahme",
      "muster": "Rechtsübernahme|dynamische[nr]? Übernahme",
-     "treffer": 192,
-     "zettel": 106
+     "treffer": 194,
+     "zettel": 107
     },
     {
      "anzeige": "Integration von Rechtsakten",
@@ -4966,7 +4966,7 @@
     ["fga/2026/615/ziff_2.1.7.2.1", 2],
     ["fga/2026/615/ziff_2.1.7.2.3", 4],
     ["fga/2026/615/ziff_2.1.7.2.5", 1],
-    ["fga/2026/615/ziff_2.1.8", 2],
+    ["fga/2026/615/ziff_2.1.8", 3],
     ["fga/2026/615/ziff_2.1.8.1", 4],
     ["fga/2026/615/ziff_2.1.8.6", 2],
     ["fga/2026/615/ziff_2.2.8/art_45", 1],
@@ -5076,6 +5076,7 @@
     ["fga/2026/636/art_5", 4],
     ["fga/2026/636/art_6", 1],
     ["fga/2026/636/art_10", 1],
+    ["fga/2026/2099/ziff_2.1.1", 1],
     ["fga/2026/2099/ziff_3.3", 2],
     ["fga/2026/2099/ziff_3.5", 1],
     ["fga/2026/2099/ziff_4", 1],
@@ -5088,7 +5089,7 @@
    "name": "Volksrechte und Referendum",
    "zettel_anzahl": 95,
    "treffer": 227,
-   "woerter": 54153,
+   "woerter": 54085,
    "begriffe": [
     {
      "anzeige": "Referendum",

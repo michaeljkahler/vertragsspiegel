@@ -32,7 +32,9 @@ EU_TYP = (r'(Durchführungsverordnung|Durchführungsbeschluss|Durchführungsrich
           r'Delegierten? Richtlinie|Delegierter? Beschluss|Rahmenbeschluss|Verordnung|Richtlinie|Beschluss|Entscheidung|Empfehlung)')
 EU_AKT = re.compile(EU_TYP + r'(?:en)?\s*(?:\((EU|EG|EWG|Euratom|EGKS|GASP)\)\s*)?(?:Nr\.\s*)?'
                     r'(\d{1,4})/(\d{1,4})(?:/(EU|EG|EWG|Euratom|EGKS|GASP|JI))?(?!\d)')
-NICHT_EU = re.compile(r'^\s*(des|der)\s+(Gemischten|Gemeinsamen|Assoziations|Ausschusses|Verwaltungskommission|Rates? der EFTA|EWR)')
+# Beschlüsse gemischter Gremien, keine EU-Rechtsakte; auch «Beschluss Nr. 2/2019 des Landverkehrsausschusses»
+NICHT_EU = re.compile(r'^\s*(des|der)\s+(Gemischten|Gemeinsamen|Assoziations|\w*[Aa]usschusses|Verwaltungskommission|'
+                      r'Rates? der EFTA|EWR)')
 CELEX_ROH = re.compile(r'\b(3)(\d{4})\s?([A-Z])\s?(\d{4})(\(\d{2}\))?(?!\d)')
 BUCHSTABE = {'Verordnung': 'R', 'Richtlinie': 'L', 'Beschluss': 'D', 'Entscheidung': 'D', 'Rahmenbeschluss': 'F',
              'Empfehlung': 'H'}
@@ -82,7 +84,8 @@ SR_NR = re.compile(r'\bSR\s+(\d{1,3}(?:\.\d+)*)(?![\d.]*\d)')
 
 # ------------------------------------------------------------------ Artikelverweise
 
-ART_NR = r'\d+[a-z]{0,2}(?:bis|ter|quater|quinquies|sexies)?'
+# Zusatz zuerst versuchen und Wortende verlangen: sonst ergäbe «14bis» die Nummer «14bi», «40ater» «40at»
+ART_NR = r'\d+(?:[a-z]?(?:bis|ter|quater|quinquies|sexies|septies|octies)|[a-z]{1,2})?(?![a-z])'
 VERWEIS = re.compile(r'\b(?:Artikel|Artikeln|Art\.)\s+(' + ART_NR + r'(?:\s*(?:–|-|bis)\s*' + ART_NR + r')?'
                      r'(?:\s*(?:,|und|sowie|oder)\s*' + ART_NR + r'(?=\s|,|\)|;|$))*)')
 QUALI = [
@@ -118,7 +121,9 @@ EXTERN_ABK = {'BV', 'OR', 'ZGB', 'StGB', 'VwVG', 'BGG', 'VGG', 'KG', 'LFG', 'EUV
 
 def nummern(liste):
     """«13, 14 und 15» → [13, 14, 15]; «5a–5f» → [5a, 5f] (Bereich nur mit den Enden)."""
-    return [x for x in re.split(r'\s*(?:,|und|sowie|oder|–|-|bis)\s*', liste) if re.fullmatch(ART_NR, x)]
+    # «bis» nur als eigenes Wort trennen, nicht in «14bis»
+    return [x for x in re.split(r'\s*(?:,|–|-|(?<!\w)(?:und|sowie|oder|bis)(?!\w))\s*', liste)
+            if re.fullmatch(ART_NR, x)]
 
 
 def artikel_index(zettel):
@@ -205,12 +210,43 @@ def einleitung_vor_liste(text, bis):
     return None
 
 
-def verweise_zettel(z, idx, eigene_bereiche):
-    """Kanten «verweist_auf» aus dem Wortlaut eines Zettels."""
+# Nennung eines anderen Werks im Rest des Satzes: dann gilt ein Verweis der Botschaft nicht dem Bezugswerk
+# («Artikel 28 Absatz 3 des geltenden Rechts» meint das bisherige Gesetz, nicht den Entwurf)
+ANDERES_WERK = re.compile(r'(?i:gesetz|verordnung|richtlinie|abkommen|protokoll|beschluss|vertrag|übereinkommen|'
+                          r'reglement|anhang|geltend|bisherig|heutig)|\bE-|\b[A-ZÄÖÜ][\wäöü-]*[A-ZÄÖÜ]')  # zuletzt: BV, VwVG
+SATZENDE = re.compile(r'(?<!\bAbs)(?<!\bBst)(?<!\bZiff)(?<!\bArt)(?<!\bNr)(?<!\blit)(?<!\bvgl)(?<!\bbzw)(?<!\bff)'
+                      r'(?<!\bi\.V\.m)(?<!\bS)\.\s|[;:]\s|\n\n')
+
+
+# Vor dem Verweis im selben Satz: bisheriges Recht oder EU-Recht («dem bisherigen Artikel 3», «Die Strombinnenmarkt-
+# Verordnung verlangt, dass die Mitgliedstaaten … (Art. 20 Abs. 1)»)
+ANDERES_DAVOR = re.compile(r'(?i:verordnung|richtlinie|mitgliedstaat|unionsrecht|eu-recht|\bbisher|\bgeltend|\bheutig)')
+
+
+def satzanfang(text, bis):
+    """Text vor einem Verweis ab dem letzten Satzende, höchstens 200 Zeichen."""
+    davor = re.sub(r'(?<=[a-zäöü])-\s+(?=[a-zäöü])', '', text[max(0, bis - 200):bis])
+    return SATZENDE.split(davor)[-1]
+
+
+def satzrest(text, ab):
+    """Text nach einem Verweis bis zum Satzende, höchstens 120 Zeichen, Trennstriche am Zeilenende entfernt
+    («Stromabkom- mens»). Abkürzungen wie «Abs.» beenden den Satz nicht. Eine Klammer beendet ihn ebenfalls nicht:
+    «Artikel 1 bis 24 (mit Ausnahme des Art. 24 Abs. 4) von Anhang I» gilt auch für den Verweis in der Klammer."""
+    rest = re.sub(r'(?<=[a-zäöü])-\s+(?=[a-zäöü])', '', text[ab:ab + 120])
+    return SATZENDE.split(rest, maxsplit=1)[0]
+
+
+def verweise_zettel(z, idx, eigene_bereiche, bezug=None):
+    """Kanten «verweist_auf» aus dem Wortlaut eines Zettels. bezug: (Kennungspräfix, Suchmodus) des Werks, das eine
+    Ziffer der Botschaft erläutert (bezugswerk)."""
     kanten, offen = [], collections.Counter()
     text = z['text']
     eigener_bereich = z['id'].rsplit('/', 1)[0]
     dok_praefix = '/'.join(z['id'].split('/')[:3])
+    # Protokoll innerhalb eines Werks (628 EUPA, 632 Stromabkommen): «dieses Protokolls» meint das Protokoll
+    mp = re.match(r'^(fga/2026/\d+/(?:[^/]+/)*?prot_[^/]+)', z['id'])
+    prot_praefix = mp.group(1) if mp else None
     im_grundabkommen = z['dok'] in AEND_PROT and (z['art'] in ('artikel_zitiert', 'ziffer', 'rechtsakt')
                                                    or '/anh_' in z['id'] or '/prot_' in z['id'])
     for m in VERWEIS.finditer(text):
@@ -224,7 +260,9 @@ def verweise_zettel(z, idx, eigene_bereiche):
                 continue
             if bedeutung == 'eigenes':
                 ziel_praefix = dok_praefix
-                if im_grundabkommen:
+                if prot_praefix and q.group(1) == 'Protokolls':
+                    ziel_praefix, regel = prot_praefix, 'dieses Protokolls: Protokoll im Werk'
+                elif im_grundabkommen:
                     regel, modus = 'dieses Abkommens: geändertes Abkommen', 'grundabkommen'
                 else:
                     regel = 'dieses Abkommens/Protokolls'
@@ -236,7 +274,9 @@ def verweise_zettel(z, idx, eigene_bereiche):
                 else:
                     ziel_praefix = 'extern'
             elif bedeutung == 'des_protokolls':
-                if TYP[z['dok']] == 'Protokoll':
+                if prot_praefix:
+                    ziel_praefix, regel = prot_praefix, 'des Protokolls: Protokoll im Werk'
+                elif TYP[z['dok']] == 'Protokoll':
                     ziel_praefix, regel = dok_praefix, 'des Protokolls: eigenes Protokoll'
                 else:
                     ziel_praefix = 'extern'
@@ -267,10 +307,19 @@ def verweise_zettel(z, idx, eigene_bereiche):
         if ziel_praefix == 'extern':
             continue
         if ziel_praefix is None:
-            if z['dok'] == 615 or z['dok'] in (2099, 2174):
+            eigener_titel = z['art'] == 'erlaeuterung' and m.start() == text.find(z['label'][:12])   # «Art. 33 …»
+            if z['dok'] == 615 and bezug and bezug[0] and not eigener_titel \
+                    and not ANDERES_WERK.search(satzrest(text, m.end())) \
+                    and not ANDERES_DAVOR.search(satzanfang(text, m.start())):
+                # Botschaft ohne Zusatz in einer Ziffer, die ein Werk erläutert: Artikel dieses Werks
+                ziel_praefix, modus = bezug
+                regel = 'Botschaft ohne Zusatz: Bezugswerk der Ziffer'
+                if ziel_praefix.count('/') == 2 and int(ziel_praefix.split('/')[2]) in AEND_PROT:
+                    modus = 'grundabkommen'                  # Artikel des geänderten Abkommens
+            elif z['dok'] == 615 or z['dok'] in (2099, 2174):
                 offen['Botschaft ohne Bezug'] += 1        # in Berichten ohne Bezugswerk nicht auflösbar
                 continue
-            if z['art'] == 'artikel_zitiert':
+            elif z['art'] == 'artikel_zitiert':
                 ziel_praefix, regel, modus = dok_praefix, 'ohne Zusatz: im zitierten Abkommen', 'grundabkommen'
             elif z['art'] in ('rechtsakt', 'teil', 'gliederung'):
                 offen['ohne Zusatz in Anhangstext (meist Artikel eines EU-Rechtsakts)'] += 1
@@ -617,15 +666,24 @@ def main():
             c = z['nummer']
             eu.setdefault(c, dict(celex=c, zitate=collections.Counter()))['zitate'][z['titel'][:80]] += 1
 
-    # verweist_auf
+    # verweist_auf; in der Botschaft mit dem Bezugswerk der Ziffer für Verweise ohne Zusatz
+    gl = gesetze(zettel, dokumente)
+    ziffern = {z['nummer']: z for z in zettel if z['dok'] == 615 and z['art'] == 'ziffer'}
+    bezug_je_ziffer = {}
     offen_verweise = collections.Counter()
     for z in zettel:
-        k, offen = verweise_zettel(z, idx, None)
+        bezug = None
+        mz = re.match(r'fga/2026/615/ziff_(\d+\.[\d.]+)', z['id'])
+        if mz:
+            nr = mz.group(1)
+            if nr not in bezug_je_ziffer:
+                bezug_je_ziffer[nr] = bezugswerk(nr, ziffern, gl, idx)
+            bezug = bezug_je_ziffer[nr]
+        k, offen = verweise_zettel(z, idx, None, bezug)
         kanten.extend(k)
         offen_verweise.update(offen)
 
     # aendert, genehmigt, erlaeutert
-    gl = gesetze(zettel, dokumente)
     for g in gl:
         g['id'] = 'gesetz:' + (g['sr'] or norm_gesetz(g['titel']).replace(' ', '_'))
         for bb, stelle in g['bbs'].items():
@@ -655,8 +713,16 @@ def main():
         if c in cache:
             v['gefunden'] = cache[c] is not None
             v['titel'] = cache[c] or ''
+    # Rechtsakt-Eintrag einer Liste («1. 32024 D 00594: Beschluss Nr. H14 …»): Kante auf seine CELEX-Nummer, wenn
+    # der Titel sie nicht schon nennt und EUR-Lex sie kennt (nicht «32024 L 01366», Korrekturprotokoll Nr. 3)
+    genannt = {(k['von'], k['nach']) for k in kanten if k['art'] == 'nennt'}
+    for z in zettel:
+        c = z['nummer'] if z['art'] == 'rechtsakt' else None
+        if c and eu.get(c, {}).get('gefunden') and (z['id'], f'celex:{c}') not in genannt:
+            kanten.append(dict(art='nennt', von=z['id'], nach=f'celex:{c}', stelle=z['titel'][:80],
+                               regel='EU-Rechtsakt, CELEX-Nummer des Eintrags', status='automatisch'))
 
-    aus = dict(stand=date.today().isoformat(), kanten=kanten, gesetze=gl,
+    aus =dict(stand=date.today().isoformat(), kanten=kanten, gesetze=gl,
                eu_rechtsakte=dict(sorted(eu.items())), sr_erlasse=dict(sorted(sr.items())),
                offen=dict(verweise=dict(offen_verweise), erlaeuterungen=offen_erl))
     ziel = DATEN / 'kanten.json'

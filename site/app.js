@@ -74,13 +74,13 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
 const seitenumbruch = t => t.replace(/([A-Za-zÄÖÜäöüß]{2,})-\n(?!(?:und|oder|bis|sowie|bzw|als|noch|wie|resp|beziehungsweise)[^A-Za-zÄÖÜäöüß])([a-zäöüß]{2,})/g, '$1$2');
 function ladeText(id) {
   const t = textteil(id);
-  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=7fc37ad9bc`).then(r => r.json()));
+  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=ed67d2ecb1`).then(r => r.json()));
   return texte.get(t).then(x => { const e = x[id] || ['', []]; return [seitenumbruch(e[0]), e[1]]; });
 }
 let alleTexte = null;
 function ladeAlleTexte() {
   if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(t => {
-    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=7fc37ad9bc`).then(r => r.json()));
+    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=ed67d2ecb1`).then(r => r.json()));
     return texte.get(t);
   })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, [seitenumbruch(v[0]), v[1]]))); return m; });
   return alleTexte;
@@ -104,7 +104,7 @@ function refName(r, lang) {
 }
 let gesetzById;
 
-fetch('daten/index.json?v=7fc37ad9bc').then(r => r.json()).then(start).catch(e => {
+fetch('daten/index.json?v=ed67d2ecb1').then(r => r.json()).then(start).catch(e => {
   $('#laden').textContent = 'Die Daten konnten nicht geladen werden (' + e.message + '). Bitte die Seite neu laden.';
 });
 

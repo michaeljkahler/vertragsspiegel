@@ -306,7 +306,12 @@ ZUSATZ = r'(?:Abs\.|Bst\.|Ziff\.|Sachüberschrift|Einleitungssatz|Gliederungstit
 ARTIKEL = re.compile(
     r'^(\s*)(«?)Art\.\s+((?:' + ROEMISCH + r'\.\s?)?\d+[a-z]*(?:bis|ter|quater|quinquies|sexies|septies|octies|novies|decies)?)'
     r'(?:(\s{2,})(\S.*?)|\s+(' + ZUSATZ + r'.*?)|\s*)$')
-ZIFFER = re.compile(r'^(\d{1,2})\.\s+(\S.*)$')
+# Sachüberschrift mit nur einem Leerzeichen («Art. 32a Internationale Zusammenarbeit», 616 Anhang 3, 633 Anhang 2):
+# nur nach einer Leerzeile, Titel gross geschrieben und ohne Satzzeichen, damit kein Satz «Art. 21 AIG regelt …» passt
+ARTIKEL_EIN = re.compile(
+    r'^(\s{0,3})(«?)Art\.\s+(\d+[a-z]*(?:bis|ter|quater|quinquies|sexies|septies|octies|novies|decies)?)'
+    r'(\s)([A-ZÄÖÜ][a-zäöüß][^.;:]{0,80}?)()$')
+ZIFFER =re.compile(r'^(\d{1,2})\.\s+(\S.*)$')
 GESETZARTIG = re.compile(r'gesetz|Gesetz|gesetzbuch|buch\b|recht\b|Bundesbeschluss|ordnung|Verordnung')
 ROEM_ALLEIN = re.compile(r'^\s*(I|II|III|IV|V|VI|VII|VIII|IX|X)\s*$')
 CELEX_EINTRAG = re.compile(r'^(?:(\d{1,3}[a-z]?)\.|\((\d{1,3}[a-z]?)\))\s+(3\d{4}\s?[A-Z]\s?\d{4}\S*?|3\d{4}[A-Z]\d{4,5}\S*?)\s*:?\s+')
@@ -336,6 +341,27 @@ def titel_fortsetzung(zeilen, i, spalte):
         else:
             break
     return teile
+
+
+def titel_naechste_zeile(zeilen, i, einzug):
+    """Sachüberschrift eines zitierten Artikels auf der Zeile unter «Art. 24a» (621): gleich weit eingerückt, gross
+    geschrieben, ohne Satzende; tiefer eingerückte Folgezeilen gehören dazu. Der Titel bleibt auch im Wortlaut."""
+    if i + 1 >= len(zeilen):
+        return ''
+    t = zeilen[i + 1].text
+    s = ohne_hoch(t.strip())
+    # nicht: Satz, der umbricht («Dieses Abkommen gilt … Europä-», 624 Art. 34)
+    if abs(len(t) - len(t.lstrip()) - einzug) > 1 or not re.match(r'^[A-ZÄÖÜ][a-zäöüß]', s) or re.search(r'[.:;,-]$', s) \
+            or len(s) > 100:
+        return ''
+    teile, j = [s], i + 2
+    while j < len(zeilen):
+        u = zeilen[j].text
+        if not u.strip() or len(u) - len(u.lstrip()) <= einzug + 1 or u.strip().startswith('('):
+            break
+        teile.append(ohne_hoch(u.strip()))
+        j += 1
+    return norm(' '.join(teile)).rstrip('»').strip()          # «Art. 53 / Berufsgeheimnis»
 
 
 def ohne_hoch(s):
@@ -435,10 +461,22 @@ def gliedern_werk(nr, typ, z):
             bau.zeile(zl)
             continue
 
+        # Nächste Ziffer eines Änderungsartikels («3. Kapitel 5 wird wie folgt geändert:» in 619); in 621 bis
+        # neun Zeichen eingerückt, darum nur ausserhalb von Anführungszeichen und mit der erwarteten Nummer
+        protokoll = bool(aend and aend['art'] == 'protokoll')
+        mz = ZIFFER.match(sauber)
+        naechste_ziffer = bool(mz and protokoll and einzug <= 10 and tiefe == 0
+                               and int(mz.group(1)) == aend['erwartet'])
+
         # --- Gliederungstitel (Teil I, 1. Kapitel, Abschnitt A …)
         m = GLIED.match(sauber)
-        in_aenderung = teil_aenderung or bool(aend and aend['art'] == 'erlasse')
-        if einzug <= 3 and m and len(sauber) <= 110 and not in_aenderung:   # in Änderungen: Titel des geänderten Erlasses
+        if m and m.group(4) and re.match(r'^\S+\s+(?:und\s+\S+\s+)?(?:der|des)\s', m.group(6)):
+            m = None                    # Listeneintrag «1. Kapitel I und III der Verordnung (EU) Nr. 651/2014» (623, 626)
+        # in Änderungen: Titel des geänderten Erlasses; in einem Änderungsartikel auch alles in Anführungszeichen
+        # («Abschnitt IV: …» als Aufzählung im neuen Art. 3 in 619)
+        in_aenderung = teil_aenderung or bool(aend and aend['art'] == 'erlasse') or (protokoll and tiefe > 0) \
+            or naechste_ziffer
+        if einzug <= 3 and m and len(sauber) <= 110 and not in_aenderung:
             if m.group(1):
                 stufe, nummer, rest = m.group(1), m.group(2), m.group(3)
             else:
@@ -468,11 +506,11 @@ def gliedern_werk(nr, typ, z):
 
         # --- Ziffern in Änderungsartikeln und Änderungslisten
         m = ZIFFER.match(sauber)
-        if einzug <= 2 and m:
+        if (einzug <= 2 or naechste_ziffer) and m:
             k = int(m.group(1))
             folge = absatz(zeilen, i, 3)
             ist_ziffer = False
-            if aend and aend['art'] == 'protokoll' and k == aend['erwartet']:
+            if naechste_ziffer:
                 ist_ziffer = True
             elif bb and teile and k == (aend['erwartet'] if aend and aend['art'] == 'erlasse' else 1) \
                     and GESETZARTIG.search(folge[:120]) and not re.match(r'^\d+\.\s+(Kapitel|Abschnitt)', folge):
@@ -507,6 +545,8 @@ def gliedern_werk(nr, typ, z):
         if einzug <= 3 and re.match(r'^\d\.\s+Art\.\s', sauber):
             sauber = re.sub(r'^\d\.\s+', '', sauber)                       # Vorlage 638: «1. Art. 1»
         m = ARTIKEL.match(sauber if einzug <= 3 else s)
+        if m is None and einzug <= 3 and i > 0 and not zeilen[i - 1].text.strip():
+            m = ARTIKEL_EIN.match(sauber)
         if m is None and 3 < einzug <= 30:
             m2 = ARTIKEL.match(s)
             if m2 and not m2.group(5):                   # eingerückt nur «Art. 335l» oder «Art. 2 Ziff. 3»
@@ -519,6 +559,8 @@ def gliedern_werk(nr, typ, z):
             if titel:
                 spalte = len(t) - len(t.lstrip()) + t.lstrip().find(m.group(5)) if m.group(5) in t else 0
                 titel = norm(' '.join([titel] + [ohne_hoch(x) for x in titel_fortsetzung(zeilen, i, spalte)]))
+            elif m.group(2) and not m.group(6):
+                titel = titel_naechste_zeile(zeilen, i, einzug)       # 621: «Art. 24a / Ausnahmen von …»
             aenderung = bool(aend and aend['art'] == 'erlasse') or teil_aenderung
             if zit and aend and aend['art'] == 'protokoll':
                 eltern, p = aend['ziffer'], pfad() + [artikel_label, aend['label']]

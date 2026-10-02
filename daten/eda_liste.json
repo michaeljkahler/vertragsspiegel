@@ -1,0 +1,1143 @@
+{
+ "stand": "2026-10-02",
+ "quelle": {
+  "titel": "Übersicht EU-Gesetzgebungsakte Paket Schweiz-EU",
+  "herausgeber": "EDA",
+  "datum": "2026-03-13",
+  "pdf": "https://www.europa.eda.admin.ch/dam/en/sd-web/PGFF7KWbg388/%C3%9Cbersicht%20EU-Gesetzgebungsakte%20Paket%20CH-EU.pdf",
+  "sha256": "0f5729d8521a271a6b2c3e7db206f4bd59a58206acffa3e71661d95165492941",
+  "bytes": 437361,
+  "werkzeug": "pdftotext version 25.07.0"
+ },
+ "eintraege": [
+  {
+   "gruppe": "Staatliche Beihilfen",
+   "nr": 1,
+   "celex": "32015R1589",
+   "zitat": "Verordnung (EU) 2015/1589",
+   "titel": "Verordnung (EU) 2015/1589 des Rates vom 13. Juli 2015 über besondere Vorschriften für die Anwendung von Artikel 108 des Vertrags über die Arbeitsweise der Europäischen Union (ABl. L 248 vom 24.9.2015, S. 9)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 12,
+    "623": 1,
+    "626": 1,
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 1,
+   "celex": "31977L0486",
+   "zitat": "Richtlinie 77/486/EWG",
+   "titel": "Richtlinie 77/486/EWG des Rates vom 25. Juli 1977 über die schulische Betreuung der Kinder von Wan- derarbeitnehmern (ABl. L 199 vom 6.8.1977, S. 32)",
+   "im_paket": true,
+   "fundorte": {
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 2,
+   "celex": "32004L0038",
+   "zitat": "Richtlinie 2004/38/EG",
+   "titel": "Richtlinie 2004/38/EG des Europäischen Parlaments und des Rates vom 29. April 2004 über das Recht der Unionsbürger und ihrer Familienangehörigen, sich im Hoheitsgebiet der Mitgliedstaaten frei zu bewe- gen und aufzuhalten, zur Änderung der Verordnung (EWG) Nr. 1612/68 und zur Aufhebung der Richtlinien 64/221/EWG, 68/360/EWG, 72/194/EWG, 73/148/EWG, 75/34/EWG, 75/35/EWG, 90/364/EWG, 90/365/EWG und ",
+   "im_paket": true,
+   "fundorte": {
+    "615": 45,
+    "617": 10,
+    "2099": 1,
+    "2174": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 3,
+   "celex": "32011R0492",
+   "zitat": "Verordnung (EU) Nr. 492/2011",
+   "titel": "Verordnung (EU) Nr. 492/2011 des Europäischen Parlaments und des Rates vom 5. April 2011 über die Freizügigkeit der Arbeitnehmer innerhalb der Union (ABl. L 141 vom 27.5.2011, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1149 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 186 vom 11.7.2019, S. 21)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 4,
+    "617": 5,
+    "618": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 4,
+   "celex": "32014L0054",
+   "zitat": "Richtlinie 2014/54/EU",
+   "titel": "Richtlinie 2014/54/EU des Europäischen Parlaments und des Rates vom 16. April 2014 über Massnahmen zur Erleichterung der Ausübung der Rechte, die Arbeitnehmern im Rahmen der Freizügigkeit zustehen (ABl. L 128 vom 30.4.2014, S. 8)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 5,
+   "celex": "32018R1724",
+   "zitat": "Verordnung (EU) 2018/1724",
+   "titel": "Verordnung (EU) 2018/1724 des Europäischen Parlaments und des Rates vom 2. Oktober 2018 über die Einrichtung eines einheitlichen digitalen Zugangstors zu Informationen, Verfahren, Hilfs- und Problemlö- sungsdiensten und zur Änderung der Verordnung (EU) Nr. 1024/2012(ABl. L 295 vom 21.11.2018, S. 1), zuletzt geändert durch Verordnung (EU) 2024/1735 des Europäischen Parlaments und des Rates vom 13. ",
+   "im_paket": true,
+   "fundorte": {
+    "617": 4
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 6,
+   "celex": "32019R1157",
+   "zitat": "Verordnung (EU) 2019/1157",
+   "titel": "Verordnung (EU) 2019/1157 des Europäischen Parlaments und des Rates vom 20. Juni 2019 zur Erhö- hung der Sicherheit der Personalausweise von Unionsbürgern und der Aufenthaltsdokumente, die Unions- bürgern und deren Familienangehörigen ausgestellt werden, die ihr Recht auf Freizügigkeit ausüben (ABl L 188 vom 12.7.2019, S. 67)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 4,
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 7,
+   "celex": "32019R1149",
+   "zitat": "Verordnung (EU) 2019/1149",
+   "titel": "Verordnung (EU) 2019/1149 des Europäischen Parlaments und des Rates vom 20. Juni 2019 zur Errich- tung einer Europäischen Arbeitsbehörde und zur Änderung der Verordnungen (EG) Nr. 883/2004, (EU) Nr. 492/2011 und (EU) 2016/589 sowie zur Aufhebung des Beschlusses (EU) 2016/344 (ABl. L 186 vom 11.7.2019, S. 21) Bemerkung: Es werden nur die in diesem EU-Gesetzgebungsakt enthaltenen Änderungen der Vero",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "617": 4
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 8,
+   "celex": "32019R0500",
+   "zitat": "Verordnung (EU) 2019/500",
+   "titel": "Verordnung (EU) 2019/500 des Europäischen Parlaments und des Rates vom 25. März 2019 zur Einfüh- rung von Notfallmassnahmen im Bereich der Koordinierung der sozialen Sicherheit nach dem Austritt des Vereinigten Königreichs aus der Union (ABl. L 85I vom 27.3.2019, S. 35)",
+   "im_paket": true,
+   "fundorte": {
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 9,
+   "celex": "32014L0050",
+   "zitat": "Richtlinie 2014/50/EU",
+   "titel": "Richtlinie 2014/50/EU des Europäischen Parlaments und des Rates vom 16. April 2014 über Mindestvor- schriften zur Erhöhung der Mobilität von Arbeitnehmern zwischen den Mitgliedstaaten durch Verbesserung des Erwerbs und der Wahrung von Zusatzrentenansprüchen (ABl. L 128 vom 30.4.2014, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 9,
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 10,
+   "celex": "32013L0025",
+   "zitat": "Richtlinie 2013/25/EU",
+   "titel": "Richtlinie 2013/25/EU des Rates vom 13. Mai 2013 zur Anpassung bestimmter Richtlinien im Bereich des Niederlassungsrechts und des freien Dienstleistungsverkehrs aufgrund des Beitritts der Republik Kroa- tien (ABl. L 158 vom 10.6.2013, S. 368)",
+   "im_paket": true,
+   "fundorte": {
+    "617": 4
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 11,
+   "celex": "32013L0055",
+   "zitat": "Richtlinie 2013/55/EU",
+   "titel": "Richtlinie 2013/55/EU des Europäischen Parlaments und des Rates vom 20. November 2013 zur Ände- rung der Richtlinie 2005/36/EG über die Anerkennung von Berufsqualifikationen und der Verordnung (EU) Nr. 1024/2012 über die Verwaltungszusammenarbeit mit Hilfe des Binnenmarkt-Informationssys- tems (ABl. L 354 vom 28.12.2013, S. 132)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 4,
+    "617": 3
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 12,
+   "celex": "32018L0958",
+   "zitat": "Richtlinie (EU) 2018/958",
+   "titel": "Richtlinie (EU) 2018/958 des Europäischen Parlaments und des Rates vom 28. Juni 2018 über eine Ver- hältnismässigkeitsprüfung vor Erlass neuer Berufsreglementierungen (ABl. L 173 vom 9.7.2018, S. 25) Stabilisierungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "616": 1,
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Zuwanderung",
+   "nr": 13,
+   "celex": "32012R1024",
+   "zitat": "Verordnung (EU) Nr. 1024/2012",
+   "titel": "Verordnung (EU) Nr. 1024/2012 des Europäischen Parlaments und des Rates vom 25. Oktober 2012 über die Verwaltungszusammenarbeit mit Hilfe des Binnenmarkt-Informationssystems und zur Aufhebung der Entscheidung 2008/49/EG der Kommission (ABl. L 316 vom 14.11.2012, S. 1), zuletzt geändert durch Verordnung (EU) 2020/1055 des Europäischen Parlaments und des Rates vom 15. Juli 2020 (ABl. L 249 vom 31.7.",
+   "im_paket": true,
+   "fundorte": {
+    "615": 7,
+    "617": 6,
+    "618": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Lohnschutz",
+   "nr": 1,
+   "celex": "32018L0957",
+   "zitat": "Richtlinie (EU) 2018/957",
+   "titel": "Richtlinie (EU) 2018/957 des Europäischen Parlaments und des Rates vom 28. Juni 2018 zur Änderung der Richtlinie 96/71/EG über die Entsendung von Arbeitnehmern im Rahmen der Erbringung von Dienst- leistungen (ABl. L 173 vom 9.7.2018, S. 16)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 6,
+    "617": 1
+   }
+  },
+  {
+   "gruppe": "PFZ-Lohnschutz",
+   "nr": 2,
+   "celex": "32014L0067",
+   "zitat": "Richtlinie 2014/67/EU",
+   "titel": "Richtlinie 2014/67/EU des Europäischen Parlaments und des Rates vom 15. Mai 2014 zur Durchsetzung der Richtlinie 96/71/EG über die Entsendung von Arbeitnehmern im Rahmen der Erbringung von Dienst- leistungen und zur Änderung der Verordnung (EU) Nr. 1024/2012 über die Verwaltungszusammenarbeit mit Hilfe des Binnenmarkt-Informationssystems (ABl. L 159 vom 28.5.2014, S. 11)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 12,
+    "617": 4
+   }
+  },
+  {
+   "gruppe": "PFZ-Lohnschutz",
+   "nr": 3,
+   "celex": "32016R0589",
+   "zitat": "Verordnung (EU) 2016/589",
+   "titel": "Verordnung (EU) 2016/589 des Europäischen Parlaments und des Rates vom 13. April 2016 über ein Europäisches Netz der Arbeitsvermittlungen (EURES), den Zugang von Arbeitnehmern zu mobilitätsför- dernden Diensten und die weitere Integration der Arbeitsmärkte und zur Änderung der Verordnungen (EU) Nr. 492/2011 und (EU) Nr. 1296/2013 (ABl. L 107 vom 22.4.2016, S. 1), zuletzt geändert durch Verordnung ",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "617": 4,
+    "618": 1
+   }
+  },
+  {
+   "gruppe": "Landverkehr",
+   "nr": 1,
+   "celex": "32010R0913",
+   "zitat": "Verordnung (EU) Nr. 913/2010",
+   "titel": "Verordnung (EU) Nr. 913/2010 des Europäischen Parlaments und des Rates vom 22. September 2010 zur Schaffung eines europäischen Schienennetzes für einen wettbewerbsfähigen Güterverkehr (ABl. L 276 vom 20.10.2010, S. 22) Stabilisierungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "621": 1
+   }
+  },
+  {
+   "gruppe": "Landverkehr",
+   "nr": 2,
+   "celex": "32012L0034",
+   "zitat": "Richtlinie 2012/34/EU",
+   "titel": "Richtlinie 2012/34/EU des Europäischen Parlaments und des Rates vom 21. November 2012 zur Schaf- fung eines einheitlichen europäischen Eisenbahnraums (Neufassung) (ABl. L 343 vom 14.12.2012, S. 32)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 4,
+    "621": 2
+   }
+  },
+  {
+   "gruppe": "Landverkehr",
+   "nr": 3,
+   "celex": "32007R1370",
+   "zitat": "Verordnung (EG) Nr. 1370/2007",
+   "titel": "Verordnung (EG) Nr. 1370/2007 des Europäischen Parlaments und des Rates vom 23. Oktober 2007 über öffentliche Personenverkehrsdienste auf Schiene und Strasse und zur Aufhebung der Verordnungen (EWG) Nr. 1191/69 und (EWG) Nr. 1107/70 des Rates (ABl. L 315 vom 3.12.2007, S. 1), zuletzt geändert durch Verordnung (EU) 2016/2338 des Europäischen Parlaments und des Rates vom 14. Dezember 2016 (ABl. L 35",
+   "im_paket": true,
+   "fundorte": {
+    "615": 9,
+    "621": 1,
+    "623": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 1,
+   "celex": "32017R0625",
+   "zitat": "Verordnung (EU) 2017/625",
+   "titel": "Verordnung (EU) 2017/625 des Europäischen Parlaments und des Rates vom 15. März 2017 über amtliche heit Kontrollen und andere amtliche Tätigkeiten zur Gewährleistung der Anwendung des Lebens- und Futter- mittelrechts und der Vorschriften über Tiergesundheit und Tierschutz, Pflanzengesundheit und Pflanzen- schutzmittel, zur Änderung der Verordnungen (EG) Nr. 999/2001, (EG) Nr. 396/2005, (EG) Nr. 10",
+   "im_paket": true,
+   "fundorte": {
+    "615": 37,
+    "633": 20,
+    "634": 10
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 2,
+   "celex": "31966L0401",
+   "zitat": "Richtlinie 66/401/EWG",
+   "titel": "Richtlinie 66/401/EWG des Rates vom 14. Juni 1966 über den Verkehr mit Futterpflanzensaatgut (ABl. 125 vom 11.7.1966, S. 2298), zuletzt geändert durch Richtlinie 2004/117/EG des Rates vom 22. Dezember 2004 (ABl. L 14 vom 18.1.2005, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 3,
+   "celex": "31966L0402",
+   "zitat": "Richtlinie 66/402/EWG",
+   "titel": "Richtlinie 66/402/EWG des Rates vom 14. Juni 1966 über den Verkehr mit Getreidesaatgut (ABl. 125 vom 11.7.1966, S. 2309), zuletzt geändert durch Richtlinie 2004/117/EG des Rates vom 22. Dezember 2004 (ABl. L 14 vom 18.1.2005, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 4,
+   "celex": "31968L0193",
+   "zitat": "Richtlinie 68/193/EWG",
+   "titel": "Richtlinie 68/193/EWG des Rates vom 9. April 1968 über den Verkehr mit vegetativem Vermehrungsgut von Reben (ABl. L 93 vom 17.4.1968, S. 15), zuletzt geändert durch Verordnung (EG) Nr. 1829/2003 des Europäischen Parlaments und des Rates vom 22. September 2003 (ABl. L 268 vom 18.10.2003, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 5,
+   "celex": "31998L0056",
+   "zitat": "Richtlinie 98/56/EG",
+   "titel": "Richtlinie 98/56/EG des Rates vom 20. Juli 1998 über das Inverkehrbringen von Vermehrungsmaterial von Zierpflanzen (ABl. L 226 vom 13.8.1998, S. 16), zuletzt geändert durch Richtlinie 2003/61/EG des Rates vom 18. Juni 2003 (ABl. L 165 vom 3.7.2003, S. 23) Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 6,
+   "celex": "31999L0105",
+   "zitat": "Richtlinie 1999/105/EG",
+   "titel": "Richtlinie 1999/105/EG des Rates vom 22. Dezember 1999 über den Verkehr mit forstlichem Vermeh- rungsgut (ABl. L 11 vom 15.1.2000, S. 17)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 7,
+   "celex": "32002L0053",
+   "zitat": "Richtlinie 2002/53/EG",
+   "titel": "Richtlinie 2002/53/EG des Rates vom 13. Juni 2002 über einen gemeinsamen Sortenkatalog für landwirt- schaftliche Pflanzenarten (ABl. L 193 vom 20.7.2002, S. 1), zuletzt geändert durch Verordnung (EG) Nr. 1829/2003 des Europäischen Parlaments und des Rates vom 22. September 2003 (ABl. L 268 vom 18.10.2003, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 8,
+   "celex": "32002L0054",
+   "zitat": "Richtlinie 2002/54/EG",
+   "titel": "Richtlinie 2002/54/EG des Rates vom 13. Juni 2002 über den Verkehr mit Betarübensaatgut (ABl. L 193, 20.7.2002, p. 12), zuletzt geändert durch Richtlinie 2004/117/EG des Rates vom 22. Dezember 2004 (ABl. L 14 vom 18.1.2005, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 9,
+   "celex": "32002L0055",
+   "zitat": "Richtlinie 2002/55/EG",
+   "titel": "Richtlinie 2002/55/EG des Rates vom 13. Juni 2002 über den Verkehr mit Gemüsesaatgut (ABl. L 193 vom 20.7.2002, S. 33), zuletzt geändert durch Richtlinie 2004/117/EG des Rates vom 22. Dezember 2004 (ABl. L 14 vom 18.1.2005, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 10,
+   "celex": "32002L0056",
+   "zitat": "Richtlinie 2002/56/EG",
+   "titel": "Richtlinie 2002/56/EG des Rates vom 13. Juni 2002 über den Verkehr mit Pflanzkartoffeln (ABl. L 193 vom 20/07/2002, S. 60), zuletzt geändert durch Richtlinie 2003/61/EG des Rates vom 18. Juni 2003 (ABl. L 165 vom 3.7.2003, S. 23)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 11,
+   "celex": "32002L0057",
+   "zitat": "Richtlinie 2002/57/EG",
+   "titel": "Richtlinie 2002/57/EG des Rates vom 13. Juni 2002 über den Verkehr mit Saatgut von Öl- und Faserpflan- zen (ABl. L 193 vom 20.7.2002, S. 74), zuletzt geändert durch Richtlinie 2004/117/EG des Rates vom 22. Dezember 2004 (ABl. L 14 vom 18.1.2005, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 12,
+   "celex": "32008L0072",
+   "zitat": "Richtlinie 2008/72/EG",
+   "titel": "Richtlinie 2008/72/EG des Rates vom 15. Juli 2008 über das Inverkehrbringen von Gemüsepflanzgut und Gemüsevermehrungsmaterial mit Ausnahme von Saatgut (ABl. L 205 vom 1.8.2008, S. 28)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 13,
+   "celex": "32008L0090",
+   "zitat": "Richtlinie 2008/90/EG",
+   "titel": "Richtlinie 2008/90/EG des Rates vom 29. September 2008 über das Inverkehrbringen von Vermehrungs- material und Pflanzen von Obstarten zur Fruchterzeugung (Neufassung) (ABl. L 267 vom 8.10.2008, S. 8)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 14,
+   "celex": "32009R1107",
+   "zitat": "Verordnung (EG) Nr. 1107/2009",
+   "titel": "Verordnung (EG) Nr. 1107/2009 des Europäischen Parlaments und des Rates vom 21. Oktober 2009 über das Inverkehrbringen von Pflanzenschutzmitteln und zur Aufhebung der Richtlinien 79/117/EWG und 91/414/EWG des Rates (ABl. L 309 vom 24.11.2009, S. 1), zuletzt geändert durch Verordnung (EU) Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe 2019/1381 des Europäischen Parlaments und des ",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 15,
+   "celex": "32009L0128",
+   "zitat": "Richtlinie 2009/128/EG",
+   "titel": "Richtlinie 2009/128/EG des Europäischen Parlaments und des Rates vom 21. Oktober 2009 über einen Aktionsrahmen der Gemeinschaft für die nachhaltige Verwendung von Pestiziden (ABl. L 309 vom 24.11.2009, S. 71), zuletzt geändert durch Verordnung (EU) 2019/1243 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 198 vom 25.7.2019, S. 241)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 16,
+   "celex": "32016R2031",
+   "zitat": "Verordnung (EU) 2016/2031",
+   "titel": "Verordnung (EU) 2016/2031 des Europäischen Parlaments und des Rates vom 26. Oktober 2016 über Massnahmen zum Schutz vor Pflanzenschädlingen, zur Änderung der Verordnungen (EU) Nr. 228/2013, (EU) Nr. 652/2014 und (EU) Nr. 1143/2014 des Europäischen Parlaments und des Rates und zur Aufhe- bung der Richtlinien 69/464/EWG, 74/647/EWG, 93/85/EWG, 98/57/EG, 2000/29/EG, 2006/91/EG und 2007/33/EG des Rate",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 17,
+   "celex": "32002L0032",
+   "zitat": "Richtlinie 2002/32/EG",
+   "titel": "Richtlinie 2002/32/EG des Europäischen Parlaments und des Rates vom 7. Mai 2002 über unerwünschte Stoffe in der Tierernährung (ABl. L 140 vom 30.5.2002, S. 10), zuletzt geändert durch Verordnung (EU) 2019/1243 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 198 vom 25.7.2019, S. 241)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 18,
+   "celex": "32003R1831",
+   "zitat": "Verordnung (EG) Nr. 1831/2003",
+   "titel": "Verordnung (EG) Nr. 1831/2003 des Europäischen Parlaments und des Rates vom 22. September 2003 über Zusatzstoffe zur Verwendung in der Tierernährung (ABl. L 268 vom 18.10.2003, S. 29), zuletzt geän- dert durch Verordnung (EU) 2019/1381 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 231 vom 6.9.2019, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 19,
+   "celex": "32005R0183",
+   "zitat": "Verordnung (EG) Nr. 183/2005",
+   "titel": "Verordnung (EG) Nr. 183/2005 des Europäischen Parlaments und des Rates vom 12. Januar 2005 mit Vorschriften für die Futtermittelhygiene (ABl. L 35 vom 8.2.2005, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1243 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 198 vom 25.7.2019, S. 241)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 2,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 20,
+   "celex": "32009R0767",
+   "zitat": "Verordnung (EG) Nr. 767/2009",
+   "titel": "Verordnung (EG) Nr. 767/2009 des Europäischen Parlaments und des Rates vom 13. Juli 2009 über das Inverkehrbringen und die Verwendung von Futtermitteln, zur Änderung der Verordnung (EG) Nr. 1831/2003 des Europäischen Parlaments und des Rates und zur Aufhebung der Richtlinien 79/373/EWG Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe des Rates, 80/511/EWG der Kommission, 82/471/EWG",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 21,
+   "celex": "31990L0428",
+   "zitat": "Richtlinie 90/428/EWG",
+   "titel": "Richtlinie 90/428/EWG des Rates vom 26. Juni 1990 über den Handel mit Sportpferden und zur Festlegung der Bedingungen für die Teilnahme an pferdesportlichen Veranstaltungen (ABl. L 224 vom 18.8.1990, S. 60), zuletzt geändert durch Richtlinie 2008/73/EG des Rates vom 15. Juli 2008 (ABl. L 219 vom 14.8.2008, S. 40)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 22,
+   "celex": "32016R1012",
+   "zitat": "Verordnung (EU) 2016/1012",
+   "titel": "Verordnung (EU) 2016/1012 des Europäischen Parlaments und des Rates vom 8. Juni 2016 über die Tier- zucht- und Abstammungsbestimmungen für die Zucht, den Handel und die Verbringung in die Union von reinrassigen Zuchttieren und Hybridzuchtschweinen sowie deren Zuchtmaterial und zur Änderung der Ver- ordnung (EU) Nr. 652/2014, der Richtlinien des Rates 89/608/EWG und 90/425/EWG sowie zur Aufhebung e",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 23,
+   "celex": "32016R0429",
+   "zitat": "Verordnung (EU) 2016/429",
+   "titel": "Verordnung (EU) 2016/429 des Europäischen Parlaments und des Rates vom 9. März 2016 zu Tierseu- chen und zur Änderung und Aufhebung einiger Rechtsakte im Bereich der Tiergesundheit («Tiergesund- heitsrecht») (ABl. L 84 vom 31.3.2016, S. 1), zuletzt geändert durch Verordnung (EU) 2017/625 des Euro- päischen Parlaments und des Rates vom 15. März 2017 (ABl. L 95 vom 7.4.2017, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 14,
+    "633": 12,
+    "634": 4
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 24,
+   "celex": "32013R0576",
+   "zitat": "Verordnung (EU) Nr. 576/2013",
+   "titel": "Verordnung (EU) Nr. 576/2013 des Europäischen Parlaments und des Rates vom 12. Juni 2013 über die Verbringung von Heimtieren zu anderen als Handelszwecken und zur Aufhebung der Verordnung (EG) Nr. 998/2003 (ABl. L 178 vom 28.6.2013, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 25,
+   "celex": "32001R0999",
+   "zitat": "Verordnung (EG) Nr. 999/2001",
+   "titel": "Verordnung (EG) Nr. 999/2001 des Europäischen Parlaments und des Rates vom 22. Mai 2001 mit Vor- schriften zur Verhütung, Kontrolle und Tilgung bestimmter transmissibler spongiformer Enzephalopathien (ABl. L 147 vom 31.5.2001, S. 1), zuletzt geändert durch Verordnung (EU) 2017/625 des Europäischen Parlaments und des Rates vom 15. März 2017 (ABl. L 95 vom 7.4.2017, S. 1) Weiterentwicklungsteil Verh",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "633": 4,
+    "634": 3
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 26,
+   "celex": "32003R2160",
+   "zitat": "Verordnung (EG) Nr. 2160/2003",
+   "titel": "Verordnung (EG) Nr. 2160/2003 des Europäischen Parlaments und des Rates vom 17. November 2003 zur Bekämpfung von Salmonellen und bestimmten anderen durch Lebensmittel übertragbaren Zoonoseer- regern (ABl. L 325 vom 12.12.2003, S. 1), zuletzt geändert durch Verordnung (EU) 2016/429 des Europä- ischen Parlaments und des Rates vom 9. März 2016 (ABl. L 84 vom 31.3.2016, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "633": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 27,
+   "celex": "32003L0099",
+   "zitat": "Richtlinie 2003/99/EG",
+   "titel": "Richtlinie 2003/99/EG des Europäischen Parlaments und des Rates vom 17. November 2003 zur Überwa- chung von Zoonosen und Zoonoseerregern und zur Änderung der Entscheidung 90/424/EWG des Rates sowie zur Aufhebung der Richtlinie 92/117/EWG des Rates (ABl. L 325 vom 12.12.2003, S. 31), zuletzt geändert durch Richtlinie 2013/20/EU des Rates vom 13. Mai 2013 (ABl. L 158 vom 10.6.2013, S. 234)",
+   "im_paket": true,
+   "fundorte": {
+    "633": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 28,
+   "celex": "32002R0178",
+   "zitat": "Verordnung (EG) Nr. 178/2002",
+   "titel": "Verordnung (EG) Nr. 178/2002 des Europäischen Parlaments und des Rates vom 28. Januar 2002 zur Festlegung der allgemeinen Grundsätze und Anforderungen des Lebensmittelrechts, zur Errichtung der Europäischen Behörde für Lebensmittelsicherheit und zur Festlegung von Verfahren zur Lebensmittelsi- cherheit (ABl. L 31 vom 1.2.2002, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1381 des Europäi- sc",
+   "im_paket": true,
+   "fundorte": {
+    "615": 18,
+    "619": 1,
+    "633": 13,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 29,
+   "celex": "31989L0108",
+   "zitat": "Richtlinie 89/108/EWG",
+   "titel": "Richtlinie 89/108/EWG des Rates vom 21. Dezember 1988 zur Angleichung der Rechtsvorschriften der Mitgliedstaaten über tiefgefrorene Lebensmittel (ABl. L 40 vom 11.2.1989, S. 34), zuletzt geändert durch Richtlinie 2013/20/EU des Rates vom 13. Mai 2013 (ABl. L 158 vom 10.6.2013, S. 234)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 30,
+   "celex": "32004R0852",
+   "zitat": "Verordnung (EG) Nr. 852/2004",
+   "titel": "Verordnung (EG) Nr. 852/2004 des Europäischen Parlaments und des Rates vom 29. April 2004 über Lebensmittelhygiene (ABl. L 139 vom 30.4.2004, S. 1), zuletzt geändert durch Verordnung (EG) Nr. 219/2009 des Europäischen Parlaments und des Rates vom 11. März 2009 (ABl. L 87 vom 31.3.2009, S. 109)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "633": 2,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 31,
+   "celex": "32004R0853",
+   "zitat": "Verordnung (EG) Nr. 853/2004",
+   "titel": "Verordnung (EG) Nr. 853/2004 des Europäischen Parlaments und des Rates vom 29. April 2004 mit spe- zifischen Hygienevorschriften für Lebensmittel tierischen Ursprungs (ABl. L 139 vom 30.4.2004, S. 55), zuletzt geändert durch Verordnung (EU) 2021/1756 des Europäischen Parlaments und des Rates vom 6. Oktober 2021 (ABl. L 357 vom 8.10.2021, S. 27)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 2,
+    "633": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 32,
+   "celex": "32002L0046",
+   "zitat": "Richtlinie 2002/46/EG",
+   "titel": "Richtlinie 2002/46/EG des Europäischen Parlaments und des Rates vom 10. Juni 2002 zur Angleichung der Rechtsvorschriften der Mitgliedstaaten über Nahrungsergänzungsmittel (ABl. L 183 vom 12.7.2002, S. Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe 51), zuletzt geändert durch Verordnung (EG) Nr. 1137/2008 des Europäischen Parlaments und des Rates vom 22. Oktober 2008 (ABl. L 311 v",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 33,
+   "celex": "32003R2065",
+   "zitat": "Verordnung (EG) Nr. 2065/2003",
+   "titel": "Verordnung (EG) Nr. 2065/2003 des Europäischen Parlaments und des Rates vom 10. November 2003 über Raucharomen zur tatsächlichen oder beabsichtigten Verwendung in oder auf Lebensmitteln (ABl. L 309 vom 26.11.2003, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1381 des Europäischen Parla- ments und des Rates vom 20. Juni 2019 (ABl. L 231 vom 6.9.2019, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 34,
+   "celex": "32006R1925",
+   "zitat": "Verordnung (EG) Nr. 1925/2006",
+   "titel": "Verordnung (EG) Nr. 1925/2006 des Europäischen Parlaments und des Rates vom 20. Dezember 2006 über den Zusatz von Vitaminen und Mineralstoffen sowie bestimmten anderen Stoffen zu Lebensmitteln (ABl. L 404 vom 30.12.2006, S. 26), zuletzt geändert durch Verordnung (EU) Nr. 1169/2011 des Europäi- schen Parlaments und des Rates vom 25. Oktober 2011 (ABl. L 304 vom 22.11.2011, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 35,
+   "celex": "32008R1331",
+   "zitat": "Verordnung (EG) Nr. 1331/2008",
+   "titel": "Verordnung (EG) Nr. 1331/2008 des Europäischen Parlaments und des Rates vom 16. Dezember 2008 über ein einheitliches Zulassungsverfahren für Lebensmittelzusatzstoffe, -enzyme und -aromen (ABl. L 354 vom 31.12.2008, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1381 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl. L 231 vom 6.9.2019, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 36,
+   "celex": "32008R1332",
+   "zitat": "Verordnung (EG) Nr. 1332/2008",
+   "titel": "Verordnung (EG) Nr. 1332/2008 des Europäischen Parlaments und des Rates vom 16. Dezember 2008 über Lebensmittelenzyme und zur Änderung der Richtlinie 83/417/EWG des Rates, der Verordnung (EG) Nr. 1493/1999 des Rates, der Richtlinie 2000/13/EG, der Richtlinie 2001/112/EG des Rates sowie der Verordnung (EG) Nr. 258/97 (ABl. L 354 vom 31.12.2008, S. 7)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 37,
+   "celex": "32008R1333",
+   "zitat": "Verordnung (EG) Nr. 1333/2008",
+   "titel": "Verordnung (EG) Nr. 1333/2008 des Europäischen Parlaments und des Rates vom 16. Dezember 2008 über Lebensmittelzusatzstoffe (ABl. L 354 vom 31.12.2008, S. 16)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 38,
+   "celex": "32008R1334",
+   "zitat": "Verordnung (EG) Nr. 1334/2008",
+   "titel": "Verordnung (EG) Nr. 1334/2008 des Europäischen Parlaments und des Rates vom 16. Dezember 2008 über Aromen und bestimmte Lebensmittelzutaten mit Aromaeigenschaften zur Verwendung in und auf Le- bensmitteln sowie zur Änderung der Verordnung (EWG) Nr. 1601/91 des Rates, der Verordnungen (EG) Nr. 2232/96 und (EG) Nr. 110/2008 und der Richtlinie 2000/13/EG (ABl. L 354 vom 31.12.2008, S. 34), zuletzt ge",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 39,
+   "celex": "32013R0609",
+   "zitat": "Verordnung (EU) Nr. 609/2013",
+   "titel": "Verordnung (EU) Nr. 609/2013 des Europäischen Parlaments und des Rates vom 12. Juni 2013 über Le- bensmittel für Säuglinge und Kleinkinder, Lebensmittel für besondere medizinische Zwecke und Tagesra- tionen für gewichtskontrollierende Ernährung und zur Aufhebung der Richtlinie 92/52/EWG des Rates, der Richtlinien 96/8/EG, 1999/21/EG, 2006/125/EG und 2006/141/EG der Kommission, der Richtlinie 2009/",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 40,
+   "celex": "32015L2203",
+   "zitat": "Richtlinie (EU) 2015/2203",
+   "titel": "Richtlinie (EU) 2015/2203 des Europäischen Parlaments und des Rates vom 25. November 2015 zur An- gleichung der Rechtsvorschriften der Mitgliedstaaten über Kaseine und Kaseinate für die menschliche Er- nährung und zur Aufhebung der Richtlinie 83/417/EWG des Rates (ABl. L 314 vom 1.12.2015, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 41,
+   "celex": "32015R2283",
+   "zitat": "Verordnung (EU) 2015/2283",
+   "titel": "Verordnung (EU) 2015/2283 des Europäischen Parlaments und des Rates vom 25. November 2015 über neuartige Lebensmittel, zur Änderung der Verordnung (EU) Nr. 1169/2011 des Europäischen Parlaments und des Rates und zur Aufhebung der Verordnung (EG) Nr. 258/97 des Europäischen Parlaments und des Rates und der Verordnung (EG) Nr. 1852/2001 der Kommission (ABl. L 327 vom 11.12.2015, S. 1), zuletzt geänd",
+   "im_paket": true,
+   "fundorte": {
+    "615": 2,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 42,
+   "celex": "31993R0315",
+   "zitat": "Verordnung (EWG) Nr. 315/93",
+   "titel": "Verordnung (EWG) Nr. 315/93 des Rates vom 8. Februar 1993 zur Festlegung von gemeinschaftlichen Verfahren zur Kontrolle von Kontaminanten in Lebensmitteln (ABl. L 37 vom 13.2.1993, S. 1), zuletzt ge- ändert durch Verordnung (EG) Nr. 596/2009 des Europäischen Parlaments und des Rates vom 18. Juni 2009 (ABl. L 188 vom 18.7.2009, S. 14)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 43,
+   "celex": "32005R0396",
+   "zitat": "Verordnung (EG) Nr. 396/2005",
+   "titel": "Verordnung (EG) Nr. 396/2005 des Europäischen Parlaments und des Rates vom 23. Februar 2005 über Höchstgehalte an Pestizidrückständen in oder auf Lebens- und Futtermitteln pflanzlichen und tierischen Ursprungs und zur Änderung der Richtlinie 91/414/EWG des Rates (ABl. L 70 vom 16.3.2005, S. 1), zuletzt geändert durch Verordnung (EU) 2017/625 des Europäischen Parlaments und des Rates vom 15. März 2",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 44,
+   "celex": "32009R0470",
+   "zitat": "Verordnung (EG) Nr. 470/2009",
+   "titel": "Verordnung (EG) Nr. 470/2009 des Europäischen Parlaments und des Rates vom 6. Mai 2009 über die Schaffung eines Gemeinschaftsverfahrens für die Festsetzung von Höchstmengen für Rückstände phar- makologisch wirksamer Stoffe in Lebensmitteln tierischen Ursprungs, zur Aufhebung der Verordnung Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe (EWG) Nr. 2377/90 des Rates und zur Änderung",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 45,
+   "celex": "32004R1935",
+   "zitat": "Verordnung (EG) Nr. 1935/2004",
+   "titel": "Verordnung (EG) Nr. 1935/2004 des Europäischen Parlaments und des Rates vom 27. Oktober 2004 über Materialien und Gegenstände, die dazu bestimmt sind, mit Lebensmitteln in Berührung zu kommen und zur Aufhebung der Richtlinien 80/590/EWG und 89/109/EWG (ABl. L 338 vom 13.11.2004, S. 4), zuletzt geändert durch Verordnung (EU) 2019/1381 des Europäischen Parlaments und des Rates vom 20. Juni 2019 (ABl",
+   "im_paket": true,
+   "fundorte": {
+    "615": 5,
+    "633": 6,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 46,
+   "celex": "31984L0500",
+   "zitat": "Richtlinie 84/500/EWG",
+   "titel": "Richtlinie 84/500/EWG des Rates vom 15. Oktober 1984 zur Angleichung der Rechtsvorschriften der Mit- gliedstaaten über Keramikgegenstände, die dazu bestimmt sind, mit Lebensmitteln in Berührung zu kom- men (ABl. L 277 vom 20.10.1984, S. 12)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 47,
+   "celex": "32000R1760",
+   "zitat": "Verordnung (EG) Nr. 1760/2000",
+   "titel": "Verordnung (EG) Nr. 1760/2000 des Europäischen Parlaments und des Rates vom 17. Juli 2000 zur Ein- führung eines Systems zur Kennzeichnung und Registrierung von Rindern und über die Etikettierung von Rindfleisch und Rindfleischerzeugnissen sowie zur Aufhebung der Verordnung (EG) Nr. 820/97 des Rates (ABl. L 204 vom 11.8.2000, p. 1), zuletzt geändert durch Verordnung (EU) Nr. 1169/2011 des Europäis",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 48,
+   "celex": "32006R1924",
+   "zitat": "Verordnung (EG) Nr. 1924/2006",
+   "titel": "Verordnung (EG) Nr. 1924/2006 des Europäischen Parlaments und des Rates vom 20. Dezember 2006 über nährwert- und gesundheitsbezogene Angaben über Lebensmittel (ABl. L 404 vom 30.12.2006, S. 9), zuletzt geändert durch Verordnung (EU) Nr. 1169/2011 des Europäischen Parlaments und des Rates vom 25. Oktober 2011(ABl. L 304 vom 22.11.2011, S. 18)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 2,
+    "633": 1,
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 49,
+   "celex": "32011R1169",
+   "zitat": "Verordnung (EU) Nr. 1169/2011",
+   "titel": "Verordnung (EU) Nr. 1169/2011 des Europäischen Parlaments und des Rates vom 25. Oktober 2011 be- treffend die Information der Verbraucher über Lebensmittel und zur Änderung der Verordnungen (EG) Nr. 1924/2006 und (EG) Nr. 1925/2006 des Europäischen Parlaments und des Rates und zur Aufhebung der Richtlinie 87/250/EWG der Kommission, der Richtlinie 90/496/EWG des Rates, der Richtlinie 1999/10/EG der",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "633": 1,
+    "634": 5
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 50,
+   "celex": "32011L0091",
+   "zitat": "Richtlinie 2011/91/EU",
+   "titel": "Richtlinie 2011/91/EU des Europäischen Parlaments und des Rates vom 13. Dezember 2011 über Anga- ben oder Marken, mit denen sich das Los, zu dem ein Lebensmittel gehört, feststellen lässt (ABl. L 334 vom 16.12.2011, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 51,
+   "celex": "31999L0002",
+   "zitat": "Richtlinie 1999/2/EG",
+   "titel": "Richtlinie 1999/2/EG des Europäischen Parlaments und des Rates vom 22. Februar 1999 zur Angleichung der Rechtsvorschriften der Mitgliedstaaten über mit ionisierenden Strahlen behandelte Lebensmittel und Lebensmittelbestandteile (ABl. L 66 vom 13.3.1999, S. 16), zuletzt geändert durch Verordnung (EG) Nr. 1137/2008 des Europäischen Parlaments und des Rates vom 22. Oktober 2008 (ABl. L 311 vom 21.11.",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 52,
+   "celex": "31999L0003",
+   "zitat": "Richtlinie 1999/3/EG",
+   "titel": "Richtlinie 1999/3/EG des Europäischen Parlaments und des Rates vom 22. Februar 1999 über die Festle- gung einer Gemeinschaftsliste von mit ionisierenden Strahlen behandelten Lebensmitteln und Lebensmit- telbestandteilen (ABl. L 66 vom 13.3.1999, S. 24)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 53,
+   "celex": "32009L0032",
+   "zitat": "Richtlinie 2009/32/EG",
+   "titel": "Richtlinie 2009/32/EG des Europäischen Parlaments und des Rates vom 23. April 2009 zur Angleichung der Rechtsvorschriften der Mitgliedstaaten über Extraktionslösungsmittel, die bei der Herstellung von Le- bensmitteln und Lebensmittelzutaten verwendet werden (Neufassung) (ABl. L 141 vom 6.6.2009, S. 3)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 54,
+   "celex": "32009L0054",
+   "zitat": "Richtlinie 2009/54/EG",
+   "titel": "Richtlinie 2009/54/EG des Europäischen Parlaments und des Rates vom 18. Juni 2009 über die Gewin- nung von und den Handel mit natürlichen Mineralwässern (Neufassung) (ABl. L 164 vom 26.6.2009, S. 45)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 55,
+   "celex": "32016R0052",
+   "zitat": "Verordnung (Euratom) 2016/52",
+   "titel": "Verordnung (Euratom) 2016/52 des Rates vom 15. Januar 2016 zur Festlegung von Höchstwerten an Ra- dioaktivität in Lebens- und Futtermitteln im Falle eines nuklearen Unfalls oder eines anderen radiologischen Notfalls und zur Aufhebung der Verordnung (Euratom) Nr. 3954/87 des Rates und der Verordnungen (Eu- ratom) Nr. 944/89 und (Euratom) Nr. 770/90 der Kommission (ABl. L 13 vom 20.1.2016, S. 2)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 56,
+   "celex": "32005R0001",
+   "zitat": "Verordnung (EG) Nr. 1/2005",
+   "titel": "Verordnung (EG) Nr. 1/2005 des Rates vom 22. Dezember 2004 über den Schutz von Tieren beim Trans- port und damit zusammenhängenden Vorgängen sowie zur Änderung der Richtlinien 64/432/EWG und 93/119/EG und der Verordnung (EG) Nr. 1255/97 (ABl. L 3 vom 5.1.2005, S. 1), zuletzt geändert durch Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe Verordnung (EU) 2017/625 des Europäischen Pa",
+   "im_paket": true,
+   "fundorte": {
+    "615": 10,
+    "633": 4,
+    "634": 3
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 57,
+   "celex": "32009R1099",
+   "zitat": "Verordnung (EG) Nr. 1099/2009",
+   "titel": "Verordnung (EG) Nr. 1099/2009 des Rates vom 24. September 2009 über den Schutz von Tieren zum Zeitpunkt der Tötung (ABl. L 303 vom 18.11.2009, S. 1), zuletzt geändert durch Verordnung (EU) 2017/625 des Europäischen Parlaments und des Rates vom 15. März 2017 (ABl. L 95 vom 7.4.2017, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 8,
+    "633": 2,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 58,
+   "celex": "32009R1069",
+   "zitat": "Verordnung (EG) Nr. 1069/2009",
+   "titel": "Verordnung (EG) Nr. 1069/2009 des Europäischen Parlaments und des Rates vom 21. Oktober 2009 mit Hygienevorschriften für nicht für den menschlichen Verzehr bestimmte tierische Nebenprodukte und zur Aufhebung der Verordnung (EG) Nr. 1774/2002 (Verordnung über tierische Nebenprodukte) (ABl. L 300 vom 14.11.2009, S. 1), zuletzt geändert durch Verordnung (EU) 2019/1009 des Europäischen Parlaments und ",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "633": 1,
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 59,
+   "celex": "31996L0022",
+   "zitat": "Richtlinie 96/22/EG",
+   "titel": "Richtlinie 96/22/EG des Rates vom 29. April 1996 über das Verbot der Verwendung bestimmter Stoffe mit hormonaler bzw. thyreostatischer Wirkung und von ß-Agonisten in der tierischen Erzeugung und zur Auf- hebung der Richtlinien 81/602/EWG, 88/146/EWG und 88/299/EWG (ABl. L 125 vom 23.5.1996, S. 3), zuletzt geändert durch Richtlinie 2008/97/EG des Europäischen Parlaments und des Rates vom 19. No- ve",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 60,
+   "celex": "32019R0006",
+   "zitat": "Verordnung (EU) 2019/6",
+   "titel": "Artikel 107 (ausgenommen Absatz 6) und Artikel 118 der Verordnung (EU) 2019/6 des Europäischen Par- laments und des Rates vom 11. Dezember 2018 über Tierarzneimittel und zur Aufhebung der Richtlinie 2001/82/EG (ABl. L 4 vom 7.1.2019, S. 43) in Verbindung mit deren Artikel 37 Absatz 5.",
+   "im_paket": true,
+   "fundorte": {
+    "634": 1
+   }
+  },
+  {
+   "gruppe": "Lebensmittelsicherheit",
+   "nr": 61,
+   "celex": "32019R0004",
+   "zitat": "Verordnung (EU) 2019/4",
+   "titel": "Artikel 17 Absatz 3 der Verordnung (EU) 2019/4 des Europäischen Parlaments und des Rates vom 11. Dezember 2018 über die Herstellung, das Inverkehrbringen und die Verwendung von Arzneifuttermitteln, zur Änderung der Verordnung (EG) Nr. 183/2005 des Europäischen Parlaments und des Rates sowie zur Aufhebung der Richtlinie 90/167/EWG des Rates (ABl. L 4 vom 7.1.2019, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "634": 2
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 1,
+   "celex": "32019R0941",
+   "zitat": "Verordnung (EU) 2019/941",
+   "titel": "Verordnung (EU) 2019/941 des Europäischen Parlaments und des Rates vom 5. Juni 2019 über die Risi- kovorsorge im Elektrizitätssektor und zur Aufhebung der Richtlinie 2005/89/EG (ABl. L 158 vom 14.6.2019, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 2,
+   "celex": "32019R0942",
+   "zitat": "Verordnung (EU) 2019/942",
+   "titel": "Verordnung (EU) 2019/942 des Europäischen Parlaments und des Rates vom 5. Juni 2019 zur Gründung einer Agentur der Europäischen Union für die Zusammenarbeit der Energieregulierungsbehörden (Neu- fassung) (ABl. L 158 vom 14.6.2019, S. 22), zuletzt geändert durch Verordnung (EU) 2024/1789 des Eu- ropäischen Parlaments und des Rates vom 13. Juni 2024 (ABl. L, 2024/1789 vom 15.7.2024)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 1,
+    "632": 4
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 3,
+   "celex": "32019R0943",
+   "zitat": "Verordnung (EU) 2019/943",
+   "titel": "Verordnung (EU) 2019/943 des Europäischen Parlaments und des Rates vom 5. Juni 2019 über den Elekt- rizitätsbinnenmarkt (Neufassung) (ABl. L 158 vom 14.6.2019, S. 54), zuletzt geändert durch Verordnung (EU) 2024/1747 des Europäischen Parlaments und des Rates vom 13. Juni 2024 (ABl. L, 2024/1747 vom 26.6.2024)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 11,
+    "631": 1,
+    "632": 7
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 4,
+   "celex": "32019L0944",
+   "zitat": "Richtlinie (EU) 2019/944",
+   "titel": "Richtlinie (EU) 2019/944 des Europäischen Parlaments und des Rates vom 5. Juni 2019 mit gemeinsamen Vorschriften für den Elektrizitätsbinnenmarkt und zur Änderung der Richtlinie 2012/27/EU (Neufassung) (ABl. L 158 vom 14.6.2019, p. 125), zuletzt geändert durch Richtlinie (EU) 2024/1711 des Europäischen Parlaments und des Rates vom 13. Juni 2024 (ABl. L, 2024/1711 vom 26.6.2024)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 7,
+    "631": 8,
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 5,
+   "celex": "32011R1227",
+   "zitat": "Verordnung (EU) Nr. 1227/2011",
+   "titel": "Verordnung (EU) Nr. 1227/2011 des Europäischen Parlaments und des Rates vom 25. Oktober 2011 über die Integrität und Transparenz des Energiegrosshandelsmarkts (ABl. L 326 vom 8.12.2011, p. 1), zuletzt geändert durch Verordnung (EU) 2024/1106 des Europäischen Parlaments und des Rates vom 11. April 2024 (ABl. L, 2024/1106 vom 17.4.2024)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 5,
+    "631": 16,
+    "632": 4
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 6,
+   "celex": "32018L2001",
+   "zitat": "Richtlinie (EU) 2018/2001",
+   "titel": "Richtlinie (EU) 2018/2001 des Europäischen Parlaments und des Rates vom 11. Dezember 2018 zur För- derung der Nutzung von Energie aus erneuerbaren Quellen (Neufassung) (ABl. L 328 vom 21.12.2018, S. 82), zuletzt geändert durch Richtlinie (EU) 2024/1711 des Europäischen Parlaments und des Rates vom 13. Juni 2024(ABl. L, 2024/1711 vom 26.6.2024)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "632": 11
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 7,
+   "celex": "32011L0092",
+   "zitat": "Richtlinie 2011/92/EU",
+   "titel": "Richtlinie 2011/92/EU des Europäischen Parlaments und des Rates vom 13. Dezember 2011 über die Umweltverträglichkeitsprüfung bei bestimmten öffentlichen und privaten Projekten (ABl. L 26 vom Weiterentwicklungsteil Verhandlungs- EU-Gesetzgebungsakte gruppe 28.1.2012, S. 1), zuletzt geändert durch Richtlinie 2014/52/EU des Europäischen Parlaments und des Ra- tes vom 16. April 2014 (ABl. L 124 vom 25",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 8,
+   "celex": "32001L0042",
+   "zitat": "Richtlinie 2001/42/EG",
+   "titel": "Richtlinie 2001/42/EG des Europäischen Parlaments und des Rates vom 27. Juni 2001 über die Prüfung der Umweltauswirkungen bestimmter Pläne und Programme (ABl. L 197 vom 21.7.2001, S. 30)",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 9,
+   "celex": "32016L0802",
+   "zitat": "Richtlinie (EU) 2016/802",
+   "titel": "Richtlinie (EU) 2016/802 des Europäischen Parlaments und des Rates vom 11. Mai 2016 über eine Ver- ringerung des Schwefelgehalts bestimmter flüssiger Kraft- oder Brennstoffe (ABl. L 132 vom 21.5.2016, S. 58)",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 10,
+   "celex": "32010L0075",
+   "zitat": "Richtlinie 2010/75/EU",
+   "titel": "Richtlinie 2010/75/EU des Europäischen Parlaments und des Rates vom 24. November 2010 über Indust- rieemissionen (integrierte Vermeidung und Verminderung der Umweltverschmutzung) (Neufassung) (ABl. L 334 vom 17.12.2010, S. 17)",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 11,
+   "celex": "32009L0147",
+   "zitat": "Richtlinie 2009/147/EG",
+   "titel": "Richtlinie 2009/147/EG des Europäischen Parlaments und des Rates vom 30. November 2009 über die Erhaltung der wildlebenden Vogelarten (ABl. L 20 vom 26.1.2010, S. 7), zuletzt geändert durch Verordnung (EU) 2019/1010 des Europäischen Parlaments und des Rates vom 5. Juni 2019 (ABl. L 170 vom 25.6.2019, S. 115)",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Strom",
+   "nr": 12,
+   "celex": "32004L0035",
+   "zitat": "Richtlinie 2004/35/EG",
+   "titel": "Richtlinie 2004/35/EG des Europäischen Parlaments und des Rates vom 21. April 2004 über Umwelthaf- tung zur Vermeidung und Sanierung von Umweltschäden (ABl. L 143 vom 30.4.2004, S. 56), zuletzt geän- dert durch Verordnung (EU) 2019/1010 des Europäischen Parlaments und des Rates vom 5. Juni 2019 (ABl. L 170 vom 25.6.2019, S. 115)",
+   "im_paket": true,
+   "fundorte": {
+    "632": 1
+   }
+  },
+  {
+   "gruppe": "Gesundheit",
+   "nr": 1,
+   "celex": "32022R2371",
+   "zitat": "Verordnung (EU) 2022/2371",
+   "titel": "Verordnung (EU) 2022/2371 des Europäischen Parlaments und des Rates vom 23. November 2022 zu schwerwiegenden grenzüberschreitenden Gesundheitsgefahren und zur Aufhebung des Beschlusses Nr. 1082/2013/EU (ABl. L 314 vom 6.12.2022, S. 26)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 3,
+    "636": 4
+   }
+  },
+  {
+   "gruppe": "Gesundheit",
+   "nr": 2,
+   "celex": "32004R0851",
+   "zitat": "Verordnung (EG) Nr. 851/2004",
+   "titel": "Verordnung (EG) Nr. 851/2004 des Europäischen Parlaments und des Rates vom 21. April 2004 zur Er- richtung eines Europäischen Zentrums für die Prävention und die Kontrolle von Krankheiten (ABl. L 142 vom 30.4.2004, S. 1), zuletzt geändert durch Verordnung (EU) 2022/2370 des Europäischen Parlaments und des Rates vom 23. November 2022 (ABl. L 314 vom 6.12.2022, S. 1)",
+   "im_paket": true,
+   "fundorte": {
+    "615": 2,
+    "636": 2
+   }
+  }
+ ]
+}

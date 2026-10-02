@@ -35,6 +35,13 @@ Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    2. Finden mit Thema, Textart, geführter Auswahl in drei Schritten, Themenvorschlag in der Suche und Ergebnisliste; die Auswahl ist in allen Ansichten markiert (Ziffer 5.4).
    3. Themenkatalog `daten/themen.json` mit 20 Themen, geprüft mit `scripts/themen.py`: jeder Begriff kommt im Paket vor, 0 Fehler.
 13. Auftrag Michael vom 2. Oktober 2026: Grafikfunktion wie im Finanzspiegel, mindestens für die Netzgrafiken auf allen Stufen, das Icicle, die Bezüge und die Umsetzung, in den Formaten Social Media, Bericht und Präsentation. Entscheide vom selben Tag: eigener Titel erlaubt, die Zeile «Gezeigt» bleibt fest; Wortlautkarte nur mit ganzen Absätzen oder dem ganzen Text; Netz für Vorlagen, Dokumente und Artikel auch als Ansicht auf der Seite. Umgesetzt in `seite/grafik.js` und im Reiter «Verknüpfungen» (Ziffer 5.5).
+14. Rückmeldung Michael vom 2. Oktober 2026: Themenkatalog freigegeben (Ziffer 13.6); die Seite ist an Testpersonen verschickt; der Kasten im Politspiegel (Etappe 7) besteht; Etappe 5 umsetzen; Etappe 2 sorgfältig nachführen.
+15. Nachführung Etappe 2 vom 2. Oktober 2026, Einzelheiten in `docs/KORREKTUREN.md` (Abschnitt 3, 2. Oktober):
+   1. EDA-Übersicht abgeglichen: alle 95 Gesetzgebungsakte im Paket genannt.
+   2. Gliederung: Änderungsprotokolle LandVA und MRA vollständig nach Ziffern, sechs Artikel mit einfachem Leerzeichen nach der Nummer erkannt, zwei falsche Kapitel entfernt; Trennstriche am Seitenende aufgelöst. 3133 Zettel, 647 928 Wörter.
+   3. Verweise: Artikelnummern mit «bis», «ter», «quater» werden nicht mehr gekürzt; Botschaft ohne Zusatz über das Bezugswerk der Ziffer (418 Kanten, Stichprobe 40 von 40); Protokolle im EUPA mit eigenem Geltungsbereich. 8114 Kanten, davon 2186 Artikelverweise und 556 Erläuterungen.
+   4. Erläuterungen der Botschaft zu einzelnen Artikeln: 516 von 517 zugeordnet; die letzte erläutert einen Artikel, den der Entwurf nicht enthält (Fehler der Vorlage).
+   5. Prüfungen 9.1 bis 9.6 bestanden, Stichprobe 20 von 20.
 
 ## 2. Ziel
 
@@ -63,7 +70,7 @@ Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
 | Fedlex, SR | Bundesgesetze, die die Bundesbeschlüsse ändern oder neu schaffen | SR-Nummern | laufend |
 | EUR-Lex | Titel und CELEX-Nummer der genannten EU-Rechtsakte | Suche über Nummer | laufend |
 | Parlamentsdienste, Geschäft 26.023 | Beratungsstand, Beschlüsse je Entwurf | Webservice `ws-old.parlament.ch/affairs/20260023`, Curia Vista | laufend |
-| EDA, Seite «Botschaft Paket Schweiz–EU» | Übersicht der 94 EU-Gesetzgebungsakte, Kontrollzahlen (36 geänderte und 3 neue Bundesgesetze) | PDF | 13. März 2026 |
+| EDA, Seite «Botschaft Paket Schweiz–EU» | Übersicht der 95 EU-Gesetzgebungsakte (abgeglichen mit `scripts/eda_abgleich.py`), Kontrollzahlen (36 geänderte und 3 neue Bundesgesetze) | PDF | 13. März 2026 |
 
 Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden sind nach Art. 5 Abs. 1 lit. a und c URG nicht geschützt. Der Wortlaut darf vollständig veröffentlicht werden.
 
@@ -235,7 +242,7 @@ Selbstprüfung bei jedem Bau, Abbruch bei Abweichung:
 2. Artikel: lückenlose Nummernfolge je Abkommen und Bundesbeschluss, Abweichungen einzeln gemeldet.
 3. Botschaft: jede Ziffer des Inhaltsverzeichnisses hat einen Zettel.
 4. Gesetze: 36 geänderte und 3 neue Bundesgesetze laut Botschaft.
-5. EU-Rechtsakte: jede erkannte Nummer löst auf EUR-Lex zu einer CELEX-Nummer auf; die 94 Gesetzgebungsakte der EDA-Übersicht sind alle enthalten.
+5. EU-Rechtsakte: jede erkannte Nummer löst auf EUR-Lex zu einer CELEX-Nummer auf; die 95 Gesetzgebungsakte der EDA-Übersicht sind alle enthalten (bis 2. Oktober 2026 stand hier 94; die Übersicht selbst zählt 95).
 6. Stichprobe von Hand: 20 zufällige Kanten je Bau, Ergebnis im Korrekturprotokoll.
 
 Bekannte Fehlerbilder der Rohextraktion vom 1. Oktober 2026:
@@ -254,7 +261,7 @@ Stand nach Etappe 2 (1. Oktober 2026):
 3. Behoben: 3 neue und 36 geänderte Bundesgesetze, 46 Zuordnungen Bundesbeschluss–Gesetz. Das Lebensmittelgesetz ist eine Totalrevision und zählt als geändert, die Änderung des Beihilfeüberwachungsgesetzes in 631 als Zuordnung zum neuen BHÜG.
 4. Behoben: Artikelverweise zwischen Dokumenten über Bezugswerk und Abkürzung («Artikel 14a FZA», «Art. 5 E-BHÜG», «des Abkommens» im Protokoll zu einem bestehenden Abkommen).
 5. Behoben: jede Ziffer des Inhaltsverzeichnisses der Botschaft (alle Ebenen) ist ein Zettel mit abschnittsgenauer Wortzahl.
-6. Teilweise: 493 EU-Rechtsakte mit CELEX-Nummer, 491 auf EUR-Lex bestätigt, 2 Fehler der Vorlage. Der Abgleich mit den 94 Gesetzgebungsakten der EDA-Übersicht fehlt noch, weil die Übersicht nicht im Repository liegt.
+6. Behoben (2. Oktober 2026): 492 EU-Rechtsakte mit CELEX-Nummer, 490 auf EUR-Lex bestätigt, 2 Fehler der Vorlage. Alle 95 Gesetzgebungsakte der EDA-Übersicht sind im Paket genannt (`scripts/eda_abgleich.py`, `daten/eda_liste.json`, Teil von Prüfung 9.5).
 
 ## 10. Verknüpfung mit dem Politspiegel
 
@@ -286,13 +293,13 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
 5. Französisch und Italienisch.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
-7. Kasten im Politspiegel, Testphase, Bekanntmachung.
+7. Kasten im Politspiegel, Testphase, Bekanntmachung. Stand 2. Oktober 2026: Kasten besteht, Testphase läuft (Seite an Testpersonen verschickt), Bekanntmachung offen.
 
 ## 13. Offene Entscheide
 
 1. Name und Adresse: «Vertragsspiegel», Repository `vertragsspiegel`. Entschieden am 1. Oktober 2026.
 2. Projektordner «Bilaterale III» bleibt Wurzel des Repositorys. Entschieden am 1. Oktober 2026.
-3. Zeitpunkt für Französisch und Italienisch.
+3. Zeitpunkt für Französisch und Italienisch. Entschieden am 2. Oktober 2026: jetzt (Etappe 5).
 4. Rohdaten (PDF, Text, je Sprache rund 25 MB) sind aus dem Repository ausgeschlossen (`.gitignore`), `laden.py` stellt sie wieder her. Entschieden am 1. Oktober 2026.
 5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein.
-6. Themenkatalog freigeben: Auswahl der 20 Themen, ihre Namen und Begriffe (`daten/themen.json`) sowie die wählbare Sortierung nach Anzahl Fundstellen (Ziffer 6.3). Stand 2. Oktober 2026: Entwurf, auf der Seite in Betrieb.
+6. Themenkatalog freigeben: Auswahl der 20 Themen, ihre Namen und Begriffe (`daten/themen.json`) sowie die wählbare Sortierung nach Anzahl Fundstellen (Ziffer 6.3). Freigegeben am 2. Oktober 2026.
