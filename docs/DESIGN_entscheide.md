@@ -63,6 +63,25 @@ Netz (Fassung Etappe 3, unverändert):
 7. **Themenvorschlag in der Suche** über den Treffern, mit «Thema»-Marke. Wählt man ihn, wird das Suchwort geleert, damit die Schnittmenge nicht leer bleibt, und die Liste nennt das gesuchte Wort.
 8. **Themenbegriffe nicht anklickbar.** Sie zeigen Anzahl Fundstellen im Paket; eine Einschränkung auf einen Begriff braucht den ganzen Wortlaut im Browser und ist zurückgestellt.
 
+## 4b. Grafiken (Ziffer 5.5)
+
+1. **Eigene Zeichnung je Format statt Abbild der Seite.** Die Ansichten der Seite sind auf die Bildschirmbreite ausgelegt; ein Abbild wäre in 4:5 unlesbar (Bogendiagramm breit und flach, Beschriftungen 13 px). Jedes Motiv wird deshalb im Canvas neu angeordnet; Daten, Zählungen und Layout-Rechnungen (Partition, Sankey, Netzlage, Umfeld, Reichweite) kommen aus `app.js` über `window.VS`.
+2. **Schriften und Rahmen wie im Finanzspiegel**: Archivo für Marke und Titel, Public Sans für Text; Marke «PAKET SCHWEIZ–EU (BILATERALE III)» und «VERTRAGSSPIEGEL», Fuss «Politspiegel · Vertragsspiegel» mit Quelle, Adresse und Stand. Mass 1 = 1080 Pixel der kürzeren Seite.
+3. **Feste Zeile «Gezeigt».** Ein eigener Titel ist erlaubt, weil Medien eigene Überschriften setzen. Die Zeile darunter beschreibt, was die Grafik zeigt, und lässt sich nicht ändern; eine wertende Überschrift steht so nie allein unter der Marke.
+4. **Auswahl in der Grafik benannt** («Markiert: Thema … : 164 Zettel»), weil eine markierte Grafik ohne diese Angabe eine Gewichtung nahelegt.
+5. **Seitlicher Kopf im Querformat** für Netz und Matrix: Titel und Erläuterung links, die Grafik erhält die ganze Höhe. Grund: Ein Kreis oder eine 33 × 33-Matrix unter einem Kopf von 400 Pixeln wäre in 16:9 zu klein.
+6. **Umfeld im Querformat** links eingehend, rechts ausgehend, Reichweite unter dem Text. Reicht der Platz nicht, werden die Karten bis auf 70 % verkleinert, danach mit «+ n weitere» abgeschlossen.
+7. **Bezüge im Hochformat senkrecht**: Linie von oben nach unten, Verweise im selben Dokument links, Bezüge zwischen Dokumenten rechts.
+8. **Wortlautkarte ohne Kürzung**: Schrift von 34 bis 15 Pixel, die grösste, bei der alles passt; sonst ein Hinweis statt Text. Auszug nur als ganzer Absatz.
+9. **Dateiname** aus Motiv, Stufe oder Zettel, «auswahl» bei aktiver Auswahl und Format, zum Beispiel `vertragsspiegel-netz-dokumente-verweise-folie.png`.
+
+## 4c. Netz der Vorlagen, Dokumente und Artikel (Ziffer 5.5.3)
+
+1. **Kreis in Paketreihenfolge** statt Kräftemodell. Ein Kräftemodell rückt stark verbundene Knoten zusammen und ordnet bei jedem Laden anders; beides läse man als Aussage.
+2. **Kreisfläche = Wörter** (Ziffer 6.2), Linienbreite = Wurzel der Anzahl, damit wenige grosse Werte (Botschaft) die kleinen nicht verdecken.
+3. **Stufe «Vorlagen»:** Bezüge zwischen Dokumenten derselben Gruppe als «intern» beim Knoten. Beim Mass «gemeinsame EU-Rechtsakte» zählt die Zahl der verschiedenen Rechtsakte, nicht die Summe der Dokumentpaare.
+4. **Stufe «Ein Dokument»:** nur Artikel mit einem Verweis innerhalb des Dokuments; Klick auf ein Dokument im Netz der Dokumente führt dorthin.
+
 ## 5. Verknüpfungen (Matrix)
 
 1. **Neues Mass «Artikelverweise»** als Voreinstellung; Zeile → Spalte, Klick listet die Verweise mit Fundstelle.

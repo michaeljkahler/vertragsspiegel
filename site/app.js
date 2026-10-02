@@ -69,17 +69,20 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
   if (!m) return '615-rest';
   return m[1] === '2' && m[2] ? `615-2.${m[2]}` : `615-${m[1]}`;
 }
+// Trennstrich am Seitenende: «Abkom-» und «mens» stehen in den Daten in zwei Absätzen (Rohextraktion, docs/KORREKTUREN.md).
+// Für die Anzeige wird das Wort wieder zusammengesetzt, ausser vor einem Bindewort («Güter- und Personenverkehr»).
+const seitenumbruch = t => t.replace(/([A-Za-zÄÖÜäöüß]{2,})-\n(?!(?:und|oder|bis|sowie|bzw|als|noch|wie|resp|beziehungsweise)[^A-Za-zÄÖÜäöüß])([a-zäöüß]{2,})/g, '$1$2');
 function ladeText(id) {
   const t = textteil(id);
-  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=8098e0a689`).then(r => r.json()));
-  return texte.get(t).then(x => x[id] || ['', []]);
+  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=a3ad080fa7`).then(r => r.json()));
+  return texte.get(t).then(x => { const e = x[id] || ['', []]; return [seitenumbruch(e[0]), e[1]]; });
 }
 let alleTexte = null;
 function ladeAlleTexte() {
   if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(t => {
-    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=8098e0a689`).then(r => r.json()));
+    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=a3ad080fa7`).then(r => r.json()));
     return texte.get(t);
-  })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, v))); return m; });
+  })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, [seitenumbruch(v[0]), v[1]]))); return m; });
   return alleTexte;
 }
 
@@ -101,7 +104,7 @@ function refName(r, lang) {
 }
 let gesetzById;
 
-fetch('daten/index.json?v=8098e0a689').then(r => r.json()).then(start).catch(e => {
+fetch('daten/index.json?v=a3ad080fa7').then(r => r.json()).then(start).catch(e => {
   $('#laden').textContent = 'Die Daten konnten nicht geladen werden (' + e.message + '). Bitte die Seite neu laden.';
 });
 
@@ -128,7 +131,7 @@ function start(daten) {
     const m = euNennung.get(k.nach); if (!m.has(d)) m.set(d, k.von);
   });
   $('#laden').remove();
-  kennzahlen(); baum(); legende(); suche(); reiterAufbauen(); graphFilter(); findenAufbauen();
+  kennzahlen(); baum(); legende(); suche(); reiterAufbauen(); graphFilter(); findenAufbauen(); verknAufbauen();
   const h = hashLesen();
   filt.thema = h.thema ? T.find(t => t.id === h.thema) || null : null;
   filt.art = TEXTART[h.art] ? h.art : null;
@@ -401,11 +404,13 @@ function zeichneZettel(i) {
     <div class="meta"><span>BBl 2026 ${d.nr}</span><span>${fmt(z.w)} Wörter</span>
       ${seiten ? `<a href="${esc(pdfLink(d, z.s[0]))}" target="_blank" rel="noopener">PDF, ${seiten}</a>` : ''}
       <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a>
-      <a href="#${esc(anker(z.i))}" title="Direkter Link auf diesen Zettel">Link</a></div>
+      <a href="#${esc(anker(z.i))}" title="Direkter Link auf diesen Zettel">Link</a>
+      <button type="button" class="knopf klein" data-grafik="wortlaut" style="margin-left:0">Wortlaut als Grafik</button></div>
     <div class="fund" id="fund" hidden></div>
     <div class="wortlaut" id="wortlaut" tabindex="0" aria-label="Wortlaut"><span class="leer">Wortlaut wird geladen …</span></div>
     <section class="uf-teil" aria-labelledby="uf-titel">
       <div class="uf-kopfzeile"><h4 id="uf-titel">Umfeld: womit dieser Text verknüpft ist <span class="marke">Rohextraktion</span></h4>
+        <button type="button" class="knopf klein" data-grafik="umfeld" style="margin-left:0">Als Grafik</button>
         <div class="schalter klein" id="uf-art" role="group" aria-label="Darstellung des Umfelds">
           <button data-uf="gliederung" aria-pressed="${ufArt === 'gliederung'}">Gliederung</button><button data-uf="netz" aria-pressed="${ufArt === 'netz'}">Netz</button></div></div>
       <div id="uf-host"></div>
@@ -999,7 +1004,8 @@ function zeigeListe() {
   }).join('');
   zEl.innerHTML = `
     <div><div class="ort">${t ? 'Thema' : 'Auswahl'}${beschreibung ? ' · ' + esc(beschreibung) : ''}</div><h3>${t ? esc(t.name) : 'Markierte Zettel'}</h3></div>
-    <div class="meta"><span>${fmt(menge.length)} Zettel</span>${t ? `<span>${fmt(fund)} Fundstellen</span>` : ''}<span>${pct(woerter, total)} des Pakets nach Wörtern</span></div>
+    <div class="meta"><span>${fmt(menge.length)} Zettel</span>${t ? `<span>${fmt(fund)} Fundstellen</span>` : ''}<span>${pct(woerter, total)} des Pakets nach Wörtern</span>
+      ${t ? '<button type="button" class="knopf klein" data-grafik="thema" style="margin-left:0">Als Grafik</button>' : ''}</div>
     ${her}
     ${t ? `<div><h4>Begriffe im Wortlaut</h4><div class="chips begriffe">${t.b.map(([a, , k]) => `<span>${esc(a)} <b>${fmt(k)}</b></span>`).join('')}</div>
       ${t.s.length ? `<p class="leer" style="margin:6px 0 0">Führen in der Suche ebenfalls hierher: ${esc(t.s.map(x => x[0]).join(', '))}.</p>` : ''}</div>` : ''}
@@ -1077,13 +1083,13 @@ function gefuehrt() {
 
 /* ---------- Verknüpfungen: Matrix (Ziffer 5, Ansicht 2) ---------- */
 let mxModus = 'verweise';
-function matrixWerte() {
+function matrixWerte(modus = mxModus) {
   const ids = D.docs.map(d => d.nr), pos = new Map(ids.map((d, k) => [d, k])), n = ids.length;
-  const M = ids.map(() => ids.map(() => [])), symm = mxModus === 'eu';
+  const M = ids.map(() => ids.map(() => [])), symm = modus === 'eu';
   // Mit Auswahl (Ziffer 5.4) zählen nur Bezüge, deren verweisender Zettel markiert ist
   const inF = k => !treffer || (typeof k.von === 'number' && treffer.has(k.von));
-  if (mxModus === 'verweise' || mxModus === 'struktur') {
-    const arten = mxModus === 'verweise' ? ['verweist_auf'] : ['genehmigt', 'erlaeutert'];
+  if (modus === 'verweise' || modus === 'struktur') {
+    const arten = modus === 'verweise' ? ['verweist_auf'] : ['genehmigt', 'erlaeutert'];
     K.forEach(k => { if (!arten.includes(k.art) || !inF(k)) return; const a = refDoc(k.von), b = refDoc(k.nach); if (!a || !b || a === b) return; M[pos.get(a)][pos.get(b)].push(k); });
   } else {
     const je = new Map(); K.forEach(k => { if (k.art === 'nennt' && inF(k) && typeof k.nach === 'string' && k.nach.startsWith('celex:')) { const d = refDoc(k.von); if (!je.has(d)) je.set(d, new Set()); je.get(d).add(k.nach.slice(6)); } });
@@ -1138,11 +1144,176 @@ function matrixDetail(a, b, liste) {
      ${k.stelle ? `<div class="stelle">«${esc(kuerze(k.stelle.replace(/\s+/g, ' '), 160))}»</div>` : ''}</li>`).join('')}</ol>`;
   el.querySelectorAll('button[data-z]').forEach(x => { if (x.dataset.z !== '') x.onclick = () => waehle(+x.dataset.z, false); });
 }
-document.querySelectorAll('[data-mass]').forEach(b => b.onclick = () => {
-  mxModus = b.dataset.mass;
-  document.querySelectorAll('[data-mass]').forEach(x => x.setAttribute('aria-pressed', x === b));
-  $('#mx-detail').innerHTML = ''; zeichneMatrix();
-});
+
+/* ---------- Verknüpfungen: Netz auf drei Stufen (Ziffer 5, Ansicht 2b) ----------
+   Knoten auf einem Kreis in Paketreihenfolge, Fläche = Wörter; Linienbreite = Anzahl Bezüge beider Richtungen.
+   Kein Kräftemodell: Nähe trüge sonst Bedeutung (Ziffer 6.3). Gleiche Zählung wie die Matrix. */
+let mxDarst = 'matrix', nzStufe = 'dokumente', nzDoc = 616;
+const GRUPPE_KURZ = {weitere: 'Weitere Beschlüsse und Erklärungen', begleit: 'Begleitgeschäft Pa. Iv. 26.425'};
+const MASS_NAME = {verweise: 'Artikelverweise', eu: 'gemeinsame EU-Rechtsakte', struktur: 'Genehmigungen und Erläuterungen'};
+function kurzLabel(z) {
+  const m = /^(Art\.\s*(?:[IVX]+\.)?\d+[a-z]*(?:\s*(?:bis|ter|quater))?|Ziff\.\s*[\dIVX.]+|Anhang\s+[IVX\d]+[a-z]?|Abschnitt\s+[\dIVX]+|Kapitel\s+[\dIVX]+|\d+(?:\.\d+)*)/.exec(z.l);
+  return m ? m[1] : kuerze(z.l, 16);
+}
+function netzDaten(stufe, doc, mass = mxModus) {
+  const docs = D.docs.map(d => d.nr);
+  if (stufe === 'dokument') {
+    const kanten = new Map(), knoten = new Set();
+    K.forEach(k => {
+      if (k.art !== 'verweist_auf' || typeof k.von !== 'number' || typeof k.nach !== 'number' || k.von === k.nach) return;
+      if (Z[k.von].d !== doc || Z[k.nach].d !== doc) return;
+      if (treffer && !treffer.has(k.von)) return;
+      const a = Math.min(k.von, k.nach), b = Math.max(k.von, k.nach), s = a + '|' + b;
+      if (!kanten.has(s)) kanten.set(s, {a, b, ab: [], ba: []});
+      kanten.get(s)[k.von === a ? 'ab' : 'ba'].push(k); knoten.add(a); knoten.add(b);
+    });
+    return {stufe, doc, mass: 'verweise',
+      knoten: [...knoten].sort((x, y) => x - y).map(i => ({id: i, i, name: kurzLabel(Z[i]), lang: Z[i].l, g: docById.get(doc).gruppe, w: Z[i].w})),
+      kanten: [...kanten.values()].map(e => ({...e, n: e.ab.length + e.ba.length})), intern: new Map()};
+  }
+  const {ids, M, symm} = matrixWerte(mass);
+  const paar = new Map();
+  for (let x = 0; x < ids.length; x++) for (let y = 0; y < ids.length; y++) {
+    if (x === y || !M[x][y].length || (symm && x > y)) continue;
+    const a = ids[Math.min(x, y)], b = ids[Math.max(x, y)], s = a + '|' + b;
+    if (!paar.has(s)) paar.set(s, {a, b, ab: [], ba: []});
+    paar.get(s)[x < y ? 'ab' : 'ba'].push(...M[x][y]);
+  }
+  if (stufe === 'dokumente') return {stufe, mass, intern: new Map(),
+    knoten: D.docs.map(d => ({id: d.nr, doc: d.nr, name: d.kurz, lang: d.titel, g: d.gruppe, w: d.woerter})),
+    kanten: [...paar.values()].map(e => ({...e, n: symm ? e.ab.length : e.ab.length + e.ba.length}))};
+  // Vorlagen (Gruppen): Paare zwischen Dokumenten verschiedener Gruppen zusammengefasst; innerhalb einer Gruppe als «intern»
+  const gVon = nr => docById.get(nr).gruppe, intern = new Map(), gp = new Map();
+  const knoten = D.gruppen.map(g => ({id: g.id, name: GRUPPE_KURZ[g.id] || g.name, lang: g.name, g: g.id, w: D.docs.filter(d => d.gruppe === g.id).reduce((s, d) => s + d.woerter, 0)})).filter(k => k.w);
+  if (mass === 'eu') {        // verschiedene EU-Rechtsakte je Gruppe, nicht die Summe der Dokumentpaare
+    const je = new Map();
+    K.forEach(k => { if (k.art === 'nennt' && typeof k.von === 'number' && (!treffer || treffer.has(k.von)) && typeof k.nach === 'string' && k.nach.startsWith('celex:')) {
+      const g = gVon(Z[k.von].d); if (!je.has(g)) je.set(g, new Set()); je.get(g).add(k.nach.slice(6)); } });
+    const gs = knoten.map(k => k.id);
+    gs.forEach((a, x) => gs.slice(x + 1).forEach(b => { const A = je.get(a), B = je.get(b); if (!A || !B) return;
+      const l = [...A].filter(c => B.has(c)); if (l.length) gp.set(a + '|' + b, {a, b, ab: l, ba: [], n: l.length}); }));
+    return {stufe, mass, knoten, kanten: [...gp.values()], intern};
+  }
+  paar.forEach(e => {
+    const ga = gVon(e.a), gb = gVon(e.b), n = e.ab.length + e.ba.length;
+    if (ga === gb) { intern.set(ga, (intern.get(ga) || 0) + n); return; }
+    const ia = knoten.findIndex(k => k.id === ga), ib = knoten.findIndex(k => k.id === gb);
+    const [a, b, vor] = ia < ib ? [ga, gb, true] : [gb, ga, false], s = a + '|' + b;
+    if (!gp.has(s)) gp.set(s, {a, b, ab: [], ba: [], paare: []});
+    const z = gp.get(s); z.ab.push(...(vor ? e.ab : e.ba)); z.ba.push(...(vor ? e.ba : e.ab)); z.paare.push(e);
+  });
+  return {stufe, mass, knoten, kanten: [...gp.values()].map(e => ({...e, n: e.ab.length + e.ba.length})), intern};
+}
+// Lage auf dem Kreis; gleiche Rechnung für die Seite (SVG) und die Grafik (Canvas)
+function netzLage(nd, cx, cy, R, rMin, rMax) {
+  const n = nd.knoten.length, wMax = Math.max(1, ...nd.knoten.map(k => k.w));
+  nd.knoten.forEach((k, j) => {
+    k.winkel = -Math.PI / 2 + 2 * Math.PI * j / Math.max(1, n);
+    k.x = cx + R * Math.cos(k.winkel); k.y = cy + R * Math.sin(k.winkel);
+    k.r = rMin + (rMax - rMin) * Math.sqrt(k.w / wMax);
+  });
+  const nach = new Map(nd.knoten.map(k => [k.id, k])), nMax = Math.max(1, ...nd.kanten.map(e => e.n));
+  nd.kanten.forEach(e => {
+    const A = nach.get(e.a), B = nach.get(e.b); e.A = A; e.B = B;
+    const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
+    e.cx = cx + (mx - cx) * 0.3; e.cy = cy + (my - cy) * 0.3;
+    e.anteil = Math.sqrt(e.n / nMax);
+    e.g = A.g === B.g ? A.g : (A.g === 'botschaft' || A.g === 'begleit') ? B.g : (B.g === 'botschaft' || B.g === 'begleit') ? A.g : 'neutral';
+  });
+  return nd;
+}
+function netzErkl(nd) {
+  const was = nd.stufe === 'dokument' ? `Artikel von ${docById.get(nd.doc).kurz}, die im Wortlaut aufeinander verweisen` : nd.stufe === 'gruppen' ? 'Vorlagen, Botschaft und Begleitgeschäft' : 'die 33 Dokumente';
+  return `Knoten: ${was}, auf dem Kreis in der Reihenfolge des Pakets (oben beginnend, im Uhrzeigersinn); Kreisfläche = Wörter. Linie: ${nd.stufe === 'dokument' ? 'Artikelverweise innerhalb des Dokuments' : MASS_NAME[nd.mass]}, Breite = Anzahl in beiden Richtungen. Lage und Abstand tragen keine weitere Bedeutung.` +
+    (nd.stufe === 'gruppen' && nd.mass !== 'eu' ? ' Bezüge innerhalb einer Gruppe stehen als «intern» beim Knoten.' : '') + (nd.stufe === 'dokumente' ? ' Klick auf ein Dokument zeigt seine Artikel.' : nd.stufe === 'dokument' ? ' Klick auf einen Artikel öffnet den Zettel.' : '') +
+    (treffer ? ` Auswahl aktiv: gezählt werden nur Bezüge aus den ${fmt(treffer.size)} markierten Zetteln.` : '');
+}
+function zeichneNetz() {
+  const host = d3.select('#netz'); host.selectAll('*').remove();
+  const nd = netzDaten(nzStufe, nzDoc);
+  $('#mx-erkl').textContent = netzErkl(nd);
+  if (!nd.knoten.length || !nd.kanten.length) { host.append('p').attr('class', 'leer').text(nzStufe === 'dokument' ? 'Keine Artikelverweise innerhalb dieses Dokuments' + (treffer ? ' in der Auswahl.' : '.') : 'Keine Bezüge in der Auswahl.'); if (!nd.kanten.length && nzStufe !== 'dokument') return; if (!nd.knoten.length) return; }
+  const W = Math.max(320, $('#netz').clientWidth), Hh = Math.min(Math.max(420, W), 900), rand = nzStufe === 'gruppen' ? (W < 640 ? 120 : 190) : nzStufe === 'dokumente' ? (W < 640 ? 120 : 180) : 64;
+  const R = Math.min(W, Hh) / 2 - rand;
+  netzLage(nd, W / 2, Hh / 2, R, nzStufe === 'dokument' ? 3 : 5, nzStufe === 'gruppen' ? 40 : nzStufe === 'dokumente' ? 22 : 9);
+  const svg = host.append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('height', Hh).attr('role', 'img')
+    .attr('aria-label', `Netz: ${nd.knoten.length} Knoten, ${nd.kanten.length} Verbindungen`);
+  const strich = e => 1 + (nzStufe === 'dokument' ? 4 : 11) * e.anteil;
+  const imF = k => !treffer || (k.i !== undefined ? treffer.has(k.i) : k.doc ? [...treffer].some(i => Z[i].d === k.doc) : [...treffer].some(i => docById.get(Z[i].d).gruppe === k.id));
+  const gK = svg.append('g').attr('fill', 'none').selectAll('path').data(nd.kanten).join('path')
+    .attr('d', e => `M${e.A.x},${e.A.y}Q${e.cx},${e.cy} ${e.B.x},${e.B.y}`).attr('stroke', e => gVar(e.g)).attr('stroke-opacity', .45)
+    .attr('stroke-width', strich).attr('stroke-linecap', 'round').style('cursor', 'pointer');
+  const wort = nd.stufe === 'dokument' ? 'Artikelverweise' : MASS_NAME[nd.mass];
+  const nm = k => nd.stufe === 'dokument' ? Z[k.i].l : k.name;
+  gK.on('pointerenter pointermove', (ev, e) => { gK.attr('stroke-opacity', x => x === e ? .95 : .12);
+      showTip(ev, `<b>${esc(nm(e.A))} ↔ ${esc(nm(e.B))}</b>${fmt(e.n)} ${wort}${nd.mass !== 'eu' ? `<br><span>${esc(e.A.name)} → ${esc(e.B.name)}: ${fmt(e.ab.length)} · ${esc(e.B.name)} → ${esc(e.A.name)}: ${fmt(e.ba.length)}</span>` : ''}<br><span>Klick: Liste mit Fundstellen</span>`); })
+    .on('pointerleave', () => { gK.attr('stroke-opacity', .45); hideTip(); })
+    .on('click', (ev, e) => netzDetail(nd, e));
+  const gN = svg.append('g').selectAll('g').data(nd.knoten).join('g').attr('transform', k => `translate(${k.x},${k.y})`)
+    .style('cursor', nd.stufe === 'gruppen' ? 'default' : 'pointer').attr('opacity', k => imF(k) ? 1 : .3).attr('tabindex', nd.stufe === 'gruppen' ? null : 0);
+  gN.append('circle').attr('r', k => k.r).attr('fill', k => tint(k.g, 70)).attr('stroke', k => gVar(k.g)).attr('stroke-width', 1.5);
+  const quer = nd.stufe === 'gruppen';
+  gN.append('text').attr('class', nd.stufe === 'dokument' ? 'nz-label klein' : 'nz-label')
+    .attr('transform', k => { if (quer) return null; const g = k.winkel * 180 / Math.PI, links = Math.cos(k.winkel) < 0; return `rotate(${links ? g + 180 : g})`; })
+    .attr('x', k => quer ? (Math.cos(k.winkel) >= -0.01 ? 1 : -1) * (Math.abs(Math.cos(k.winkel)) < 0.2 ? 0 : k.r + 8) : (Math.cos(k.winkel) < 0 ? -1 : 1) * (k.r + 6))
+    .attr('y', k => quer ? (Math.abs(Math.cos(k.winkel)) < 0.2 ? (Math.sin(k.winkel) < 0 ? -k.r - 10 : k.r + 20) : 5) : 4)
+    .attr('text-anchor', k => quer ? (Math.abs(Math.cos(k.winkel)) < 0.2 ? 'middle' : Math.cos(k.winkel) > 0 ? 'start' : 'end') : Math.cos(k.winkel) < 0 ? 'end' : 'start')
+    .text(k => quer ? k.name : kuerze(k.name, nd.stufe === 'dokument' ? 14 : 24));
+  if (quer) gN.filter(k => nd.intern.get(k.id)).append('text').attr('class', 'nz-intern')
+    .attr('x', k => Math.abs(Math.cos(k.winkel)) < 0.2 ? 0 : (Math.cos(k.winkel) > 0 ? 1 : -1) * (k.r + 8))
+    .attr('y', k => Math.abs(Math.cos(k.winkel)) < 0.2 ? (Math.sin(k.winkel) < 0 ? -k.r - 28 : k.r + 38) : 23)
+    .attr('text-anchor', k => Math.abs(Math.cos(k.winkel)) < 0.2 ? 'middle' : Math.cos(k.winkel) > 0 ? 'start' : 'end').text(k => `intern ${fmt(nd.intern.get(k.id))}`);
+  const summe = id => nd.kanten.filter(e => e.a === id || e.b === id).reduce((s, e) => s + e.n, 0);
+  gN.on('pointerenter pointermove', (ev, k) => { gK.attr('stroke-opacity', e => e.a === k.id || e.b === k.id ? .9 : .07);
+      showTip(ev, `<b>${esc(nd.stufe === 'dokument' ? Z[k.i].l : k.lang || k.name)}</b>${fmt(k.w)} Wörter<br><span>${fmt(summe(k.id))} ${wort} mit anderen Knoten</span>${nd.stufe === 'dokumente' ? '<br><span>Klick: Artikel dieses Dokuments</span>' : nd.stufe === 'dokument' ? '<br><span>Klick: Zettel öffnen</span>' : ''}`); })
+    .on('pointerleave', () => { gK.attr('stroke-opacity', .45); hideTip(); })
+    .on('click keydown', (ev, k) => { if (ev.type === 'keydown' && ev.key !== 'Enter') return; hideTip();
+      if (nd.stufe === 'dokumente') { nzDoc = k.doc; setzeNetzStufe('dokument'); } else if (nd.stufe === 'dokument') waehle(k.i, false); });
+}
+function netzDetail(nd, e) {
+  const el = $('#mx-detail'), name = id => nd.stufe === 'gruppen' ? gName[id] : nd.stufe === 'dokumente' ? docById.get(id).kurz : Z[id].l;
+  const kopf = `<strong>${esc(name(e.a))} ↔ ${esc(name(e.b))}:</strong> ${fmt(e.n)} ${nd.stufe === 'dokument' ? 'Artikelverweise' : MASS_NAME[nd.mass]}`;
+  if (nd.mass === 'eu' && nd.stufe !== 'dokument') {
+    el.innerHTML = `${kopf}<ol>${e.ab.map(c => `<li><a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:${encodeURIComponent(c)}" target="_blank" rel="noopener">${esc(c)}</a> ${esc(kuerze(D.eu[c] || '', 140))}</li>`).join('')}</ol>`;
+    return;
+  }
+  if (nd.stufe === 'gruppen') {
+    el.innerHTML = `${kopf}, nach Dokumentpaar<ol>${e.paare.map(p => `<li>${esc(docById.get(p.a).kurz)} ↔ ${esc(docById.get(p.b).kurz)}: ${fmt(p.ab.length + p.ba.length)}</li>`).join('')}</ol>`;
+    return;
+  }
+  const zeile = k => `<li>${typeof k.von === 'number' ? `<button class="knopf" data-z="${k.von}">${esc(refName(k.von, true))}</button>` : esc(refName(k.von, true))} → ${typeof k.nach === 'number' ? `<button class="knopf" data-z="${k.nach}">${esc(refName(k.nach, true))}</button>` : esc(refName(k.nach, true))}${k.stelle ? `<div class="stelle">«${esc(kuerze(k.stelle.replace(/\s+/g, ' '), 160))}»</div>` : ''}</li>`;
+  el.innerHTML = `${kopf}<ol>${[...e.ab, ...e.ba].slice(0, 300).map(zeile).join('')}</ol>`;
+  el.querySelectorAll('button[data-z]').forEach(x => x.onclick = () => waehle(+x.dataset.z, false));
+}
+function setzeNetzStufe(st) {
+  nzStufe = st;
+  document.querySelectorAll('[data-stufe]').forEach(x => x.setAttribute('aria-pressed', x.dataset.stufe === st));
+  $('#nz-doc-feld').hidden = mxDarst !== 'netz' || st !== 'dokument';
+  $('#nz-doc').value = String(nzDoc);
+  $('#vk-mass').hidden = mxDarst === 'netz' && st === 'dokument';
+  $('#mx-detail').innerHTML = ''; zeichneVerkn();
+}
+function zeichneVerkn() {
+  $('#matrix-box').hidden = mxDarst !== 'matrix'; $('#netz').hidden = mxDarst !== 'netz';
+  if (mxDarst === 'matrix') zeichneMatrix(); else zeichneNetz();
+}
+function verknAufbauen() {
+  $('#nz-doc').innerHTML = D.docs.map(d => `<option value="${d.nr}">${esc(d.kurz)}</option>`).join('');
+  $('#nz-doc').value = String(nzDoc);
+  $('#nz-doc').onchange = ev => { nzDoc = +ev.target.value; $('#mx-detail').innerHTML = ''; zeichneVerkn(); };
+  document.querySelectorAll('[data-mass]').forEach(b => b.onclick = () => {
+    mxModus = b.dataset.mass;
+    document.querySelectorAll('[data-mass]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    $('#mx-detail').innerHTML = ''; zeichneVerkn();
+  });
+  document.querySelectorAll('[data-darst]').forEach(b => b.onclick = () => {
+    mxDarst = b.dataset.darst;
+    document.querySelectorAll('[data-darst]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    $('#nz-stufe').hidden = mxDarst !== 'netz';
+    setzeNetzStufe(nzStufe);
+  });
+  document.querySelectorAll('[data-stufe]').forEach(b => b.onclick = () => setzeNetzStufe(b.dataset.stufe));
+}
 
 /* ---------- Umsetzung: Sankey (Ziffer 5, Ansicht 3) ---------- */
 // «Bundesgesetz vom 14. Dezember 2012 über die Meldepflicht …» → «Bundesgesetz über die Meldepflicht …»; nur das Datum fällt weg
@@ -1374,6 +1545,30 @@ function zeigeBogen(b) {
   if (innerWidth < 1280) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
 }
 
+/* ---------- Schnittstelle für die Grafiken (seite/grafik.js) ---------- */
+function auswahlText() {             // Beschreibung der Auswahl für die Zeile «Markiert» in der Grafik
+  if (!treffer) return '';
+  const t = [];
+  if (filt.thema) t.push(`Thema «${filt.thema.name}» (Begriffe im Wortlaut)`);
+  if (filt.art) t.push(`Textart ${TEXTART[filt.art].name}`);
+  if (filt.reich) t.push(`verknüpft mit ${docById.get(Z[filt.reich.i].d).kurz}, ${Z[filt.reich.i].l} (${filt.reich.schritte === 1 ? 'direkt' : 'bis zwei Schritte'})`);
+  if (filt.such) t.push(`Suchwort «${suchText}»`);
+  return `${t.join(', ')}: ${fmt(treffer.size)} Zettel`;
+}
+window.VS = {
+  get D() { return D; }, get Z() { return Z; }, get K() { return K; }, get aus() { return aus; }, get ein() { return ein; },
+  get docById() { return docById; }, get gName() { return gName; }, get T() { return T; }, get euNennung() { return euNennung; },
+  get gewaehlt() { return gewaehlt; }, get treffer() { return treffer; }, get filt() { return filt; }, get suchText() { return suchText; },
+  get root() { return root; }, get fokus() { return fokus || root; }, get aktiv() { return aktiv; }, get listeOffen() { return listeOffen; },
+  get mxModus() { return mxModus; }, get mxDarst() { return mxDarst; }, get nzStufe() { return nzStufe; }, get nzDoc() { return nzDoc; },
+  get ufArt() { return ufArt; }, get bzAktiv() { return bzAktiv; },
+  bzSicht: () => (bzSvg && bzXZ ? [bzXZ.invert(BZ_ML), bzXZ.invert(bzW - BZ_MR)] : null),
+  bz: () => { if (!BZ) bzDaten(); return {BZ, POS, docPos, BZ_TOTAL, BZ_TYPEN}; },
+  matrixWerte, netzDaten, netzLage, umfeldDaten, UF_GRUPPEN, reichweite, graphDaten, SEKTOR, MAX_JE_SEKTOR,
+  refDoc, refName, gesetzName, kurzLabel, artVon, TEXTART, MASS_NAME, GRUPPE_KURZ, ladeText, srName, auswahlText,
+  fmt, pct, kuerze, hideTip,
+};
+
 /* ---------- Reiter ---------- */
 const REITER = ['umfang', 'verkn', 'bezuege', 'umsetz', 'tabelle'];
 const gezeichnet = {};
@@ -1387,7 +1582,7 @@ function reiterAufbauen() {
   });
 }
 function zeichneAnsicht(k) {
-  if (k === 'verkn') { $('#mx-detail').innerHTML = ''; zeichneMatrix(); }
+  if (k === 'verkn') { $('#mx-detail').innerHTML = ''; zeichneVerkn(); }
   if (k === 'umsetz') zeichneSankey();
   if (k === 'tabelle') zeichneTabelle();
   gezeichnet[k] = true;
@@ -1403,6 +1598,7 @@ function zeigeReiter(k) {
 function neuZeichnen() {
   if (aktiv === 'umfang') zeichneUmfang(false);
   if (gezeichnet.umsetz) zeichneSankey();
+  if (gezeichnet.verkn && mxDarst === 'netz') { if (aktiv === 'verkn') zeichneNetz(); else gezeichnet.verkn = false; }
   if (gezeichnet.bezuege) { if (aktiv === 'bezuege') bzAufbauen(); else { gezeichnet.bezuege = false; bzSvg = null; } }
 }
 })();

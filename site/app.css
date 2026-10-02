@@ -259,6 +259,14 @@ mark.aktuell{outline:2px solid var(--text);outline-offset:1px}
 .liste button.ziel{font:inherit;color:var(--text);background:none;border:0;padding:0;text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .liste .stelle{display:block;color:var(--text-leise);font-size:13.5px}
 
+/* Verknüpfungen: Leiste und Netz */
+.vk-leiste{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:0 0 10px}
+#netz svg{display:block;width:100%}
+.nz-label{font-size:13px;fill:var(--text);paint-order:stroke;stroke:var(--karte);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.nz-label.klein{font-size:11.5px}
+.nz-intern{font-size:12px;fill:var(--text-leise);pointer-events:none}
+.knopf.klein{font-size:13px;min-height:30px;padding:3px 10px;margin-left:8px;vertical-align:3px;font-family:var(--f-text)}
+
 /* Bezüge (Bogendiagramm) */
 .bz-leiste{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin:0 0 8px}
 .bz-chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -280,6 +288,38 @@ mark.aktuell{outline:2px solid var(--text);outline-offset:1px}
 .ende .stelle{font-size:15px;line-height:1.6;background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:8px 10px}
 .ende .knoepfe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
 .pfeil{font-size:15px;color:var(--text-leise);text-align:center;line-height:1}
+
+/* Grafik für Social Media, Präsentation und Bericht (seite/grafik.js), wie im Finanzspiegel */
+.grafikknopf{position:fixed;right:18px;bottom:18px;z-index:800;display:inline-flex;align-items:center;gap:8px;appearance:none;background:var(--text);color:var(--grund);border:0;border-radius:999px;padding:11px 16px;font:600 14px var(--f-text);cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.grafikknopf svg{width:17px;height:17px;flex:none}
+.grafikknopf:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.grafiklage{position:fixed;inset:0;z-index:950;background:rgba(10,14,20,.55);display:none;align-items:flex-start;justify-content:center;padding:30px 14px;overflow:auto}
+.grafiklage.offen{display:flex}
+.grafikbox{background:var(--karte);color:var(--text);border-radius:14px;max-width:1180px;width:100%;padding:18px 20px 22px;border:1px solid var(--linie);box-shadow:0 20px 60px rgb(0 0 0 / .3)}
+.grafikkopf{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.grafikkopf h2{margin:0;font-size:19px}
+.grafikzu{appearance:none;border:0;background:none;color:var(--text-leise);font-size:28px;cursor:pointer;line-height:1;padding:0 6px}
+.grafikzu:hover{color:var(--text)}
+.grafikbody{display:grid;grid-template-columns:290px 1fr;gap:20px;align-items:start}
+.grafikwahl .feld{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-leise);margin:12px 0 5px;font-family:var(--f-display);font-weight:600}
+.grafikwahl .feld:first-child{margin-top:2px}
+.grafikwahl select,.grafikwahl input[type="text"]{width:100%;padding:8px;border:1px solid var(--linie);border-radius:8px;background:var(--grund);color:var(--text);font:inherit;font-size:14px}
+.grafikwahl .radio{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px}
+.grafikwahl .radio label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.grafiknote{font-size:13px;color:var(--text-leise);margin:14px 0 0}
+.grafikhinweis{font-size:12.5px;color:var(--text-leise);margin:6px 0 0}
+.grafikknoepfe{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.btn{appearance:none;border:1px solid transparent;background:var(--text);color:var(--grund);border-radius:8px;padding:10px 14px;font:700 14.5px var(--f-text);cursor:pointer}
+.btn.zweit{background:transparent;color:var(--text);border-color:var(--linie);font-weight:500}
+.btn.zweit:hover{background:var(--flaeche)}
+.grafikmeldung{font-size:13px;color:var(--text-leise);min-height:1.5em;margin:8px 0 0}
+.grafikvorschau{min-width:0}
+.grafikvorschau canvas{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100vh - 150px);margin:0 auto;border:1px solid var(--linie);border-radius:8px;background:#fff}
+.grafikvorschau.transparent canvas{background:repeating-conic-gradient(#E6E8EC 0 25%, #FFFFFF 0 50%) 0 0/22px 22px}
+.grafikvorschau p{font-size:12.5px;color:var(--text-leise);margin:6px 0 0}
+body.grafik-offen .grafikknopf,body.grafik-offen .melden-knopf{display:none}
+@media (max-width:820px){.grafikbody{grid-template-columns:1fr}.grafikvorschau{order:-1}.grafikknopf span{display:none}.grafikknopf{padding:13px}.grafiklage{padding:12px 8px}.grafikbox{padding:14px 14px 18px}}
+@media print{.grafikknopf,.grafiklage,[data-grafik]{display:none!important}}
 
 /* Grundlagen und Fuss */
 .methode{margin-top:32px;border-top:1px solid var(--linie);padding-top:18px;font-size:15px;color:var(--text-leise);max-width:120ch}

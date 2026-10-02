@@ -23,6 +23,8 @@ Stand 1. Oktober 2026, Fassung «by-reference» vom 18. März 2026.
 3. In der Botschaft werden Verweise nur mit Bezugswerk aufgelöst («Art. 5 E-BHÜG», «Artikel 14a FZA»). Rund 2300 Verweise ohne Bezugswerk bleiben ohne Kante.
 4. Erläuterungen der Botschaft zu einzelnen Artikeln: 496 von 517 einem Artikel zugeordnet. Offen sind vor allem zusammengefasste Ziffern des ÄP-LandVA («Artikel 1 Ziffer 3–5 … zu den Artikeln 7, 9 …») und die Koordinationsbeilage zum StromVG.
 5. Tabellen (Anhang III FZA, Anhänge MRA) verlieren beim Textauszug ihre Spalten. Der Wortlaut ist vollständig, die Anordnung nicht.
+6. Trennstrich am Seitenende (gefunden am 2. Oktober 2026): Ein am Seitenende getrenntes Wort steht in `daten/zettel.json` in zwei Absätzen («Abkom-» und «mens»), 793 Fälle. Folgen: Die Wortzahl ist je Fall um ein Wort zu hoch (zusammen 0,12 %), und ein Themenbegriff, der über die Trennung läuft, wird nicht gezählt. Die Seite und die Grafiken setzen das Wort für die Anzeige und die Volltextsuche wieder zusammen, ausser vor einem Bindewort («Güter- und Personenverkehr»). Behebung in `gliedern.py` offen; sie ändert Wortzahlen und Prüfung 9.1 und braucht deshalb einen eigenen Lauf.
+7. EU-Rechtsakte: `daten/kanten.json` führt 493 Rechtsakte, 488 davon mit mindestens einer Nennung in einem Zettel. Die übrigen fünf (32024D00594, 32024D06842, 32024D06845, 32024L01366, 32025D01598) haben keine Kante. Die Kennzahl im Kopf der Seite zählt alle 493, die Grafik «Paket in Zahlen» die 488 genannten.
 
 ## 3. Stichproben
 

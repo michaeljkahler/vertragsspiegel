@@ -4,6 +4,7 @@ Bauen:        python3 scripts/bauen.py
 
 Schreibt:
   site/index.html, site/app.css, site/app.js     aus seite/, Stand und Kennzahlen eingesetzt
+  site/grafik.js                                 Grafiken für Social Media, Präsentation und Bericht (unverändert kopiert)
   site/daten/index.json                          Dokumente, Zettel ohne Wortlaut, Kanten, Gesetze, EU-Titel, Themen
   site/daten/text/<teil>.json                    Wortlaut und Fussnoten, je Werk; die Botschaft je Kapitel
                                                  (2.1 bis 2.15 einzeln), damit ein Zettel nicht 3 MB nachlädt
@@ -43,8 +44,9 @@ def kompakt_json(obj):
 def version(index):
     """Kennung für den Cache: ändert sich mit den Daten und den Vorlagen."""
     h = hashlib.sha1(kompakt_json(index).encode())
-    for name in ('index.html', 'app.css', 'app.js'):
-        h.update((SEITE / name).read_bytes())
+    for datei in sorted(SEITE.glob('*')):
+        if datei.is_file():
+            h.update(datei.read_bytes())
     return h.hexdigest()[:10]
 
 

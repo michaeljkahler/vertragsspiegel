@@ -63,7 +63,7 @@
 
       <section id="v-umfang" role="tabpanel" aria-labelledby="tab-umfang" hidden>
         <div class="ansichtkopf">
-          <h2>Umfang nach Gliederung</h2>
+          <h2>Umfang nach Gliederung <button type="button" class="knopf klein" data-grafik="umfang">Als Grafik</button></h2>
           <p>Höhe eines Felds = Anzahl Wörter. Spalten von links: Paket, Vorlage, Dokument, Teile, Artikel oder Abschnitt. Klick auf ein Feld vergrössert es, Klick auf ein Blatt öffnet den Zettel.</p>
         </div>
         <nav class="pfad" id="pfad" aria-label="Position im Paket"></nav>
@@ -80,20 +80,34 @@
       <section id="v-verkn" role="tabpanel" aria-labelledby="tab-verkn" hidden>
         <div class="ansichtkopf">
           <h2>Verknüpfungen zwischen Dokumenten <span class="marke">Rohextraktion</span></h2>
-          <div class="schalter" role="group" aria-label="Mass">
+          <button type="button" class="knopf klein" data-grafik="verkn">Als Grafik</button>
+        </div>
+        <div class="vk-leiste">
+          <div class="schalter" role="group" aria-label="Darstellung">
+            <button data-darst="matrix" aria-pressed="true">Matrix</button>
+            <button data-darst="netz" aria-pressed="false">Netz</button>
+          </div>
+          <div class="schalter" role="group" aria-label="Mass" id="vk-mass">
             <button data-mass="verweise" aria-pressed="true">Artikelverweise</button>
             <button data-mass="eu" aria-pressed="false">Gemeinsame EU-Rechtsakte</button>
             <button data-mass="struktur" aria-pressed="false">Genehmigt und erläutert</button>
           </div>
+          <div class="schalter" role="group" aria-label="Stufe des Netzes" id="nz-stufe" hidden>
+            <button data-stufe="gruppen" aria-pressed="false">Vorlagen</button>
+            <button data-stufe="dokumente" aria-pressed="true">Dokumente</button>
+            <button data-stufe="dokument" aria-pressed="false">Ein Dokument</button>
+          </div>
+          <label class="f-thema" id="nz-doc-feld" hidden><span>Dokument</span><select id="nz-doc"></select></label>
         </div>
         <p class="erkl" id="mx-erkl"></p>
-        <div class="scroller"><div id="matrix"></div></div>
+        <div class="scroller" id="matrix-box"><div id="matrix"></div></div>
+        <div id="netz" hidden></div>
         <div class="detail" id="mx-detail"></div>
       </section>
 
       <section id="v-bezuege" role="tabpanel" aria-labelledby="tab-bezuege" hidden>
         <div class="ansichtkopf">
-          <h2>Bezüge auf einer Linie <span class="marke">Rohextraktion</span></h2>
+          <h2>Bezüge auf einer Linie <span class="marke">Rohextraktion</span> <button type="button" class="knopf klein" data-grafik="bezuege">Als Grafik</button></h2>
           <p>Alle Zettel hintereinander nach BBl-Nummer und Gliederung, Länge = Wörter. Oben: Artikelverweise innerhalb eines Dokuments. Unten: Bezüge zwischen Dokumenten. Klick auf einen Bogen zeigt beide Enden mit der Fundstelle, Klick auf ein Dokument vergrössert es.</p>
         </div>
         <div class="bz-leiste">
@@ -108,7 +122,7 @@
 
       <section id="v-umsetz" role="tabpanel" aria-labelledby="tab-umsetz" hidden>
         <div class="ansichtkopf">
-          <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span></h2>
+          <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span> <button type="button" class="knopf klein" data-grafik="umsetzung">Als Grafik</button></h2>
           <p>Links Abkommen und Protokolle, Mitte die Bundesbeschlüsse, die sie genehmigen (Art. 1), rechts die Bundesgesetze, die die Bundesbeschlüsse in ihren Anhängen neu schaffen oder ändern. Jede Linie ist eine Zuordnung aus dem Text.</p>
         </div>
         <ul class="legende" id="sk-legende"></ul>
@@ -117,7 +131,7 @@
 
       <section id="v-tabelle" role="tabpanel" aria-labelledby="tab-tabelle" hidden>
         <div class="ansichtkopf">
-          <h2>Alle Dokumente</h2>
+          <h2>Alle Dokumente <button type="button" class="knopf klein" data-grafik="zahlen">Paket in Zahlen als Grafik</button></h2>
           <p>Reihenfolge nach BBl-Nummer. Seiten im amtlichen PDF; Wörter ohne Kopf- und Fusszeilen, mit Fussnoten.</p>
         </div>
         <div class="scroller"><table id="tabelle"></table></div>
@@ -140,6 +154,7 @@
       <li>Farbe bezeichnet nur die Vorlage, Grösse nur die Wortzahl, Reihenfolge folgt BBl-Nummer und Gliederung. Im Umfeld eines Zettels ordnen die Gruppen die Art des Bezugs; Lage und Abstand im Netz tragen keine Bedeutung.</li>
       <li>Themen: feste Begriffslisten in <code>daten/themen.json</code>, alphabetisch. Ein Zettel gehört zu einem Thema, wenn ein Begriff in Wortlaut oder Fussnoten steht; gezählt wird jede Nennung. Wörter aus der öffentlichen Debatte führen in der Suche zum Thema, ordnen aber keinen Zettel zu. Kein Einstieg nach Partei, Verband oder Haltung.</li>
       <li>Reichweite: Zettel, die über Artikelverweise oder Erläuterungen der Botschaft mit dem geöffneten Zettel verbunden sind, direkt oder über einen Zwischenschritt.</li>
+      <li>Grafiken (Knopf «Grafik»): zeichnen die gewählte Ansicht samt Auswahl neu für Social Media, Präsentation oder Bericht, ohne eigene Rechnung. Die Zeile «Gezeigt» unter dem Titel beschreibt die Grafik und lässt sich nicht ändern; Quelle und Datenstand stehen in jeder Grafik.</li>
       <li>Verfahren, Prüfungen und Quellcode: <a href="https://github.com/michaeljkahler/vertragsspiegel">github.com/michaeljkahler/vertragsspiegel</a>.</li>
     </ol>
   </section>
@@ -152,6 +167,46 @@
 </div>
 
 <div class="tip" id="tip" hidden></div>
+<button type="button" class="grafikknopf" id="grafikAuf" title="Grafik für Social Media, Präsentation oder Bericht erzeugen" aria-label="Grafik erzeugen" aria-haspopup="dialog">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><span>Grafik</span></button>
+<div class="grafiklage" id="grafikLage">
+  <div class="grafikbox" role="dialog" aria-modal="true" aria-labelledby="grafikKopfTitel">
+    <div class="grafikkopf"><h2 id="grafikKopfTitel">Grafik für Social Media, Präsentation oder Bericht</h2>
+      <button type="button" class="grafikzu" id="grafikZu" aria-label="Schliessen">&times;</button></div>
+    <div class="grafikbody">
+      <div class="grafikwahl">
+        <label class="feld" for="grafikMotiv">Motiv</label>
+        <select id="grafikMotiv"></select>
+        <p class="grafikhinweis" id="grafikHinweis" hidden>Für dieses Motiv zuerst einen Zettel öffnen.</p>
+        <div id="grafikStufeZeile" hidden><label class="feld" for="grafikStufe">Stufe</label><select id="grafikStufe">
+          <option value="gruppen">Vorlagen</option><option value="dokumente">Dokumente</option><option value="dokument">Artikel eines Dokuments</option><option value="zettel">Zettel (geöffneter Zettel)</option></select></div>
+        <div id="grafikMassZeile" hidden><label class="feld" for="grafikMassW">Mass</label><select id="grafikMassW">
+          <option value="verweise">Artikelverweise</option><option value="eu">Gemeinsame EU-Rechtsakte</option><option value="struktur">Genehmigt und erläutert</option></select></div>
+        <div id="grafikDocZeile" hidden><label class="feld" for="grafikDoc">Dokument</label><select id="grafikDoc"></select></div>
+        <div id="grafikDarstZeile" hidden><label class="feld" for="grafikDarst">Darstellung</label><select id="grafikDarst">
+          <option value="gliederung">Gliederung nach Bezugsart</option><option value="netz">Netz</option></select></div>
+        <div id="grafikThemaZeile" hidden><label class="feld" for="grafikThema">Thema</label><select id="grafikThema"></select></div>
+        <div id="grafikAuszugZeile" hidden><label class="feld" for="grafikAuszug">Auszug</label><select id="grafikAuszug"></select>
+          <p class="grafikhinweis">Nur ganze Absätze oder der ganze Text; gekürzt wird nicht.</p></div>
+        <div id="grafikBbZeile" hidden><label class="feld" for="grafikBb">Bundesbeschluss</label><select id="grafikBb"></select></div>
+        <label class="feld" for="grafikFormat">Format</label>
+        <select id="grafikFormat"></select>
+        <span class="feld" id="grafikHgName">Hintergrund</span>
+        <div class="radio" role="radiogroup" aria-labelledby="grafikHgName"><label><input type="radio" name="grafikHg" value="weiss" checked> weiss</label><label><input type="radio" name="grafikHg" value="transparent"> transparent</label></div>
+        <label class="feld" for="grafikTitel">Eigener Titel, freiwillig</label>
+        <input type="text" id="grafikTitel" maxlength="140" autocomplete="off">
+        <p class="grafikhinweis">Die Zeile «Gezeigt» unter dem Titel beschreibt, was die Grafik zeigt, und bleibt immer stehen.</p>
+        <p class="grafiknote" id="grafikNote"></p>
+        <div class="grafikknoepfe">
+          <button type="button" class="btn" id="grafikLaden">Als PNG herunterladen</button>
+          <button type="button" class="btn zweit" id="grafikKopie">In die Zwischenablage kopieren</button>
+        </div>
+        <p class="grafikmeldung" id="grafikMeldung" role="status" aria-live="polite"></p>
+      </div>
+      <div class="grafikvorschau" id="grafikVorschau"><canvas id="grafikCanvas" width="1080" height="1350" role="img" aria-label="Vorschau der Grafik"></canvas><p id="grafikMass"></p></div>
+    </div>
+  </div>
+</div>
 
 <dialog class="schritte" id="schritte" aria-labelledby="schritte-titel">
   <div class="sch-innen">
@@ -192,5 +247,6 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 <script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="app.js?v=__VERSION__"></script>
+<script src="grafik.js?v=__VERSION__"></script>
 </body>
 </html>

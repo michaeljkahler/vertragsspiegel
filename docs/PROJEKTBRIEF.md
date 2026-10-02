@@ -34,6 +34,7 @@ Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    1. Umfeld eines Zettels als Gliederung nach Bezugsart, der bisherige Graph als Darstellung «Netz» wählbar (Ziffer 5.2).
    2. Finden mit Thema, Textart, geführter Auswahl in drei Schritten, Themenvorschlag in der Suche und Ergebnisliste; die Auswahl ist in allen Ansichten markiert (Ziffer 5.4).
    3. Themenkatalog `daten/themen.json` mit 20 Themen, geprüft mit `scripts/themen.py`: jeder Begriff kommt im Paket vor, 0 Fehler.
+13. Auftrag Michael vom 2. Oktober 2026: Grafikfunktion wie im Finanzspiegel, mindestens für die Netzgrafiken auf allen Stufen, das Icicle, die Bezüge und die Umsetzung, in den Formaten Social Media, Bericht und Präsentation. Entscheide vom selben Tag: eigener Titel erlaubt, die Zeile «Gezeigt» bleibt fest; Wortlautkarte nur mit ganzen Absätzen oder dem ganzen Text; Netz für Vorlagen, Dokumente und Artikel auch als Ansicht auf der Seite. Umgesetzt in `seite/grafik.js` und im Reiter «Verknüpfungen» (Ziffer 5.5).
 
 ## 2. Ziel
 
@@ -72,6 +73,7 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 |---|---|---|---|
 | 1 | Umfang (Icicle) | Paket, Vorlage, Dokument, Teil, Zettel; Fläche gleich Wörter | Übersichtsfeld neu (Ziffer 5.1); grössere Schrift |
 | 2 | Verknüpfungen (Matrix) | Dokument × Dokument | neues Mass «Artikelverweise zwischen Dokumenten»; bisherige Masse «gemeinsame EU-Rechtsakte» und «genehmigt und erläutert» bleiben |
+| 2b | Verknüpfungen (Netz) | Vorlagen, Dokumente oder Artikel eines Dokuments auf einem Kreis | neu am 2. Oktober 2026; gleiche Zählung wie die Matrix (Ziffer 5.5.3) |
 | 3 | Umsetzung (Sankey) | Abkommen, Bundesbeschluss, Bundesgesetz | Gesetzesliste vollständig (36 geändert, 3 neu) |
 | 3a | Bezüge (Bogendiagramm) | alle Zettel auf einer Linie, Länge = Wörter; Bögen oben: Artikelverweise im selben Dokument; unten: Botschaft nennt Artikel, gleicher EU-Rechtsakt, genehmigt, erläutert | im Prototyp vorhanden; Klick auf einen Bogen zeigt beide Enden mit Fundstelle; Artikelverweise zwischen Dokumenten ergänzen, sobald `verweise.py` sie liefert |
 | 4 | Zettel | Wortlaut, Fundstelle, ein- und ausgehende Verweise, genannte EU-Rechtsakte und SR-Erlasse | Wortlaut ungekürzt; grössere Schrift; Link auf die Fedlex-Stelle |
@@ -80,6 +82,7 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 | 7 | Suche | Titel und Wortlaut aller Zettel | Treffer in allen Ansichten markiert; Themenvorschlag aus dem Katalog (Ziffer 5.4) |
 | 8 | Fassungsvergleich | Entwurf Bundesrat, Beschluss Parlament, Referendumsvorlage | neu, sobald eine zweite Fassung vorliegt |
 | 9 | Finden | Thema, Textart, geführte Auswahl, Ergebnisliste | neu (Ziffer 5.4) |
+| 10 | Grafik | jede Ansicht als PNG für Social Media, Präsentation und Bericht | neu (Ziffer 5.5) |
 
 ### 5.1 Übersichtsfeld zum Icicle
 
@@ -135,6 +138,25 @@ Ziel: Politik, Medien und Bevölkerung finden die Stellen zu einer Frage in weni
 5. Ergebnisliste im Zettelbereich: Thema mit Begriffen und Anzahl Fundstellen, Hinweis zum gesuchten Wort, Zettel nach Textart gruppiert, je 15 sichtbar. Reihenfolge nach Paket; auf Wahl nach Anzahl Fundstellen mit Balken.
 6. Im geöffneten Zettel sind die Begriffe des Themas und das Suchwort markiert, mit «Stelle 1 von n» zum Springen; «Zurück zur Liste» führt zur Ergebnisliste.
 7. Anker: `#thema-<id>` und `#text-<art>`, kombinierbar mit dem Zettelanker (`#fga-2026-617-art_4&thema-lohnschutz`).
+
+### 5.5 Grafiken für Social Media, Präsentation und Bericht
+
+Aufbau wie im Finanzspiegel (`politspiegel/finanzspiegel/grafik.js`): Knopf «Grafik» unten rechts und «Als Grafik» in den Ansichten, Dialog mit Motiv, Format, Hintergrund und eigenem Titel, Vorschau, PNG oder Zwischenablage.
+
+1. Formate: Social Media 4:5 (1080 × 1350), Präsentation 16:9 (1920 × 1080), Bericht 3:2 (1800 × 1200). Jedes Motiv hat eine eigene Anordnung je Format; die Grafiken sind immer hell.
+2. Motive:
+   1. Paket in Zahlen: Dokumente, Seiten, Wörter, Zettel, Artikelverweise, genannte EU-Rechtsakte, Bundesgesetze; Wörter nach Vorlage.
+   2. Umfang: der gewählte Ausschnitt des Icicle mit drei Ebenen, Auswahl blass ausserhalb und als Streifen mit dem markierten Anteil.
+   3. Umfeld des geöffneten Zettels: Gliederung (Querformat links eingehend, rechts ausgehend) oder Netz, mit Reichweite.
+   4. Netz auf vier Stufen: Vorlagen, Dokumente, Artikel eines Dokuments, Zettel.
+   5. Matrix der Verknüpfungen.
+   6. Bezüge auf einer Linie, mit den eingeblendeten Bogenarten und dem Ausschnitt; im Hochformat senkrecht.
+   7. Umsetzung (Sankey), alle Bundesbeschlüsse oder einer.
+   8. Thema in Zahlen: Zettel, Fundstellen, Anteil am Paket, nach Textart und nach Dokument in Paketreihenfolge, Begriffe.
+   9. Wortlautkarte: ganzer Text oder ein ganzer Absatz, ohne Kürzung, mit Fundstelle. Passt der Text nicht, sagt die Grafik das, statt zu kürzen.
+3. Netz (auch als Ansicht auf der Seite): Knoten auf einem Kreis in Paketreihenfolge, Kreisfläche = Wörter, Linienbreite = Anzahl Bezüge beider Richtungen, Linie in Vorlagefarbe, wenn beide Enden zur gleichen Vorlage gehören. Kein Kräftemodell, weil dort Nähe als Aussage gelesen wird (Ziffer 6.3).
+4. Jede Grafik trägt Marke, Titel, die feste Zeile «Gezeigt», bei aktiver Auswahl die Zeile «Markiert», die Legende der Vorlagen, Quelle, Adresse der Seite, Datenstand und bei Verweisen «Rohextraktion». Ein eigener Titel ersetzt nur den Titel.
+5. Die Grafik rechnet nichts Eigenes: Daten und Zählungen kommen aus denselben Funktionen wie die Seite.
 
 ## 6. Neutralitätsregeln
 
@@ -260,7 +282,7 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 
 1. Repository anlegen, Prototyp übernehmen, Fedlex-Kontrolle als geplante Aufgabe starten. Abgeschlossen am 1. Oktober 2026.
 2. Pipeline: `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py`; Fehlerbilder 1 bis 6 aus Ziffer 9 beheben.
-3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt. Ergänzung vom 2. Oktober 2026: Umfeld (Ziffer 5.2) und Finden (Ziffer 5.4).
+3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt. Ergänzung vom 2. Oktober 2026: Umfeld (Ziffer 5.2), Finden (Ziffer 5.4), Netz und Grafiken (Ziffer 5.5).
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
 5. Französisch und Italienisch.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
