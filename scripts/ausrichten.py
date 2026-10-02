@@ -31,7 +31,7 @@ import sys
 from datetime import date
 
 import paket
-from gliedern import ARTIKEL, BUCHST, norm, ohne_hoch, zerlegen
+from gliedern import ARTIKEL, BUCHST, norm, ohne_hoch, titel_naechste_zeile, zerlegen
 from paket import DATEN, DOKUMENTE, fliesstext, text_pfad, utf8_ausgabe, woerter
 
 SPRACHEN = ('fr', 'it')
@@ -214,6 +214,9 @@ def label_von(zeilen, i, z, sp):
         m = ARTIKEL.match(ohne_hoch(zeilen[i].text.strip()))
         if m and m.group(5):
             s = f'Art. {m.group(3)} {norm(m.group(5))}'
+        elif m and not m.group(6):                      # Sachüberschrift auf der Folgezeile (621)
+            t = titel_naechste_zeile(zeilen, i, len(zeilen[i].text) - len(zeilen[i].text.lstrip()))
+            s = f'Art. {m.group(3)} {t}'.strip()
     elif z['art'] == 'ziffer' and z['dok'] not in (615, 2099, 2174):
         s = f"{ZIFF[sp]} {z['nummer']} " + re.sub(r'^\d+[.)]\s*', '', s)
     return s.lstrip('«')[:160]

@@ -71,7 +71,7 @@ Netz (Fassung Etappe 3, unverändert):
 4. **Auswahl in der Grafik benannt** («Markiert: Thema … : 164 Zettel»), weil eine markierte Grafik ohne diese Angabe eine Gewichtung nahelegt.
 5. **Seitlicher Kopf im Querformat** für Netz und Matrix: Titel und Erläuterung links, die Grafik erhält die ganze Höhe. Grund: Ein Kreis oder eine 33 × 33-Matrix unter einem Kopf von 400 Pixeln wäre in 16:9 zu klein.
 6. **Umfeld im Querformat** links eingehend, rechts ausgehend, Reichweite unter dem Text. Reicht der Platz nicht, werden die Karten bis auf 70 % verkleinert, danach mit «+ n weitere» abgeschlossen.
-7. **Bezüge im Hochformat senkrecht**: Linie von oben nach unten, Verweise im selben Dokument links, Bezüge zwischen Dokumenten rechts.
+7. **Bezüge in allen Formaten waagrecht**, auch in 4:5: oben die Verweise im selben Dokument, unten die Bezüge zwischen Dokumenten, wie auf der Seite. Die senkrechte Fassung vom 2. Oktober 2026 liess im Hochformat die halbe Fläche leer und war schwer lesbar (Rückmeldung Michael vom selben Tag). Im Hochformat erhalten die Bögen zwischen Dokumenten 70 % der Höhe.
 8. **Wortlautkarte ohne Kürzung**: Schrift von 34 bis 15 Pixel, die grösste, bei der alles passt; sonst ein Hinweis statt Text. Auszug nur als ganzer Absatz.
 9. **Dateiname** aus Motiv, Stufe oder Zettel, «auswahl» bei aktiver Auswahl und Format, zum Beispiel `vertragsspiegel-netz-dokumente-verweise-folie.png`.
 
