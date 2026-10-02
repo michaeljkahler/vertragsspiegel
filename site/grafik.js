@@ -734,7 +734,13 @@ function zeichnen() {
   const x = c.getContext('2d');
   x.setTransform(1, 0, 0, 1, 0, 0);
   felderZeigen();
-  try { ZEICHNER[G.motiv](x, f.w, f.h); } catch (e) { console.error(e); x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = '#fff'; x.fillRect(0, 0, f.w, f.h); text(x, 'Diese Grafik konnte nicht gezeichnet werden: ' + e.message, 60, 120, {s: 28}); }
+  const brauchtZettel = ['umfeld', 'wortlaut'].includes(G.motiv) || (G.motiv === 'netz' && G.stufe === 'zettel');
+  try {
+    if (brauchtZettel && V().gewaehlt === null) {      // Start ohne geöffneten Text (Gestaltungsentscheid 1.7)
+      const B = rahmen(x, f.w, f.h, {titel: 'Kein Text geöffnet', gezeigt: 'Dieses Motiv zeigt einen einzelnen Zettel.'});
+      hinweis(x, B, 'Bitte zuerst auf der Seite einen Zettel öffnen: im Umfang ein Feld anklicken, oben suchen oder unter «Finden» ein Thema wählen.');
+    } else ZEICHNER[G.motiv](x, f.w, f.h);
+  } catch (e) { console.error(e); x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = '#fff'; x.fillRect(0, 0, f.w, f.h); text(x, 'Diese Grafik konnte nicht gezeichnet werden: ' + e.message, 60, 120, {s: 28}); }
   $('#grafikNote').textContent = NOTIZ[G.motiv];
   $('#grafikTitel').placeholder = G.autoTitel;
   $('#grafikMass').textContent = `${f.m}, PNG. Quelle, Stand und die Zeile «Gezeigt» stehen in der Grafik.`;
