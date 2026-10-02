@@ -59,6 +59,7 @@ document.querySelectorAll('.imp-mail').forEach(s => { const a = s.dataset.u + '@
 
 /* ---------- Daten ---------- */
 let D, Z, K, docById, gName, zIndex, aus, ein, docAus, docEin, gewaehlt = null;
+let T = [], euNennung;            // Themen mit Muster; EU-Rechtsakt -> Map(Dokument -> erster Zettel, der ihn nennt)
 const texte = new Map();          // Textteil -> Promise({id: [text, fussnoten]})
 
 function textteil(id) {           // gleiche Regel wie scripts/bauen.py
@@ -117,15 +118,34 @@ function start(daten) {
     if (typeof k.von === 'number') aus[k.von].push(k); else push(docAus, refDoc(k.von), k);
     if (typeof k.nach === 'number') ein[k.nach].push(k); else if (refDoc(k.nach)) push(docEin, refDoc(k.nach), k);
   });
+  T = (D.themen || []).map(t => ({...t, rx: new RegExp(t.b.map(b => `(?:${b[1]})`).join('|'), 'g'),
+    zm: new Map(t.z), n: t.z.reduce((s, x) => s + x[1], 0)}));
+  euNennung = new Map();
+  K.forEach(k => {
+    if (k.art !== 'nennt' || typeof k.von !== 'number' || typeof k.nach !== 'string' || !k.nach.startsWith('celex:')) return;
+    const d = Z[k.von].d; if (d === 615) return;
+    if (!euNennung.has(k.nach)) euNennung.set(k.nach, new Map());
+    const m = euNennung.get(k.nach); if (!m.has(d)) m.set(d, k.von);
+  });
   $('#laden').remove();
-  kennzahlen(); baum(); legende(); suche(); reiterAufbauen(); graphFilter();
-  const ziel = ankerZettel();
-  const startI = ziel !== null ? ziel : startZettel();
+  kennzahlen(); baum(); legende(); suche(); reiterAufbauen(); graphFilter(); findenAufbauen();
+  const h = hashLesen();
+  filt.thema = h.thema ? T.find(t => t.id === h.thema) || null : null;
+  filt.art = TEXTART[h.art] ? h.art : null;
+  findenStand();
+  const startI = h.zettel !== null ? h.zettel : startZettel();
   zeigeReiter('umfang');
-  waehle(startI, ziel !== null);
+  const mitFilter = !!(filt.thema || filt.art);
+  if (mitFilter) filterAnwenden({still: true});
+  if (mitFilter && h.zettel === null) { gewaehlt = startI; zeigeListe(); }
+  else waehle(startI, h.zettel !== null, null, mitFilter);
   let gespeichert = null; try { gespeichert = localStorage.getItem('vs-reiter'); } catch (e) { /* */ }
-  if (gespeichert && REITER.includes(gespeichert) && gespeichert !== 'umfang' && ziel === null) zeigeReiter(gespeichert);
-  addEventListener('hashchange', () => { const i = ankerZettel(); if (i !== null && i !== gewaehlt) waehle(i, true); });
+  if (gespeichert && REITER.includes(gespeichert) && gespeichert !== 'umfang' && h.zettel === null) zeigeReiter(gespeichert);
+  addEventListener('hashchange', () => {
+    const n = hashLesen(), t = n.thema ? T.find(x => x.id === n.thema) || null : null, a = TEXTART[n.art] ? n.art : null;
+    if (t !== filt.thema || a !== filt.art) { filt.thema = t; filt.art = a; findenStand(); filterAnwenden({liste: n.zettel === null && !!(t || a)}); }
+    if (n.zettel !== null && n.zettel !== gewaehlt) waehle(n.zettel, true);
+  });
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(neuZeichnen, 150); });
 }
 function startZettel() {
@@ -133,12 +153,25 @@ function startZettel() {
   Z.forEach((z, i) => { if (z.d === 632 && z.a === 'artikel') { const m = aus[i].length + ein[i].length; if (m > n) { n = m; best = i; } } });
   return best;
 }
-function ankerZettel() {             // #fga-2026-632-art_4 (Projektbrief Ziffer 10.4)
-  const h = decodeURIComponent(location.hash.slice(1));
-  if (!h) return null;
-  const m = /^fga-2026-(\d+)-(.+)$/.exec(h);
-  const id = m ? `fga/2026/${m[1]}/${m[2].replace(/-/g, '/')}` : h;
-  return zIndex.has(id) ? zIndex.get(id) : null;
+// Anker (Projektbrief Ziffer 10.4): #fga-2026-632-art_4, ergänzt um &thema-<id> und &text-<art> (Ziffer 5.4)
+function hashLesen() {
+  const r = {zettel: null, thema: null, art: null};
+  decodeURIComponent(location.hash.slice(1)).split('&').filter(Boolean).forEach(t => {
+    if (t.startsWith('thema-')) { r.thema = t.slice(6); return; }
+    if (t.startsWith('text-')) { r.art = t.slice(5); return; }
+    const m = /^fga-2026-(\d+)-(.+)$/.exec(t);
+    const id = m ? `fga/2026/${m[1]}/${m[2].replace(/-/g, '/')}` : t;
+    if (zIndex.has(id)) r.zettel = zIndex.get(id);
+  });
+  return r;
+}
+function hashSchreiben() {
+  const t = [];
+  if (gewaehlt !== null && !listeOffen) t.push(anker(Z[gewaehlt].i));
+  if (filt.thema) t.push('thema-' + filt.thema.id);
+  if (filt.art) t.push('text-' + filt.art);
+  const h = t.length ? '#' + t.join('&') : location.pathname + location.search;
+  if (location.hash !== (t.length ? h : '')) history.replaceState(null, '', h);
 }
 const anker = id => id.replace(/\//g, '-');
 
@@ -216,7 +249,11 @@ function zeichneIcicle(animiert) {
   ge.append('rect').attr('class', 'ic-rect').attr('rx', 3);
   ge.append('text').attr('class', 'ic-label');
   ge.append('text').attr('class', 'ic-sub');
+  ge.append('rect').attr('class', 'ic-anteil').attr('rx', 1.5);
   const all = ge.merge(g);
+  // Auswahl (Ziffer 5.4): Anteil der markierten Wörter je Feld als Streifen am rechten Rand
+  root.each(d => { d.hitW = 0; });
+  if (treffer) root.leaves().forEach(l => { if (treffer.has(l.data.i)) { let a = l; while (a) { a.hitW += l.value; a = a.parent; } } });
   const t = animiert && !ruhig() ? svg.transition().duration(450) : null;
   const pos = sel => (t ? sel.transition(t) : sel);
   pos(all).attr('transform', d => `translate(${d.t.y0},${d.t.x0})`);
@@ -238,7 +275,11 @@ function zeichneIcicle(animiert) {
   all.select('.ic-label').attr('x', 7).attr('y', 17)
     .text(d => { const w = d.t.y1 - d.t.y0 - 14, h = d.t.x1 - d.t.x0; if (h < 19 || w < 30) return ''; return kuerze(d.data.name, Math.floor(w / 7.3)); });
   all.select('.ic-sub').attr('x', 7).attr('y', 34)
-    .text(d => { const w = d.t.y1 - d.t.y0 - 14, h = d.t.x1 - d.t.x0; if (h < 38 || w < 80) return ''; return fmt(d.value) + ' Wörter'; });
+    .text(d => { const w = d.t.y1 - d.t.y0 - 14, h = d.t.x1 - d.t.x0; if (h < 38 || w < 80) return '';
+      return kuerze(fmt(d.value) + ' Wörter' + (treffer && d.hitW ? ` · ${pct(d.hitW, d.value)} markiert` : ''), Math.floor(w / 6.6)); });
+  pos(all.select('.ic-anteil')).attr('display', d => treffer && d.hitW && d.depth > 0 ? null : 'none')
+    .attr('x', d => Math.max(0, d.t.y1 - d.t.y0 - GAP - 7)).attr('width', 5)
+    .attr('y', 1).attr('height', d => Math.max(1.5, (d.t.x1 - d.t.x0 - GAP - 2) * (d.hitW || 0) / Math.max(1, d.value)));
   const pfad = $('#pfad');
   pfad.innerHTML = fokus.ancestors().reverse().map((a, i, arr) => i < arr.length - 1
     ? `<button data-i="${i}">${esc(kuerze(a.data.name, 40))}</button><span aria-hidden="true">›</span>` : `<strong>${esc(a.data.name)}</strong>`).join('');
@@ -303,36 +344,46 @@ function fokusAufZettel(i) {          // Ausschnitt so, dass der Zettel in der l
 
 /* ---------- Auswahl und Zettel (Ziffer 5, Ansicht 4) ---------- */
 const zEl = $('#zettel');
-let bogenZurueck = null;
-function waehle(i, zoom, vonBogen) {
-  gewaehlt = i;
+let bogenZurueck = null, listeZurueck = false, listeOffen = false;
+function waehle(i, zoom, vonBogen, vonListe) {
+  gewaehlt = i; listeOffen = false;
   bogenZurueck = vonBogen || null;
+  listeZurueck = !!vonListe;
   if (!vonBogen) bzSel = null;
   if (zoom) { fokusAufZettel(i); if (aktiv !== 'umfang') zeigeReiter('umfang'); }
   if (aktiv === 'umfang') zeichneUmfang(!!zoom);
   zeichneZettel(i);
   if (bzSvg) bzFaerben();
-  const a = '#' + anker(Z[i].i);
-  if (location.hash !== a) history.replaceState(null, '', a);
+  hashSchreiben();
 }
 function ortVon(z) {
   const d = docById.get(z.d);
   return `${d.gruppe === 'botschaft' ? '' : esc(gName[d.gruppe]) + ' › '}${esc(d.kurz)}${z.p.length ? ' › ' + z.p.map(esc).join(' › ') : ''}`;
 }
 function pdfLink(d, seite) { return d.pdf ? `${d.pdf}#page=${seite}` : d.eli; }
-function absaetze(t, q) {
-  return t.split('\n').map(p => `<p>${markiere(esc(p), q)}</p>`).join('');
+// Markierung im Wortlaut: Begriffe des gewählten Themas (Klasse th) und das Suchwort (Klasse q).
+// Fundstellen werden am Rohtext bestimmt und erst danach maskiert, damit keine Markierung in ein Tag gerät.
+const regexText = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function hervorheben(t, q) {
+  const r = [];
+  if (filt.thema) for (const m of t.matchAll(filt.thema.rx)) if (m[0]) r.push([m.index, m.index + m[0].length, 'th']);
+  if (q && q.length >= 2) for (const m of t.matchAll(new RegExp(regexText(q), 'gi'))) r.push([m.index, m.index + m[0].length, 'q']);
+  if (!r.length) return esc(t);
+  r.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
+  let out = '', pos = 0;
+  for (const [a, b, k] of r) { if (a < pos) continue; out += esc(t.slice(pos, a)) + `<mark class="${k}">${esc(t.slice(a, b))}</mark>`; pos = b; }
+  return out + esc(t.slice(pos));
 }
-function markiere(html, q) {
+function markiere(html, q) {          // nur für kurze Ausschnitte in der Trefferliste der Suche
   if (!q || q.length < 2) return html;
-  const re = new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-  return html.replace(re, m => `<mark>${m}</mark>`);
+  return html.replace(new RegExp(regexText(esc(q)), 'gi'), m => `<mark class="q">${m}</mark>`);
 }
 function zeichneZettel(i) {
   const z = Z[i], d = docById.get(z.d);
   const seiten = z.s && z.s.length ? (z.s[0] === z.s[1] ? `S. ${z.s[0]}` : `S. ${z.s[0]}–${z.s[1]}`) : '';
+  const zurueck = bogenZurueck ? '← Zurück zum Bogen' : listeZurueck && treffer ? `← Zurück zur Liste (${fmt(treffer.size)} Zettel)` : '';
   zEl.innerHTML = `
-    ${bogenZurueck ? '<button class="knopf" id="zurueck" style="justify-self:start">← Zurück zum Bogen</button>' : ''}
+    ${zurueck ? `<button class="knopf" id="zurueck" style="justify-self:start">${esc(zurueck)}</button>` : ''}
     <div>
       <div class="ort"><span class="punkt" style="background:${gVar(d.gruppe)}"></span>${ortVon(z)}</div>
       <h3>${esc(z.l)}</h3>
@@ -341,25 +392,48 @@ function zeichneZettel(i) {
       ${seiten ? `<a href="${esc(pdfLink(d, z.s[0]))}" target="_blank" rel="noopener">PDF, ${seiten}</a>` : ''}
       <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a>
       <a href="#${esc(anker(z.i))}" title="Direkter Link auf diesen Zettel">Link</a></div>
+    <div class="fund" id="fund" hidden></div>
     <div class="wortlaut" id="wortlaut" tabindex="0" aria-label="Wortlaut"><span class="leer">Wortlaut wird geladen …</span></div>
-    <div><h4>Lokaler Graph <span class="marke">Rohextraktion</span></h4>
-      <div class="gr-filter" id="gr-filter" role="group" aria-label="Kantenarten im Graph"></div>
-      <div id="graph"></div><ul class="legende" id="gr-legende"></ul>
-      <div class="gr-erkl" id="gr-erkl"></div></div>
-    <div><h4>Verknüpfungen als Liste</h4><div id="gr-liste"></div></div>
+    <section class="uf-teil" aria-labelledby="uf-titel">
+      <div class="uf-kopfzeile"><h4 id="uf-titel">Umfeld: womit dieser Text verknüpft ist <span class="marke">Rohextraktion</span></h4>
+        <div class="schalter klein" id="uf-art" role="group" aria-label="Darstellung des Umfelds">
+          <button data-uf="gliederung" aria-pressed="${ufArt === 'gliederung'}">Gliederung</button><button data-uf="netz" aria-pressed="${ufArt === 'netz'}">Netz</button></div></div>
+      <div id="uf-host"></div>
+    </section>
+    <section><h4>Wie weit reicht die Verknüpfung?</h4><div id="reichweite"></div></section>
+    <details class="uf-alle" id="uf-alle"><summary>Alle Verknüpfungen mit Fundstelle</summary><div id="gr-liste"></div></details>
     <div><h4>Dokument</h4><div class="chips" id="z-dok"></div></div>`;
-  const zb = zEl.querySelector('#zurueck'); if (zb) { const b = bogenZurueck; zb.onclick = () => { bzSel = b; zeigeBogen(b); bzFaerben(); }; }
-  graphFilterKnoepfe();
-  zeichneGraph(i);
+  const zb = zEl.querySelector('#zurueck');
+  if (zb && bogenZurueck) { const b = bogenZurueck; zb.onclick = () => { bzSel = b; zeigeBogen(b); bzFaerben(); }; }
+  else if (zb) zb.onclick = () => zeigeListe();
+  $('#uf-art').onclick = ev => { const b = ev.target.closest('[data-uf]'); if (!b || b.dataset.uf === ufArt) return; ufArt = b.dataset.uf;
+    try { localStorage.setItem('vs-umfeld', ufArt); } catch (e) { /* */ }
+    $('#uf-art').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); zeichneUmfeld(i); };
+  zeichneUmfeld(i);
+  zeichneReichweite(i);
+  graphListe(i);
   dokumentChips(z.d);
   const q = suchwort();
   ladeText(z.i).then(([t, fn]) => {
-    if (gewaehlt !== i) return;
+    if (gewaehlt !== i || listeOffen) return;
     const el = $('#wortlaut'); if (!el) return;
-    el.innerHTML = (t ? absaetze(t, q) : '<span class="leer">Kein Wortlaut.</span>') +
-      (fn.length ? `<div class="fussnoten">${fn.map(([n, f]) => `<p><sup>${esc(n)}</sup> ${markiere(esc(f), q)}</p>`).join('')}</div>` : '');
-    const m = el.querySelector('mark'); if (m) m.scrollIntoView({block: 'nearest'});
+    el.innerHTML = (t ? t.split('\n').map(p => `<p>${hervorheben(p, q)}</p>`).join('') : '<span class="leer">Kein Wortlaut.</span>') +
+      (fn.length ? `<div class="fussnoten">${fn.map(([n, f]) => `<p><sup>${esc(n)}</sup> ${hervorheben(f, q)}</p>`).join('')}</div>` : '');
+    fundstellen(el);
   });
+}
+function fundstellen(el) {            // «3 Stellen markiert ‹ ›»: springt im Wortlaut von Markierung zu Markierung
+  const marken = [...el.querySelectorAll('mark')], box = $('#fund');
+  if (!box) return;
+  if (!marken.length) { box.hidden = true; return; }
+  let k = 0;
+  const zeige = () => { marken.forEach((m, j) => m.classList.toggle('aktuell', j === k)); el.scrollTop = Math.max(0, marken[k].offsetTop - el.clientHeight / 3);
+    box.querySelector('span').textContent = `Stelle ${k + 1} von ${marken.length}`; };
+  const was = [filt.thema ? `Begriffe des Themas «${filt.thema.name}»` : '', suchText.length >= 2 ? `Suchwort «${suchText}»` : ''].filter(Boolean).join(' und ');
+  box.innerHTML = `<span></span><button class="knopf" data-schritt="-1" aria-label="Vorherige Stelle">‹</button><button class="knopf" data-schritt="1" aria-label="Nächste Stelle">›</button><small>${esc(was)} markiert</small>`;
+  box.hidden = false;
+  box.onclick = ev => { const b = ev.target.closest('[data-schritt]'); if (!b) return; k = (k + +b.dataset.schritt + marken.length) % marken.length; zeige(); };
+  zeige();
 }
 function dokumentChips(nr) {
   const d = docById.get(nr);
@@ -379,7 +453,195 @@ function dokumentChips(nr) {
   el.querySelectorAll('[data-gesetz]').forEach(a => a.onclick = ev => { ev.preventDefault(); zeigeReiter('tabelle'); $('#gesetze').scrollIntoView({block: 'start'}); });
 }
 
-/* ---------- Lokaler Graph (Ziffer 5.2) ---------- */
+/* ---------- Umfeld eines Zettels (Ziffer 5.2) ----------
+   Darstellung «Gliederung»: oben, was auf den Text verweist; in der Mitte der Text; unten, worauf er verweist.
+   Gruppen nach Bezugsart, Karten in der Farbe der Vorlage, gleiche Ziele zusammengefasst (×n).
+   Darstellung «Netz»: der radiale Graph mit festen Sektoren. */
+let ufArt = (() => { try { return localStorage.getItem('vs-umfeld') === 'netz' ? 'netz' : 'gliederung'; } catch (e) { return 'gliederung'; } })();
+const UF_GRUPPEN = [
+  {r: 'ein', key: 'erl_ein', titel: 'Erläutert in der Botschaft', strich: true,
+    hilfe: 'Abschnitte der Botschaft, die diesen Artikel oder das ganze Dokument erläutern.'},
+  {r: 'ein', key: 'gen_ein', titel: 'Genehmigt durch', strich: true,
+    hilfe: 'Der Bundesbeschluss, der das ganze Dokument genehmigt (jeweils Art. 1).'},
+  {r: 'ein', key: 'vw_ein', titel: 'Andere Artikel verweisen hierher', strich: false,
+    hilfe: 'Artikel, deren Wortlaut auf diesen Artikel verweist.'},
+  {r: 'aus', key: 'vw_aus', titel: 'Verweist auf diese Artikel', strich: false,
+    hilfe: 'Artikel, auf die der Wortlaut dieses Texts verweist.'},
+  {r: 'aus', key: 'erl_aus', titel: 'Erläutert', strich: true, hilfe: 'Artikel und Dokumente, die dieser Abschnitt der Botschaft erläutert.'},
+  {r: 'aus', key: 'gen_aus', titel: 'Genehmigt', strich: true, hilfe: 'Abkommen und Protokolle, die dieser Artikel genehmigt.'},
+  {r: 'aus', key: 'eu', titel: 'Nennt EU-Rechtsakte', strich: false,
+    hilfe: 'Verordnungen, Richtlinien und Beschlüsse der EU, die im Wortlaut genannt sind, mit den anderen Dokumenten, die sie ebenfalls nennen.'},
+  {r: 'aus', key: 'sr', titel: 'Nennt Schweizer Erlasse (SR)', strich: false, hilfe: 'Erlasse der Systematischen Rechtssammlung, die im Wortlaut genannt sind.'},
+];
+const UF_MAX = 8;
+let ufOffen = new Set(), ufBeob = null;
+function umfeldDaten(i) {
+  const z = Z[i], m = Object.fromEntries(UF_GRUPPEN.map(g => [g.key, new Map()]));
+  const add = (key, ref, k, ganz) => { const s = String(ref); if (!m[key].has(s)) m[key].set(s, {ref, kanten: [], ganz: !!ganz}); m[key].get(s).kanten.push(k); };
+  ein[i].forEach(k => { if (k.art === 'erlaeutert') add('erl_ein', k.von, k); else if (k.art === 'verweist_auf') add('vw_ein', k.von, k); });
+  (docEin.get(z.d) || []).forEach(k => {
+    if (typeof k.von !== 'number') return;
+    if (k.art === 'erlaeutert') add('erl_ein', k.von, k, true);
+    else if (k.art === 'genehmigt') add('gen_ein', k.von, k, true);
+  });
+  aus[i].forEach(k => {
+    const r = k.nach;
+    if (k.art === 'verweist_auf') add('vw_aus', r, k);
+    else if (k.art === 'erlaeutert') add('erl_aus', r, k);
+    else if (k.art === 'genehmigt') add('gen_aus', r, k);
+    else if (k.art === 'nennt' && typeof r === 'string' && r.startsWith('celex:')) add('eu', r, k);
+    else if (k.art === 'nennt' && typeof r === 'string' && r.startsWith('sr:')) add('sr', r, k);
+  });
+  const ord = e => typeof e.ref === 'number' ? e.ref : e.ref.startsWith('fga/') ? 1e6 + refDoc(e.ref) : 2e6;
+  return UF_GRUPPEN.map(g => ({...g, items: [...m[g.key].values()].sort((a, b) => ord(a) - ord(b) || String(a.ref).localeCompare(String(b.ref), 'de'))}))
+    .filter(g => g.items.length);
+}
+const srName = sr => { const g = D.gesetze.find(x => x.sr === sr); return g ? gesetzName(g) : ''; };
+function ufKarte(e, g, i) {
+  const z = Z[i], n = e.kanten.length, r = e.ref;
+  const nx = n > 1 ? `<span class="uf-n" title="${n} Fundstellen">×${n}</span>` : '';
+  if (typeof r === 'number') {
+    const x = Z[r], d = docById.get(x.d), gleich = x.d === z.d;
+    const aus_ = treffer && !treffer.has(r) ? ' aus-filter' : '';
+    return `<button class="uf-k${aus_}" data-z="${r}" data-e="${esc(g.key + '|' + r)}" style="--g:${gVar(d.gruppe)}">
+      <span class="uf-t">${gleich ? '' : `<span class="uf-dok">${esc(d.kurz)}</span>`}${esc(x.l)}</span>${nx}
+      ${e.ganz ? `<small>${g.key === 'gen_ein' ? 'genehmigt' : 'erläutert'} das ganze Dokument ${esc(docById.get(z.d).kurz)}</small>` : ''}</button>`;
+  }
+  if (r.startsWith('fga/')) {
+    const d = docById.get(refDoc(r));
+    return `<button class="uf-k" data-doc="${d.nr}" data-e="${esc(g.key + '|' + r)}" style="--g:${gVar(d.gruppe)}"><span class="uf-t"><span class="uf-dok">${esc(d.kurz)}</span>ganzes Dokument</span>${nx}</button>`;
+  }
+  if (r.startsWith('celex:')) {
+    const c = r.slice(6), auch = [...(euNennung.get(r) || new Map())].filter(([dn]) => dn !== z.d);
+    return `<div class="uf-eu"><a class="uf-k neutral" href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:${encodeURIComponent(c)}" target="_blank" rel="noopener" data-e="${esc(g.key + '|' + r)}">
+      <span class="uf-form eu" aria-hidden="true"></span><span class="uf-t"><b>${esc(c)}</b> ${esc(kuerze(D.eu[c] || '', 90))}</span>${nx}</a>
+      ${auch.length ? `<div class="uf-auch"><span>auch genannt in</span>${auch.slice(0, 6).map(([dn, zi]) => `<button data-z="${zi}" style="--g:${gVar(docById.get(dn).gruppe)}">${esc(docById.get(dn).kurz)}</button>`).join('')}${auch.length > 6 ? `<span>+${auch.length - 6}</span>` : ''}</div>` : ''}</div>`;
+  }
+  const sr = r.slice(3), name = srName(sr);
+  return `<a class="uf-k neutral" href="https://www.fedlex.admin.ch/de/search?text=${encodeURIComponent('SR ' + sr)}" target="_blank" rel="noopener" data-e="${esc(g.key + '|' + r)}">
+    <span class="uf-form erlass" aria-hidden="true"></span><span class="uf-t"><b>SR ${esc(sr)}</b>${name ? ' ' + esc(name) : ''}</span>${nx}</a>`;
+}
+function zeichneUmfeld(i) {
+  const host = $('#uf-host'); if (!host) return;
+  if (ufBeob) { ufBeob.disconnect(); ufBeob = null; }
+  if (ufArt === 'netz') {
+    host.innerHTML = `<div class="gr-filter" id="gr-filter" role="group" aria-label="Kantenarten im Graph"></div>
+      <div id="graph"></div><ul class="legende" id="gr-legende"></ul><div class="gr-erkl" id="gr-erkl"></div>`;
+    graphFilterKnoepfe(); zeichneGraph(i); return;
+  }
+  if (ufOffen.zettel !== i) { ufOffen = new Set(); ufOffen.zettel = i; }
+  const z = Z[i], d = docById.get(z.d), gruppen = umfeldDaten(i);
+  const band = r => {
+    const gs = gruppen.filter(g => g.r === r);
+    const frage = r === 'ein' ? 'Was verweist auf diesen Text?' : 'Worauf verweist dieser Text?';
+    if (!gs.length) return `<div class="uf-band uf-${r} leerband"><p class="uf-frage">${frage}</p><p class="leer">${r === 'ein' ? 'Kein anderer Text verweist auf diesen Zettel.' : 'Der Wortlaut enthält keinen erkannten Verweis.'}</p></div>`;
+    return `<div class="uf-band uf-${r}"><p class="uf-frage">${frage}</p>${gs.map(g => {
+      const offen = ufOffen.has(g.key), zeigen = offen ? g.items : g.items.slice(0, UF_MAX);
+      const fund = g.items.reduce((s, e) => s + e.kanten.length, 0);
+      return `<div class="uf-gruppe${g.strich ? ' gestrichelt' : ''}" data-g="${g.key}">
+        <p class="uf-gtitel" title="${esc(g.hilfe)}">${esc(g.titel)} <span>${fmt(g.items.length)}${fund > g.items.length ? ` · ${fmt(fund)} Fundstellen` : ''}</span></p>
+        <div class="uf-karten">${zeigen.map(e => ufKarte(e, g, i)).join('')}
+        ${g.items.length > UF_MAX ? `<button class="uf-mehr" data-mehr="${g.key}">${offen ? 'weniger zeigen' : `+ ${fmt(g.items.length - UF_MAX)} weitere`}</button>` : ''}</div></div>`;
+    }).join('')}</div>`;
+  };
+  host.innerHTML = `<div class="uf" id="umfeld"><svg class="uf-linien" aria-hidden="true"></svg>
+    ${band('ein')}
+    <div class="uf-mitte" style="--g:${gVar(d.gruppe)}"><span class="uf-ort">${esc(gName[d.gruppe])} › ${esc(d.kurz)}</span><b>${esc(z.l)}</b><small>dieser Text</small></div>
+    ${band('aus')}</div>
+    <details class="uf-lesen"><summary>So lesen</summary>
+      <p>Oben steht, was auf diesen Text verweist, unten, worauf er selbst verweist. Die Linien führen jeweils in Pfeilrichtung: vom verweisenden zum verwiesenen Text.</p>
+      <p>Jede Karte ist ein Bezug, der im Wortlaut steht; ähnliche Inhalte ohne Verweis sind nicht verbunden. Durchgezogene Linie: Verweis oder Nennung im Text. Gestrichelte Linie: Erläuterung in der Botschaft oder Genehmigung durch einen Bundesbeschluss.</p>
+      <p>Die Farbe einer Karte zeigt die Vorlage, zu der der Text gehört; sie bewertet nichts. ${D.gruppen.map(g => `<span class="uf-farbe" style="--g:${gVar(g.id)}">${esc(g.name)}</span>`).join(' ')} Grau umrandet: EU-Rechtsakte (Raute) und Schweizer Erlasse (Dreieck), sie gehören keiner Vorlage an.</p>
+      <p>«×3» heisst: derselbe Bezug steht dreimal im Text. Überfahren zeigt die Fundstelle, Klick öffnet den Text. Ist oben ein Thema oder eine Textart gewählt, sind Karten ausserhalb dieser Auswahl blasser.</p>
+    </details>`;
+  const box = $('#umfeld'), alle = new Map();
+  gruppen.forEach(g => g.items.forEach(e => alle.set(g.key + '|' + e.ref, {e, g})));
+  box.onclick = ev => {
+    const m = ev.target.closest('[data-mehr]'); if (m) { const k = m.dataset.mehr; ufOffen.has(k) ? ufOffen.delete(k) : ufOffen.add(k); zeichneUmfeld(i); return; }
+    const b = ev.target.closest('button[data-z]'); if (b) { hideTip(); waehle(+b.dataset.z, aktiv === 'umfang'); return; }
+    const dd = ev.target.closest('button[data-doc]'); if (dd) { hideTip(); fokusAufDoc(+dd.dataset.doc); }
+  };
+  box.addEventListener('pointerover', ev => {
+    const k = ev.target.closest('[data-e]'); if (!k) return;
+    const {e, g} = alle.get(k.dataset.e) || {}; if (!e) return;
+    ufLinien(k.closest('.uf-gruppe'));
+    const stellen = [...new Set(e.kanten.map(x => (x.stelle || '').replace(/\s+/g, ' ').trim()).filter(Boolean))];
+    const wo = g.r === 'ein' ? `Fundstelle in ${esc(refName(e.ref, true))}` : 'Fundstelle in diesem Text';
+    showTip(ev, `<b>${esc(g.titel)}</b>${stellen.length ? `<span>${wo}:</span><br>${stellen.slice(0, 3).map(s => `«${esc(kuerze(s, 150))}»`).join('<br>')}${stellen.length > 3 ? `<br><span>und ${stellen.length - 3} weitere</span>` : ''}` : `<span>${esc(g.hilfe)}</span>`}`);
+  });
+  box.addEventListener('pointermove', ev => { if (ev.target.closest('[data-e]')) moveTip(ev); });
+  box.addEventListener('pointerout', ev => { const k = ev.target.closest('[data-e]'); if (k && !k.contains(ev.relatedTarget)) { hideTip(); ufLinien(); } });
+  ufLinien();
+  if (window.ResizeObserver) { ufBeob = new ResizeObserver(() => ufLinien()); ufBeob.observe(box); }
+}
+// Linien: ein Stamm links, von dem jede Gruppe abzweigt; oben laufen die Linien in den Text hinein, unten aus ihm heraus
+function ufLinien(hell) {
+  const box = $('#umfeld'); if (!box) return;
+  const svg = box.querySelector('.uf-linien'), B = box.getBoundingClientRect();
+  if (!B.width) return;
+  const rel = el => { const r = el.getBoundingClientRect(); return {x: r.left - B.left, y: r.top - B.top, w: r.width, h: r.height}; };
+  const X = 10, mitte = rel(box.querySelector('.uf-mitte'));
+  const ty = g => { const t = rel(g.querySelector('.uf-gtitel')); return t.y + Math.min(t.h, 24) / 2; };
+  const pfeil = (x, y, rtg) => rtg === 'unten' ? `M${x - 5},${y - 8}L${x},${y}L${x + 5},${y - 8}Z` : `M${x - 8},${y - 5}L${x},${y}L${x - 8},${y + 5}Z`;
+  const linien = [], pfeile = [];
+  const ein = [...box.querySelectorAll('.uf-ein .uf-gruppe')], aus_ = [...box.querySelectorAll('.uf-aus .uf-gruppe')];
+  if (ein.length) {
+    const y0 = ty(ein[0]);
+    linien.push({d: `M${X},${y0}V${mitte.y - 1}`, an: ein});
+    pfeile.push({d: pfeil(X, mitte.y, 'unten'), an: ein});
+    ein.forEach(g => { const y = ty(g), gx = rel(g).x; linien.push({d: `M${gx - 4},${y}H${X}`, strich: g.classList.contains('gestrichelt'), an: [g]}); });
+  }
+  if (aus_.length) {
+    const yN = ty(aus_[aus_.length - 1]);
+    linien.push({d: `M${X},${mitte.y + mitte.h}V${yN}`, an: aus_});
+    aus_.forEach(g => { const y = ty(g), gx = rel(g).x; linien.push({d: `M${X},${y}H${gx - 3}`, strich: g.classList.contains('gestrichelt'), an: [g]});
+      pfeile.push({d: pfeil(gx - 3, y, 'rechts'), an: [g]}); });
+  }
+  const an = o => hell && o.an.includes(hell);
+  svg.setAttribute('viewBox', `0 0 ${B.width} ${B.height}`);
+  svg.setAttribute('width', B.width); svg.setAttribute('height', B.height);
+  svg.innerHTML = linien.map(o => `<path d="${o.d}" fill="none" class="${an(o) ? 'hell' : ''}" stroke-width="${an(o) ? 2.6 : 2}"${o.strich ? ' stroke-dasharray="6 4"' : ''}/>`).join('') +
+    pfeile.map(o => `<path d="${o.d}" class="spitze${an(o) ? ' hell' : ''}"/>`).join('');
+}
+
+/* ---------- Reichweite: wie weit die Verknüpfung über Artikelverweise und Erläuterungen reicht (Ziffer 5.2.6) ---------- */
+function nachbarn(j) {
+  const s = new Set();
+  aus[j].forEach(k => { if (typeof k.nach === 'number' && (k.art === 'verweist_auf' || k.art === 'erlaeutert')) s.add(k.nach); });
+  ein[j].forEach(k => { if (typeof k.von === 'number' && (k.art === 'verweist_auf' || k.art === 'erlaeutert')) s.add(k.von); });
+  s.delete(j); return s;
+}
+function reichweite(i) {
+  const s1 = nachbarn(i), s2 = new Set(s1);
+  s1.forEach(j => nachbarn(j).forEach(x => { if (x !== i) s2.add(x); }));
+  return {s1, s2};
+}
+function zeichneReichweite(i) {
+  const el = $('#reichweite'); if (!el) return;
+  const {s1, s2} = reichweite(i);
+  if (!s1.size) { el.innerHTML = '<p class="leer">Kein Artikelverweis und keine Erläuterung verbindet diesen Zettel mit einem anderen Zettel. EU-Rechtsakte und SR-Erlasse zählen hier nicht.</p>'; return; }
+  const zeile = (s, titel, schritte) => {
+    const je = d3.rollup([...s], v => v.length, j => docById.get(Z[j].d).gruppe), docs = new Set([...s].map(j => Z[j].d));
+    const imF = treffer ? [...s].filter(j => treffer.has(j)).length : null;
+    const balken = D.gruppen.filter(g => je.get(g.id)).map(g => `<i style="flex:${je.get(g.id)};background:${gVar(g.id)}" title="${esc(g.name)}: ${fmt(je.get(g.id))} Zettel"></i>`).join('');
+    return `<div class="rw-zeile"><div class="rw-text"><b>${fmt(s.size)} Zettel</b> in ${fmt(docs.size)} ${docs.size === 1 ? 'Dokument' : 'Dokumenten'} <span>${titel}</span>${imF !== null ? `<span>, davon ${fmt(imF)} in der Auswahl</span>` : ''}</div>
+      <div class="rw-balken" aria-hidden="true">${balken}</div>
+      <button class="knopf" data-reich="${schritte}">Im Umfang markieren</button></div>`;
+  };
+  el.innerHTML = zeile(s1, 'direkt verknüpft', 1) + (s2.size > s1.size ? zeile(s2, 'direkt oder über einen Zwischenschritt', 2) : '') +
+    `<div class="rw-fuss"><button class="knopf" id="rw-bezuege">Im Bezugsdiagramm zeigen</button>
+     <span class="leer">Gezählt werden Artikelverweise und Erläuterungen der Botschaft zwischen Zetteln, in beide Richtungen. Balken: Anteil je Vorlage.</span></div>`;
+  el.querySelectorAll('[data-reich]').forEach(b => b.onclick = () => {
+    const n = +b.dataset.reich, menge = new Set(n === 1 ? s1 : s2); menge.add(i);
+    filt.reich = {i, schritte: n, menge};
+    filterAnwenden({ohneZettel: true});
+    zeigeReiter('umfang'); fokus = root; zeichneUmfang(true);
+    $('#ansicht').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+  });
+  $('#rw-bezuege').onclick = () => { zeigeReiter('bezuege'); $('#ansicht').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'}); };
+}
+
+/* ---------- Netz: radialer Graph (frühere Darstellung, Ziffer 5.2) ---------- */
 const GR_ARTEN = [['verweist_auf', 'verweist auf'], ['nennt', 'nennt'], ['genehmigt', 'genehmigt'], ['erlaeutert', 'erläutert'], ['teil_von', 'Teil von']];
 const grAktiv = Object.fromEntries(GR_ARTEN.map(([k]) => [k, true]));
 function graphFilter() { try { const s = JSON.parse(localStorage.getItem('vs-graph') || '{}'); Object.assign(grAktiv, s); } catch (e) { /* */ } }
@@ -538,36 +800,49 @@ function zeichneGraph(i) {
     <p>Eine Kante steht nur, wo der Wortlaut einen Bezug enthält: «verweist auf» ist ein Artikelverweis im Text, «nennt» eine Rechtsakt- oder SR-Nummer, «genehmigt» stammt aus Art. 1 eines Bundesbeschlusses, «erläutert» aus einem Kapitel der Botschaft. Der Pfeil zeigt vom verweisenden zum verwiesenen Teil.</p>
     <p>Der äussere Ring ist der zweite Schritt: andere Dokumente, die denselben EU-Rechtsakt nennen, und der Bundesbeschluss und das Botschaftskapitel zum Dokument.${n2 ? '' : ' Für diesen Zettel gibt es keinen.'}</p>
     <p>Lage und Abstand tragen keine Bedeutung. Höchstens ${MAX_JE_SEKTOR} Knoten je Bereich; alle Verknüpfungen stehen in der Liste darunter. Hier: ${fmt(n1)} Knoten im inneren, ${fmt(n2)} im äusseren Ring.</p>`;
-  graphListe(i);
 }
+// Liste aller Verknüpfungen: gleiche Art, Richtung und gleiches Ziel in einer Zeile, mit allen Fundstellen
 function graphListe(i) {
   const el = $('#gr-liste'); if (!el) return;
-  const zeilen = [...aus[i].map(k => [k, 'aus', k.nach]), ...ein[i].map(k => [k, 'ein', k.von])];
+  const m = new Map();
+  [...aus[i].map(k => [k, 'aus', k.nach]), ...ein[i].map(k => [k, 'ein', k.von])].forEach(([k, r, ref]) => {
+    const s = `${k.art}|${r}|${ref}`; if (!m.has(s)) m.set(s, {art: k.art, r, ref, kanten: []}); m.get(s).kanten.push(k);
+  });
+  const zeilen = [...m.values()];
+  const sum = $('#uf-alle summary'); if (sum) sum.textContent = `Alle Verknüpfungen mit Fundstelle (${fmt(zeilen.length)})`;
   if (!zeilen.length) { el.innerHTML = '<p class="leer">Für diesen Zettel ist keine Verknüpfung erkannt.</p>'; return; }
   const ordnung = {verweist_auf: 0, erlaeutert: 1, genehmigt: 2, aendert: 3, nennt: 4};
-  zeilen.sort((a, b) => (ordnung[a[0].art] - ordnung[b[0].art]) || (a[1] < b[1] ? -1 : 1));
-  el.innerHTML = `<ul class="liste">${zeilen.map(([k, r, ref]) => {
+  const pos = e => typeof e.ref === 'number' ? e.ref : 1e6;
+  zeilen.sort((a, b) => (ordnung[a.art] - ordnung[b.art]) || (a.r < b.r ? -1 : a.r > b.r ? 1 : 0) || pos(a) - pos(b) || String(a.ref).localeCompare(String(b.ref)));
+  el.innerHTML = `<ul class="liste">${zeilen.map(({art, r, ref, kanten}) => {
     const name = refName(ref, true);
     const ziel = typeof ref === 'number' ? `<button class="ziel" data-z="${ref}">${esc(name)}</button>`
       : ref.startsWith('celex:') ? `<a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:${encodeURIComponent(ref.slice(6))}" target="_blank" rel="noopener">${esc(kuerze(name, 160))}</a>`
       : ref.startsWith('fga/') ? `<button class="ziel" data-doc="${refDoc(ref)}">${esc(name)}</button>` : esc(name);
-    const stelle = k.stelle && typeof ref === 'number' || (k.stelle && k.art !== 'nennt') ? `<span class="stelle">«${esc(kuerze(k.stelle.replace(/\s+/g, ' '), 140))}»</span>` : '';
-    return `<li style="border-left-color:${typeof ref === 'number' ? gVar(docById.get(Z[ref].d).gruppe) : 'var(--linie)'}"><span class="art" title="${esc(k.regel)}">${ART[k.art] ? ART[k.art][r] : k.art}</span><br>${ziel}${stelle}</li>`;
+    const stellen = [...new Set(kanten.map(k => (k.stelle || '').replace(/\s+/g, ' ').trim()).filter(Boolean))];
+    const zeigStelle = typeof ref === 'number' || art !== 'nennt';
+    return `<li style="border-left-color:${typeof ref === 'number' ? gVar(docById.get(Z[ref].d).gruppe) : 'var(--linie)'}"><span class="art" title="${esc(kanten[0].regel)}">${ART[art] ? ART[art][r] : art}</span>${kanten.length > 1 ? ` <span class="art">×${kanten.length}</span>` : ''}<br>${ziel}${zeigStelle ? stellen.slice(0, 4).map(s => `<span class="stelle">«${esc(kuerze(s, 140))}»</span>`).join('') : ''}</li>`;
   }).join('')}</ul>`;
   el.querySelectorAll('[data-z]').forEach(b => b.onclick = () => waehle(+b.dataset.z, true));
   el.querySelectorAll('[data-doc]').forEach(b => b.onclick = () => fokusAufDoc(+b.dataset.doc));
 }
 
-/* ---------- Suche (Ziffer 5, Ansicht 7) ---------- */
-let suchText = '';
+/* ---------- Suche (Ziffer 5, Ansicht 7; Themenvorschlag Ziffer 5.4) ---------- */
+let suchText = '', sucheLeeren = () => {};
 const suchwort = () => suchText;
+function themenFuer(q) {             // Stichwort -> Themen: Name, Begriffe und Suchbegriffe aus der Debatte
+  const ql = q.toLowerCase().trim(); if (ql.length < 3) return [];
+  const passt = s => { const sl = s.toLowerCase(); return sl.includes(ql) || (sl.length >= 4 && ql.includes(sl)); };
+  return T.filter(t => passt(t.name) || t.b.some(b => passt(b[0])) || t.s.some(s => passt(s[0])));
+}
 function suche() {
   const feld = $('#suchfeld'), box = $('#treffer');
   let lauf = 0;
+  sucheLeeren = () => { feld.value = ''; suchText = ''; filt.such = null; box.hidden = true; lauf++; };
   async function suchen() {
     const q = feld.value.trim(), ql = q.toLowerCase(), meiner = ++lauf;
     suchText = q;
-    if (q.length < 2) { treffer = null; box.hidden = true; if (aktiv === 'umfang') zeichneUmfang(false); return; }
+    if (q.length < 2) { filt.such = null; box.hidden = true; filterAnwenden({ohneZettel: true}); return; }
     const titel = new Set(); Z.forEach((z, i) => { if (z.l.toLowerCase().includes(ql)) titel.add(i); });
     zeige(titel, null, q.length >= 3 && !alleGeladen);
     if (q.length >= 3) {
@@ -581,22 +856,213 @@ function suche() {
   }
   function zeige(titel, wortlaut, laedt) {
     const alle = [...titel, ...(wortlaut ? wortlaut.keys() : [])];
-    treffer = new Set(alle);
-    const q = suchText;
-    box.innerHTML = `<div class="kopfzeile">${fmt(alle.length)} Zettel${laedt ? ' in Titeln; Wortlaut wird geladen …' : wortlaut ? ` (${fmt(titel.size)} im Titel, ${fmt(wortlaut.size)} im Wortlaut). Treffer sind im Übersichtsfeld markiert.` : ''}</div>` +
+    filt.such = new Set(alle);
+    filterAnwenden({ohneZettel: true});
+    const q = suchText, th = themenFuer(q).slice(0, 3);
+    const keiner = !laedt && wortlaut && !alle.length;
+    const andere = filt.thema || filt.art || filt.reich;
+    box.innerHTML = th.map(t => `<button class="th-vorschlag" data-thema="${t.id}"><span class="marke">Thema</span> ${esc(t.name)}<small>${fmt(t.zm.size)} Zettel · Begriffe im Wortlaut: ${esc(t.b.slice(0, 4).map(b => b[0]).join(', '))}${t.b.length > 4 ? ' …' : ''}</small></button>`).join('') +
+      (keiner ? `<div class="kopfzeile">«${esc(q)}» steht nicht im Wortlaut.${th.length ? ' Das Thema oben fasst die Begriffe zusammen, die im Text dafür stehen.' : ''}</div>` : '') +
+      (alle.length || laedt ? `<div class="kopfzeile">${fmt(alle.length)} Zettel${laedt ? ' in Titeln; Wortlaut wird geladen …' : wortlaut ? ` (${fmt(titel.size)} im Titel, ${fmt(wortlaut.size)} im Wortlaut)${andere && treffer ? `, davon ${fmt(treffer.size)} in der übrigen Auswahl` : ''}. In allen Ansichten markiert.` : ''}</div>` : '') +
       alle.slice(0, 40).map(i => { const z = Z[i], d = docById.get(z.d);
         const aus = wortlaut && wortlaut.has(i) ? `<small>… ${markiere(esc(wortlaut.get(i)), q)} …</small>` : '';
         return `<button data-z="${i}">${markiere(esc(z.l), q)}<small>${esc(d.kurz)}${z.p.length ? ' › ' + esc(kuerze(z.p.join(' › '), 70)) : ''}</small>${aus}</button>`; }).join('') +
-      (alle.length > 40 ? `<div class="kopfzeile">… und ${fmt(alle.length - 40)} weitere; alle im Übersichtsfeld markiert.</div>` : '');
-    box.hidden = false;
-    if (aktiv === 'umfang') zeichneUmfang(false);
+      (alle.length > 40 ? `<div class="kopfzeile">… und ${fmt(alle.length - 40)} weitere; alle in der Liste und in den Ansichten markiert.</div>` : '');
+    box.hidden = !box.innerHTML;
   }
   let alleGeladen = false, zeit;
   feld.addEventListener('input', () => { clearTimeout(zeit); zeit = setTimeout(suchen, 180); });
-  box.addEventListener('click', ev => { const b = ev.target.closest('button[data-z]'); if (!b) return; box.hidden = true; waehle(+b.dataset.z, true); });
+  box.addEventListener('click', ev => {
+    const t = ev.target.closest('button[data-thema]');
+    if (t) { const q = feld.value.trim(); const imText = filt.such ? filt.such.size : 0; sucheLeeren(); setzeThema(t.dataset.thema, {herkunft: {q, imText}}); return; }
+    const b = ev.target.closest('button[data-z]'); if (!b) return; box.hidden = true; waehle(+b.dataset.z, aktiv === 'umfang');
+  });
   document.addEventListener('click', ev => { if (!ev.target.closest('.suche')) box.hidden = true; });
-  feld.addEventListener('focus', () => { if (treffer) box.hidden = false; });
+  feld.addEventListener('focus', () => { if (box.innerHTML && feld.value.trim().length >= 2) box.hidden = false; });
   feld.addEventListener('keydown', ev => { if (ev.key === 'Escape') { box.hidden = true; } });
+}
+
+/* ---------- Finden: Thema, Textart, geführte Auswahl, Ergebnisliste (Ziffer 5.4) ---------- */
+const TEXTART = {
+  vertrag: {name: 'Vertragstexte', frage: 'Was mit der EU vereinbart ist', typen: ['Abkommen', 'Protokoll', 'Erklärung'],
+    erkl: 'Abkommen, Protokolle und gemeinsame Erklärungen'},
+  umsetzung: {name: 'Umsetzung', frage: 'Was die Schweiz dafür ändert', typen: ['Bundesbeschluss'],
+    erkl: 'Bundesbeschlüsse mit den neuen und geänderten Bundesgesetzen'},
+  erklaerung: {name: 'Botschaft und Berichte', frage: 'Wie es erläutert wird', typen: ['Botschaft', 'Bericht', 'Stellungnahme'],
+    erkl: 'Botschaft des Bundesrates, Bericht der Staatspolitischen Kommission des Ständerates, Stellungnahme des Bundesrates'},
+};
+const artVon = nr => { const t = docById.get(nr).typ; return Object.keys(TEXTART).find(k => TEXTART[k].typen.includes(t)) || 'erklaerung'; };
+const artCache = {};
+const artMenge = a => artCache[a] || (artCache[a] = new Set(Z.map((z, i) => i).filter(i => artVon(Z[i].d) === a)));
+const filt = {thema: null, art: null, reich: null, such: null};
+let listeHerkunft = null, listeSort = 'paket', listeAlle = new Set();   // Voreinstellung Paketreihenfolge (Ziffer 6.3)
+
+function filterAnwenden(opt = {}) {
+  const mengen = [];
+  if (filt.thema) mengen.push(filt.thema.zm);
+  if (filt.art) mengen.push(artMenge(filt.art));
+  if (filt.reich) mengen.push(filt.reich.menge);
+  if (filt.such) mengen.push(filt.such);
+  if (!mengen.length) treffer = null;
+  else {
+    mengen.sort((a, b) => a.size - b.size);
+    treffer = new Set();
+    for (const i of mengen[0].keys()) if (mengen.every(m => m.has(i))) treffer.add(i);
+  }
+  fStand();
+  if (aktiv === 'umfang') zeichneUmfang(false);
+  ['verkn', 'umsetz', 'tabelle'].forEach(k => { if (gezeichnet[k]) { if (aktiv === k) zeichneAnsicht(k); else gezeichnet[k] = false; } });
+  if (bzSvg) bzFaerben();
+  if (opt.still) return;
+  if (opt.liste || listeOffen) zeigeListe();
+  else if (gewaehlt !== null && opt.ohneZettel) { zeichneUmfeld(gewaehlt); zeichneReichweite(gewaehlt); }
+  else if (gewaehlt !== null) zeichneZettel(gewaehlt);
+  hashSchreiben();
+}
+function setzeThema(id, opt = {}) {
+  filt.thema = id ? T.find(t => t.id === id) || null : null;
+  listeHerkunft = opt.herkunft || null; listeAlle = new Set();
+  findenStand();
+  filterAnwenden({liste: !!filt.thema || !!opt.liste});
+  if (filt.thema && innerWidth < 1280 && !opt.ohneSprung) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+}
+function setzeArt(a) {
+  filt.art = TEXTART[a] ? a : null; listeAlle = new Set();
+  findenStand();
+  filterAnwenden({liste: listeOffen});
+}
+function findenStand() {             // Bedienelemente auf den Filterzustand setzen
+  const s = $('#f-thema'); if (s) s.value = filt.thema ? filt.thema.id : '';
+  document.querySelectorAll('#f-art [data-art]').forEach(b => b.setAttribute('aria-pressed', (b.dataset.art || null) === (filt.art || null) || (!filt.art && b.dataset.art === '')));
+}
+function fStand() {
+  const el = $('#f-stand'); if (!el) return;
+  const chips = [];
+  if (filt.thema) chips.push(['thema', `Thema: ${filt.thema.name}`]);
+  if (filt.art) chips.push(['art', TEXTART[filt.art].name]);
+  if (filt.reich) chips.push(['reich', `Verknüpft mit ${docById.get(Z[filt.reich.i].d).kurz}, ${Z[filt.reich.i].l} (${filt.reich.schritte === 1 ? 'direkt' : 'zwei Schritte'})`]);
+  if (filt.such) chips.push(['such', `Suche «${suchText}»`]);
+  if (!chips.length) { el.innerHTML = '<span class="leer">Ohne Auswahl ist nichts markiert. Gewählte Stellen erscheinen in allen Ansichten hervorgehoben.</span>'; return; }
+  el.innerHTML = `<span class="f-zahl"><b>${fmt(treffer.size)}</b> Zettel markiert</span>${chips.map(([k, t]) => `<button class="f-chip" data-weg="${k}" title="Diese Auswahl aufheben">${esc(kuerze(t, 64))}<span aria-hidden="true">×</span><span class="sr">aufheben</span></button>`).join('')}<button class="knopf" id="f-liste">Liste zeigen</button>`;
+}
+function findenAufbauen() {
+  const s = $('#f-thema');
+  s.innerHTML = '<option value="">Alle Themen</option>' + T.map(t => `<option value="${t.id}">${esc(t.name)} (${fmt(t.zm.size)})</option>`).join('');
+  s.onchange = () => setzeThema(s.value);
+  $('#f-art').innerHTML = `<button data-art="" aria-pressed="true">Alle Texte</button>` +
+    Object.entries(TEXTART).map(([k, a]) => `<button data-art="${k}" aria-pressed="false" title="${esc(a.erkl)}">${esc(a.name)}</button>`).join('');
+  $('#f-art').onclick = ev => { const b = ev.target.closest('[data-art]'); if (b) setzeArt(b.dataset.art); };
+  $('#f-stand').onclick = ev => {
+    if (ev.target.closest('#f-liste')) { zeigeListe(); if (innerWidth < 1280) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'}); return; }
+    const b = ev.target.closest('[data-weg]'); if (!b) return;
+    const k = b.dataset.weg;
+    if (k === 'such') sucheLeeren(); else filt[k] = null;
+    if (k === 'thema') listeHerkunft = null;
+    findenStand();
+    filterAnwenden({liste: listeOffen && !!(filt.thema || filt.art || filt.reich || filt.such)});
+    if (listeOffen && !treffer) waehle(gewaehlt ?? startZettel(), false);
+  };
+  $('#f-gefuehrt').onclick = gefuehrt;
+  fStand();
+}
+
+// Ergebnisliste im Zettelbereich: nach Textart gruppiert, sortiert nach Fundstellen oder nach Reihenfolge im Paket
+function zeigeListe() {
+  if (!treffer) return;
+  listeOffen = true; bogenZurueck = null;
+  const t = filt.thema, menge = [...treffer], n = i => t ? (t.zm.get(i) || 0) : 0;
+  const woerter = menge.reduce((s, i) => s + Z[i].w, 0), fund = menge.reduce((s, i) => s + n(i), 0);
+  const sort = t ? listeSort : 'paket';
+  const max = Math.max(1, ...menge.map(n));
+  const beschreibung = [filt.art ? TEXTART[filt.art].name : '', filt.reich ? `verknüpft mit ${Z[filt.reich.i].l}` : '', filt.such ? `Suche «${suchText}»` : ''].filter(Boolean).join(' · ');
+  const her = listeHerkunft && listeHerkunft.q ? `<p class="hinweis-klein">Gesucht: «${esc(listeHerkunft.q)}». ${listeHerkunft.imText ? `Das Wort steht in ${fmt(listeHerkunft.imText)} Zetteln; das Thema umfasst zusätzlich die Begriffe unten.` : 'Das Wort steht so nicht im Wortlaut. Das Thema fasst die Begriffe zusammen, die der Text dafür verwendet.'}</p>` : '';
+  const gruppen = Object.entries(TEXTART).map(([k, a]) => {
+    let li = menge.filter(i => artVon(Z[i].d) === k);
+    if (!li.length) return '';
+    li.sort(sort === 'treffer' ? (x, y) => n(y) - n(x) || x - y : (x, y) => x - y);
+    const alle = listeAlle.has(k), zeig = alle ? li : li.slice(0, 15);
+    return `<div class="li-gruppe"><h4>${esc(a.name)} <span>${esc(a.frage)} · ${fmt(li.length)} Zettel</span></h4>
+      ${zeig.map(i => { const z = Z[i], d = docById.get(z.d);
+        return `<button class="li-z" data-z="${i}" style="--g:${gVar(d.gruppe)}"><span class="li-ort">${esc(d.kurz)}${z.p.length ? ' › ' + esc(kuerze(z.p.join(' › '), 60)) : ''}</span>
+          <span class="li-titel">${esc(z.l)}</span>${t ? `<span class="li-n"><i style="width:${(n(i) / max * 100).toFixed(1)}%"></i><span>${fmt(n(i))} ${n(i) === 1 ? 'Fundstelle' : 'Fundstellen'}</span></span>` : ''}</button>`; }).join('')}
+      ${li.length > 15 ? `<button class="uf-mehr" data-alle="${k}">${alle ? 'weniger zeigen' : `alle ${fmt(li.length)} zeigen`}</button>` : ''}</div>`;
+  }).join('');
+  zEl.innerHTML = `
+    <div><div class="ort">${t ? 'Thema' : 'Auswahl'}${beschreibung ? ' · ' + esc(beschreibung) : ''}</div><h3>${t ? esc(t.name) : 'Markierte Zettel'}</h3></div>
+    <div class="meta"><span>${fmt(menge.length)} Zettel</span>${t ? `<span>${fmt(fund)} Fundstellen</span>` : ''}<span>${pct(woerter, total)} des Pakets nach Wörtern</span></div>
+    ${her}
+    ${t ? `<div><h4>Begriffe im Wortlaut</h4><div class="chips begriffe">${t.b.map(([a, , k]) => `<span>${esc(a)} <b>${fmt(k)}</b></span>`).join('')}</div>
+      ${t.s.length ? `<p class="leer" style="margin:6px 0 0">Führen in der Suche ebenfalls hierher: ${esc(t.s.map(x => x[0]).join(', '))}.</p>` : ''}</div>` : ''}
+    ${t ? `<div class="schalter klein" id="li-sort" role="group" aria-label="Reihenfolge"><button data-sort="paket" aria-pressed="${sort === 'paket'}">Reihenfolge im Paket</button><button data-sort="treffer" aria-pressed="${sort === 'treffer'}">Meiste Fundstellen zuerst</button></div>` : ''}
+    ${gruppen || '<p class="leer">Keine Zettel in dieser Auswahl.</p>'}
+    <p class="leer">${t ? 'Ein Zettel gehört zum Thema, wenn mindestens ein Begriff in Wortlaut oder Fussnoten steht. Gezählt wird jede Nennung; die Zahl sagt nichts über Bedeutung oder Gewicht.' : 'Reihenfolge nach BBl-Nummer und Gliederung.'} Die Auswahl ist auch in Umfang, Verknüpfungen, Bezügen, Umsetzung und Tabelle markiert.</p>`;
+  zEl.onclick = ev => {
+    if (!listeOffen) return;
+    const s = ev.target.closest('[data-sort]'); if (s) { listeSort = s.dataset.sort; zeigeListe(); return; }
+    const a = ev.target.closest('[data-alle]'); if (a) { const k = a.dataset.alle; listeAlle.has(k) ? listeAlle.delete(k) : listeAlle.add(k); zeigeListe(); return; }
+    const b = ev.target.closest('.li-z'); if (b) { const i = +b.dataset.z; if (aktiv === 'umfang') fokusAufZettel(i); waehle(i, false, null, true); if (aktiv === 'umfang') zeichneUmfang(true); zEl.scrollTop = 0; }
+  };
+  hashSchreiben();
+}
+
+// Geführte Auswahl in drei Schritten: Thema, Textart, Ansicht. Reihenfolge der Themen alphabetisch, kein Einstieg nach Partei oder Haltung.
+function gefuehrt() {
+  const dlg = $('#schritte'), wahl = {thema: filt.thema ? filt.thema.id : null, art: filt.art};
+  let stufe = 1;
+  const anzahl = (th, a) => { const t = th ? T.find(x => x.id === th) : null; let m = t ? [...t.zm.keys()] : Z.map((z, i) => i); if (a) m = m.filter(i => artVon(Z[i].d) === a); return m.length; };
+  const ANSICHT = [
+    ['liste', 'Als Liste der Stellen', 'In der Reihenfolge des Pakets, wahlweise nach Anzahl Fundstellen; ein Klick öffnet den Wortlaut mit markierten Begriffen.'],
+    ['umfang', 'Im ganzen Paket verortet', 'Wo die Stellen liegen und wie viel Text sie umfassen (Ansicht Umfang).'],
+    ['bezuege', 'Mit ihren Verweisen', 'Welche Bögen von diesen Stellen ausgehen oder auf sie zeigen (Ansicht Bezüge).'],
+    ['verkn', 'Zwischen den Dokumenten', 'Welche Dokumente über diese Stellen aufeinander verweisen (Ansicht Verknüpfungen).'],
+  ];
+  function zeichne() {
+    $('#sch-stufe').textContent = `Schritt ${stufe} von 3`;
+    $('#sch-zurueck').hidden = stufe === 1;
+    const w = $('#sch-wahl'), titel = $('#schritte-titel'), erkl = $('#sch-erkl');
+    if (stufe === 1) {
+      titel.textContent = 'Worum geht es Ihnen?';
+      erkl.textContent = 'Themen in alphabetischer Reihenfolge. Ein Thema fasst Begriffe zusammen, die im Wortlaut stehen. Ein Stichwort aus der öffentlichen Debatte führt zum passenden Thema.';
+      w.innerHTML = `<label class="sr" for="sch-such">Stichwort</label><input type="search" id="sch-such" placeholder="Stichwort eingeben, z. B. Strom, Löhne, Gericht" autocomplete="off"><div class="sch-optionen" id="sch-opt"></div>`;
+      const opt = () => {
+        const q = $('#sch-such').value.trim(), liste = q.length >= 3 ? themenFuer(q) : T;
+        const nichtImText = q.length >= 3 && T.some(t => t.s.some(([w, n]) => n === 0 && w.toLowerCase() === q.toLowerCase()));
+        $('#sch-opt').innerHTML = (nichtImText ? `<p class="leer sch-hinweis">«${esc(q)}» steht so nicht im Wortlaut. Das Thema fasst die Begriffe zusammen, die der Text dafür verwendet.</p>` : '') + liste.map(t => `<button type="button" data-th="${t.id}" aria-pressed="${wahl.thema === t.id}"><b>${esc(t.name)}</b><small>${fmt(t.zm.size)} Zettel · ${esc(t.b.slice(0, 3).map(b => b[0]).join(', '))}${t.b.length > 3 ? ' …' : ''}</small></button>`).join('') +
+          (q.length >= 3 && !liste.length ? `<p class="leer">Kein Thema zu «${esc(q)}». Die Suche oben auf der Seite durchsucht den ganzen Wortlaut.</p>` : '') +
+          `<button type="button" data-th="" aria-pressed="${wahl.thema === null}"><b>Kein bestimmtes Thema</b><small>Alle ${fmt(Z.length)} Zettel</small></button>`;
+      };
+      opt(); $('#sch-such').oninput = opt;
+      w.onclick = ev => { const b = ev.target.closest('[data-th]'); if (!b) return; wahl.thema = b.dataset.th || null; stufe = 2; zeichne(); };
+    } else if (stufe === 2) {
+      const t = wahl.thema ? T.find(x => x.id === wahl.thema) : null;
+      titel.textContent = 'Welche Texte wollen Sie sehen?';
+      erkl.textContent = t ? `Thema «${t.name}». Zahl = Zettel mit mindestens einem Begriff des Themas.` : 'Zahl = Zettel dieser Textart.';
+      w.innerHTML = `<div class="sch-optionen">${Object.entries(TEXTART).map(([k, a]) => `<button type="button" data-art="${k}" aria-pressed="${wahl.art === k}"><b>${esc(a.frage)}</b><small>${esc(a.name)}: ${esc(a.erkl)} · ${fmt(anzahl(wahl.thema, k))} Zettel</small></button>`).join('')}
+        <button type="button" data-art="" aria-pressed="${!wahl.art}"><b>Alle Texte</b><small>${fmt(anzahl(wahl.thema, null))} Zettel</small></button></div>`;
+      w.onclick = ev => { const b = ev.target.closest('[data-art]'); if (!b) return; wahl.art = b.dataset.art || null; stufe = 3; zeichne(); };
+    } else {
+      titel.textContent = 'Wie wollen Sie die Stellen sehen?';
+      const n = anzahl(wahl.thema, wahl.art);
+      erkl.textContent = `${fmt(n)} Zettel. Die Auswahl bleibt in allen Ansichten markiert und lässt sich oben jederzeit ändern.`;
+      w.innerHTML = `<div class="sch-optionen">${ANSICHT.filter(([k]) => k !== 'liste' || wahl.thema || wahl.art).map(([k, a, e]) => `<button type="button" data-ans="${k}"><b>${esc(a)}</b><small>${esc(e)}</small></button>`).join('')}</div>`;
+      w.onclick = ev => { const b = ev.target.closest('[data-ans]'); if (!b) return; anwenden(b.dataset.ans); };
+    }
+    const f = w.querySelector('input, button'); if (f) f.focus();
+  }
+  function anwenden(ans) {
+    dlg.close();
+    filt.thema = wahl.thema ? T.find(x => x.id === wahl.thema) : null; filt.art = wahl.art;
+    listeHerkunft = null; listeAlle = new Set();
+    findenStand();
+    const mitAuswahl = !!(filt.thema || filt.art);
+    filterAnwenden({liste: mitAuswahl});
+    if (!mitAuswahl && listeOffen) waehle(gewaehlt ?? startZettel(), false);
+    if (ans !== 'liste') { zeigeReiter(ans); if (ans === 'umfang') { fokus = root; zeichneUmfang(true); } }
+    (ans === 'liste' && innerWidth < 1280 ? zEl : $('#ansicht')).scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+  }
+  $('#sch-zurueck').onclick = () => { stufe = Math.max(1, stufe - 1); zeichne(); };
+  $('#sch-zu').onclick = () => dlg.close();
+  stufe = 1; zeichne(); dlg.showModal();
 }
 
 /* ---------- Verknüpfungen: Matrix (Ziffer 5, Ansicht 2) ---------- */
@@ -604,11 +1070,13 @@ let mxModus = 'verweise';
 function matrixWerte() {
   const ids = D.docs.map(d => d.nr), pos = new Map(ids.map((d, k) => [d, k])), n = ids.length;
   const M = ids.map(() => ids.map(() => [])), symm = mxModus === 'eu';
+  // Mit Auswahl (Ziffer 5.4) zählen nur Bezüge, deren verweisender Zettel markiert ist
+  const inF = k => !treffer || (typeof k.von === 'number' && treffer.has(k.von));
   if (mxModus === 'verweise' || mxModus === 'struktur') {
     const arten = mxModus === 'verweise' ? ['verweist_auf'] : ['genehmigt', 'erlaeutert'];
-    K.forEach(k => { if (!arten.includes(k.art)) return; const a = refDoc(k.von), b = refDoc(k.nach); if (!a || !b || a === b) return; M[pos.get(a)][pos.get(b)].push(k); });
+    K.forEach(k => { if (!arten.includes(k.art) || !inF(k)) return; const a = refDoc(k.von), b = refDoc(k.nach); if (!a || !b || a === b) return; M[pos.get(a)][pos.get(b)].push(k); });
   } else {
-    const je = new Map(); K.forEach(k => { if (k.art === 'nennt' && typeof k.nach === 'string' && k.nach.startsWith('celex:')) { const d = refDoc(k.von); if (!je.has(d)) je.set(d, new Set()); je.get(d).add(k.nach.slice(6)); } });
+    const je = new Map(); K.forEach(k => { if (k.art === 'nennt' && inF(k) && typeof k.nach === 'string' && k.nach.startsWith('celex:')) { const d = refDoc(k.von); if (!je.has(d)) je.set(d, new Set()); je.get(d).add(k.nach.slice(6)); } });
     for (let a = 0; a < n; a++) for (let b = 0; b < n; b++) if (a !== b) { const A = je.get(ids[a]), B = je.get(ids[b]); if (A && B) M[a][b] = [...A].filter(x => B.has(x)); }
   }
   return {ids, M, symm};
@@ -624,7 +1092,7 @@ function zeichneMatrix() {
     eu: 'Zelle: Anzahl EU-Rechtsakte, die beide Dokumente nennen. Symmetrisch. Klick auf eine Zelle listet die Rechtsakte.',
     struktur: 'Zeile → Spalte: Bundesbeschluss genehmigt Abkommen oder Protokoll (Art. 1); Botschaft erläutert ein Dokument (Kapitel 2.x und Erläuterungen zu einzelnen Artikeln). Zahl = Anzahl Bezüge.',
   }[mxModus];
-  $('#mx-erkl').textContent = erkl;
+  $('#mx-erkl').textContent = erkl + (treffer ? ` Auswahl aktiv: gezählt werden nur Bezüge aus den ${fmt(treffer.size)} markierten Zetteln.` : '');
   // Feste, logarithmisch gestufte Klassen: wenige grosse Werte (Botschaft) sollen die kleinen nicht verdecken
   const stufen = ['var(--seq-1)', 'var(--seq-2)', 'var(--seq-3)', 'var(--seq-4)', 'var(--seq-5)'];
   const KLASSEN = [1, 2, 5, 15, 50], KNAMEN = ['1', '2–4', '5–14', '15–49', '50 und mehr'];
@@ -686,10 +1154,13 @@ function zeichneSankey() {
   const sk = d3.sankey().nodeId(d => d.index).nodeWidth(12).nodePadding(6).nodeAlign(d3.sankeyLeft).nodeSort(null).linkSort(null).extent([[230, 8], [W - 330, Hs - 8]]);
   const g = sk({nodes: nodes.map(d => ({...d})), links: links.map(d => ({...d}))});
   const svg = host.append('svg').attr('viewBox', `0 0 ${W} ${Hs}`).attr('width', W).attr('height', Hs).attr('role', 'img').attr('aria-label', 'Sankey: Abkommen, genehmigende Bundesbeschlüsse und die von ihnen geschaffenen oder geänderten Bundesgesetze');
+  // Auswahl (Ziffer 5.4): Knoten ohne markierten Zettel blasser; ein Gesetz bleibt kräftig, wenn ein kräftiger Bundesbeschluss es ändert
+  const mitT = new Set(treffer ? [...treffer].map(i => Z[i].d) : []);
+  const kraeftig = d => !treffer || (d.doc ? mitT.has(d.doc) : d.targetLinks.some(l => mitT.has(l.source.doc)));
   svg.append('g').attr('fill', 'none').selectAll('path').data(g.links).join('path')
-    .attr('d', d3.sankeyLinkHorizontal()).attr('stroke', d => gVar(d.source.g || 'neutral')).attr('stroke-opacity', 0.35).attr('stroke-width', d => Math.max(1.5, d.width))
+    .attr('d', d3.sankeyLinkHorizontal()).attr('stroke', d => gVar(d.source.g || 'neutral')).attr('stroke-opacity', d => kraeftig(d.source) && kraeftig(d.target) ? 0.35 : 0.06).attr('stroke-width', d => Math.max(1.5, d.width))
     .on('pointerenter pointermove', (ev, d) => showTip(ev, `<b>${esc(d.source.name)} → ${esc(d.target.name)}</b><span>${d.target.typ === 'bb' ? 'genehmigt durch' : 'geschaffen oder geändert durch'}</span>`)).on('pointerleave', hideTip);
-  const n = svg.append('g').selectAll('g').data(g.nodes).join('g').style('cursor', d => d.doc ? 'pointer' : 'default');
+  const n = svg.append('g').selectAll('g').data(g.nodes).join('g').style('cursor', d => d.doc ? 'pointer' : 'default').attr('opacity', d => kraeftig(d) ? 1 : 0.3);
   n.append('rect').attr('x', d => d.x0).attr('y', d => d.y0).attr('width', d => d.x1 - d.x0).attr('height', d => Math.max(2, d.y1 - d.y0)).attr('rx', 2)
     .attr('fill', d => d.g ? gVar(d.g) : 'var(--c-gesetz)');
   n.append('text').attr('class', 'sk-label').attr('x', d => d.typ === 'dok' ? d.x0 - 6 : d.x1 + 6).attr('y', d => (d.y0 + d.y1) / 2 + 4.5)
@@ -699,7 +1170,8 @@ function zeichneSankey() {
     : d.typ === 'bb' ? d.targetLinks.length + ' genehmigte Dokumente, ' + d.sourceLinks.length + ' Bundesgesetze' : 'genehmigt durch ' + esc(d.sourceLinks[0]?.target.name || '')}</span>`))
     .on('pointerleave', hideTip).on('click', (ev, d) => { if (d.doc) fokusAufDoc(d.doc); });
   const k = D.kennzahlen;
-  $('#sk-legende').innerHTML = `<li>${fmt(k.gesetze_neu)} neue und ${fmt(k.gesetze_geaendert)} geänderte Bundesgesetze in ${fmt(K.filter(x => x.art === 'aendert').length)} Zuordnungen; ein Gesetz, das mehrere Bundesbeschlüsse ändern, hat mehrere Linien.</li>`;
+  $('#sk-legende').innerHTML = `<li>${fmt(k.gesetze_neu)} neue und ${fmt(k.gesetze_geaendert)} geänderte Bundesgesetze in ${fmt(K.filter(x => x.art === 'aendert').length)} Zuordnungen; ein Gesetz, das mehrere Bundesbeschlüsse ändern, hat mehrere Linien.</li>` +
+    (treffer ? `<li>Auswahl aktiv: kräftig sind Dokumente und Bundesbeschlüsse mit mindestens einem der ${fmt(treffer.size)} markierten Zettel.</li>` : '');
 }
 
 /* ---------- Tabelle (Ziffer 5, Ansicht 6) ---------- */
@@ -707,10 +1179,12 @@ function zeichneTabelle() {
   const anz = d3.rollup(Z, v => v.length, z => z.d);
   const kan = d3.rollup(K.filter(k => typeof k.von === 'number'), v => v.length, k => Z[k.von].d);
   const summe = (f, docs) => docs.reduce((s, d) => s + f(d), 0);
-  const zeile = d => `<tr><td>${d.nr}</td><td><span class="punkt" style="background:${gVar(d.gruppe)}"></span><button class="ziel knopf" data-doc="${d.nr}" title="${esc(d.titel)}" style="border:0;background:none;padding:0;min-height:0;text-decoration:underline">${esc(d.kurz)}</button></td><td>${esc(d.typ)}</td><td>${esc(gName[d.gruppe])}</td><td class="zahl">${fmt(d.seiten)}</td><td class="zahl">${fmt(d.woerter)}</td><td class="zahl">${fmt(anz.get(d.nr) || 0)}</td><td class="zahl">${fmt(kan.get(d.nr) || 0)}</td><td><a href="${esc(d.pdf || d.eli)}" target="_blank" rel="noopener">PDF</a> · <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a></td></tr>`;
+  const mk = treffer ? d3.rollup([...treffer], v => v.length, i => Z[i].d) : null;
+  const mkZelle = (d, fett) => mk ? `<td class="zahl">${fett ? '<strong>' : ''}${fmt(typeof d === 'number' ? d : mk.get(d.nr) || 0)}${fett ? '</strong>' : ''}</td>` : '';
+  const zeile = d => `<tr><td>${d.nr}</td><td><span class="punkt" style="background:${gVar(d.gruppe)}"></span><button class="ziel knopf" data-doc="${d.nr}" title="${esc(d.titel)}" style="border:0;background:none;padding:0;min-height:0;text-decoration:underline">${esc(d.kurz)}</button></td><td>${esc(d.typ)}</td><td>${esc(gName[d.gruppe])}</td><td class="zahl">${fmt(d.seiten)}</td><td class="zahl">${fmt(d.woerter)}</td><td class="zahl">${fmt(anz.get(d.nr) || 0)}</td><td class="zahl">${fmt(kan.get(d.nr) || 0)}</td>${mkZelle(d)}<td><a href="${esc(d.pdf || d.eli)}" target="_blank" rel="noopener">PDF</a> · <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a></td></tr>`;
   const paket = D.docs.filter(d => d.nr <= 644), begleit = D.docs.filter(d => d.nr > 644);
-  const total = (docs, name) => `<tr><td></td><td><strong>${name}</strong></td><td></td><td></td><td class="zahl"><strong>${fmt(summe(d => d.seiten, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => d.woerter, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => anz.get(d.nr) || 0, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => kan.get(d.nr) || 0, docs))}</strong></td><td></td></tr>`;
-  $('#tabelle').innerHTML = `<thead><tr><th>BBl 2026</th><th>Dokument</th><th>Typ</th><th>Vorlage</th><th class="zahl">Seiten</th><th class="zahl">Wörter</th><th class="zahl">Zettel</th><th class="zahl">Kanten</th><th>Quelle</th></tr></thead>
+  const total = (docs, name) => `<tr><td></td><td><strong>${name}</strong></td><td></td><td></td><td class="zahl"><strong>${fmt(summe(d => d.seiten, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => d.woerter, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => anz.get(d.nr) || 0, docs))}</strong></td><td class="zahl"><strong>${fmt(summe(d => kan.get(d.nr) || 0, docs))}</strong></td>${mkZelle(summe(d => mk ? mk.get(d.nr) || 0 : 0, docs), true)}<td></td></tr>`;
+  $('#tabelle').innerHTML = `<thead><tr><th>BBl 2026</th><th>Dokument</th><th>Typ</th><th>Vorlage</th><th class="zahl">Seiten</th><th class="zahl">Wörter</th><th class="zahl">Zettel</th><th class="zahl">Kanten</th>${mk ? '<th class="zahl" title="Zettel in der Auswahl">Markiert</th>' : ''}<th>Quelle</th></tr></thead>
     <tbody>${paket.map(zeile).join('')}${total(paket, 'Paket, BBl 2026 615–644')}${begleit.map(zeile).join('')}</tbody>`;
   $('#tabelle').querySelectorAll('[data-doc]').forEach(b => b.onclick = () => fokusAufDoc(+b.dataset.doc));
   const gs = [...D.gesetze].sort((a, b) => (b.neu - a.neu) || (b.totalrevision - a.totalrevision) || a.titel.localeCompare(b.titel, 'de'));
@@ -838,11 +1312,16 @@ function bzFaerben() {
   if (bzHoverDoc !== null) f = b => b.A.doc === bzHoverDoc || b.B.doc === bzHoverDoc;
   else if (bzHover) f = b => b.i === bzHover.i || (bzSel && b.i === bzSel.i);
   else if (bzSel) f = b => b.i === bzSel.i;
-  else if (gewaehlt !== null && BZ.some(b => b.A.i === gewaehlt || b.B.i === gewaehlt)) f = b => b.A.i === gewaehlt || b.B.i === gewaehlt;
+  else if (gewaehlt !== null && !listeOffen && BZ.some(b => b.A.i === gewaehlt || b.B.i === gewaehlt)) f = b => b.A.i === gewaehlt || b.B.i === gewaehlt;
   const stark = b => b.t === 'genehmigt' || b.t === 'zwischen';
-  bzGB.selectAll('path').attr('stroke-opacity', b => f ? (f(b) ? .95 : .05) : (stark(b) ? .7 : .3))
-    .attr('stroke-width', b => f && f(b) ? 2.2 : (stark(b) ? 1.5 : 1));
+  // Auswahl (Ziffer 5.4): Bögen mit einem markierten Ende mittelkräftig, die übrigen fast ausgeblendet
+  const mittel = treffer ? b => treffer.has(b.A.i) || treffer.has(b.B.i) : null;
+  bzGB.selectAll('path').attr('stroke-opacity', b => f && f(b) ? .95 : mittel ? (mittel(b) ? .55 : .03) : f ? .05 : (stark(b) ? .7 : .3))
+    .attr('stroke-width', b => f && f(b) ? 2.2 : mittel && mittel(b) ? 1.4 : (stark(b) && !f && !mittel ? 1.5 : 1));
+  if (mittel) bzGB.selectAll('path').filter(mittel).raise();
   if (f) bzGB.selectAll('path').filter(f).raise();
+  const tDocs = treffer ? new Set([...treffer].map(i => Z[i].d)) : null;
+  bzGDocs.selectAll('rect').attr('opacity', d => !tDocs || tDocs.has(d.nr) ? 1 : 0.35);
 }
 function bzEndeName(e) { return e.art === 'dok' ? docById.get(e.doc).kurz + ' (ganzes Dokument)' : docById.get(e.doc).kurz + ', ' + Z[e.i].l; }
 function bzTipp(b) {
@@ -897,13 +1376,17 @@ function reiterAufbauen() {
     zeigeReiter(k); $('#tab-' + k).focus();
   });
 }
+function zeichneAnsicht(k) {
+  if (k === 'verkn') { $('#mx-detail').innerHTML = ''; zeichneMatrix(); }
+  if (k === 'umsetz') zeichneSankey();
+  if (k === 'tabelle') zeichneTabelle();
+  gezeichnet[k] = true;
+}
 function zeigeReiter(k) {
   aktiv = k;
   REITER.forEach(r => { $('#tab-' + r).setAttribute('aria-selected', r === k); $('#v-' + r).hidden = r !== k; });
-  if (k === 'verkn' && !gezeichnet.verkn) { zeichneMatrix(); gezeichnet.verkn = true; }
-  if (k === 'umsetz' && !gezeichnet.umsetz) { zeichneSankey(); gezeichnet.umsetz = true; }
+  if (['verkn', 'umsetz', 'tabelle'].includes(k) && !gezeichnet[k]) zeichneAnsicht(k);
   if (k === 'bezuege' && !gezeichnet.bezuege) { bzAufbauen(); gezeichnet.bezuege = true; }
-  if (k === 'tabelle' && !gezeichnet.tabelle) { zeichneTabelle(); gezeichnet.tabelle = true; }
   if (k === 'umfang') zeichneUmfang(false);
   try { localStorage.setItem('vs-reiter', k); } catch (e) { /* */ }
 }

@@ -1,0 +1,119 @@
+{
+ "stand": "2026-10-02",
+ "regeln": [
+  "Themennamen in der Sprache der amtlichen Texte, ohne Wertung.",
+  "Ein Zettel gehört zu einem Thema, wenn sein Wortlaut oder seine Fussnoten mindestens einen Begriff des Themas enthalten. Gezählt wird jede Fundstelle.",
+  "Begriffe sind reguläre Ausdrücke, gross- und kleinschreibungsgenau; jeder Begriff muss im Paket mindestens einmal vorkommen (scripts/themen.py prüft das).",
+  "Suchbegriffe sind Wörter aus der öffentlichen Debatte. Sie führen in der Suche zum Thema, ordnen aber keinen Zettel zu und erscheinen nicht als Themenname.",
+  "Reihenfolge der Themen alphabetisch. Kein Einstieg nach Partei, Verband oder Haltung."
+ ],
+ "themen": [
+  {"id": "datenschutz", "name": "Datenschutz",
+   "begriffe": [["Datenschutz", "Datenschutz"], ["Personendaten", "Personendaten"]],
+   "suchbegriffe": ["Daten", "Privatsphäre", "Datensicherheit"]},
+
+  {"id": "beitrag", "name": "Finanzieller Beitrag der Schweiz (Kohäsion)",
+   "begriffe": [["Schweizer Beitrag", "Schweizer Beitr[aä]g"], ["Kohäsion", "Kohäsion"], ["finanzieller Beitrag", "finanzielle[nrm]? Beitr[aä]g"],
+    ["Ungleichheiten", "Ungleichheiten"], ["Erweiterungsbeitrag", "Erweiterungsbeitr[aä]g"]],
+   "suchbegriffe": ["Kohäsionsmilliarde", "Kohäsionszahlungen", "Zahlungen an die EU", "Geld an die EU", "Milliarde", "Ostmilliarde"]},
+
+  {"id": "programme", "name": "Forschung, Bildung und Weltraum (EU-Programme)",
+   "begriffe": [["Horizon Europe", "Horizon"], ["Erasmus+", "Erasmus"], ["Euratom", "Euratom"], ["Digital Europe", "Digital Europe"],
+    ["Programme der Union", "Programme[n]? der Union"], ["EUSPA", "EUSPA"], ["Galileo, Copernicus", "Galileo|Copernicus"], ["ITER", "ITER"],
+    ["Forschung", "Forschung"], ["Hochschulen", "Hochschul"], ["Studierende", "Studierende"]],
+   "suchbegriffe": ["Studium", "Studenten", "Austausch", "Universität", "Wissenschaft", "Innovation", "Raumfahrt", "Bildung"]},
+
+  {"id": "gesundheit", "name": "Gesundheit",
+   "begriffe": [["Gesundheitsabkommen", "Gesundheitsabkommen"], ["EU4Health", "EU4Health"], ["Gesundheitssicherheit", "Gesundheitssicherheit"],
+    ["Frühwarn- und Reaktionssystem", "Frühwarn"], ["grenzüberschreitende Gesundheitsgefahren", "grenzüberschreitende[nr]? (?:schwerwiegende[nr]? )?Gesundheitsgefahr"],
+    ["ECDC", "ECDC|Zentrum für die Prävention"], ["übertragbare Krankheiten", "übertragbare[nr]? Krankheit"], ["Pandemie, Covid", "Pandemie|Covid"]],
+   "suchbegriffe": ["Corona", "Seuche", "Gesundheitswesen", "Epidemie"]},
+
+  {"id": "kosten", "name": "Kosten und Personal des Bundes",
+   "begriffe": [["finanzielle Auswirkungen", "finanzielle[nr]? Auswirkungen"], ["personelle Auswirkungen", "personelle[nr]? Auswirkungen"],
+    ["Vollzeitstellen", "Vollzeitstellen"], ["Mehrkosten", "Mehrkosten"], ["Mehraufwand", "Mehraufwand"], ["Verpflichtungskredit", "Verpflichtungskredit"],
+    ["regulatorische Belastung", "regulatorische[nr]? Belastung"]],
+   "suchbegriffe": ["Kosten", "Personal", "Stellen", "Bürokratie", "Verwaltung", "Ausgaben", "Budget"]},
+
+  {"id": "kuendigung", "name": "Kündigung der Abkommen",
+   "begriffe": [["Kündigung des Abkommens oder Protokolls", "Kündigung (?:de[sr]|eines|diese[sr]) [A-Za-zÄÖÜäöüß-]*(?:[Aa]bkommens|[Pp]rotokolls|Pakets)"],
+    ["Abkommen oder Protokoll … gekündigt", "(?:Abkommen|Protokoll)[^.]{0,120}(?:kündigen|gekündigt)"], ["Guillotine", "Guillotine"],
+    ["Ausserkrafttreten, ausser Kraft", "[Aa]usserkrafttreten|ausser Kraft"]],
+   "suchbegriffe": ["Guillotine-Klausel", "Ausstieg", "aussteigen", "Kündigungsklausel"]},
+
+  {"id": "verkehr", "name": "Land- und Luftverkehr",
+   "begriffe": [["Landverkehr", "Landverkehr"], ["Luftverkehr", "Luftverkehr"], ["Eisenbahn", "Eisenbahn"], ["Schiene", "Schiene"],
+    ["Kabotage", "Kabotage"], ["Schwerverkehrsabgabe (LSVA)", "Schwerverkehr|LSVA"], ["Nachtfahrverbot", "Nachtfahrverbot"], ["Luftfahrt", "Luftfahrt"],
+    ["Güterverkehr", "Güterverkehr"], ["Personenverkehr", "Personenverkehr"]],
+   "suchbegriffe": ["Bahn", "SBB", "Lastwagen", "Alpentransit", "Flugverkehr", "Fliegen", "Fernbus", "40-Tonnen", "Strasse", "Verlagerung"]},
+
+  {"id": "landwirtschaft", "name": "Landwirtschaft",
+   "begriffe": [["Landwirtschaft", "Landwirtschaft"], ["landwirtschaftlich", "landwirtschaftlich"], ["Agrar…", "Agrar"], ["Bauern", "Bauern|Bäuer"]],
+   "suchbegriffe": ["Bauern", "Bäuerinnen", "Agrarpolitik", "Agrarhandel", "Zölle", "Bauernverband"]},
+
+  {"id": "lebensmittel", "name": "Lebensmittelsicherheit",
+   "begriffe": [["Lebensmittel", "Lebensmittel"], ["Tiergesundheit", "Tiergesundheit"], ["Tierseuchen", "Tierseuche"], ["Pflanzengesundheit", "Pflanzengesundheit"],
+    ["Pflanzenschutz", "Pflanzenschutz"], ["Futtermittel", "Futtermittel"], ["Gentechnik, GVO", "[Gg]entechni|GVO"], ["Tierschutz", "Tierschutz"], ["Pestizide", "Pestizid"]],
+   "suchbegriffe": ["Gentech", "Essen", "Nahrungsmittel", "Lebensmittelsicherheit", "Tierwohl", "Chlorhühner", "Hormonfleisch"]},
+
+  {"id": "lohnschutz", "name": "Lohnschutz und Entsendung",
+   "begriffe": [["Lohnschutz", "Lohnschutz"], ["Entsendung", "[Ee]ntsend"], ["flankierende Massnahmen", "[Ff]lankierende|FlaM"], ["Voranmeldung", "Voranmeld"],
+    ["Kaution", "Kaution"], ["Spesen", "Spesen"], ["Dienstleistungserbringer", "Dienstleistungserbringer"],
+    ["Entsenderichtlinien 96/71/EG, 2018/957, 2014/67/EU", "96/71|2018/957|2014/67"], ["tripartite Kommission", "[Tt]ripartit"],
+    ["paritätische Kommission", "paritätische[nr]? Kommission"], ["Gesamtarbeitsvertrag", "Gesamtarbeitsvertr"], ["Mindestlohn", "Mindestl[oö]hn"], ["Sozialpartner", "Sozialpartner"],
+    ["Kündigungsschutz", "Kündigungsschutz|gewerkschaftsfeindliche"]],
+   "suchbegriffe": ["Löhne", "Lohn", "Lohndumping", "Lohnunterbietung", "Gewerkschaft", "Arbeitnehmer", "FlaM", "Arbeitsmarkt", "Schweizer Löhne"]},
+
+  {"id": "mitwirkung", "name": "Mitwirkung von Kantonen und Parlament",
+   "begriffe": [["Mitwirkung der Kantone", "Mitwirkung der Kantone"], ["Konferenz der Kantonsregierungen (KdK)", "Konferenz der Kantonsregierungen|KdK"],
+    ["parlamentarische Zusammenarbeit", "parlamentarische[nr]? Zusammenarbeit"], ["hochrangiger Dialog", "hochrangige[nr]? Dialog"], ["Föderalismus", "Föderalismus"]],
+   "suchbegriffe": ["Kantone", "Parlament", "Mitsprache", "Föderalismus"]},
+
+  {"id": "freizuegigkeit", "name": "Personenfreizügigkeit und Aufenthalt",
+   "begriffe": [["Freizügigkeit", "[Ff]reizügigkeit"], ["Unionsbürger", "Unionsbürger"], ["Daueraufenthalt", "Daueraufenthalt"], ["Aufenthaltsrecht", "Aufenthaltsrecht"],
+    ["Unionsbürgerrichtlinie 2004/38/EG", "2004/38"], ["Zuwanderung", "Zuwanderung"], ["Einwanderung", "Einwanderung"], ["Aufenthaltsbewilligung", "Aufenthaltsbewilligung"],
+    ["Ausweisung, Landesverweisung", "Ausweisung|Landesverweisung"], ["Grenzgänger", "Grenzgänger"]],
+   "suchbegriffe": ["Migration", "Ausländer", "Einwanderung", "Zuwanderung", "10-Millionen", "Bevölkerung", "Aufenthalt", "Ausschaffung"]},
+
+  {"id": "schutzklausel", "name": "Schutzklausel",
+   "begriffe": [["Schutzklausel", "Schutzklausel"], ["Schutzmassnahmen", "Schutzmassnahme"],
+    ["schwerwiegende wirtschaftliche oder soziale Probleme", "schwerwiegende[nr]? wirtschaftliche[nr]? oder soziale[nr]? (?:Probleme|Schwierigkeiten)"]],
+   "suchbegriffe": ["Ventilklausel", "Notbremse", "Zuwanderung begrenzen", "Begrenzung", "Kontingente"]},
+
+  {"id": "sozial", "name": "Sozialversicherungen und Sozialhilfe",
+   "begriffe": [["Verordnung 883/2004", "883/2004"], ["Sozialversicherung", "Sozialversicherung"], ["Sozialhilfe", "Sozialhilfe"],
+    ["Arbeitslosenversicherung", "Arbeitslosenversicherung|Arbeitslosenentschädigung"], ["soziale Sicherheit", "soziale[nr]? Sicherheit"],
+    ["Familienleistungen", "Familienleistung"], ["AHV", "AHV"]],
+   "suchbegriffe": ["Sozialtourismus", "Sozialstaat", "Renten", "ALV", "Sozialwerke", "Arbeitslosigkeit"]},
+
+  {"id": "beihilfen", "name": "Staatliche Beihilfen",
+   "begriffe": [["Beihilfen", "[Bb]eihilfe"], ["BHÜG", "BHÜG"], ["Überwachungsbehörde", "Überwachungsbehörde"],
+    ["Wettbewerbskommission (WEKO)", "Wettbewerbskommission|WEKO"], ["Subventionen", "Subvention"]],
+   "suchbegriffe": ["Subventionen", "Staatshilfe", "Kantonalbanken", "Staatsgarantie", "Service public", "Förderung", "Wirtschaftsförderung"]},
+
+  {"id": "streitbeilegung", "name": "Streitbeilegung, Schiedsgericht und EuGH",
+   "begriffe": [["Schiedsgericht", "Schiedsgericht"], ["Streitbeilegung", "Streitbeilegung"], ["Gerichtshof, EuGH", "Gerichtshof|EuGH"],
+    ["Ausgleichsmassnahmen", "Ausgleichsmassnahme"], ["einheitliche Auslegung", "einheitliche[nr]? Auslegung"], ["Vorabentscheidung", "Vorabentscheid"]],
+   "suchbegriffe": ["fremde Richter", "Richter", "Gericht", "EuGH", "Strafmassnahmen", "Sanktionen", "Streit", "Gerichtsbarkeit"]},
+
+  {"id": "strom", "name": "Strom",
+   "begriffe": [["Strom…", "Strom"], ["Elektrizität", "Elektrizität"], ["Grundversorgung", "Grundversorgung"], ["Marktöffnung", "Marktöffnung"],
+    ["Netzbetreiber", "Netzbetreiber"], ["Übertragungsnetz", "Übertragungsnetz"], ["Swissgrid", "Swissgrid"], ["Wasserkraft", "Wasserkraft"]],
+   "suchbegriffe": ["Energie", "Strommarkt", "Liberalisierung", "Strompreise", "Stromversorgung", "Versorgungssicherheit", "Kraftwerk", "Blackout"]},
+
+  {"id": "produkte", "name": "Technische Handelshemmnisse (Produktzulassung)",
+   "begriffe": [["Konformitätsbewertung", "Konformitätsbewertung"], ["gegenseitige Anerkennung", "gegenseitige[nr]? Anerkennung"],
+    ["Medizinprodukte", "Medizinprodukt"], ["technische Handelshemmnisse", "technische[nr]? Handelshemmnis"], ["MRA", "\\bMRA\\b"]],
+   "suchbegriffe": ["Exporte", "Export", "Medtech", "Zulassung", "Produkte", "Normen", "Industrie", "Maschinen"]},
+
+  {"id": "rechtsuebernahme", "name": "Übernahme von EU-Recht",
+   "begriffe": [["Rechtsübernahme", "Rechtsübernahme|dynamische[nr]? Übernahme"], ["Integration von Rechtsakten", "Integration von Rechtsakten"],
+    ["Übernahme von Rechtsakten", "Übernahme von (?:EU-)?Rechtsakten"], ["Mitspracherecht", "Mitspracherecht"], ["Teilnahme an der Ausarbeitung", "Teilnahme an der Ausarbeitung"]],
+   "suchbegriffe": ["automatische Rechtsübernahme", "dynamisch", "EU-Recht übernehmen", "Souveränität", "Rechtsentwicklung", "Mitsprache", "decision shaping"]},
+
+  {"id": "volksrechte", "name": "Volksrechte und Referendum",
+   "begriffe": [["Referendum", "Referendum"], ["Volksabstimmung", "Volksabstimmung"], ["Volks- und Ständemehr", "Ständemehr|Volksmehr"], ["Volksinitiative", "Volksinitiative"],
+    ["direkte Demokratie", "direkte[nr]? Demokratie"], ["Verfassungsanpassung", "Verfassungsanpassung"], ["Volksrechte", "Volksrechte"]],
+   "suchbegriffe": ["Abstimmung", "Volk", "Ständemehr", "Demokratie", "obligatorisches Referendum"]}
+ ]
+}

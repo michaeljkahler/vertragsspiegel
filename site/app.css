@@ -95,6 +95,7 @@ svg text{font-family:var(--f-text)}
 .ic-rect{cursor:pointer}
 .ic-label{font-size:13.5px;fill:var(--text);pointer-events:none}
 .ic-sub{font-size:13px;fill:var(--text-leise);pointer-events:none;font-variant-numeric:tabular-nums}
+.ic-anteil{fill:var(--text);pointer-events:none}
 
 /* Tooltip */
 .tip{position:fixed;z-index:60;pointer-events:none;background:var(--karte);color:var(--text);border:1px solid var(--linie);border-radius:8px;
@@ -137,7 +138,112 @@ h3.tabtitel{font-size:17px;margin:28px 0 8px}
 .leer{color:var(--text-leise);font-size:14px}
 .knopf{font:600 14px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:6px;padding:6px 11px;min-height:36px;cursor:pointer}
 
-/* Lokaler Graph (Ziffer 5.2) */
+/* Finden: Thema, Textart, Stand der Auswahl (Ziffer 5.4) */
+.finden{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;background:var(--flaeche);border:1px solid var(--linie);border-radius:12px;padding:10px 12px;margin:0 0 16px}
+.finden h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-leise);margin:0;font-family:var(--f-text)}
+.knopf.haupt{background:var(--text);color:var(--grund);border-color:var(--text)}
+.knopf.haupt:hover{opacity:.88}
+.f-thema{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-leise);font-weight:600;flex:0 1 440px;min-width:0}
+.f-thema select{font:15px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:8px;padding:7px 10px;min-height:40px;width:100%;min-width:0}
+.f-stand{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:14px;flex:1 1 320px}
+.f-zahl{font-variant-numeric:tabular-nums}
+.f-chip{display:inline-flex;align-items:center;gap:6px;font:500 13.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--text-leise);border-radius:999px;padding:4px 10px;min-height:32px;cursor:pointer}
+.f-chip span[aria-hidden]{font-size:16px;line-height:1;color:var(--text-leise)}
+.schalter.klein button{font-size:13px;min-height:32px;padding:4px 9px}
+.treffer .th-vorschlag{border:1px solid var(--linie);margin:2px 0 4px}
+.treffer .th-vorschlag .marke{margin:0 4px 0 0}
+mark.th{background:color-mix(in oklab,var(--text) 13%,transparent);color:inherit;border-radius:2px;box-shadow:inset 0 -2px 0 var(--text-leise)}
+mark.aktuell{outline:2px solid var(--text);outline-offset:1px}
+.wortlaut{position:relative}
+.fund{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:14px;font-variant-numeric:tabular-nums}
+.fund .knopf{min-height:30px;padding:2px 10px}
+.fund small{color:var(--text-leise);font-size:13px;flex-basis:100%}
+.hinweis-klein{margin:0;font-size:14.5px;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:8px 10px}
+.chips.begriffe span{font-size:13.5px;background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:3px 8px}
+.chips.begriffe b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--text-leise)}
+.li-gruppe{display:grid;gap:6px}
+.li-gruppe h4 span{text-transform:none;letter-spacing:0;font-weight:400}
+.li-z{display:grid;gap:2px;text-align:left;font:14.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-left:4px solid var(--g);border-radius:6px;padding:7px 10px;cursor:pointer}
+.li-z:hover,.li-z:focus-visible{background:var(--flaeche)}
+.li-ort{font-size:12.5px;color:var(--text-leise)}
+.li-titel{font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.li-n{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-leise);font-variant-numeric:tabular-nums}
+.li-n i{display:block;height:6px;border-radius:3px;background:var(--g);min-width:3px;max-width:60%}
+.uf-mehr{justify-self:start;font:600 13px var(--f-text);color:var(--text);background:none;border:1px dashed var(--text-leise);border-radius:999px;padding:4px 10px;min-height:30px;cursor:pointer}
+
+/* Geführte Auswahl in drei Schritten */
+.schritte{border:0;border-radius:14px;padding:0;width:min(640px,94vw);max-height:calc(100vh - 32px);background:var(--karte);color:var(--text);box-shadow:0 20px 60px rgb(0 0 0 / .3)}
+.schritte::backdrop{background:rgb(17 24 32 / .45)}
+.sch-innen{padding:20px 22px;display:grid;gap:10px}
+.sch-kopf{display:flex;justify-content:space-between;align-items:center}
+.sch-stufe{margin:0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+.sch-zu{font-size:24px;line-height:1;background:none;border:0;color:var(--text-leise);cursor:pointer;padding:4px 8px;min-height:36px}
+.schritte h2{margin:0;font-size:22px}
+.sch-erkl{margin:0;color:var(--text-leise);font-size:14.5px}
+.sch-wahl{display:grid;gap:10px}
+.sch-wahl input{font:16px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:8px;padding:9px 11px;min-height:44px;width:100%}
+.sch-optionen{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;max-height:min(56vh,520px);overflow:auto;padding:2px}
+.sch-optionen button{display:grid;gap:2px;text-align:left;font:15px var(--f-text);color:var(--text);background:var(--flaeche);border:1px solid var(--linie);border-radius:8px;padding:9px 11px;cursor:pointer}
+.sch-optionen button:hover,.sch-optionen button:focus-visible{border-color:var(--text-leise)}
+.sch-optionen button[aria-pressed="true"]{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
+.sch-optionen small{color:var(--text-leise);font-size:13px;line-height:1.35}
+.sch-zeile{display:flex;justify-content:flex-start}
+.sch-hinweis{grid-column:1 / -1;margin:0 0 2px}
+
+/* Umfeld eines Zettels: Gliederung mit Stamm (Ziffer 5.2) */
+.uf-kopfzeile{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;margin:0 0 8px}
+.uf-kopfzeile h4{margin:0}
+.uf{position:relative;display:grid;gap:10px}
+.uf-linien{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.uf-linien path{stroke:color-mix(in oklab,var(--text-leise) 70%,transparent)}
+.uf-linien path.spitze{fill:color-mix(in oklab,var(--text-leise) 70%,transparent);stroke:none}
+.uf-linien path.hell{stroke:var(--text)}
+.uf-linien path.spitze.hell{fill:var(--text)}
+.uf-band{position:relative;display:grid;gap:10px;padding-left:26px}
+.uf-frage{margin:0;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise);font-weight:600}
+.uf-band.leerband{padding-left:0}
+.uf-band.leerband .leer{margin:0}
+.uf-gruppe{position:relative;display:grid;gap:5px}
+.uf-gtitel{margin:0;font-size:14px;font-weight:600;line-height:1.5;min-height:24px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.uf-gtitel span{font-weight:400;color:var(--text-leise);font-size:13px;font-variant-numeric:tabular-nums}
+.uf-karten{display:flex;flex-wrap:wrap;gap:6px}
+.uf-k{display:inline-grid;grid-template-columns:minmax(0,auto) auto;align-items:baseline;gap:1px 6px;max-width:100%;text-align:left;font:14px/1.35 var(--f-text);color:var(--text);text-decoration:none;
+  background:color-mix(in oklab,var(--g) 14%,var(--karte));border:1px solid color-mix(in oklab,var(--g) 55%,var(--karte));border-left:4px solid var(--g);border-radius:6px;padding:5px 9px;cursor:pointer}
+.uf-k:hover,.uf-k:focus-visible{background:color-mix(in oklab,var(--g) 26%,var(--karte));color:var(--text)}
+.uf-k.neutral{--g:var(--text-leise);background:var(--karte);border:1px solid var(--linie);border-left:1px solid var(--linie);align-items:center;grid-template-columns:auto minmax(0,auto) auto}
+.uf-k.neutral:hover{background:var(--flaeche)}
+.uf-k.aus-filter{opacity:.45}
+.uf-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.uf-dok{font-weight:600;margin-right:5px}
+.uf-dok::after{content:","}
+.uf-n{font-size:12.5px;font-weight:600;color:var(--text-leise);font-variant-numeric:tabular-nums}
+.uf-k small{grid-column:1 / -1;font-size:12.5px;color:var(--text-leise)}
+.uf-form{flex:none;width:11px;height:11px;border:1.6px solid var(--text-leise);align-self:center}
+.uf-form.eu{transform:rotate(45deg) scale(.85);border-radius:1px}
+.uf-form.erlass{border:0;width:12px;height:11px;background:var(--text-leise);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.uf-eu{display:grid;gap:4px;max-width:100%}
+.uf-auch{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:12.5px;color:var(--text-leise);padding-left:14px}
+.uf-auch button{font:12.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-left:3px solid var(--g);border-radius:5px;padding:2px 7px;cursor:pointer}
+.uf-mitte{position:relative;display:grid;gap:2px;background:color-mix(in oklab,var(--g) 20%,var(--karte));border:2px solid var(--g);border-radius:10px;padding:10px 12px}
+.uf-mitte b{font-family:var(--f-display);font-size:16.5px;line-height:1.3}
+.uf-ort,.uf-mitte small{font-size:12.5px;color:var(--text-leise)}
+.uf-mitte small{text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.uf-lesen,.uf-alle{font-size:14px;color:var(--text-leise)}
+.uf-lesen{margin-top:10px}
+.uf-lesen summary,.uf-alle summary{cursor:pointer;font-weight:600;color:var(--text);font-size:14px;min-height:32px;display:list-item}
+.uf-lesen p{margin:6px 0 0}
+.uf-farbe{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;margin-right:6px;color:var(--text)}
+.uf-farbe::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--g)}
+.uf-alle #gr-liste{margin-top:8px}
+.rw-zeile{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;margin:0 0 10px}
+.rw-text{font-size:14.5px;font-variant-numeric:tabular-nums}
+.rw-text span{color:var(--text-leise)}
+.rw-balken{grid-column:1;display:flex;height:10px;border-radius:3px;overflow:hidden;background:var(--flaeche);gap:1px}
+.rw-balken i{display:block;height:100%;min-width:3px}
+.rw-zeile .knopf{grid-column:2;grid-row:1 / span 2;min-height:32px;font-size:13px}
+.rw-fuss{display:grid;gap:6px;justify-items:start}
+
+/* Netz: radialer Graph (Ziffer 5.2) */
 .gr-filter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
 .gr-filter button{font:500 13.5px var(--f-text);color:var(--text);background:var(--karte);border:1px solid var(--linie);border-radius:999px;padding:4px 10px;min-height:34px;cursor:pointer}
 .gr-filter button[aria-pressed="false"]{color:var(--text-leise);background:var(--flaeche);text-decoration:line-through}

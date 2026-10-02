@@ -2,7 +2,7 @@
 
 Wertungsfreie, visuelle Aufbereitung des Pakets Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, heruntergebrochen auf Artikel und Abschnitte, mit Umfang und Verknüpfungen.
 
-Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
+Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
 
 ## 1. Stand
 
@@ -27,6 +27,13 @@ Stand: 1. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    4. Fehler in den Vorlagen und Grenzen der Extraktion: `docs/KORREKTUREN.md`.
    5. Der Reiter «Bezüge» (Ziffer 1.8, Ansicht 3a) liest noch die Rohextraktion des Prototyps; die Artikelverweise zwischen Dokumenten aus `daten/kanten.json` sind für Etappe 3 bereit.
 10. Etappe 3, Stand 1. Oktober 2026: Seite aus `seite/`, gebaut mit `scripts/bauen.py` nach `site/`, Ansichten nach Ziffer 5 auf den Daten von Etappe 2, auch der Reiter «Bezüge». Gestaltungsentscheide: `docs/DESIGN_entscheide.md`. Auslieferung über `.github/workflows/pages.yml`.
+11. Rückmeldung Michael vom 2. Oktober 2026:
+   1. Der lokale Graph braucht mehr Struktur und Farbe und ist für Laien nicht verständlich genug.
+   2. Politik, Medien und Bevölkerung sollen Inhalte so schnell wie möglich finden: über Stichworte, Filter über alle Ebenen oder eine Folge von Fragen mit Auswahlantworten. Danach soll sichtbar sein, wie weit die gefundene Stelle verknüpft ist. Beispiele: Wer zur Streitbeilegung sucht (in der Debatte «fremde Richter») oder zum Lohnschutz, soll die Stellen im Text finden.
+12. Umsetzung vom 2. Oktober 2026 (Etappe 3, Ergänzung):
+   1. Umfeld eines Zettels als Gliederung nach Bezugsart, der bisherige Graph als Darstellung «Netz» wählbar (Ziffer 5.2).
+   2. Finden mit Thema, Textart, geführter Auswahl in drei Schritten, Themenvorschlag in der Suche und Ergebnisliste; die Auswahl ist in allen Ansichten markiert (Ziffer 5.4).
+   3. Themenkatalog `daten/themen.json` mit 20 Themen, geprüft mit `scripts/themen.py`: jeder Begriff kommt im Paket vor, 0 Fehler.
 
 ## 2. Ziel
 
@@ -68,10 +75,11 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 | 3 | Umsetzung (Sankey) | Abkommen, Bundesbeschluss, Bundesgesetz | Gesetzesliste vollständig (36 geändert, 3 neu) |
 | 3a | Bezüge (Bogendiagramm) | alle Zettel auf einer Linie, Länge = Wörter; Bögen oben: Artikelverweise im selben Dokument; unten: Botschaft nennt Artikel, gleicher EU-Rechtsakt, genehmigt, erläutert | im Prototyp vorhanden; Klick auf einen Bogen zeigt beide Enden mit Fundstelle; Artikelverweise zwischen Dokumenten ergänzen, sobald `verweise.py` sie liefert |
 | 4 | Zettel | Wortlaut, Fundstelle, ein- und ausgehende Verweise, genannte EU-Rechtsakte und SR-Erlasse | Wortlaut ungekürzt; grössere Schrift; Link auf die Fedlex-Stelle |
-| 5 | Lokaler Graph | Umfeld eines Zettels in zwei Schritten | neu aufgebaut und erläutert (Ziffer 5.2) |
+| 5 | Umfeld (lokaler Graph) | Bezüge eines Zettels nach Art, Reichweite über einen und zwei Schritte | Gliederung als Voreinstellung, Netz wählbar (Ziffer 5.2) |
 | 6 | Tabelle | alle Dokumente mit Seiten, Wörtern, Zetteln | unverändert |
-| 7 | Suche | Titel und Wortlaut aller Zettel | Treffer zusätzlich im Übersichtsfeld markiert |
+| 7 | Suche | Titel und Wortlaut aller Zettel | Treffer in allen Ansichten markiert; Themenvorschlag aus dem Katalog (Ziffer 5.4) |
 | 8 | Fassungsvergleich | Entwurf Bundesrat, Beschluss Parlament, Referendumsvorlage | neu, sobald eine zweite Fassung vorliegt |
+| 9 | Finden | Thema, Textart, geführte Auswahl, Ergebnisliste | neu (Ziffer 5.4) |
 
 ### 5.1 Übersichtsfeld zum Icicle
 
@@ -81,18 +89,25 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 4. Suchtreffer und der geöffnete Zettel sind im Übersichtsfeld markiert.
 5. Die Pfadleiste über der Hauptansicht bleibt.
 
-### 5.2 Lokaler Graph
+### 5.2 Umfeld eines Zettels (lokaler Graph)
 
-1. Feste Sektoren je Knotenart: Dokument oben, Zettel im gleichen Dokument rechts, EU-Rechtsakte unten, SR-Erlasse links. Gleiche Lage bei jedem Zettel.
-2. Beschriftungen ohne Überlappung; was nicht passt, erscheint beim Überfahren.
-3. Filter je Kantenart: verweist auf, nennt, genehmigt, erläutert, Teil von.
-4. Überfahren eines Knotens hebt den Weg zum Mittelpunkt hervor.
-5. Erläuterung in Sätzen unter dem Graph:
-   1. Was ein Knoten ist (Zettel, Dokument, EU-Rechtsakt, SR-Erlass).
-   2. Was eine Kante bedeutet und woher sie stammt (Textstelle im Wortlaut, Art. 1 eines Bundesbeschlusses, Kapitel 2.x der Botschaft).
-   3. Was der zweite Schritt zeigt: andere Zettel, die denselben EU-Rechtsakt nennen, und der Bundesbeschluss, der das Dokument genehmigt.
-   4. Dass Lage und Abstand keine Bedeutung tragen.
-6. Unter dem Graph dieselben Verknüpfungen als Liste, für Bildschirmleser und zum Kopieren.
+Fassung vom 2. Oktober 2026. Zwei Darstellungen, die Wahl bleibt im Browser gespeichert.
+
+1. Gliederung (Voreinstellung):
+   1. Oben «Was verweist auf diesen Text?», in der Mitte der Text in der Farbe seiner Vorlage, unten «Worauf verweist dieser Text?».
+   2. Gruppen nach Bezugsart, als Frage oder Aussage benannt: «Erläutert in der Botschaft», «Genehmigt durch», «Andere Artikel verweisen hierher», «Verweist auf diese Artikel», «Erläutert», «Genehmigt», «Nennt EU-Rechtsakte», «Nennt Schweizer Erlasse (SR)». Leere Gruppen entfallen.
+   3. Ein Stamm links verbindet die Gruppen mit dem Text; Pfeile zeigen vom verweisenden zum verwiesenen Text. Durchgezogen: Verweis oder Nennung im Wortlaut. Gestrichelt: Erläuterung oder Genehmigung.
+   4. Jeder Bezug als Karte mit vollem Titel (höchstens zwei Zeilen), Farbe der Vorlage als Rand und Fläche; EU-Rechtsakte und SR-Erlasse grau mit Raute und Dreieck. Gleiche Ziele zusammengefasst, Anzahl als «×n».
+   5. Reihenfolge in der Gruppe nach Paket. Höchstens acht Karten je Gruppe, der Rest auf Klick.
+   6. Überfahren zeigt die Fundstelle im Wortlaut und hebt den Weg der Gruppe zum Text hervor; Klick öffnet den Zettel.
+   7. Zweiter Schritt bei EU-Rechtsakten: «auch genannt in» mit den anderen Dokumenten, die denselben Rechtsakt nennen (ohne Botschaft).
+   8. Erläuterung «So lesen» in Sätzen, mit den Farben der Vorlagen.
+2. Netz: der radiale Graph mit festen Sektoren je Knotenart, Filtern je Kantenart und Hervorhebung des Wegs zum Mittelpunkt, wie in Etappe 3 gebaut.
+3. Reichweite unter dem Umfeld (Antwort auf «wie weit ist das verknüpft?»):
+   1. Zettel, die über Artikelverweise oder Erläuterungen der Botschaft mit dem Zettel verbunden sind, in beide Richtungen: direkt und über einen Zwischenschritt, mit Anzahl Dokumente und einem Balken nach Vorlage.
+   2. Gleiche EU-Rechtsakte zählen nicht, weil ein häufig genannter Rechtsakt sonst fast das ganze Paket verbindet.
+   3. «Im Umfang markieren» übernimmt die Reichweite als Auswahl (Ziffer 5.4); «Im Bezugsdiagramm zeigen» wechselt zu den Bögen des Zettels.
+4. Darunter alle Verknüpfungen als Liste, für Bildschirmleser und zum Kopieren: eine Zeile je Art, Richtung und Ziel, mit Anzahl und allen Fundstellen.
 
 ### 5.3 Schrift und Grössen
 
@@ -101,16 +116,37 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 3. Zettelspalte ab 1280 px Fensterbreite 480 px breit, darunter unter der Hauptansicht.
 4. Schriften und Farbflächen wie im Politspiegel: Archivo für Titel, Public Sans für Text, Tokens `grund`, `flaeche`, `karte`, `text`, `text-leise`, `linie`; hell und dunkel.
 
+### 5.4 Finden
+
+Ziel: Politik, Medien und Bevölkerung finden die Stellen zu einer Frage in wenigen Schritten und sehen danach, wie weit sie verknüpft sind (Ziffer 1.11).
+
+1. Einstiege:
+   1. Suchfeld: Titel und Wortlaut wie bisher. Passt das Stichwort zu einem Thema (Name, Begriff oder Suchbegriff), steht das Thema als erster Vorschlag über den Treffern. Steht das Stichwort nicht im Wortlaut, sagt die Seite das («fremde Richter» → Thema «Streitbeilegung, Schiedsgericht und EuGH»).
+   2. Leiste «Finden» unter den Reitern: Auswahl Thema, Schalter Textart (Alle Texte, Vertragstexte, Umsetzung, Botschaft und Berichte), Stand der Auswahl mit Anzahl markierter Zettel und Knöpfen zum Aufheben.
+   3. «In drei Schritten finden»: geführte Auswahl mit Auswahlantworten. Schritt 1 «Worum geht es Ihnen?» (Themen alphabetisch, Stichwortfeld), Schritt 2 «Welche Texte wollen Sie sehen?» (Was mit der EU vereinbart ist, Was die Schweiz dafür ändert, Wie es erläutert wird, Alle Texte; je mit Anzahl Zettel), Schritt 3 «Wie wollen Sie die Stellen sehen?» (Liste, Umfang, Bezüge, Verknüpfungen).
+2. Textarten nach Dokumenttyp: Vertragstexte = Abkommen, Protokolle, Erklärungen; Umsetzung = Bundesbeschlüsse; Botschaft und Berichte = Botschaft, Bericht SPK-S, Stellungnahme des Bundesrates.
+3. Themen (`daten/themen.json`):
+   1. 20 Themen, Namen in der Sprache der amtlichen Texte, alphabetisch.
+   2. Je Thema Begriffe als reguläre Ausdrücke, gross- und kleinschreibungsgenau, in Python und JavaScript gleich auswertbar (kein Lookbehind, kein `\p`, `\b` nur an ASCII-Zeichen).
+   3. Ein Zettel gehört zum Thema, wenn Wortlaut oder Fussnoten mindestens einen Begriff enthalten. Gezählt wird jede Fundstelle.
+   4. Suchbegriffe aus der öffentlichen Debatte führen in der Suche zum Thema, ordnen aber keinen Zettel zu und erscheinen nicht als Themenname.
+   5. `scripts/themen.py` prüft den Katalog (T1 eindeutig und alphabetisch, T2 Muster ohne unzulässige Konstrukte, T3 jeder Begriff mindestens einmal im Paket) und meldet Begriffe, die mehr als 15 % der Zettel treffen, und Suchbegriffe ohne Vorkommen. `bauen.py` bricht bei einem Fehler ab.
+4. Wirkung der Auswahl: Thema, Textart, Reichweite und Suche werden geschnitten. Die Auswahl ist markiert im Umfang (Felder ausserhalb blass, Streifen mit dem Anteil markierter Wörter je Feld), im Übersichtsfeld, in den Bezügen (Bögen mit markiertem Ende), in der Matrix (nur Bezüge aus markierten Zetteln), in der Umsetzung (Dokumente ohne markierten Zettel blass), in der Tabelle (Spalte «Markiert») und im Umfeld (Karten ausserhalb blass).
+5. Ergebnisliste im Zettelbereich: Thema mit Begriffen und Anzahl Fundstellen, Hinweis zum gesuchten Wort, Zettel nach Textart gruppiert, je 15 sichtbar. Reihenfolge nach Paket; auf Wahl nach Anzahl Fundstellen mit Balken.
+6. Im geöffneten Zettel sind die Begriffe des Themas und das Suchwort markiert, mit «Stelle 1 von n» zum Springen; «Zurück zur Liste» führt zur Ergebnisliste.
+7. Anker: `#thema-<id>` und `#text-<art>`, kombinierbar mit dem Zettelanker (`#fga-2026-617-art_4&thema-lohnschutz`).
+
 ## 6. Neutralitätsregeln
 
 1. Farbe bezeichnet nur die Vorlage (Stabilisierung, Elektrizität, Lebensmittelsicherheit, Gesundheit; Botschaft und Übriges neutral grau). Keine Ampelfarben (Rot, Grün), nicht die Pro- und Contra-Farben des Politspiegels (Türkis, Violett). Palette mit dem Farbsehschwäche-Prüfskript geprüft (Musteransicht: Orange, Blau, Gelb, Magenta in dieser Reihenfolge).
 2. Grösse bezeichnet nur die Wortzahl, mit Einheit. Knoten im Graph sind gleich gross.
-3. Reihenfolge nach BBl-Nummer und Gliederung, nie nach Grösse oder Anzahl Verknüpfungen.
+3. Reihenfolge nach BBl-Nummer und Gliederung, nie nach Grösse oder Anzahl Verknüpfungen. Ausnahme seit 2. Oktober 2026, zur Freigabe offen (Ziffer 13.6): Die Ergebnisliste eines Themas lässt sich auf Wahl des Lesers nach Anzahl Fundstellen ordnen, mit dem Satz, dass die Zahl nichts über Bedeutung oder Gewicht sagt.
 4. Kanten nur aus Verweisen im Wortlaut, mit Kantenart und Fundstelle.
 5. Titel eines Zettels ist die amtliche Artikel- oder Abschnittsüberschrift.
-6. Suche ohne vorgeschlagene Begriffe.
+6. Suche ohne vorgeschlagene Begriffe aus Nutzerverhalten. Vorschläge kommen nur aus dem festen Themenkatalog (Ziffer 5.4.3), für jedes Stichwort gleich, ohne Einstieg nach Partei, Verband oder Haltung.
 7. Automatisch extrahierte Angaben tragen die Marke «Rohextraktion», bis sie geprüft sind.
 8. Fehler werden über ein sichtbares Korrekturprotokoll gemeldet und behoben, wie im Politspiegel.
+9. Themen ordnen zu, gewichten nicht: Zugehörigkeit nur über Begriffe im Wortlaut, keine Zusammenfassung, keine Bewertung einer Stelle.
 
 ## 7. Datenmodell
 
@@ -145,6 +181,7 @@ vertragsspiegel/
     gliedern.py                  Texte in Zettel teilen
     verweise.py                  Kanten extrahieren
     pruefen.py                   Selbstprüfung (Ziffer 9)
+    themen.py                    Themenkatalog prüfen, Fundstellen zählen (Ziffer 5.4)
     bauen.py                     site/ erzeugen
     vault.py                     Obsidian-Vault erzeugen
     publish.py                   bauen, committen, pushen
@@ -152,6 +189,8 @@ vertragsspiegel/
     fedlex_stand.json            Stand der letzten Fedlex-Prüfung (vorhanden)
     parlament_stand.json         Stand der letzten Parlamentsprüfung (vorhanden)
     quellen.json, zettel.json, kanten.json
+    themen.json                  Themenkatalog (Ziffer 5.4), von Hand gepflegt
+    themen_treffer.json          Fundstellen je Thema und Zettel, erzeugt von themen.py
     pdf/, text/                  Rohdaten, nicht versioniert
   vault/                         erzeugt
   site/                          veröffentlichte Seite
@@ -221,7 +260,7 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 
 1. Repository anlegen, Prototyp übernehmen, Fedlex-Kontrolle als geplante Aufgabe starten. Abgeschlossen am 1. Oktober 2026.
 2. Pipeline: `laden.py`, `gliedern.py`, `verweise.py`, `pruefen.py`; Fehlerbilder 1 bis 6 aus Ziffer 9 beheben.
-3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt.
+3. Ansichten nach Ziffer 5: Übersichtsfeld, lokaler Graph, Schrift; `DESIGN_entscheide.md` anlegen; GitHub Pages einrichten, sobald es `site/` gibt. Ergänzung vom 2. Oktober 2026: Umfeld (Ziffer 5.2) und Finden (Ziffer 5.4).
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
 5. Französisch und Italienisch.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
@@ -234,3 +273,4 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 3. Zeitpunkt für Französisch und Italienisch.
 4. Rohdaten (PDF, Text, je Sprache rund 25 MB) sind aus dem Repository ausgeschlossen (`.gitignore`), `laden.py` stellt sie wieder her. Entschieden am 1. Oktober 2026.
 5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein.
+6. Themenkatalog freigeben: Auswahl der 20 Themen, ihre Namen und Begriffe (`daten/themen.json`) sowie die wählbare Sortierung nach Anzahl Fundstellen (Ziffer 6.3). Stand 2. Oktober 2026: Entwurf, auf der Seite in Betrieb.

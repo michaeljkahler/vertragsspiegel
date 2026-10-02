@@ -4,7 +4,7 @@ Bauen:        python3 scripts/bauen.py
 
 Schreibt:
   site/index.html, site/app.css, site/app.js     aus seite/, Stand und Kennzahlen eingesetzt
-  site/daten/index.json                          Dokumente, Zettel ohne Wortlaut, Kanten, Gesetze, EU-Titel
+  site/daten/index.json                          Dokumente, Zettel ohne Wortlaut, Kanten, Gesetze, EU-Titel, Themen
   site/daten/text/<teil>.json                    Wortlaut und Fussnoten, je Werk; die Botschaft je Kapitel
                                                  (2.1 bis 2.15 einzeln), damit ein Zettel nicht 3 MB nachlädt
   site/kennzahlen.json                           für den Kasten im Politspiegel (Projektbrief Ziffer 10.1)
@@ -13,12 +13,14 @@ Die Seite lädt zuerst nur index.json (Gliederung, Umfang, Kanten) und den Wortl
 Zettels oder bei der Volltextsuche.
 """
 import collections
+import hashlib
 import json
 import re
 import shutil
-from datetime import date
+import sys
 
 from paket import DATEN, GRUPPEN, WURZEL, quellen, utf8_ausgabe
+from themen import zaehlen
 
 SEITE, SITE = WURZEL / 'seite', WURZEL / 'site'
 
@@ -36,6 +38,14 @@ def textteil(zid):
 
 def kompakt_json(obj):
     return json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
+
+
+def version(index):
+    """Kennung für den Cache: ändert sich mit den Daten und den Vorlagen."""
+    h = hashlib.sha1(kompakt_json(index).encode())
+    for name in ('index.html', 'app.css', 'app.js'):
+        h.update((SEITE / name).read_bytes())
+    return h.hexdigest()[:10]
 
 
 def main():
@@ -81,6 +91,18 @@ def main():
     gesetze = [dict(id=g['id'], titel=g['titel'], kurz=g.get('kurz'), abk=g.get('abk'), sr=g.get('sr'), neu=g['neu'],
                     totalrevision=g['totalrevision'], bbs=[int(b) for b in g['bbs']]) for g in kd['gesetze']]
 
+    # Themen (daten/themen.json): Begriffe mit Muster und Trefferzahl, Suchbegriffe, Zettel mit Fundstellen
+    _, themen_erg, themen_fehler, _ = zaehlen()
+    if themen_fehler:
+        print('Themenkatalog fehlerhaft, zuerst python3 scripts/themen.py ausführen:')
+        for f in themen_fehler:
+            print('  ', f)
+        sys.exit(1)
+    themen = [dict(id=t['id'], name=t['name'],
+                   b=[[b['anzeige'], b['muster'], b['treffer']] for b in t['begriffe']],
+                   s=[[x['wort'], x['im_wortlaut']] for x in t['suchbegriffe']],
+                   z=[[nr_von[zid], n] for zid, n in t['zettel']]) for t in themen_erg]
+
     paket = [d for d in docs if 615 <= d['nr'] <= 644]
     stand = zd['stand']
     kennzahlen = dict(stand=stand, dokumente=len(paket), seiten=sum(d['seiten'] for d in paket),
@@ -88,7 +110,7 @@ def main():
                       kanten=len(kanten), eu=len(eu), sr=len(kd['sr_erlasse']),
                       gesetze_neu=sum(g['neu'] for g in gesetze), gesetze_geaendert=sum(not g['neu'] for g in gesetze))
     index = dict(stand=stand, gruppen=[dict(id=g, name=n) for g, n in GRUPPEN], docs=docs, z=z_aus, k=kanten,
-                 eu=eu, eu_gefunden=eu_gefunden, eu_paare=eu_paare, gesetze=gesetze, kennzahlen=kennzahlen)
+                 eu=eu, eu_gefunden=eu_gefunden, eu_paare=eu_paare, gesetze=gesetze, themen=themen, kennzahlen=kennzahlen)
 
     # Ausgabe
     if SITE.exists():
@@ -109,7 +131,7 @@ def main():
 
     fmt = lambda n: f'{n:,}'.replace(',', ' ')
     ersatz = {'__STAND__': '.'.join(reversed(stand.split('-'))), '__WOERTER__': fmt(kennzahlen['woerter']),
-              '__SEITEN__': fmt(kennzahlen['seiten']), '__VERSION__': stand.replace('-', '') + str(len(kanten))}
+              '__SEITEN__': fmt(kennzahlen['seiten']), '__VERSION__': version(index)}
     for name in ('index.html', 'app.css', 'app.js'):
         t = (SEITE / name).read_text(encoding='utf8')
         for k, v in ersatz.items():
@@ -120,7 +142,8 @@ def main():
             shutil.copy(extra, SITE / extra.name)
 
     groesse = sum(p.stat().st_size for p in SITE.rglob('*') if p.is_file())
-    print(f"site/: {len(zettel)} Zettel, {len(kanten)} Kanten, {len(eu_paare)} EU-Werkpaare, {len(texte)} Textdateien, "
+    print(f"site/: {len(zettel)} Zettel, {len(kanten)} Kanten, {len(eu_paare)} EU-Werkpaare, {len(themen)} Themen, "
+          f"{len(texte)} Textdateien, "
           f"index.json {(SITE / 'daten' / 'index.json').stat().st_size // 1024} KB, gesamt {groesse // 1024} KB")
 
 

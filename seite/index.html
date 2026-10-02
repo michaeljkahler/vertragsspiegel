@@ -44,10 +44,18 @@
     <div class="suche">
       <label for="suchfeld" class="sr">Suche in Titeln und Wortlaut</label>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="var(--text-leise)" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="var(--text-leise)" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <input id="suchfeld" type="search" placeholder="Titel und Wortlaut durchsuchen" autocomplete="off">
+      <input id="suchfeld" type="search" placeholder="Stichwort oder Wortlaut suchen" autocomplete="off">
       <div class="treffer" id="treffer" hidden></div>
     </div>
   </div>
+
+  <section class="finden" aria-labelledby="finden-titel">
+    <h2 id="finden-titel">Finden</h2>
+    <button type="button" class="knopf haupt" id="f-gefuehrt">In drei Schritten finden</button>
+    <label class="f-thema"><span>Thema</span><select id="f-thema"><option value="">Alle Themen</option></select></label>
+    <div class="schalter" id="f-art" role="group" aria-label="Textart"></div>
+    <div class="f-stand" id="f-stand" aria-live="polite"></div>
+  </section>
 
   <div class="raster">
     <main class="flaeche" id="ansicht">
@@ -129,7 +137,9 @@
       <li>Wörter: alle Wortzeichenfolgen in Wortlaut und Fussnoten, ohne Fussnotenzeichen. Die Summe der Zettel jedes Dokuments ist gleich der Zählung über das ganze Dokument.</li>
       <li>Verknüpfungen: nur Verweise, die im Wortlaut stehen, mit Fundstelle und Regel. Keine Verknüpfung aus inhaltlicher Ähnlichkeit. «Genehmigt» aus Art. 1 der Bundesbeschlüsse, «erläutert» aus den Kapiteln 2.x der Botschaft und ihren Erläuterungen zu einzelnen Artikeln, «ändert» aus den Anhängen der Bundesbeschlüsse.</li>
       <li>EU-Rechtsakte als CELEX-Nummer, gegen EUR-Lex geprüft. SR-Nummern wie im Text.</li>
-      <li>Farbe bezeichnet nur die Vorlage, Grösse nur die Wortzahl, Reihenfolge folgt BBl-Nummer und Gliederung. Lage und Abstand im lokalen Graph tragen keine Bedeutung.</li>
+      <li>Farbe bezeichnet nur die Vorlage, Grösse nur die Wortzahl, Reihenfolge folgt BBl-Nummer und Gliederung. Im Umfeld eines Zettels ordnen die Gruppen die Art des Bezugs; Lage und Abstand im Netz tragen keine Bedeutung.</li>
+      <li>Themen: feste Begriffslisten in <code>daten/themen.json</code>, alphabetisch. Ein Zettel gehört zu einem Thema, wenn ein Begriff in Wortlaut oder Fussnoten steht; gezählt wird jede Nennung. Wörter aus der öffentlichen Debatte führen in der Suche zum Thema, ordnen aber keinen Zettel zu. Kein Einstieg nach Partei, Verband oder Haltung.</li>
+      <li>Reichweite: Zettel, die über Artikelverweise oder Erläuterungen der Botschaft mit dem geöffneten Zettel verbunden sind, direkt oder über einen Zwischenschritt.</li>
       <li>Verfahren, Prüfungen und Quellcode: <a href="https://github.com/michaeljkahler/vertragsspiegel">github.com/michaeljkahler/vertragsspiegel</a>.</li>
     </ol>
   </section>
@@ -142,6 +152,16 @@
 </div>
 
 <div class="tip" id="tip" hidden></div>
+
+<dialog class="schritte" id="schritte" aria-labelledby="schritte-titel">
+  <div class="sch-innen">
+    <div class="sch-kopf"><p class="sch-stufe" id="sch-stufe">Schritt 1 von 3</p><button type="button" class="sch-zu" id="sch-zu" aria-label="Schliessen">×</button></div>
+    <h2 id="schritte-titel">Worum geht es Ihnen?</h2>
+    <p class="sch-erkl" id="sch-erkl"></p>
+    <div class="sch-wahl" id="sch-wahl"></div>
+    <div class="sch-zeile"><button type="button" class="knopf" id="sch-zurueck" hidden>← Zurück</button></div>
+  </div>
+</dialog>
 <button type="button" class="melden-knopf" data-melden aria-label="Fehler melden"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5l6 11H2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Fehler melden</button>
 
 <div class="melden-schleier" id="meldenSchleier" hidden></div>
