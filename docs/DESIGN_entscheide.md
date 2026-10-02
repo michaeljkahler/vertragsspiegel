@@ -10,6 +10,7 @@ Stand 1. Oktober 2026, Etappe 3. Ergänzt den Projektbrief, Ziffern 5 und 6. Jed
 4. **Direkter Link auf jeden Zettel** über die Kennung als Anker, `#fga-2026-632-art_4` (Projektbrief Ziffer 10.4). Die Adresse folgt dem geöffneten Zettel. Seit 2. Oktober 2026 mit `&thema-<id>` und `&text-<art>` kombinierbar; ohne Zettelanker öffnet die Seite die Ergebnisliste.
 6. **Cache-Kennung aus dem Inhalt.** `?v=` an CSS, JavaScript und Daten ist ein Prüfwert über `index.json` und die Vorlagen. Grund: Die frühere Kennung aus Datum und Kantenzahl änderte sich nicht, wenn nur Themen oder Vorlagen geändert wurden.
 5. **Fundstelle als PDF-Seite.** Solange das Paket nur als Verweis publiziert ist, hat es keine BBl-Seitenzahlen. Der Zettel verlinkt deshalb die Seite im amtlichen PDF (`…pdf#page=12`). Nach der Vollpublikation (Etappe 4) kommt die BBl-Seite dazu.
+7. **Start ohne geöffneten Text.** Ohne Anker in der Adresse zeigt die Zettelspalte nur, wie man einen Text öffnet; der Umfang zeigt das ganze Paket. Grund: Bis 2. Oktober 2026 öffnete die Seite den Artikel des Stromabkommens mit den meisten Verknüpfungen (Art. 32, Auslegungs- und Anwendungsschwierigkeiten). Jeder vorausgewählte Artikel stellt eine Bestimmung vor alle anderen und widerspricht damit der Wertungsfreiheit (Projektbrief Ziffer 6).
 
 ## 2. Umfang (Icicle) mit Übersichtsfeld (Ziffer 5.1)
 

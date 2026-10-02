@@ -71,13 +71,13 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
 }
 function ladeText(id) {
   const t = textteil(id);
-  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=4f8b16d8ff`).then(r => r.json()));
+  if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=8098e0a689`).then(r => r.json()));
   return texte.get(t).then(x => x[id] || ['', []]);
 }
 let alleTexte = null;
 function ladeAlleTexte() {
   if (!alleTexte) alleTexte = Promise.all([...new Set(Z.map(z => textteil(z.i)))].map(t => {
-    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=4f8b16d8ff`).then(r => r.json()));
+    if (!texte.has(t)) texte.set(t, fetch(`daten/text/${t}.json?v=8098e0a689`).then(r => r.json()));
     return texte.get(t);
   })).then(teile => { const m = new Map(); teile.forEach(x => Object.entries(x).forEach(([k, v]) => m.set(k, v))); return m; });
   return alleTexte;
@@ -101,7 +101,7 @@ function refName(r, lang) {
 }
 let gesetzById;
 
-fetch('daten/index.json?v=4f8b16d8ff').then(r => r.json()).then(start).catch(e => {
+fetch('daten/index.json?v=8098e0a689').then(r => r.json()).then(start).catch(e => {
   $('#laden').textContent = 'Die Daten konnten nicht geladen werden (' + e.message + '). Bitte die Seite neu laden.';
 });
 
@@ -133,25 +133,35 @@ function start(daten) {
   filt.thema = h.thema ? T.find(t => t.id === h.thema) || null : null;
   filt.art = TEXTART[h.art] ? h.art : null;
   findenStand();
-  const startI = h.zettel !== null ? h.zettel : startZettel();
   zeigeReiter('umfang');
   const mitFilter = !!(filt.thema || filt.art);
   if (mitFilter) filterAnwenden({still: true});
-  if (mitFilter && h.zettel === null) { gewaehlt = startI; zeigeListe(); }
-  else waehle(startI, h.zettel !== null, null, mitFilter);
+  if (h.zettel !== null) waehle(h.zettel, true, null, mitFilter);
+  else if (mitFilter) zeigeListe();
+  else startseite();
   let gespeichert = null; try { gespeichert = localStorage.getItem('vs-reiter'); } catch (e) { /* */ }
   if (gespeichert && REITER.includes(gespeichert) && gespeichert !== 'umfang' && h.zettel === null) zeigeReiter(gespeichert);
   addEventListener('hashchange', () => {
     const n = hashLesen(), t = n.thema ? T.find(x => x.id === n.thema) || null : null, a = TEXTART[n.art] ? n.art : null;
     if (t !== filt.thema || a !== filt.art) { filt.thema = t; filt.art = a; findenStand(); filterAnwenden({liste: n.zettel === null && !!(t || a)}); }
     if (n.zettel !== null && n.zettel !== gewaehlt) waehle(n.zettel, true);
+    else if (n.zettel === null && !t && !a && gewaehlt !== null) startseite();
   });
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(neuZeichnen, 150); });
 }
-function startZettel() {
-  let best = zIndex.get('fga/2026/632/art_27') ?? 0, n = -1;
-  Z.forEach((z, i) => { if (z.d === 632 && z.a === 'artikel') { const m = aus[i].length + ein[i].length; if (m > n) { n = m; best = i; } } });
-  return best;
+// Ohne Anker öffnet die Seite keinen Text: Jede Vorauswahl würde einen Artikel hervorheben (Gestaltungsentscheid 1.7).
+function startseite() {
+  gewaehlt = null; listeOffen = false; bogenZurueck = null; listeZurueck = false; bzSel = null;
+  zEl.innerHTML = `
+    <div><div class="ort">Zettel</div><h3>Noch kein Text geöffnet</h3></div>
+    <p>Jeder Zettel ist ein Artikel, ein Anhangsteil oder eine Ziffer der Botschaft, mit ungekürztem Wortlaut, Fundstelle im amtlichen PDF und den Verknüpfungen zu anderen Texten.</p>
+    <div><h4>So öffnen Sie einen Text</h4><ul class="start-wege">
+      <li>Im Umfang ein Feld anklicken, bis ein einzelner Zettel erscheint.</li>
+      <li>Oben ein Wort im Wortlaut oder einen Titel suchen.</li>
+      <li>Unter «Finden» ein Thema oder eine Textart wählen.</li></ul></div>`;
+  if (aktiv === 'umfang') zeichneUmfang(false);
+  if (bzSvg) bzFaerben();
+  hashSchreiben();
 }
 // Anker (Projektbrief Ziffer 10.4): #fga-2026-632-art_4, ergänzt um &thema-<id> und &text-<art> (Ziffer 5.4)
 function hashLesen() {
@@ -960,7 +970,7 @@ function findenAufbauen() {
     if (k === 'thema') listeHerkunft = null;
     findenStand();
     filterAnwenden({liste: listeOffen && !!(filt.thema || filt.art || filt.reich || filt.such)});
-    if (listeOffen && !treffer) waehle(gewaehlt ?? startZettel(), false);
+    if (listeOffen && !treffer) gewaehlt !== null ? waehle(gewaehlt, false) : startseite();
   };
   $('#f-gefuehrt').onclick = gefuehrt;
   fStand();
@@ -968,7 +978,7 @@ function findenAufbauen() {
 
 // Ergebnisliste im Zettelbereich: nach Textart gruppiert, sortiert nach Fundstellen oder nach Reihenfolge im Paket
 function zeigeListe() {
-  if (!treffer) return;
+  if (!treffer) { if (listeOffen) gewaehlt !== null ? waehle(gewaehlt, false) : startseite(); return; }
   listeOffen = true; bogenZurueck = null;
   const t = filt.thema, menge = [...treffer], n = i => t ? (t.zm.get(i) || 0) : 0;
   const woerter = menge.reduce((s, i) => s + Z[i].w, 0), fund = menge.reduce((s, i) => s + n(i), 0);
@@ -1056,7 +1066,7 @@ function gefuehrt() {
     findenStand();
     const mitAuswahl = !!(filt.thema || filt.art);
     filterAnwenden({liste: mitAuswahl});
-    if (!mitAuswahl && listeOffen) waehle(gewaehlt ?? startZettel(), false);
+    if (!mitAuswahl && listeOffen) gewaehlt !== null ? waehle(gewaehlt, false) : startseite();
     if (ans !== 'liste') { zeigeReiter(ans); if (ans === 'umfang') { fokus = root; zeichneUmfang(true); } }
     (ans === 'liste' && innerWidth < 1280 ? zEl : $('#ansicht')).scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
   }

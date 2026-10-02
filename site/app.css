@@ -332,3 +332,4 @@ body.melden-offen{overflow:hidden}
 @media (max-width:640px){.melden-knopf{bottom:70px;right:12px;padding:8px 10px;font-size:12px}}
 @media print{.melden-knopf,.melden{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.start-wege{margin:0;padding-left:20px;display:grid;gap:4px}
