@@ -11,7 +11,7 @@ Stand 1. Oktober 2026: Aufbau, Pipeline (Etappe 2) und Ansichten (Etappe 3) steh
 | `docs/` | Projektbrief, Aufträge für die Einrichtung und die wiederkehrende Kontrolle, Korrekturprotokoll |
 | `scripts/` | Kontrolle (`fedlex_pruefen.py`, `parlament_pruefen.py`) und Pipeline (`laden.py`, `gliedern.py`, `verweise.py`, `eda_abgleich.py`, `ausrichten.py`, `pruefen.py`, `themen.py`, `bauen.py`) |
 | `daten/` | Stand der Kontrollen, Herkunft der Texte (`quellen.json`), Zettel (`zettel.json`, französisch und italienisch `zettel_fr.json`, `zettel_it.json`), Kanten (`kanten.json`), EUR-Lex-Titel (`eurlex.json`), Abgleich mit der EDA-Übersicht (`eda_liste.json`); Rohdaten unter `daten/pdf/`, `daten/text/`, `daten/xml/` sind nicht versioniert |
-| `seite/` | Vorlagen der Seite (HTML, CSS, JavaScript); `grafik.js` erzeugt Grafiken für Social Media, Präsentation und Bericht |
+| `seite/` | Vorlagen der Seite (HTML, CSS, JavaScript); `grafik.js` erzeugt Grafiken für Social Media, Präsentation und Bericht, `hilfe.js` Infoblasen und Rundgang |
 | `site/` | veröffentlichte Seite, erzeugt von `bauen.py`, ausgeliefert über GitHub Pages |
 | `prototyp/` | Musteransicht vom 1. Oktober 2026 mit Datenaufbereitung |
 

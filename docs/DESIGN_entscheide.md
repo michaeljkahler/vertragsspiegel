@@ -54,7 +54,7 @@ Netz (Fassung Etappe 3, unverändert):
 
 ## 4a. Finden (Ziffer 5.4)
 
-1. **Leiste «Finden» unter den Reitern**, nicht im Kopf. Grund: Die Auswahl wirkt auf alle Ansichten und gehört deshalb zwischen Reiter und Ansicht.
+1. **Finden im Bereich 1 mit der Suche**, vor der Wahl der Ansicht. Fassung vom 3. Oktober 2026 (Entscheid 4e.2); bis dahin als Leiste zwischen Reitern und Ansicht. Grund: Suchwort, Thema und Textart sind derselbe Schritt «auswählen» und wirken auf alle Ansichten.
 2. **Thema als Auswahlliste** mit Anzahl Zettel, nicht als 20 Knöpfe. Grund: Platz; die geführte Auswahl zeigt die Themen als Karten.
 3. **Geführte Auswahl als modaler Dialog** mit drei Schritten; ein Klick auf eine Antwort führt weiter, «Zurück» zum vorigen Schritt. Die Antworten zu Schritt 2 nennen die Textart als Frage («Was mit der EU vereinbart ist») und mit Typen und Anzahl.
 4. **Schnittmenge**: Thema, Textart, Reichweite und Suchwort schränken gemeinsam ein. Jede Einschränkung steht als Knopf mit × im Stand der Auswahl.
@@ -71,7 +71,7 @@ Netz (Fassung Etappe 3, unverändert):
 4. **Auswahl in der Grafik benannt** («Markiert: Thema … : 164 Zettel»), weil eine markierte Grafik ohne diese Angabe eine Gewichtung nahelegt.
 5. **Seitlicher Kopf im Querformat** für Netz und Matrix: Titel und Erläuterung links, die Grafik erhält die ganze Höhe. Grund: Ein Kreis oder eine 33 × 33-Matrix unter einem Kopf von 400 Pixeln wäre in 16:9 zu klein.
 6. **Umfeld im Querformat** links eingehend, rechts ausgehend, Reichweite unter dem Text. Reicht der Platz nicht, werden die Karten bis auf 70 % verkleinert, danach mit «+ n weitere» abgeschlossen.
-7. **Bezüge in allen Formaten waagrecht**, auch in 4:5: oben die Verweise im selben Dokument, unten die Bezüge zwischen Dokumenten, wie auf der Seite. Die senkrechte Fassung vom 2. Oktober 2026 liess im Hochformat die halbe Fläche leer und war schwer lesbar (Rückmeldung Michael vom selben Tag). Im Hochformat erhalten die Bögen zwischen Dokumenten 70 % der Höhe.
+7. **Bezüge in allen Formaten waagrecht**, auch in 4:5: oben die Verweise im selben Dokument, unten die Bezüge zwischen Dokumenten, wie auf der Seite. Die senkrechte Fassung vom 2. Oktober 2026 liess im Hochformat die halbe Fläche leer und war schwer lesbar (Rückmeldung Michael vom selben Tag). Im Hochformat erhalten die Bögen im selben Dokument 24 % der Höhe, die Bögen zwischen Dokumenten den Rest (im Querformat 30 %).
 8. **Wortlautkarte ohne Kürzung**: Schrift von 34 bis 15 Pixel, die grösste, bei der alles passt; sonst ein Hinweis statt Text. Auszug nur als ganzer Absatz.
 9. **Dateiname** aus Motiv, Stufe oder Zettel, «auswahl» bei aktiver Auswahl und Format, zum Beispiel `vertragsspiegel-netz-dokumente-verweise-folie.png`.
 
@@ -84,13 +84,34 @@ Netz (Fassung Etappe 3, unverändert):
 
 ## 4d. Sprache des Wortlauts (Etappe 5)
 
-1. **Umschalter DE, FR, IT** in der Leiste neben der Suche, als Schalter wie «Textart». Grund: Er wirkt auf alle Ansichten wie die Suche, gehört also nicht in den Zettel.
+1. **Umschalter DE, FR, IT** als Schalter wie «Textart», seit 3. Oktober 2026 im Kopf der Seite mit der Bezeichnung «Sprache der Texte» (Entscheid 4e.9), bis dahin in der Leiste neben der Suche. Grund: Er wirkt auf alle Ansichten wie die Suche, gehört also nicht in den Zettel.
 2. **Was wechselt:** Wortlaut und Fussnoten, Bezeichnungen in Gliederung, Umfeld, Listen und Grafiken, Wörter (also die Grössen im Umfang), Seiten, PDF-Link und Amtsblatt («FF 2026 632»). Kennzahlen Seiten und Wörter zählen die gewählte Sprache.
 3. **Was bleibt:** Kennungen, Gliederung, Verknüpfungen und ihre Fundstellen, Themenzuordnung, Bedienung und Erklärtexte (deutsch). Der Zettel sagt in einem Satz, dass Gliederung und Verknüpfungen aus der deutschen Fassung stammen.
 4. **Anker** `&fr`, `&it` am Zettelanker (`#fga-2026-632-art_4&fr`), sonst die zuletzt gewählte Sprache aus dem Browser. Ein Anker ohne Sprache behält die gewählte, damit interne Links nicht zurückschalten.
 5. **Themen in FR und IT:** Zettel markiert, Wörter nicht, weil die Begriffe deutsch sind.
 6. **Zettel ohne eigene Stelle** (in der Vorlage fehlt die Überschrift): leerer Wortlaut mit Hinweis, der Text steht im vorangehenden Zettel. Grund: lieber eine sichtbare Lücke als eine falsche Grenze.
 7. `lang`-Attribut am Wortlaut, damit Silbentrennung und Vorleseprogramme die Sprache kennen.
+
+## 4e. Hilfe für Laien (Ziffer 5.6)
+
+Fassung vom 3. Oktober 2026, nach der Rückmeldung von Testpersonen, die Seite sei unübersichtlich (Projektbrief Ziffer 1.17).
+
+1. **Grundlagen:**
+   1. Nielsen Norman Group, «Onboarding Tutorials vs. Contextual Help»: Anleitungen vor der Nutzung werden übersprungen und rasch vergessen und verbessern die Leistung nicht. Hilfe im Kontext, die der Nutzer selbst aufruft, die sich leicht schliessen und später wiederfinden lässt, wirkt.
+   2. Nielsen Norman Group, «Usability for Senior Citizens»: Hauptprobleme älterer Nutzer sind kleine Schrift, kleine Klickflächen und unklare Bezeichnungen.
+   3. Nielsen Norman Group, «Instructional Overlays and Coach Marks for Mobile Apps»: Einblendungen kurz halten, eine Handlung je Hinweis; viele Hinweise hintereinander werden schneller weggeklickt.
+   4. WCAG 2.2: Kriterium 1.4.13 (Inhalt bei Hover oder Fokus schliessbar, überfahrbar, beständig) und 2.5.8 (Zielgrösse mindestens 24 × 24 px).
+2. **Gliederung vor Erklärung.** Drei nummerierte Bereiche in Leserichtung; die Nummern stehen auch in der Startseite, den Infoblasen und dem Rundgang. Grund: Eine unübersichtliche Seite wird durch Erklärungen allein nicht übersichtlich.
+3. **Fragen unter den Reitern.** «Umfang», «Verknüpfungen» und «Bezüge» bezeichnen die Darstellung; die Frage darunter sagt, wozu die Ansicht dient.
+4. **Kontrast statt Farbe.** Farbe bezeichnet nur die Vorlage (Abschnitt 8.1); eine farbige Hervorhebung von Suche und Knöpfen läse man als Gruppe oder Wertung. Hervorgehoben wird mit dunklen Flächen, Rahmen, Nummern und Symbolen. Das wirkt hell, dunkel und bei Farbsehschwäche gleich.
+5. **Infoblasen auch ohne Maus.** Darüberfahren allein schliesst Tablet, Handy und Tastatur aus; derselbe Knopf öffnet deshalb auch per Klick, Antippen und Fokus. Öffnen nach 0,22 s, Schliessen nach 0,35 s, damit die Maus vom Knopf in die Blase wechseln kann. Per Klick geöffnet, bleibt die Blase offen, bis sie geschlossen wird. Mit der Tastatur geöffnet, erhält sie den Fokus; Esc gibt ihn an den Knopf zurück.
+6. **Rundgang freiwillig und kurz.** Fünf Schritte mit je ein bis zwei Sätzen, die Einzelheiten in den Infoblasen; einmal angeboten, nie erzwungen. «Nein, danke» und ein beendeter Rundgang bleiben im Browser gespeichert (`vs-rundgang`). Bei einer Adresse mit Anker erscheint das Angebot nicht, weil der Leser dann einen bestimmten Text sucht. Der Kreis ist ein Rahmen mit Schatten über der ganzen Fläche; die Seite bleibt darunter unverändert.
+7. **Ohne Popover-API und ohne Bibliothek.** Die Popover-API ist erst seit April 2024 in allen gängigen Browsern verfügbar und fehlt auf älteren Geräten. Blase und Rundgang sind eigene Elemente mit fester Lage in `seite/hilfe.js`, rund 170 Zeilen.
+8. **Grössen nach WCAG mit Reserve:** Klickflächen mindestens 36 px statt der verlangten 24 px, Knöpfe 40 px, Suchfeld 52 px hoch mit 18 px Schrift; Erklärtexte 14 bis 15 px. Ausgenommen sind Links im Fliesstext (WCAG 2.5.8, Ausnahme «inline»).
+9. **Sprache der Texte im Kopf** mit sichtbarer Bezeichnung. Die Leiste über den Ansichten entfällt; der Umschalter wirkt auf alle Ansichten (Entscheid 4d.1) und steht deshalb im Kopf, wo auch amtliche Seiten die Sprachwahl führen.
+10. **Einheitlich «Als Bild speichern»** an allen Grafikknöpfen, mit Bildsymbol («Wortlaut als Bild speichern», «Umfeld als Bild speichern», «Liste als Bild speichern»). «Grafik» sagt nicht, was geschieht; «speichern» nennt die Handlung.
+11. **Kopf der Zettelspalte:** «3 Text lesen» bleibt ab 1280 px mit der Spalte stehen. Zwischen 1280 und 1719 px Fensterbreite hält er 64 px Abstand zum Testphase-Band, das sonst den Knopf «i» verdeckt.
+12. **«Geöffneter Text ↓»** nur unter 1280 px und erst nach einer Handlung des Lesers (Klick, Antippen, Taste), nicht beim Laden über einen Link. Grund: Der Knopf antwortet auf einen Klick, nach dem sich scheinbar nichts ändert, weil der Text ausserhalb des Bilds aufgeht.
 
 ## 5. Verknüpfungen (Matrix)
 

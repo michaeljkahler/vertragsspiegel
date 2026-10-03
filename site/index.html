@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css?v=2219179fcd">
+<link rel="stylesheet" href="app.css?v=ccf3fafe0f">
 </head>
 <body>
 <div class="testphase tp-oben-rechts" aria-hidden="true"><span>Testphase</span></div>
@@ -24,40 +24,61 @@
     <a class="zurueck-heim" href="https://michaeljkahler.github.io/politspiegel/">&larr; Politspiegel</a>
     <div class="marke-kopf">Vertragsspiegel</div>
     <h1>Paket Schweiz–EU (Bilaterale III) in Artikeln und Abschnitten</h1>
-    <p class="lead">Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, wie sie im Bundesblatt stehen: wie umfangreich jeder Teil ist und welcher Teil auf welchen verweist.</p>
-    <p class="stand">Stand der Daten 02.10.2026 · Fassung des Bundesrates vom 13. März 2026, BBl 2026 615–644, und Begleitgeschäft Pa. Iv. 26.425 · 1 945 Seiten, 641 398 Wörter</p>
-    <div class="hinweis" role="note">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <div>Keine Bewertung und keine Zusammenfassung: Gezeigt werden Wortlaut, Umfang und die Verweise, die im Text stehen. Gliederung und Verweise sind automatisch aus den amtlichen PDF gewonnen und mit «Rohextraktion» bezeichnet; Fehler und Grenzen stehen im <a href="https://github.com/michaeljkahler/vertragsspiegel/blob/main/docs/KORREKTUREN.md">Korrekturprotokoll</a>.</div>
-    </div>
+    <p class="lead">Botschaft, Abkommen, Protokolle und Bundesbeschlüsse, wie sie im Bundesblatt stehen: wie umfangreich jeder Teil ist und welcher Teil auf welchen verweist.</p>
     <ul class="kennzahlen" id="kennzahlen"></ul>
+    <div class="kopf-zeile">
+    <details class="hinweis">
+      <summary><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Keine Bewertung, keine Zusammenfassung. <u>Woher die Angaben stammen</u></span></summary>
+      <div>Gezeigt werden Wortlaut, Umfang und die Verweise, die im Text stehen. Gliederung und Verweise sind automatisch aus den amtlichen PDF gewonnen und mit «Rohextraktion» bezeichnet; Fehler und Grenzen stehen im <a href="https://github.com/michaeljkahler/vertragsspiegel/blob/main/docs/KORREKTUREN.md">Korrekturprotokoll</a>.
+        Stand der Daten 02.10.2026 · Fassung des Bundesrates vom 13. März 2026, BBl 2026 615–644, und Begleitgeschäft Pa. Iv. 26.425 · 1 945 Seiten, 641 398 Wörter.</div>
+    </details>
+    <div class="sprachwahl"><span class="sprachwahl-label" id="sprache-label">Sprache der Texte</span>
+      <div class="schalter sprache" id="sprache" role="group" aria-labelledby="sprache-label" title="Sprache des Wortlauts: Deutsch, Französisch, Italienisch">
+        <button type="button" data-sp="de" aria-pressed="true" lang="de">DE</button><button type="button" data-sp="fr" aria-pressed="false" lang="fr">FR</button><button type="button" data-sp="it" aria-pressed="false" lang="it">IT</button>
+      </div>
+    </div>
+    <div class="hilfeleiste">
+      <button type="button" class="knopf" id="rundgang-auf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg>Rundgang: so funktioniert die Seite</button>
+      <span class="hilfe-tipp">Schrift zu klein? Mit <kbd>Strg</kbd> und <kbd>+</kbd> vergrössern (Mac: <kbd>⌘</kbd> und <kbd>+</kbd>).</span>
+    </div>
+    </div>
+    <div class="angebot" id="rundgang-angebot" hidden>
+      <span>Zum ersten Mal hier? Ein kurzer Rundgang in fünf Schritten zeigt, wie die Seite funktioniert.</span>
+      <button type="button" class="knopf haupt" id="rundgang-ja">Rundgang starten</button>
+      <button type="button" class="knopf" id="rundgang-nein">Nein, danke</button>
+    </div>
   </header>
 
-  <div class="leiste">
-    <div class="reiter" role="tablist" aria-label="Ansicht">
-      <button role="tab" id="tab-umfang" aria-selected="true" aria-controls="v-umfang">Umfang</button>
-      <button role="tab" id="tab-verkn" aria-selected="false" aria-controls="v-verkn">Verknüpfungen</button>
-      <button role="tab" id="tab-bezuege" aria-selected="false" aria-controls="v-bezuege">Bezüge</button>
-      <button role="tab" id="tab-umsetz" aria-selected="false" aria-controls="v-umsetz">Umsetzung</button>
-      <button role="tab" id="tab-tabelle" aria-selected="false" aria-controls="v-tabelle">Tabelle</button>
-    </div>
-    <div class="schalter sprache" id="sprache" role="group" aria-label="Sprache des Wortlauts" title="Sprache des Wortlauts: Deutsch, Französisch, Italienisch">
-      <button type="button" data-sp="de" aria-pressed="true" lang="de">DE</button><button type="button" data-sp="fr" aria-pressed="false" lang="fr">FR</button><button type="button" data-sp="it" aria-pressed="false" lang="it">IT</button>
-    </div>
+  <section class="schritt" id="schritt-1" aria-labelledby="schritt-1-titel">
+    <div class="schritt-kopf"><span class="nr" aria-hidden="true">1</span><h2 id="schritt-1-titel">Suchen und auswählen</h2><button type="button" class="info" data-hilfe="schritt1" aria-label="Erklärung: Suchen und auswählen" aria-expanded="false">i</button></div>
     <div class="suche">
-      <label for="suchfeld" class="sr">Suche in Titeln und Wortlaut</label>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="var(--text-leise)" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="var(--text-leise)" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <input id="suchfeld" type="search" placeholder="Stichwort oder Wortlaut suchen" autocomplete="off">
+      <label for="suchfeld" class="suche-label">Wonach suchen Sie?</label>
+      <div class="suche-feld">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="suchfeld" type="search" placeholder="Wort eingeben, z. B. Lohnschutz, Strom, Gericht" autocomplete="off" aria-describedby="suche-hilfe">
+      </div>
+      <p class="suche-hilfe" id="suche-hilfe">Die Seite durchsucht Titel und Wortlaut und schlägt ein passendes Thema vor.</p>
       <div class="treffer" id="treffer" hidden></div>
     </div>
-  </div>
-
-  <section class="finden" aria-labelledby="finden-titel">
-    <h2 id="finden-titel">Finden</h2>
-    <button type="button" class="knopf haupt" id="f-gefuehrt">In drei Schritten finden</button>
-    <label class="f-thema"><span>Thema</span><select id="f-thema"><option value="">Alle Themen</option></select></label>
-    <div class="schalter" id="f-art" role="group" aria-label="Textart"></div>
+    <div class="finden" aria-label="Auswahl eingrenzen">
+      <label class="f-thema"><span>oder Thema wählen</span><select id="f-thema"><option value="">Alle Themen</option></select></label>
+      <div class="f-art-feld"><span class="f-art-label" id="f-art-label">Textart</span><div class="schalter" id="f-art" role="group" aria-labelledby="f-art-label"></div></div>
+      <button type="button" class="knopf" id="f-gefuehrt">In drei Schritten finden</button>
+      <button type="button" class="knopf" id="neu-beginnen" title="Suche, Auswahl und geöffneten Text aufheben">Neu beginnen</button>
+    </div>
     <div class="f-stand" id="f-stand" aria-live="polite"></div>
+  </section>
+
+  <section class="schritt schritt-2" id="schritt-2" aria-labelledby="schritt-2-titel">
+    <div class="schritt-kopf"><span class="nr" aria-hidden="true">2</span><h2 id="schritt-2-titel">Ansicht wählen</h2><button type="button" class="info" data-hilfe="schritt2" aria-label="Erklärung: Ansicht wählen" aria-expanded="false">i</button></div>
+    <div class="reiter" role="tablist" aria-label="Ansicht">
+      <button role="tab" id="tab-umfang" aria-selected="true" aria-controls="v-umfang"><span class="r-name">Umfang</span><span class="r-frage">Wie viel Text steht wo?</span></button>
+      <button role="tab" id="tab-verkn" aria-selected="false" aria-controls="v-verkn"><span class="r-name">Verknüpfungen</span><span class="r-frage">Welche Dokumente hängen zusammen?</span></button>
+      <button role="tab" id="tab-bezuege" aria-selected="false" aria-controls="v-bezuege"><span class="r-name">Bezüge</span><span class="r-frage">Welcher Artikel verweist auf welchen?</span></button>
+      <button role="tab" id="tab-umsetz" aria-selected="false" aria-controls="v-umsetz"><span class="r-name">Umsetzung</span><span class="r-frage">Welche Gesetze ändern sich?</span></button>
+      <button role="tab" id="tab-tabelle" aria-selected="false" aria-controls="v-tabelle"><span class="r-name">Tabelle</span><span class="r-frage">Alle Dokumente als Liste</span></button>
+    </div>
   </section>
 
   <div class="raster">
@@ -66,7 +87,7 @@
 
       <section id="v-umfang" role="tabpanel" aria-labelledby="tab-umfang" hidden>
         <div class="ansichtkopf">
-          <h2>Umfang nach Gliederung <button type="button" class="knopf klein" data-grafik="umfang">Als Grafik</button></h2>
+          <h2>Umfang nach Gliederung</h2><div class="ansicht-knoepfe"><button type="button" class="knopf klein bild" data-grafik="umfang"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>Als Bild speichern</button><button type="button" class="info" data-hilfe="umfang" aria-label="Erklärung: Umfang lesen" aria-expanded="false">i</button></div>
           <p>Höhe eines Felds = Anzahl Wörter. Spalten von links: Paket, Vorlage, Dokument, Teile, Artikel oder Abschnitt. Klick auf ein Feld vergrössert es, Klick auf ein Blatt öffnet den Zettel.</p>
         </div>
         <nav class="pfad" id="pfad" aria-label="Position im Paket"></nav>
@@ -83,7 +104,7 @@
       <section id="v-verkn" role="tabpanel" aria-labelledby="tab-verkn" hidden>
         <div class="ansichtkopf">
           <h2>Verknüpfungen zwischen Dokumenten <span class="marke">Rohextraktion</span></h2>
-          <button type="button" class="knopf klein" data-grafik="verkn">Als Grafik</button>
+          <div class="ansicht-knoepfe"><button type="button" class="knopf klein bild" data-grafik="verkn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>Als Bild speichern</button><button type="button" class="info" data-hilfe="verkn" aria-label="Erklärung: Verknüpfungen lesen" aria-expanded="false">i</button></div>
         </div>
         <div class="vk-leiste">
           <div class="schalter" role="group" aria-label="Darstellung">
@@ -110,7 +131,7 @@
 
       <section id="v-bezuege" role="tabpanel" aria-labelledby="tab-bezuege" hidden>
         <div class="ansichtkopf">
-          <h2>Bezüge auf einer Linie <span class="marke">Rohextraktion</span> <button type="button" class="knopf klein" data-grafik="bezuege">Als Grafik</button></h2>
+          <h2>Bezüge auf einer Linie <span class="marke">Rohextraktion</span></h2><div class="ansicht-knoepfe"><button type="button" class="knopf klein bild" data-grafik="bezuege"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>Als Bild speichern</button><button type="button" class="info" data-hilfe="bezuege" aria-label="Erklärung: Bezüge lesen" aria-expanded="false">i</button></div>
           <p>Alle Zettel hintereinander nach BBl-Nummer und Gliederung, Länge = Wörter. Oben: Artikelverweise innerhalb eines Dokuments. Unten: Bezüge zwischen Dokumenten. Klick auf einen Bogen zeigt beide Enden mit der Fundstelle, Klick auf ein Dokument vergrössert es.</p>
         </div>
         <div class="bz-leiste">
@@ -125,7 +146,7 @@
 
       <section id="v-umsetz" role="tabpanel" aria-labelledby="tab-umsetz" hidden>
         <div class="ansichtkopf">
-          <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span> <button type="button" class="knopf klein" data-grafik="umsetzung">Als Grafik</button></h2>
+          <h2>Von den Abkommen zu den Bundesgesetzen <span class="marke">Rohextraktion</span></h2><div class="ansicht-knoepfe"><button type="button" class="knopf klein bild" data-grafik="umsetzung"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>Als Bild speichern</button><button type="button" class="info" data-hilfe="umsetz" aria-label="Erklärung: Umsetzung lesen" aria-expanded="false">i</button></div>
           <p>Links Abkommen und Protokolle, Mitte die Bundesbeschlüsse, die sie genehmigen (Art. 1), rechts die Bundesgesetze, die die Bundesbeschlüsse in ihren Anhängen neu schaffen oder ändern. Jede Linie ist eine Zuordnung aus dem Text.</p>
         </div>
         <ul class="legende" id="sk-legende"></ul>
@@ -134,7 +155,7 @@
 
       <section id="v-tabelle" role="tabpanel" aria-labelledby="tab-tabelle" hidden>
         <div class="ansichtkopf">
-          <h2>Alle Dokumente <button type="button" class="knopf klein" data-grafik="zahlen">Paket in Zahlen als Grafik</button></h2>
+          <h2>Alle Dokumente</h2><div class="ansicht-knoepfe"><button type="button" class="knopf klein bild" data-grafik="zahlen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>Paket in Zahlen als Bild</button><button type="button" class="info" data-hilfe="tabelle" aria-label="Erklärung: Tabelle lesen" aria-expanded="false">i</button></div>
           <p>Reihenfolge nach BBl-Nummer. Seiten im amtlichen PDF; Wörter ohne Kopf- und Fusszeilen, mit Fussnoten.</p>
         </div>
         <div class="scroller"><table id="tabelle"></table></div>
@@ -143,7 +164,11 @@
       </section>
     </main>
 
-    <aside class="flaeche zettel" id="zettel" aria-live="polite"></aside>
+    <aside class="flaeche zettel-spalte" id="schritt-3" aria-labelledby="schritt-3-titel">
+      <div class="schritt-kopf"><span class="nr" aria-hidden="true">3</span><h2 id="schritt-3-titel">Text lesen</h2>
+        <button type="button" class="info" data-hilfe="schritt3" aria-label="Erklärung: Text lesen" aria-expanded="false">i</button></div>
+      <div class="zettel" id="zettel" aria-live="polite"></div>
+    </aside>
   </div>
 
   <section class="methode">
@@ -157,7 +182,7 @@
       <li>Farbe bezeichnet nur die Vorlage, Grösse nur die Wortzahl, Reihenfolge folgt BBl-Nummer und Gliederung. Im Umfeld eines Zettels ordnen die Gruppen die Art des Bezugs; Lage und Abstand im Netz tragen keine Bedeutung.</li>
       <li>Themen: feste Begriffslisten in <code>daten/themen.json</code>, alphabetisch. Ein Zettel gehört zu einem Thema, wenn ein Begriff in Wortlaut oder Fussnoten steht; gezählt wird jede Nennung. Wörter aus der öffentlichen Debatte führen in der Suche zum Thema, ordnen aber keinen Zettel zu. Kein Einstieg nach Partei, Verband oder Haltung.</li>
       <li>Reichweite: Zettel, die über Artikelverweise oder Erläuterungen der Botschaft mit dem geöffneten Zettel verbunden sind, direkt oder über einen Zwischenschritt.</li>
-      <li>Grafiken (Knopf «Grafik»): zeichnen die gewählte Ansicht samt Auswahl neu für Social Media, Präsentation oder Bericht, ohne eigene Rechnung. Die Zeile «Gezeigt» unter dem Titel beschreibt die Grafik und lässt sich nicht ändern; Quelle und Datenstand stehen in jeder Grafik.</li>
+      <li>Bilder (Knopf «Als Bild speichern»): zeichnen die gewählte Ansicht samt Auswahl neu für Social Media, Präsentation oder Bericht, ohne eigene Rechnung. Die Zeile «Gezeigt» unter dem Titel beschreibt das Bild und lässt sich nicht ändern; Quelle und Datenstand stehen in jedem Bild.</li>
       <li>Verfahren, Prüfungen und Quellcode: <a href="https://github.com/michaeljkahler/vertragsspiegel">github.com/michaeljkahler/vertragsspiegel</a>.</li>
     </ol>
   </section>
@@ -165,16 +190,30 @@
   <footer class="fuss">
     <p><b>Stand</b> 02.10.2026. Aufbereitung der amtlichen Texte ohne Gewähr; massgebend ist die Veröffentlichung im Bundesblatt. <button type="button" class="melden-inline" data-melden title="Einen Fehler auf dieser Seite melden"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5l6 11H2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Fehler melden</span></button></p>
     <p class="fuss-kanal"><a href="https://whatsapp.com/channel/0029VbDT16R0LKZChkAwY01o" target="_blank" rel="noopener">Politspiegel folgen: der WhatsApp-Kanal meldet jede neue Auswertung &rarr;</a></p>
-    <div class="impressum" id="impressum"><p><b>Impressum.</b> Verantwortlich für den Inhalt: Michael Kahler, <span class="imp-mail" data-u="politspiegel.sh" data-d="gmail.com">politspiegel.sh (at) gmail.com</span>. Privates, nichtkommerzielles Projekt. Es steht in keinem Zusammenhang mit der Bundesverwaltung, der Bundesversammlung oder der Europäischen Union. Rückmeldungen an diese Adresse; Korrekturen werden sichtbar protokolliert.</p><p><b>Datenschutz.</b> Diese Seite setzt kein Cookie, kein Zählpixel und keine Auswertung ein. Sie lädt Schriften von Google Fonts und Programmbibliotheken von cdnjs und jsDelivr; diese Dienste erhalten dabei die IP-Adresse. Die Seite liegt bei GitHub Pages; GitHub führt als Betreiber der Server eigene Zugriffsprotokolle, auf die der Herausgeber keinen Zugriff hat.</p></div>
+    <div class="impressum" id="impressum"><p><b>Impressum.</b> Verantwortlich für den Inhalt: Michael Kahler, <span class="imp-mail" data-u="politspiegel.sh" data-d="gmail.com">politspiegel.sh (at) gmail.com</span>. Privates, nichtkommerzielles Projekt. Es steht in keinem Zusammenhang mit der Bundesverwaltung, der Bundesversammlung oder der Europäischen Union. Rückmeldungen an diese Adresse; Korrekturen werden sichtbar protokolliert.</p><p><b>Datenschutz.</b> Diese Seite setzt kein Cookie, kein Zählpixel und keine Auswertung ein. Einstellungen wie Sprache, Darstellung und «Rundgang gesehen» bleiben nur im eigenen Browser gespeichert. Sie lädt Schriften von Google Fonts und Programmbibliotheken von cdnjs und jsDelivr; diese Dienste erhalten dabei die IP-Adresse. Die Seite liegt bei GitHub Pages; GitHub führt als Betreiber der Server eigene Zugriffsprotokolle, auf die der Herausgeber keinen Zugriff hat.</p></div>
   </footer>
 </div>
 
 <div class="tip" id="tip" hidden></div>
-<button type="button" class="grafikknopf" id="grafikAuf" title="Grafik für Social Media, Präsentation oder Bericht erzeugen" aria-label="Grafik erzeugen" aria-haspopup="dialog">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><span>Grafik</span></button>
+<div class="hilfeblase" id="hilfeblase" role="dialog" aria-modal="false" aria-labelledby="hilfeblase-titel" tabindex="-1" hidden>
+  <div class="hb-kopf"><strong id="hilfeblase-titel"></strong><button type="button" class="hb-zu" aria-label="Erklärung schliessen">×</button></div>
+  <div class="hb-text" id="hilfeblase-text"></div>
+</div>
+<div class="rundgang" id="rundgang" hidden>
+  <div class="rg-ring" id="rg-ring"></div>
+  <div class="rg-karte" id="rg-karte" role="dialog" aria-modal="true" aria-labelledby="rg-titel">
+    <p class="rg-stufe" id="rg-stufe"></p>
+    <h2 id="rg-titel"></h2>
+    <div class="rg-text" id="rg-text"></div>
+    <div class="rg-knoepfe"><button type="button" class="knopf" id="rg-zurueck">Zurück</button><button type="button" class="knopf haupt" id="rg-weiter">Weiter</button><button type="button" class="rg-ende" id="rg-ende">Rundgang beenden</button></div>
+  </div>
+</div>
+<button type="button" class="zum-text" id="zum-text" hidden>Geöffneter Text ↓</button>
+<button type="button" class="grafikknopf" id="grafikAuf" title="Ansicht als Bild speichern: Social Media, Präsentation oder Bericht" aria-label="Ansicht als Bild speichern" aria-haspopup="dialog">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><span>Als Bild speichern</span></button>
 <div class="grafiklage" id="grafikLage">
   <div class="grafikbox" role="dialog" aria-modal="true" aria-labelledby="grafikKopfTitel">
-    <div class="grafikkopf"><h2 id="grafikKopfTitel">Grafik für Social Media, Präsentation oder Bericht</h2>
+    <div class="grafikkopf"><h2 id="grafikKopfTitel">Als Bild speichern: Social Media, Präsentation oder Bericht</h2>
       <button type="button" class="grafikzu" id="grafikZu" aria-label="Schliessen">&times;</button></div>
     <div class="grafikbody">
       <div class="grafikwahl">
@@ -249,7 +288,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 <script src="https://web3forms.com/client/script.js" async defer></script>
-<script src="app.js?v=2219179fcd"></script>
-<script src="grafik.js?v=2219179fcd"></script>
+<script src="app.js?v=ccf3fafe0f"></script>
+<script src="grafik.js?v=ccf3fafe0f"></script>
+<script src="hilfe.js?v=ccf3fafe0f"></script>
 </body>
 </html>

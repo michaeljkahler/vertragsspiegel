@@ -204,12 +204,13 @@ function start(daten) {
 function startseite() {
   gewaehlt = null; listeOffen = false; bogenZurueck = null; listeZurueck = false; bzSel = null;
   zEl.innerHTML = `
-    <div><div class="ort">Zettel</div><h3>Noch kein Text geöffnet</h3></div>
-    <p>Jeder Zettel ist ein Artikel, ein Anhangsteil oder eine Ziffer der Botschaft, mit ungekürztem Wortlaut, Fundstelle im amtlichen PDF und den Verknüpfungen zu anderen Texten.</p>
-    <div><h4>So öffnen Sie einen Text</h4><ul class="start-wege">
-      <li>Im Umfang ein Feld anklicken, bis ein einzelner Zettel erscheint.</li>
-      <li>Oben ein Wort im Wortlaut oder einen Titel suchen.</li>
-      <li>Unter «Finden» ein Thema oder eine Textart wählen.</li></ul></div>`;
+    <div><h3>Noch kein Text geöffnet</h3></div>
+    <p>Hier erscheint ein einzelner Text des Pakets, ein Artikel, ein Anhangsteil oder ein Abschnitt der Botschaft («Zettel»): ungekürzter Wortlaut, Fundstelle im amtlichen PDF und die Verweise zu anderen Texten.</p>
+    <div><h4>So öffnen Sie einen Text</h4><ol class="start-wege">
+      <li>Unter <b>1</b> ein Wort eingeben, zum Beispiel «Lohnschutz», und einen Treffer anklicken.</li>
+      <li>Oder unter <b>2</b> in der Ansicht «Umfang» ein Feld anklicken, bis ganz rechts ein einzelner Text erscheint.</li>
+      <li>Oder unter <b>1</b> ein Thema wählen und in der Liste einen Text anklicken.</li></ol></div>
+    <button type="button" class="knopf" data-rundgang>Rundgang: so funktioniert die Seite</button>`;
   if (aktiv === 'umfang') zeichneUmfang(false);
   if (bzSvg) bzFaerben();
   hashSchreiben();
@@ -418,6 +419,7 @@ function waehle(i, zoom, vonBogen, vonListe) {
   zeichneZettel(i);
   if (bzSvg) bzFaerben();
   hashSchreiben();
+  zumTextHinweis();
 }
 function ortVon(z) {
   const d = docById.get(z.d);
@@ -456,7 +458,7 @@ function zeichneZettel(i) {
       ${seiten ? `<a href="${esc(pdfLink(d, z.s[0]))}" target="_blank" rel="noopener">PDF, ${seiten}</a>` : ''}
       <a href="${esc(d.eli)}" target="_blank" rel="noopener">Fedlex</a>
       <a href="#${esc(anker(z.i))}" title="Direkter Link auf diesen Zettel">Link</a>
-      <button type="button" class="knopf klein" data-grafik="wortlaut" style="margin-left:0">Wortlaut als Grafik</button></div>
+      <button type="button" class="knopf klein" data-grafik="wortlaut" style="margin-left:0">Wortlaut als Bild speichern</button></div>
     ${sprache === 'de' ? '' : `<p class="hinweis-klein sprachhinweis">Wortlaut ${SPRACHEN[sprache].toLowerCase()}, amtliche Fassung.
       Gliederung, Verknüpfungen und deren Fundstellen stammen aus der deutschen Fassung.${z.o ? ` Dieser Abschnitt hat in der
       ${sprache === 'fr' ? 'französischen' : 'italienischen'} Fassung keine eigene Überschrift; sein Wortlaut steht im vorangehenden Zettel.` : ''}</p>`}
@@ -464,7 +466,7 @@ function zeichneZettel(i) {
     <div class="wortlaut" id="wortlaut" tabindex="0" aria-label="Wortlaut" lang="${sprache}"><span class="leer">Wortlaut wird geladen …</span></div>
     <section class="uf-teil" aria-labelledby="uf-titel">
       <div class="uf-kopfzeile"><h4 id="uf-titel">Umfeld: womit dieser Text verknüpft ist <span class="marke">Rohextraktion</span></h4>
-        <button type="button" class="knopf klein" data-grafik="umfeld" style="margin-left:0">Als Grafik</button>
+        <button type="button" class="knopf klein" data-grafik="umfeld" style="margin-left:0">Umfeld als Bild speichern</button>
         <div class="schalter klein" id="uf-art" role="group" aria-label="Darstellung des Umfelds">
           <button data-uf="gliederung" aria-pressed="${ufArt === 'gliederung'}">Gliederung</button><button data-uf="netz" aria-pressed="${ufArt === 'netz'}">Netz</button></div></div>
       <div id="uf-host"></div>
@@ -994,7 +996,7 @@ function setzeThema(id, opt = {}) {
   listeHerkunft = opt.herkunft || null; listeAlle = new Set();
   findenStand();
   filterAnwenden({liste: !!filt.thema || !!opt.liste});
-  if (filt.thema && innerWidth < 1280 && !opt.ohneSprung) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+  if (filt.thema && innerWidth < 1280 && !opt.ohneSprung) $('#schritt-3').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
 }
 function setzeArt(a) {
   filt.art = TEXTART[a] ? a : null; listeAlle = new Set();
@@ -1023,7 +1025,7 @@ function findenAufbauen() {
     Object.entries(TEXTART).map(([k, a]) => `<button data-art="${k}" aria-pressed="false" title="${esc(a.erkl)}">${esc(a.name)}</button>`).join('');
   $('#f-art').onclick = ev => { const b = ev.target.closest('[data-art]'); if (b) setzeArt(b.dataset.art); };
   $('#f-stand').onclick = ev => {
-    if (ev.target.closest('#f-liste')) { zeigeListe(); if (innerWidth < 1280) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'}); return; }
+    if (ev.target.closest('#f-liste')) { zeigeListe(); if (innerWidth < 1280) $('#schritt-3').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'}); return; }
     const b = ev.target.closest('[data-weg]'); if (!b) return;
     const k = b.dataset.weg;
     if (k === 'such') sucheLeeren(); else filt[k] = null;
@@ -1060,7 +1062,7 @@ function zeigeListe() {
   zEl.innerHTML = `
     <div><div class="ort">${t ? 'Thema' : 'Auswahl'}${beschreibung ? ' · ' + esc(beschreibung) : ''}</div><h3>${t ? esc(t.name) : 'Markierte Zettel'}</h3></div>
     <div class="meta"><span>${fmt(menge.length)} Zettel</span>${t ? `<span>${fmt(fund)} Fundstellen</span>` : ''}<span>${pct(woerter, total)} des Pakets nach Wörtern</span>
-      ${t ? '<button type="button" class="knopf klein" data-grafik="thema" style="margin-left:0">Als Grafik</button>' : ''}</div>
+      ${t ? '<button type="button" class="knopf klein" data-grafik="thema" style="margin-left:0">Liste als Bild speichern</button>' : ''}</div>
     ${her}
     ${t ? `<div><h4>Begriffe im Wortlaut</h4><div class="chips begriffe">${t.b.map(([a, , k]) => `<span>${esc(a)} <b>${fmt(k)}</b></span>`).join('')}</div>
       ${t.s.length ? `<p class="leer" style="margin:6px 0 0">Führen in der Suche ebenfalls hierher: ${esc(t.s.map(x => x[0]).join(', '))}.</p>` : ''}</div>` : ''}
@@ -1071,7 +1073,7 @@ function zeigeListe() {
     if (!listeOffen) return;
     const s = ev.target.closest('[data-sort]'); if (s) { listeSort = s.dataset.sort; zeigeListe(); return; }
     const a = ev.target.closest('[data-alle]'); if (a) { const k = a.dataset.alle; listeAlle.has(k) ? listeAlle.delete(k) : listeAlle.add(k); zeigeListe(); return; }
-    const b = ev.target.closest('.li-z'); if (b) { const i = +b.dataset.z; if (aktiv === 'umfang') fokusAufZettel(i); waehle(i, false, null, true); if (aktiv === 'umfang') zeichneUmfang(true); zEl.scrollTop = 0; }
+    const b = ev.target.closest('.li-z'); if (b) { const i = +b.dataset.z; if (aktiv === 'umfang') fokusAufZettel(i); waehle(i, false, null, true); if (aktiv === 'umfang') zeichneUmfang(true); $('#schritt-3').scrollTop = 0; }
   };
   hashSchreiben();
 }
@@ -1129,7 +1131,7 @@ function gefuehrt() {
     filterAnwenden({liste: mitAuswahl});
     if (!mitAuswahl && listeOffen) gewaehlt !== null ? waehle(gewaehlt, false) : startseite();
     if (ans !== 'liste') { zeigeReiter(ans); if (ans === 'umfang') { fokus = root; zeichneUmfang(true); } }
-    (ans === 'liste' && innerWidth < 1280 ? zEl : $('#ansicht')).scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+    (ans === 'liste' && innerWidth < 1280 ? $('#schritt-3') : $('#ansicht')).scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
   }
   $('#sch-zurueck').onclick = () => { stufe = Math.max(1, stufe - 1); zeichne(); };
   $('#sch-zu').onclick = () => dlg.close();
@@ -1597,8 +1599,37 @@ function zeigeBogen(b) {
   zEl.querySelectorAll('button[data-oeffne]').forEach(x => x.onclick = () => waehle(+x.dataset.oeffne, false, b));
   zEl.querySelectorAll('button[data-umfang]').forEach(x => x.onclick = () => waehle(+x.dataset.umfang, true));
   zEl.querySelectorAll('button[data-doc]').forEach(x => x.onclick = () => fokusAufDoc(+x.dataset.doc));
-  if (innerWidth < 1280) zEl.scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+  if (innerWidth < 1280) $('#schritt-3').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
 }
+
+/* ---------- Neu beginnen; auf schmalen Bildschirmen Hinweis auf den geöffneten Text ---------- */
+function neuBeginnen() {
+  sucheLeeren();
+  filt.thema = null; filt.art = null; filt.reich = null; filt.such = null; listeHerkunft = null; listeAlle = new Set();
+  findenStand();
+  filterAnwenden({still: true});
+  fokus = root;
+  zeigeReiter('umfang');
+  startseite();
+  $('#schritt-1').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'});
+  $('#suchfeld').focus({preventScroll: true});
+}
+let nutzerAktiv = false, zumTextZeit;
+addEventListener('pointerdown', () => { nutzerAktiv = true; }, {capture: true});
+addEventListener('keydown', () => { nutzerAktiv = true; }, {capture: true});
+function zumTextHinweis() {
+  const knopf = $('#zum-text'), spalte = $('#schritt-3');
+  if (!knopf || innerWidth >= 1280 || !nutzerAktiv) return;
+  const r = spalte.getBoundingClientRect();
+  if (r.top < innerHeight - 80 && r.bottom > 80) return;      // Text ist schon sichtbar
+  knopf.hidden = false;
+  clearTimeout(zumTextZeit); zumTextZeit = setTimeout(() => { knopf.hidden = true; }, 9000);
+}
+document.addEventListener('click', ev => {
+  if (ev.target.closest('#zum-text')) { $('#zum-text').hidden = true; $('#schritt-3').scrollIntoView({behavior: ruhig() ? 'auto' : 'smooth', block: 'start'}); }
+  if (ev.target.closest('#neu-beginnen')) neuBeginnen();
+});
+addEventListener('scroll', () => { const k = $('#zum-text'); if (k && !k.hidden) { const r = $('#schritt-3').getBoundingClientRect(); if (r.top < innerHeight - 80) k.hidden = true; } }, {passive: true});
 
 /* ---------- Schnittstelle für die Grafiken (seite/grafik.js) ---------- */
 function auswahlText() {             // Beschreibung der Auswahl für die Zeile «Markiert» in der Grafik

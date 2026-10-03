@@ -2,7 +2,7 @@
 
 Wertungsfreie, visuelle Aufbereitung des Pakets Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, heruntergebrochen auf Artikel und Abschnitte, mit Umfang und Verknüpfungen.
 
-Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
+Stand: 3. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
 
 ## 1. Stand
 
@@ -48,6 +48,8 @@ Stand: 2. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects
    3. Seite: Umschalter DE, FR, IT neben der Suche; Anker `&fr`, `&it`. Es wechseln Wortlaut, Fussnoten, Bezeichnungen, Gliederung, Wörter, Seiten und PDF; Verknüpfungen, Themen und Fundstellen bleiben aus der deutschen Fassung, der Zettel sagt das.
    4. Prüfung 7 in `pruefen.py`: gleiche Kennungen, Wörter je Werk, höchstens 1 % der Zettel ohne eigene Stelle.
    5. Offen: Bedienung und Erklärtexte auf Französisch und Italienisch, Themenbegriffe in beiden Sprachen (je mit Freigabe).
+17. Rückmeldung von Testpersonen, weitergegeben von Michael am 3. Oktober 2026: Die Seite ist unübersichtlich. Vorschläge Michael: Anleitung mit kleinen Einblendungen und Kreisen um die Bedienelemente, oder Hervorhebung der Felder mit einer Infoblase rechts oben, oder beides. Entscheid vom selben Tag: beides, nach dem Stand der Technik für Laien, auch für ältere und wenig technikvertraute Personen.
+18. Umsetzung vom 3. Oktober 2026: Aufbau in drei nummerierten Bereichen, gekürzter Kopf, Hervorhebung über Kontrast, Infoblasen an jedem Bereich und jeder Ansicht, freiwilliger Rundgang in fünf Schritten, grössere Schrift und Klickflächen (Ziffer 5.6).
 
 ## 2. Ziel
 
@@ -96,6 +98,7 @@ Urheberrecht: Völkerrechtliche Verträge, Erlasse und Berichte von Behörden si
 | 8 | Fassungsvergleich | Entwurf Bundesrat, Beschluss Parlament, Referendumsvorlage | neu, sobald eine zweite Fassung vorliegt |
 | 9 | Finden | Thema, Textart, geführte Auswahl, Ergebnisliste | neu (Ziffer 5.4) |
 | 10 | Grafik | jede Ansicht als PNG für Social Media, Präsentation und Bericht | neu (Ziffer 5.5) |
+| 11 | Hilfe | drei nummerierte Bereiche, Infoblasen, Rundgang | neu am 3. Oktober 2026 (Ziffer 5.6) |
 
 ### 5.1 Übersichtsfeld zum Icicle
 
@@ -138,7 +141,7 @@ Ziel: Politik, Medien und Bevölkerung finden die Stellen zu einer Frage in weni
 
 1. Einstiege:
    1. Suchfeld: Titel und Wortlaut wie bisher. Passt das Stichwort zu einem Thema (Name, Begriff oder Suchbegriff), steht das Thema als erster Vorschlag über den Treffern. Steht das Stichwort nicht im Wortlaut, sagt die Seite das («fremde Richter» → Thema «Streitbeilegung, Schiedsgericht und EuGH»).
-   2. Leiste «Finden» unter den Reitern: Auswahl Thema, Schalter Textart (Alle Texte, Vertragstexte, Umsetzung, Botschaft und Berichte), Stand der Auswahl mit Anzahl markierter Zettel und Knöpfen zum Aufheben.
+   2. «Finden» im Bereich 1 unter dem Suchfeld (bis 3. Oktober 2026 als Leiste unter den Reitern): Auswahl Thema, Schalter Textart (Alle Texte, Vertragstexte, Umsetzung, Botschaft und Berichte), Stand der Auswahl mit Anzahl markierter Zettel und Knöpfen zum Aufheben.
    3. «In drei Schritten finden»: geführte Auswahl mit Auswahlantworten. Schritt 1 «Worum geht es Ihnen?» (Themen alphabetisch, Stichwortfeld), Schritt 2 «Welche Texte wollen Sie sehen?» (Was mit der EU vereinbart ist, Was die Schweiz dafür ändert, Wie es erläutert wird, Alle Texte; je mit Anzahl Zettel), Schritt 3 «Wie wollen Sie die Stellen sehen?» (Liste, Umfang, Bezüge, Verknüpfungen).
 2. Textarten nach Dokumenttyp: Vertragstexte = Abkommen, Protokolle, Erklärungen; Umsetzung = Bundesbeschlüsse; Botschaft und Berichte = Botschaft, Bericht SPK-S, Stellungnahme des Bundesrates.
 3. Themen (`daten/themen.json`):
@@ -154,7 +157,7 @@ Ziel: Politik, Medien und Bevölkerung finden die Stellen zu einer Frage in weni
 
 ### 5.5 Grafiken für Social Media, Präsentation und Bericht
 
-Aufbau wie im Finanzspiegel (`politspiegel/finanzspiegel/grafik.js`): Knopf «Grafik» unten rechts und «Als Grafik» in den Ansichten, Dialog mit Motiv, Format, Hintergrund und eigenem Titel, Vorschau, PNG oder Zwischenablage.
+Aufbau wie im Finanzspiegel (`politspiegel/finanzspiegel/grafik.js`): Knopf unten rechts und in jeder Ansicht, seit 3. Oktober 2026 einheitlich «Als Bild speichern» mit Bildsymbol, Dialog mit Motiv, Format, Hintergrund und eigenem Titel, Vorschau, PNG oder Zwischenablage.
 
 1. Formate: Social Media 4:5 (1080 × 1350), Präsentation 16:9 (1920 × 1080), Bericht 3:2 (1800 × 1200). Jedes Motiv hat eine eigene Anordnung je Format; die Grafiken sind immer hell.
 2. Motive:
@@ -170,6 +173,23 @@ Aufbau wie im Finanzspiegel (`politspiegel/finanzspiegel/grafik.js`): Knopf «Gr
 3. Netz (auch als Ansicht auf der Seite): Knoten auf einem Kreis in Paketreihenfolge, Kreisfläche = Wörter, Linienbreite = Anzahl Bezüge beider Richtungen, Linie in Vorlagefarbe, wenn beide Enden zur gleichen Vorlage gehören. Kein Kräftemodell, weil dort Nähe als Aussage gelesen wird (Ziffer 6.3).
 4. Jede Grafik trägt Marke, Titel, die feste Zeile «Gezeigt», bei aktiver Auswahl die Zeile «Markiert», die Legende der Vorlagen, Quelle, Adresse der Seite, Datenstand und bei Verweisen «Rohextraktion». Ein eigener Titel ersetzt nur den Titel.
 5. Die Grafik rechnet nichts Eigenes: Daten und Zählungen kommen aus denselben Funktionen wie die Seite.
+
+### 5.6 Hilfe für Laien
+
+Ziel: Die Seite ist ohne Vorwissen und ohne Übung mit Maus oder Bildschirm bedienbar, auch für ältere Personen (Ziffer 1.17). Gestaltungsentscheide und Quellen: `docs/DESIGN_entscheide.md`, Abschnitt 4e.
+
+1. Drei nummerierte Bereiche in Leserichtung:
+   1. «Suchen und auswählen»: Suchfeld mit sichtbarer Frage «Wonach suchen Sie?», Thema, Textart, «In drei Schritten finden», «Neu beginnen», Stand der Auswahl.
+   2. «Ansicht wählen»: fünf Reiter, unter jedem Namen die Frage, die die Ansicht beantwortet («Wie viel Text steht wo?», «Welche Dokumente hängen zusammen?», «Welcher Artikel verweist auf welchen?», «Welche Gesetze ändern sich?», «Alle Dokumente als Liste»).
+   3. «Text lesen»: der Zettel. Die Startseite der Zettelspalte nennt die Wege mit den Nummern der Bereiche.
+2. Kopf: Kennzahlen; Hinweis «Keine Bewertung, keine Zusammenfassung», die Herkunft der Angaben zum Aufklappen; «Sprache der Texte» DE, FR, IT; Knopf «Rundgang»; Hinweis, wie man die Schrift mit Strg und + vergrössert.
+3. Hervorhebung über Kontrast, Form und Nummer, nicht über Farbe (Ziffer 6.1): dunkle Kreise mit der Nummer des Bereichs, dunkel gefüllter gewählter Reiter, Rahmen in Textfarbe an Knöpfen und Suchfeld, Bildsymbol an «Als Bild speichern».
+4. Infoblasen: Knopf «i» rechts oben an jedem Bereich und jeder Ansicht. Öffnet beim Darüberfahren mit der Maus, beim Antippen und mit der Tastatur; bleibt offen, solange Maus oder Fokus auf Knopf oder Blase liegen; schliesst mit Esc, «×» oder Klick daneben.
+5. Rundgang in fünf Schritten: Suchen und auswählen, Ansicht wählen, In die Ansicht klicken, Text lesen, Als Bild speichern. Kreis um den Bereich, der Rest abgedunkelt, Karte mit «Zurück», «Weiter» und «Rundgang beenden». Beim ersten Besuch ohne Anker in der Adresse einmal angeboten, nie von selbst gestartet; jederzeit über den Knopf im Kopf. Je Schritt ein bis zwei Sätze; die Einzelheiten stehen in den Infoblasen.
+6. Grössen: Grundschrift 16 px (Ziffer 5.3), Erklärtexte mindestens 14 px, Suchfeld 18 px. Klickflächen mindestens 36 px hoch, Knöpfe 40 px.
+7. «Neu beginnen» hebt Suche, Thema, Textart und Reichweite auf, schliesst den Text und zeigt den Umfang des ganzen Pakets.
+8. Unter 1280 px Fensterbreite steht der Text unter der Ansicht. Ist er nach dem Öffnen nicht im Bild, erscheint unten der Knopf «Geöffneter Text ↓»; er verschwindet, sobald der Text sichtbar ist, spätestens nach 9 Sekunden.
+9. Die Hilfe beschreibt die Bedienung, nicht den Inhalt des Pakets. Sie nennt keine Bestimmung als Beispiel ausser den Suchwörtern im Platzhalter, die aus dem Themenkatalog stammen.
 
 ## 6. Neutralitätsregeln
 

@@ -122,7 +122,8 @@ h3.tabtitel{font-size:17px;margin:28px 0 8px}
 
 /* Zettel */
 .zettel{display:grid;gap:14px;align-content:start;grid-auto-rows:max-content}
-@media (min-width:1280px){.zettel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}}
+.zettel-spalte{display:grid;gap:12px;align-content:start;grid-auto-rows:max-content}
+@media (min-width:1280px){.zettel-spalte{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}}
 .zettel .ort{font-size:13.5px;color:var(--text-leise);line-height:1.4}
 .zettel h3{font-size:22px;line-height:1.25;margin:4px 0 0;text-wrap:balance}
 .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--text-leise);font-variant-numeric:tabular-nums}
@@ -377,3 +378,119 @@ body.melden-offen{overflow:hidden}
 .leiste .sprache{margin-left:auto}
 .sprache button{min-width:42px;letter-spacing:.04em}
 .sprachhinweis{font-size:13.5px}
+
+/* ---------- Für Laien: drei Bereiche, Hervorhebung über Kontrast, Infoblasen, Rundgang (Gestaltungsentscheid 4d) ----------
+   Farbe bleibt den Vorlagen vorbehalten (Projektbrief 6.1); hervorgehoben wird mit dunklen Flächen, Rahmen, Nummern und Symbolen.
+   Klickflächen mindestens 36 px, Hauptfelder 44 bis 52 px (WCAG 2.2, Kriterium 2.5.8 verlangt 24 px). */
+.kopf{padding:22px 0 18px;gap:8px}
+.kopf h1{font-size:clamp(26px,3.4vw,38px)}
+.lead{font-size:17px}
+.kennzahlen{gap:4px 18px;margin:2px 0 0}
+.kennzahlen b{font-size:17px}
+.kennzahlen span{font-size:14px}
+details.hinweis{display:block;padding:8px 12px;font-size:15px;max-width:120ch}
+details.hinweis summary{display:flex;gap:10px;align-items:center;cursor:pointer;list-style:none;min-height:30px}
+details.hinweis summary::-webkit-details-marker{display:none}
+details.hinweis summary u{text-underline-offset:3px}
+details.hinweis[open] summary u{text-decoration:none}
+details.hinweis > div{margin:6px 0 2px 26px;color:var(--text-leise)}
+.hilfeleiste{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.hilfeleiste .knopf{display:inline-flex;align-items:center;gap:8px}
+.hilfe-tipp{font-size:14px;color:var(--text-leise)}
+kbd{font:600 13px var(--f-text);border:1px solid var(--text-leise);border-bottom-width:2px;border-radius:4px;padding:0 5px;color:var(--text);background:var(--karte)}
+.angebot{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;border:2px solid var(--text);border-radius:10px;padding:10px 14px;font-size:16px}
+.angebot[hidden]{display:none}
+.angebot span{flex:1 1 320px}
+
+.knopf{border:1.5px solid color-mix(in oklab,var(--text) 45%,var(--karte));min-height:40px}
+.knopf:hover{border-color:var(--text)}
+.knopf.klein{min-height:36px;font-size:14px;margin-left:0}
+.knopf.bild{display:inline-flex;align-items:center;gap:7px}
+.knopf:disabled{opacity:.45;cursor:default}
+.schalter button{min-height:40px}
+.schalter.klein button{min-height:36px}
+.f-chip{min-height:36px}
+.uf-mehr,.fund .knopf{min-height:36px}
+.chips a,.chips button{min-height:36px}
+.uf-k{padding:7px 10px}
+.leer,.erkl,.ansichtkopf p{font-size:15px}
+.uf-gtitel span,.li-ort{font-size:14px}
+.zettel .ort{font-size:14px}
+.tip{font-size:15px}
+
+.schritt{position:relative;background:var(--karte);border:1px solid var(--linie);border-radius:12px;padding:14px 16px 16px;margin:16px 0}
+.schritt-kopf{display:flex;align-items:center;gap:10px;margin:0 0 10px;min-height:36px}
+.schritt-kopf h2{font-size:19px;margin:0}
+.nr{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--text);color:var(--grund);font:700 17px var(--f-display)}
+.schritt-kopf .info{margin-left:auto}
+.zettel-spalte .schritt-kopf{margin:0;flex-wrap:wrap}
+@media (min-width:1280px) and (max-width:1719px){.zettel-spalte .schritt-kopf{padding-right:64px}}
+.info{flex:none;display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;border:2px solid var(--text);background:var(--karte);color:var(--text);
+  font:italic 700 18px Georgia,"Times New Roman",serif;cursor:pointer;padding:0;line-height:1}
+.info:hover,.info[aria-expanded="true"]{background:var(--text);color:var(--grund)}
+
+.schritt .suche{max-width:none;flex:none}
+.suche-label{display:block;font:600 16px var(--f-text);margin:0 0 6px}
+.suche-feld{position:relative}
+.suche-feld svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text);pointer-events:none}
+.schritt .suche input{font-size:18px;min-height:52px;border:2px solid var(--text);border-radius:10px;padding:10px 14px 10px 46px}
+.schritt .suche input::placeholder{color:var(--text-leise)}
+.suche-hilfe{margin:6px 0 0;font-size:14px;color:var(--text-leise)}
+.schritt .treffer{top:auto;margin-top:6px;position:absolute;left:0;right:0}
+.schritt .finden{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;background:none;border:0;padding:0;margin:14px 0 0}
+.f-thema span{color:var(--text);font-weight:600}
+.f-art-feld{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.f-art-label{font:600 14px var(--f-text)}
+.schritt .f-stand{margin-top:10px}
+
+.schritt-2{margin-bottom:16px}
+.schritt-2 .reiter{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;background:none;border:0;padding:0}
+.schritt-2 .reiter button{display:grid;gap:3px;text-align:left;align-content:start;min-height:64px;padding:10px 14px;border:1.5px solid color-mix(in oklab,var(--text) 30%,var(--karte));
+  border-radius:10px;background:var(--karte);color:var(--text)}
+.schritt-2 .reiter button:hover{border-color:var(--text)}
+.r-name{font:700 16.5px var(--f-display)}
+.r-frage{font:400 14px/1.3 var(--f-text);color:var(--text-leise)}
+.schritt-2 .reiter button[aria-selected="true"]{background:var(--text);color:var(--grund);border-color:var(--text);box-shadow:none}
+.schritt-2 .reiter button[aria-selected="true"] .r-frage{color:color-mix(in oklab,var(--grund) 82%,var(--text))}
+@media (max-width:900px){.schritt-2 .reiter{grid-template-columns:repeat(2,minmax(0,1fr))}.schritt-2 .reiter button:last-child{grid-column:1 / -1}}
+@media (max-width:640px){.schritt{padding:12px 12px 14px}.hilfe-tipp{display:none}}
+
+.ansichtkopf h2{flex:1 1 auto}
+.ansicht-knoepfe{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ansichtkopf p{flex-basis:100%}
+
+.hilfeblase{position:fixed;z-index:970;width:min(380px,calc(100vw - 16px));background:var(--karte);color:var(--text);border:2px solid var(--text);border-radius:10px;
+  padding:10px 14px 12px;box-shadow:0 10px 30px rgb(0 0 0 / .22);font-size:15.5px;line-height:1.5}
+.hilfeblase[hidden]{display:none}
+.hilfeblase:focus{outline:none}
+.hb-kopf{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hb-kopf strong{font:700 16px var(--f-display)}
+.hb-zu{appearance:none;border:0;background:none;color:var(--text);font-size:26px;line-height:1;cursor:pointer;min-width:36px;min-height:36px}
+.hb-text p{margin:6px 0 0}
+
+.rundgang{position:fixed;inset:0;z-index:990}
+.rundgang[hidden]{display:none}
+.rg-ring{position:fixed;border-radius:12px;box-shadow:0 0 0 4px #fff,0 0 0 7px #12161C,0 0 0 9999px rgb(10 14 20 / .55);pointer-events:none;transition:all .3s ease}
+.rg-karte{position:fixed;width:min(420px,calc(100vw - 24px));background:var(--karte);color:var(--text);border-radius:12px;padding:16px 18px;box-shadow:0 16px 48px rgb(0 0 0 / .35);font-size:16px;line-height:1.5}
+.rg-stufe{margin:0;font:600 13px var(--f-text);letter-spacing:.06em;text-transform:uppercase;color:var(--text-leise)}
+.rg-karte h2{margin:4px 0 0;font-size:21px}
+.rg-karte h2:focus{outline:none}
+.rg-text p{margin:8px 0 0}
+.rg-knoepfe{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.rg-ende{appearance:none;border:0;background:none;color:var(--text);text-decoration:underline;text-underline-offset:3px;font:15px var(--f-text);cursor:pointer;min-height:40px;margin-left:auto}
+body.rundgang-offen{overflow:hidden}
+body.rundgang-offen .melden-knopf{visibility:hidden}
+
+.zum-text{position:fixed;z-index:860;left:50%;bottom:18px;transform:translateX(-50%);appearance:none;border:0;border-radius:999px;background:var(--text);color:var(--grund);
+  font:700 16px var(--f-text);padding:12px 22px;min-height:48px;box-shadow:0 6px 20px rgb(0 0 0 / .25);cursor:pointer}
+.zum-text[hidden]{display:none}
+.start-wege li{margin:2px 0}
+@media (prefers-reduced-motion:reduce){.rg-ring{transition:none}}
+@media print{.hilfeleiste,.angebot,.info,.hilfeblase,.rundgang,.zum-text{display:none!important}}
+.kopf-zeile{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:flex-start}
+.kopf-zeile details.hinweis{flex:1 1 480px}
+.kopf-zeile .hilfeleiste{flex:0 1 auto}
+.sprachwahl{display:flex;align-items:center;gap:8px}
+.sprachwahl-label{font:600 14px var(--f-text)}
+.sprachwahl .schalter{flex-wrap:nowrap}
+.f-thema span{white-space:nowrap}
