@@ -1,9 +1,9 @@
 {
- "geprueft": "2026-10-01",
+ "geprueft": "2026-10-07",
  "geschaeft": "26.023",
  "titel": "Paket «Stabilisierung und Weiterentwicklung der Beziehungen Schweiz–EU (Bilaterale III)»",
  "status": "Mehrere Entwürfe in Beratung",
- "aktualisiert": "2026-10-01T12:46:15Z",
+ "aktualisiert": "2026-10-05T11:38:24Z",
  "entwuerfe": {
   "0": {
    "titel": "Abkommen zwischen der Schweizerischen Eidgenossenschaft einerseits und der Europäischen Union und der Europäischen Atomgemeinschaft andererseits über die Teilnahme der Schweizerischen Eidgenossenschaft an Programmen der Union",
@@ -35,11 +35,23 @@
   },
   "3": {
    "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung des Protokolls zwischen der Schweiz und der EU über die Lebensmittelsicherheit (Bilaterale III)",
-   "beschluesse": []
+   "beschluesse": [
+    [
+     "2026-10-01",
+     "SR",
+     "Beschluss abweichend vom Entwurf"
+    ]
+   ]
   },
   "4": {
    "titel": "Bundesbeschluss über die Genehmigung und die Umsetzung des Abkommens zwischen der Schweiz und der EU über die Gesundheit (Bilaterale III)",
-   "beschluesse": []
+   "beschluesse": [
+    [
+     "2026-10-01",
+     "SR",
+     "Beschluss gemäss Entwurf"
+    ]
+   ]
   },
   "5": {
    "titel": "Bundesbeschluss über die Genehmigung des Protokolls zwischen der Schweiz und der EU über die parlamentarische Zusammenarbeit (Bilaterale III)",
@@ -83,7 +95,13 @@
   },
   "9": {
    "titel": "Bundesbeschluss über einen Verpflichtungskredit für die Finanzierung der Schweizer Beteiligung am EU-Bildungsprogramm Erasmus+ im Jahr 2027",
-   "beschluesse": []
+   "beschluesse": [
+    [
+     "2026-10-01",
+     "SR",
+     "Beschluss gemäss Entwurf"
+    ]
+   ]
   },
   "10": {
    "titel": "",
