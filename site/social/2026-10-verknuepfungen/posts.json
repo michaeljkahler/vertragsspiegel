@@ -1,6 +1,6 @@
 {
  "serie": "2026-10-verknuepfungen",
- "status": "entwurf",
+ "status": "entwurf_in_metricool",
  "kontingent": 1,
  "hinweis": "Reserveplätze Oktober 2026 auf Anweisung von Michael (11.10.2026); nur Instagram, Karussell, 1 Veröffentlichung.",
  "posts": [
@@ -25,6 +25,12 @@
    "text": "Vertragsspiegel: Wie die Texte des Pakets Schweiz–EU aufeinander verweisen.\n\nGezählt im Wortlaut der 30 Dokumente (BBl 2026 615–644):\n1. 2'186 Artikelverweise, davon 1'021 innerhalb desselben Dokuments und 1'165 zwischen Dokumenten.\n2. 1'139 der Verweise zwischen Dokumenten stehen in der Botschaft, 591 davon zielen auf den Bundesbeschluss Stabilisierung.\n3. 555 Erläuterungen der Botschaft zu einzelnen Bestimmungen oder ganzen Dokumenten.\n4. 18 Genehmigungen: Die Bundesbeschlüsse genehmigen in Art. 1 die Abkommen und Protokolle.\n5. 491 EU-Rechtsakte werden genannt, je mit CELEX-Nummer.\n\nBilder:\n1. Alle Bezüge auf einer Linie, Länge = Wörter.\n2. Die 33 Dokumente auf einem Kreis, Linienbreite = Anzahl Artikelverweise.\n3. Artikelverweise Dokument × Dokument.\n\nJede Verknüpfung mit Fundstelle: https://michaeljkahler.github.io/vertragsspiegel/\nQuelle: Bundesblatt 2026 615–644 (Fedlex), Datenstand 2. Oktober 2026. Verweise automatisch erkannt (Rohextraktion).\n\n#PaketSchweizEU #BilateraleIII #Politspiegel",
    "instagramData": {
     "type": "POST"
+   },
+   "metricool": {
+    "id": 393449215,
+    "uuid": "-8113230847169052590",
+    "termin": "2026-10-21T09:00",
+    "angelegt": "2026-10-11"
    }
   }
  ]

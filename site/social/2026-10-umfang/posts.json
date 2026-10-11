@@ -1,6 +1,6 @@
 {
  "serie": "2026-10-umfang",
- "status": "entwurf",
+ "status": "entwurf_in_metricool",
  "kontingent": 1,
  "hinweis": "Reserveplätze Oktober 2026 auf Anweisung von Michael (11.10.2026); nur Instagram, Karussell, 1 Veröffentlichung.",
  "posts": [
@@ -23,6 +23,12 @@
    "text": "Neu beim Politspiegel: der Vertragsspiegel. Das Paket Schweiz–EU (Bilaterale III) mit Botschaft, Abkommen, Protokollen, Erklärungen und Bundesbeschlüssen, gegliedert bis zum einzelnen Artikel, jeder Text mit Fundstelle auf Fedlex.\n\nDas Paket in Zahlen (Fassung des Bundesrates vom 13. März 2026, BBl 2026 615–644):\n1. 30 Dokumente, 1'945 Seiten, 641'398 Wörter.\n2. 3'106 Zettel: Artikel, Ziffern der Botschaft, Rechtsakte in Anhängen.\n3. 2'186 Artikelverweise im Wortlaut.\n4. 39 Bundesgesetze: 3 neu, 36 geändert.\n\nWörter nach Vorlage:\n1. Botschaft: 409'829 (63.9 %)\n2. Stabilisierung: 138'801 (21.6 %)\n3. Elektrizität: 38'914 (6.1 %)\n4. Lebensmittelsicherheit: 37'940 (5.9 %)\n5. Gesundheit: 13'700 (2.1 %)\n6. Weitere Beschlüsse und Erklärungen: 2'214 (0.3 %)\n\nBild 2: Umfang nach Gliederung, Höhe eines Felds = Wörter, mit dem Begleitgeschäft Pa. Iv. 26.425.\n\nAlle Texte: https://michaeljkahler.github.io/vertragsspiegel/\nQuelle: Bundesblatt 2026 615–644 (Fedlex), Datenstand 2. Oktober 2026.\n\n#PaketSchweizEU #BilateraleIII #Politspiegel",
    "instagramData": {
     "type": "POST"
+   },
+   "metricool": {
+    "id": 393449171,
+    "uuid": "-4152171559121960747",
+    "termin": "2026-10-14T09:00",
+    "angelegt": "2026-10-11"
    }
   }
  ]
