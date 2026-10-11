@@ -1,0 +1,35 @@
+{
+ "serie": "2026-10-umsetzung",
+ "status": "entwurf",
+ "kontingent": 1,
+ "hinweis": "Reserveplätze Oktober 2026 auf Anweisung von Michael (11.10.2026); nur Instagram, Karussell, 1 Veröffentlichung.",
+ "posts": [
+  {
+   "art": "karussell",
+   "termin": "2026-10-28T09:00",
+   "providers": [
+    {
+     "network": "instagram"
+    }
+   ],
+   "media": [
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-umsetzung/01-alle.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-umsetzung/02-bb-stabilisierung.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-umsetzung/03-bb-elektrizitaet.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-umsetzung/04-bb-lebensmittelsicherheit.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-umsetzung/05-bb-gesundheit.png"
+   ],
+   "mediaAltText": [
+    "Sankey-Diagramm: links Abkommen und Protokolle, Mitte die Bundesbeschlüsse, die sie genehmigen, rechts 39 Bundesgesetze, die die Bundesbeschlüsse in den Anhängen neu schaffen oder ändern.",
+    "Sankey-Diagramm Bundesbeschluss Stabilisierung: 14 Abkommen und Protokolle, 30 Bundesgesetze.",
+    "Sankey-Diagramm Bundesbeschluss Elektrizität: Stromabkommen, 7 Bundesgesetze.",
+    "Sankey-Diagramm Bundesbeschluss Lebensmittelsicherheit: Protokoll Lebensmittelsicherheit, 7 Bundesgesetze.",
+    "Sankey-Diagramm Bundesbeschluss Gesundheit: Gesundheitsabkommen, 2 Bundesgesetze."
+   ],
+   "text": "Vertragsspiegel: Welche Bundesgesetze das Paket Schweiz–EU neu schafft oder ändert.\n\nDie Bundesbeschlüsse genehmigen die Abkommen und Protokolle (Art. 1). In ihren Anhängen stehen die Änderungen im Landesrecht.\n1. 39 Bundesgesetze: 3 neu, 36 geändert, darunter das Lebensmittelgesetz als Totalrevision.\n2. Neu: Beihilfeüberwachungsgesetz, Kohäsionsbeitragsgesetz, Bundesgesetz über die Verwaltungszusammenarbeit bei der Anerkennung von Berufsqualifikationen.\n3. Bundesgesetze je Bundesbeschluss: Stabilisierung 30, Elektrizität 7, Lebensmittelsicherheit 7, Gesundheit 2.\n4. Parlamentsgesetz und Regierungs- und Verwaltungsorganisationsgesetz kommen in allen vier Bundesbeschlüssen vor, das Beihilfeüberwachungsgesetz in zweien (Stabilisierung, Elektrizität).\n\nBilder:\n1. Alle Abkommen, Bundesbeschlüsse und Bundesgesetze.\n2. bis 5. Je ein Bundesbeschluss, in der Reihenfolge des Pakets.\n\nAlle Gesetze mit Fundstelle: https://michaeljkahler.github.io/vertragsspiegel/\nQuelle: Bundesblatt 2026 615–644 (Fedlex), Datenstand 2. Oktober 2026. Zuordnungen automatisch erkannt (Rohextraktion).\n\n#PaketSchweizEU #BilateraleIII #Politspiegel",
+   "instagramData": {
+    "type": "POST"
+   }
+  }
+ ]
+}

@@ -329,5 +329,5 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 2. Projektordner «Bilaterale III» bleibt Wurzel des Repositorys. Entschieden am 1. Oktober 2026.
 3. Zeitpunkt für Französisch und Italienisch. Entschieden am 2. Oktober 2026: jetzt (Etappe 5).
 4. Rohdaten (PDF, Text, je Sprache rund 25 MB) sind aus dem Repository ausgeschlossen (`.gitignore`), `laden.py` stellt sie wieder her. Entschieden am 1. Oktober 2026.
-5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein.
+5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein. Entschieden am 11. Oktober 2026: ja, über die Kanäle des Politspiegels (Metricool). Erste Serie: drei Instagram-Karussells am 14., 21. und 28. Oktober 2026 auf den drei Reserveplätzen des Oktoberkontingents, Motive aus `seite/grafik.js` (Umfang, Verknüpfungen, Umsetzung), Dateien und Texte in `site/social/2026-10-*/`, gezeichnet mit `scripts/grafiken.py`.
 6. Themenkatalog freigeben: Auswahl der 20 Themen, ihre Namen und Begriffe (`daten/themen.json`) sowie die wählbare Sortierung nach Anzahl Fundstellen (Ziffer 6.3). Freigegeben am 2. Oktober 2026.

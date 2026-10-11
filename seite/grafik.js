@@ -596,8 +596,15 @@ function gUmsetzung(x, W, H) {
     x.globalAlpha = kraeftig(n) ? 1 : 0.3; x.fillStyle = n.g ? farbe(n.g) : FARBE.gesetz; x.fillRect(n.x0, n.y0, n.x1 - n.x0, Math.max(2 * u, n.y1 - n.y0));
     const ym = (n.y0 + n.y1) / 2 + fs * 0.35;
     if (n.typ === 'dok') text(x, n.name, n.x0 - 8 * u, ym, {s: fs, a: 'right', max: lw - 12 * u});
-    else { x.save(); x.lineWidth = 4 * u; x.strokeStyle = '#FFFFFF'; x.lineJoin = 'round'; schrift(x, n.typ === 'bb' ? 600 : 400, fs); x.strokeText(kuerzen(x, n.name, rw - 12 * u), n.x1 + 8 * u, ym); x.restore();
-      text(x, n.name, n.x1 + 8 * u, ym, {s: fs, w: n.typ === 'bb' ? 600 : 400, max: rw - 12 * u}); }
+    else {
+      // Bundesbeschluss: Beschriftung nur bis zur Spalte der Gesetze, sonst überdeckt sie deren Namen
+      // (Rückmeldung 11. Oktober 2026, «BB Lebensmittelsicherheit» über «Tierschutzgesetz»). Erst kleiner, dann gekürzt.
+      const bb = n.typ === 'bb', rechts = g.nodes.filter(m => m.x0 > n.x1 + 1).map(m => m.x0);
+      const max = bb && rechts.length ? Math.min(rw - 12 * u, Math.min(...rechts) - n.x1 - 16 * u) : rw - 12 * u;
+      let s = fs; schrift(x, bb ? 600 : 400, s);
+      while (bb && s > fs * 0.75 && x.measureText(n.name).width > max) { s -= 0.5 * u; schrift(x, 600, s); }
+      x.save(); x.lineWidth = 4 * u; x.strokeStyle = '#FFFFFF'; x.lineJoin = 'round'; x.strokeText(kuerzen(x, n.name, max), n.x1 + 8 * u, ym); x.restore();
+      text(x, n.name, n.x1 + 8 * u, ym, {s, w: bb ? 600 : 400, max}); }
     x.globalAlpha = 1;
   });
 }

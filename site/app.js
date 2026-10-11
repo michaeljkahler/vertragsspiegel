@@ -72,7 +72,7 @@ function textteil(id) {           // gleiche Regel wie scripts/bauen.py
 // Wortlaut je Sprache (Etappe 5): deutsch daten/text/, französisch und italienisch daten/<sp>/text/
 function holeTeil(t) {
   const k = sprache + ':' + t;
-  if (!texte.has(k)) texte.set(k, fetch(`daten/${sprache === 'de' ? '' : sprache + '/'}text/${t}.json?v=ccf3fafe0f`).then(r => r.json()));
+  if (!texte.has(k)) texte.set(k, fetch(`daten/${sprache === 'de' ? '' : sprache + '/'}text/${t}.json?v=fcc596d48f`).then(r => r.json()));
   return texte.get(k);
 }
 function ladeText(id) {
@@ -96,7 +96,7 @@ let sucheSprache = () => {};
 async function setzeSprache(sp) {
   if (!SPRACHEN[sp]) sp = 'de';
   if (sp !== 'de' && !SPR[sp]) {
-    try { SPR[sp] = await fetch(`daten/${sp}/index.json?v=ccf3fafe0f`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    try { SPR[sp] = await fetch(`daten/${sp}/index.json?v=fcc596d48f`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
     catch (e) { sp = 'de'; }
   }
   sprache = sp; alleTexte = null;
@@ -144,7 +144,7 @@ function refName(r, lang) {
 }
 let gesetzById;
 
-fetch('daten/index.json?v=ccf3fafe0f').then(r => r.json()).then(start).catch(e => {
+fetch('daten/index.json?v=fcc596d48f').then(r => r.json()).then(start).catch(e => {
   $('#laden').textContent = 'Die Daten konnten nicht geladen werden (' + e.message + '). Bitte die Seite neu laden.';
 });
 

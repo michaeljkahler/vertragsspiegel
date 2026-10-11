@@ -1,0 +1,31 @@
+{
+ "serie": "2026-10-verknuepfungen",
+ "status": "entwurf",
+ "kontingent": 1,
+ "hinweis": "Reserveplätze Oktober 2026 auf Anweisung von Michael (11.10.2026); nur Instagram, Karussell, 1 Veröffentlichung.",
+ "posts": [
+  {
+   "art": "karussell",
+   "termin": "2026-10-21T09:00",
+   "providers": [
+    {
+     "network": "instagram"
+    }
+   ],
+   "media": [
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-verknuepfungen/01-bezuege.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-verknuepfungen/02-netz-dokumente.png",
+    "https://michaeljkahler.github.io/vertragsspiegel/social/2026-10-verknuepfungen/03-matrix.png"
+   ],
+   "mediaAltText": [
+    "Bogendiagramm: alle Zettel des Pakets auf einer Linie, Länge = Wörter; oben Artikelverweise im selben Dokument, unten Bezüge zwischen Dokumenten, Farbe nach Vorlage.",
+    "Netz: die 33 Dokumente auf einem Kreis in Paketreihenfolge, Kreisfläche = Wörter, Linienbreite = Anzahl Artikelverweise.",
+    "Matrix Dokument × Dokument: Anzahl Artikelverweise von Zeile auf Spalte in den Klassen 0, 1, 2 bis 4, 5 bis 14, 15 bis 49, 50 und mehr."
+   ],
+   "text": "Vertragsspiegel: Wie die Texte des Pakets Schweiz–EU aufeinander verweisen.\n\nGezählt im Wortlaut der 30 Dokumente (BBl 2026 615–644):\n1. 2'186 Artikelverweise, davon 1'021 innerhalb desselben Dokuments und 1'165 zwischen Dokumenten.\n2. 1'139 der Verweise zwischen Dokumenten stehen in der Botschaft, 591 davon zielen auf den Bundesbeschluss Stabilisierung.\n3. 555 Erläuterungen der Botschaft zu einzelnen Bestimmungen oder ganzen Dokumenten.\n4. 18 Genehmigungen: Die Bundesbeschlüsse genehmigen in Art. 1 die Abkommen und Protokolle.\n5. 491 EU-Rechtsakte werden genannt, je mit CELEX-Nummer.\n\nBilder:\n1. Alle Bezüge auf einer Linie, Länge = Wörter.\n2. Die 33 Dokumente auf einem Kreis, Linienbreite = Anzahl Artikelverweise.\n3. Artikelverweise Dokument × Dokument.\n\nJede Verknüpfung mit Fundstelle: https://michaeljkahler.github.io/vertragsspiegel/\nQuelle: Bundesblatt 2026 615–644 (Fedlex), Datenstand 2. Oktober 2026. Verweise automatisch erkannt (Rohextraktion).\n\n#PaketSchweizEU #BilateraleIII #Politspiegel",
+   "instagramData": {
+    "type": "POST"
+   }
+  }
+ ]
+}

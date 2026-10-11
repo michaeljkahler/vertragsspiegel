@@ -74,6 +74,7 @@ Netz (Fassung Etappe 3, unverändert):
 7. **Bezüge in allen Formaten waagrecht**, auch in 4:5: oben die Verweise im selben Dokument, unten die Bezüge zwischen Dokumenten, wie auf der Seite. Die senkrechte Fassung vom 2. Oktober 2026 liess im Hochformat die halbe Fläche leer und war schwer lesbar (Rückmeldung Michael vom selben Tag). Im Hochformat erhalten die Bögen im selben Dokument 24 % der Höhe, die Bögen zwischen Dokumenten den Rest (im Querformat 30 %).
 8. **Wortlautkarte ohne Kürzung**: Schrift von 34 bis 15 Pixel, die grösste, bei der alles passt; sonst ein Hinweis statt Text. Auszug nur als ganzer Absatz.
 9. **Dateiname** aus Motiv, Stufe oder Zettel, «auswahl» bei aktiver Auswahl und Format, zum Beispiel `vertragsspiegel-netz-dokumente-verweise-folie.png`.
+10. **Beschriftung der Bundesbeschlüsse in der Umsetzung** nur bis zur Spalte der Gesetze, erst bis auf 75 % verkleinert, dann gekürzt; der Titel nennt den Beschluss ohnehin. Fassung vom 11. Oktober 2026: Vorher lief «BB Lebensmittelsicherheit» im Hochformat über «Tierschutzgesetz».
 
 ## 4c. Netz der Vorlagen, Dokumente und Artikel (Ziffer 5.5.3)
 
