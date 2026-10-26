@@ -66,7 +66,7 @@ Netz (Fassung Etappe 3, unverändert):
 ## 4b. Grafiken (Ziffer 5.5)
 
 1. **Eigene Zeichnung je Format statt Abbild der Seite.** Die Ansichten der Seite sind auf die Bildschirmbreite ausgelegt; ein Abbild wäre in 4:5 unlesbar (Bogendiagramm breit und flach, Beschriftungen 13 px). Jedes Motiv wird deshalb im Canvas neu angeordnet; Daten, Zählungen und Layout-Rechnungen (Partition, Sankey, Netzlage, Umfeld, Reichweite) kommen aus `app.js` über `window.VS`.
-2. **Schriften und Rahmen wie im Finanzspiegel**: Archivo für Marke und Titel, Public Sans für Text; Marke «PAKET SCHWEIZ–EU (BILATERALE III)» und «VERTRAGSSPIEGEL», Fuss «Politspiegel · Vertragsspiegel» mit Quelle, Adresse und Stand. Mass 1 = 1080 Pixel der kürzeren Seite.
+2. **Schriften und Rahmen wie im Finanzspiegel**: Archivo für Marke und Titel, Public Sans für Text; Marke «PAKET SCHWEIZ–EU» und «VERTRAGSSPIEGEL» (bis 26. Oktober 2026 mit «(BILATERALE III)»), Fuss «Politspiegel · Vertragsspiegel» mit Quelle, Adresse und Stand. Mass 1 = 1080 Pixel der kürzeren Seite.
 3. **Feste Zeile «Gezeigt».** Ein eigener Titel ist erlaubt, weil Medien eigene Überschriften setzen. Die Zeile darunter beschreibt, was die Grafik zeigt, und lässt sich nicht ändern; eine wertende Überschrift steht so nie allein unter der Marke.
 4. **Auswahl in der Grafik benannt** («Markiert: Thema … : 164 Zettel»), weil eine markierte Grafik ohne diese Angabe eine Gewichtung nahelegt.
 5. **Seitlicher Kopf im Querformat** für Netz und Matrix: Titel und Erläuterung links, die Grafik erhält die ganze Höhe. Grund: Ein Kreis oder eine 33 × 33-Matrix unter einem Kopf von 400 Pixeln wäre in 16:9 zu klein.
@@ -111,7 +111,7 @@ Fassung vom 3. Oktober 2026, nach der Rückmeldung von Testpersonen, die Seite s
 8. **Grössen nach WCAG mit Reserve:** Klickflächen mindestens 36 px statt der verlangten 24 px, Knöpfe 40 px, Suchfeld 52 px hoch mit 18 px Schrift; Erklärtexte 14 bis 15 px. Ausgenommen sind Links im Fliesstext (WCAG 2.5.8, Ausnahme «inline»).
 9. **Sprache der Texte im Kopf** mit sichtbarer Bezeichnung. Die Leiste über den Ansichten entfällt; der Umschalter wirkt auf alle Ansichten (Entscheid 4d.1) und steht deshalb im Kopf, wo auch amtliche Seiten die Sprachwahl führen.
 10. **Einheitlich «Als Bild speichern»** an allen Grafikknöpfen, mit Bildsymbol («Wortlaut als Bild speichern», «Umfeld als Bild speichern», «Liste als Bild speichern»). «Grafik» sagt nicht, was geschieht; «speichern» nennt die Handlung.
-11. **Kopf der Zettelspalte:** «3 Text lesen» bleibt ab 1280 px mit der Spalte stehen. Zwischen 1280 und 1719 px Fensterbreite hält er 64 px Abstand zum Testphase-Band, das sonst den Knopf «i» verdeckt.
+11. **Kopf der Zettelspalte:** «3 Text lesen» bleibt ab 1280 px mit der Spalte stehen. Der Abstand von 64 px zum Testphase-Band (1280 bis 1719 px) ist mit dem Band am 26. Oktober 2026 entfallen.
 12. **«Geöffneter Text ↓»** nur unter 1280 px und erst nach einer Handlung des Lesers (Klick, Antippen, Taste), nicht beim Laden über einen Link. Grund: Der Knopf antwortet auf einen Klick, nach dem sich scheinbar nichts ändert, weil der Text ausserhalb des Bilds aufgeht.
 
 ## 5. Verknüpfungen (Matrix)
@@ -133,13 +133,13 @@ Fassung vom 3. Oktober 2026, nach der Rückmeldung von Testpersonen, die Seite s
 
 ## 8. Farbe, Schrift, Neutralität (Ziffer 6)
 
-1. Farben der Musteransicht übernommen: Stabilisierung Orange, Elektrizität Blau, Lebensmittelsicherheit Gelb, Gesundheit Magenta; Botschaft, weitere Beschlüsse und Begleitgeschäft in drei Grautönen. Kein Rot und kein Grün, nicht die Pro- und Contra-Farben des Politspiegels. Das Rot des Testphase-Bands ist das des Politspiegels und bezeichnet keine Daten.
+1. Farben der Musteransicht übernommen: Stabilisierung Orange, Elektrizität Blau, Lebensmittelsicherheit Gelb, Gesundheit Magenta; Botschaft, weitere Beschlüsse und Begleitgeschäft in drei Grautönen. Kein Rot und kein Grün, nicht die Pro- und Contra-Farben des Politspiegels.
 2. Grundschrift 16 px, Beschriftungen in Grafiken mindestens 13 px, im Netz 12,5 px, Karten im Umfeld 14 px.
 3. Hell und dunkel nach Systemeinstellung, Tokens wie im Politspiegel.
 4. «Rohextraktion» an Graph, Matrix, Bezügen, Umsetzung und Gesetzesliste, bis die Kanten von Hand geprüft sind.
 
 ## 9. Politspiegel
 
-1. Heimlink, Testphase-Band, Fehlermeldung (Web3Forms, hCaptcha) und Impressum wie im Politspiegel; die Meldung geht an dieselbe Adresse und trägt «Vertragsspiegel» im Betreff, das Feld «Wo genau?» ist mit dem geöffneten Zettel vorbelegt.
+1. Heimlink, Fehlermeldung (Web3Forms, hCaptcha) und Impressum wie im Politspiegel (Testphase-Band bis 26. Oktober 2026); die Meldung geht an dieselbe Adresse und trägt «Vertragsspiegel» im Betreff, das Feld «Wo genau?» ist mit dem geöffneten Zettel vorbelegt.
 2. **Datenschutzsatz angepasst:** Die Seite lädt Schriften von Google Fonts und D3 von cdnjs und jsDelivr; der Satz nennt das, statt «diese Seiten senden nichts» zu übernehmen.
 3. `site/kennzahlen.json` für den Kasten auf der Übersicht des Politspiegels (Ziffer 10.1, Etappe 7).

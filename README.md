@@ -1,6 +1,6 @@
 # Vertragsspiegel
 
-Paket Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, gegliedert in Artikel und Abschnitte, mit Umfang und Verknüpfungen. Wertungsfrei, jede Angabe bis zur Fundstelle auf Fedlex verfolgbar. Teil des Umfelds des [Politspiegels](https://michaeljkahler.github.io/politspiegel/).
+Paket Schweiz–EU: Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, gegliedert in Artikel und Abschnitte, mit Umfang und Verknüpfungen. Wertungsfrei, jede Angabe bis zur Fundstelle auf Fedlex verfolgbar. Teil des Umfelds des [Politspiegels](https://michaeljkahler.github.io/politspiegel/).
 
 Stand 1. Oktober 2026: Aufbau, Pipeline (Etappe 2) und Ansichten (Etappe 3) stehen. Seite: [michaeljkahler.github.io/vertragsspiegel](https://michaeljkahler.github.io/vertragsspiegel/). Einstieg: [`docs/PROJEKTBRIEF.md`](docs/PROJEKTBRIEF.md).
 

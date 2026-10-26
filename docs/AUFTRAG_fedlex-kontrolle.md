@@ -1,6 +1,6 @@
 # Auftrag: Fedlex-Kontrolle Vertragsspiegel
 
-Wiederkehrende Prüfung, ob sich an den amtlichen Texten des Pakets Schweiz–EU (Bilaterale III) etwas geändert hat. Projektordner ist das Repository `vertragsspiegel` (lokal: `Politik\Bilaterale III`). Stand dieses Auftrags: 1. Oktober 2026.
+Wiederkehrende Prüfung, ob sich an den amtlichen Texten des Pakets Schweiz–EU etwas geändert hat. Projektordner ist das Repository `vertragsspiegel` (lokal: `Politik\Bilaterale III`). Stand dieses Auftrags: 1. Oktober 2026.
 
 Es gibt zwei Teile, beide bei jedem Lauf: A) Fedlex. B) Beratungsstand im Parlament.
 

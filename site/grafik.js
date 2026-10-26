@@ -114,7 +114,7 @@ function rahmen(x, W, H, o) {
   const u = Math.min(W, H) / 1080, M = Math.round(64 * u), breit = W - 2 * M;
   x.setTransform(1, 0, 0, 1, 0, 0); x.setLineDash([]); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over'; abstand(x, 0);
   if (G.hg === 'weiss') { x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, W, H); } else x.clearRect(0, 0, W, H);
-  abstand(x, 1.2 * u); text(x, 'PAKET SCHWEIZ–EU (BILATERALE III)', M, M + 24 * u, {w: 700, s: 27 * u, f: TF});
+  abstand(x, 1.2 * u); text(x, 'PAKET SCHWEIZ–EU', M, M + 24 * u, {w: 700, s: 27 * u, f: TF});
   abstand(x, 2 * u); text(x, 'VERTRAGSSPIEGEL', M, M + 54 * u, {w: 600, s: 18 * u, c: TINTE3});
   abstand(x, 0);
   x.fillStyle = TINTE; x.fillRect(M, M + 74 * u, W - 2 * M, Math.max(1, 3 * u));
@@ -187,7 +187,7 @@ function gZahlen(x, W, H) {
   const verweise = K.filter(k => k.art === 'verweist_auf' && typeof k.von === 'number' && inP(k.von)).length;
   const eu = new Set(K.filter(k => k.art === 'nennt' && typeof k.von === 'number' && inP(k.von) && typeof k.nach === 'string' && k.nach.startsWith('celex:')).map(k => k.nach)).size;
   const neu = D.gesetze.filter(g => g.neu).length, geaendert = D.gesetze.length - neu;
-  const B = rahmen(x, W, H, {titel: 'Das Paket Schweiz–EU in Zahlen', ueber: 'Bilaterale III, Botschaft und Vorlagen des Bundesrates',
+  const B = rahmen(x, W, H, {titel: 'Das Paket Schweiz–EU in Zahlen', ueber: 'Botschaft und Vorlagen des Bundesrates',
     gezeigt: 'Umfang der 30 Dokumente BBl 2026 615–644 ohne Begleitgeschäft, gezählt im Wortlaut ohne Kopf- und Fusszeilen. Verweise und Nennungen von EU-Rechtsakten automatisch erkannt.',
     roh: true});
   const u = B.u, quer = W > H;

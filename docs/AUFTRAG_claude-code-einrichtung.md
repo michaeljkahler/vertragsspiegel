@@ -124,7 +124,7 @@ Ist `gh` installiert und angemeldet (`gh auth status`):
 
 ```bash
 gh repo create michaeljkahler/vertragsspiegel --public \
-  --description "Paket Schweiz–EU (Bilaterale III): Texte, Umfang und Verknüpfungen, wertungsfrei" \
+  --description "Paket Schweiz–EU: Texte, Umfang und Verknüpfungen, wertungsfrei" \
   --source . --remote origin --push
 ```
 

@@ -1,4 +1,4 @@
-"""Lädt die Texte des Pakets Schweiz–EU (Bilaterale III) von Fedlex und zieht den Text aus den PDF.
+"""Lädt die Texte des Pakets Schweiz–EU von Fedlex und zieht den Text aus den PDF.
 
 Alle Werke, Deutsch:           python3 scripts/laden.py
 Andere Sprache:                python3 scripts/laden.py --sprache fr

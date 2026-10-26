@@ -1,4 +1,4 @@
-"""Prüft auf Fedlex, ob sich am Paket Schweiz–EU (Bilaterale III) etwas geändert hat.
+"""Prüft auf Fedlex, ob sich am Paket Schweiz–EU etwas geändert hat.
 
 Probelauf (schreibt nichts):   python3 scripts/fedlex_pruefen.py
 Stand übernehmen:              python3 scripts/fedlex_pruefen.py --apply

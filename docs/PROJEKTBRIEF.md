@@ -1,6 +1,6 @@
 # Projektbrief: Vertragsspiegel
 
-Wertungsfreie, visuelle Aufbereitung des Pakets Schweiz–EU (Bilaterale III): Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, heruntergebrochen auf Artikel und Abschnitte, mit Umfang und Verknüpfungen.
+Wertungsfreie, visuelle Aufbereitung des Pakets Schweiz–EU: Botschaft, Abkommen, Protokolle, Erklärungen und Bundesbeschlüsse, heruntergebrochen auf Artikel und Abschnitte, mit Umfang und Verknüpfungen.
 
 Stand: 3. Oktober 2026. Projektordner: `C:\Users\Admin\Documents\Claude\Projects\Politik\Bilaterale III` (zugleich Wurzel des Repositorys). Repository: `github.com/michaeljkahler/vertragsspiegel`, öffentlich seit 1. Oktober 2026. Seite (ab Etappe 3): `michaeljkahler.github.io/vertragsspiegel/`. Name «Vertragsspiegel», entschieden am 1. Oktober 2026 (Ziffer 13).
 
@@ -295,7 +295,7 @@ Stand nach Etappe 2 (1. Oktober 2026):
 
 1. Kasten auf der Übersicht des Politspiegels: neuer Block `vertrag` in `politspiegel/politspiegel.json` mit Titel, Satz und Adresse; `politspiegel/bauen.py` zeichnet ihn wie den Finanzspiegel-Kasten. Ohne Kennzahlen, damit keine Zahl von Hand gepflegt wird; optional liest `bauen.py` `site/kennzahlen.json` des Vertragsspiegels.
 2. Heimlink oben links auf jeder Seite des Vertragsspiegels zur Übersicht des Politspiegels.
-3. Gleiche Gestaltung (Ziffer 5.3), gleiches Eckband «Testphase», gleiche Melde- und Impressumsseiten.
+3. Gleiche Gestaltung (Ziffer 5.3), gleiche Melde- und Impressumsseiten. Das Eckband «Testphase» ist am 26. Oktober 2026 entfallen.
 4. Abstimmungsspiegel: Kommt das Paket zur Volksabstimmung, verlinkt die Vorlage auf Zettel über deren Kennung als Anker (`#fga-2026-632-art_4`).
 
 ## 11. Fassungen und Termine
@@ -321,7 +321,7 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 4. Vollpublikation übernehmen, sobald erschienen: XML statt PDF, Seitenzahlen im BBl als Fundstelle.
 5. Französisch und Italienisch. Stand 2. Oktober 2026: Wortlaut mit Umschalter umgesetzt (Ziffer 1.16); Bedienung und Themenbegriffe offen.
 6. Fassungsvergleich nach den Beschlüssen des Parlaments; Obsidian-Vault zum Herunterladen.
-7. Kasten im Politspiegel, Testphase, Bekanntmachung. Stand 2. Oktober 2026: Kasten besteht, Testphase läuft (Seite an Testpersonen verschickt), Bekanntmachung offen.
+7. Kasten im Politspiegel, Testphase, Bekanntmachung. Stand 2. Oktober 2026: Kasten besteht, Bekanntmachung offen. Testphase beendet am 26. Oktober 2026, Eckband entfernt.
 
 ## 13. Offene Entscheide
 
@@ -331,3 +331,4 @@ Die Fedlex-Kontrolle erkennt neue Bundesblatt- und AS-Einträge zum Paket, die P
 4. Rohdaten (PDF, Text, je Sprache rund 25 MB) sind aus dem Repository ausgeschlossen (`.gitignore`), `laden.py` stellt sie wieder her. Entschieden am 1. Oktober 2026.
 5. Social-Media-Beiträge zum Vertragsspiegel: ja oder nein. Entschieden am 11. Oktober 2026: ja, über die Kanäle des Politspiegels (Metricool). Erste Serie: drei Instagram-Karussells am 14., 21. und 28. Oktober 2026 auf den drei Reserveplätzen des Oktoberkontingents, Motive aus `seite/grafik.js` (Umfang, Verknüpfungen, Umsetzung), Dateien und Texte in `site/social/2026-10-*/`, gezeichnet mit `scripts/grafiken.py`.
 6. Themenkatalog freigeben: Auswahl der 20 Themen, ihre Namen und Begriffe (`daten/themen.json`) sowie die wählbare Sortierung nach Anzahl Fundstellen (Ziffer 6.3). Freigegeben am 2. Oktober 2026.
+7. Bezeichnung «Bilaterale III» in eigenen Texten (Titel, Beschreibung, Grafiken, Social-Media-Texte, Repository-Beschreibung). Entschieden am 26. Oktober 2026: entfällt, eigene Bezeichnung ist «Paket Schweiz–EU». Amtliche Titel und Wortlaut aus Fedlex und Curia Vista bleiben unverändert, auch wo sie «Bilaterale III» enthalten.
