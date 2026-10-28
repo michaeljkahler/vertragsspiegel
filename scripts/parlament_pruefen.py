@@ -23,8 +23,9 @@ CURIA = 'https://www.parlament.ch/de/ratsbetrieb/suche-curia-vista/geschaeft?Aff
 
 
 def erheben():
-    req = urllib.request.Request(URL, headers={'Accept': 'application/json',
-                                               'User-Agent': 'vertragsspiegel-parlament-pruefen/1.0'})
+    # Ohne eigene Kennung (User-Agent von Python): Seit Oktober 2026 weist der Webservice
+    # die Kennung «vertragsspiegel-parlament-pruefen/1.0» mit HTTP 403 ab.
+    req = urllib.request.Request(URL, headers={'Accept': 'application/json'})
     with urllib.request.urlopen(req, timeout=60) as r:
         d = json.load(r)
     entwuerfe = {}
