@@ -12,9 +12,13 @@
   "eli/fga/2026/2174": {
    "datum": "2026-08-17",
    "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates vom 29. Juni 2026. Stellungnahme des Bundesrates"
+  },
+  "eli/fga/2026/2863": {
+   "datum": "2026-10-26",
+   "titel": "Vernehmlassungsverfahren. PARL. 26.425 s pa. Iv. SPK-S. Verfassungsanpassung betreffend die Bilateralen III, Entwurf 2: Schubert-Praxis"
   }
  },
- "geprueft": "2026-10-01",
+ "geprueft": "2026-10-28",
  "werke": {
   "eli/fga/2026/2099": {
    "anhaenge": {},
@@ -92,6 +96,32 @@
    },
    "geaendert": "2026-08-17T08:04:17.474+02:00",
    "titel": "Parlamentarische Initiative. Verfassungsanpassung betreffend die Bilateralen III. Bericht der Staatspolitischen Kommission des Ständerates vom 29. Juni 2026. Stellungnahme des Bundesrates",
+   "umfang": "complete"
+  },
+  "eli/fga/2026/2863": {
+   "anhaenge": {},
+   "dateien": {
+    "de": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/de/html/fedlex-data-admin-ch-eli-fga-2026-2863-de-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/de/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2863-de-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/de/xml/fedlex-data-admin-ch-eli-fga-2026-2863-de-xml.xml"
+    },
+    "fr": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/fr/html/fedlex-data-admin-ch-eli-fga-2026-2863-fr-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/fr/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2863-fr-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/fr/xml/fedlex-data-admin-ch-eli-fga-2026-2863-fr-xml.xml"
+    },
+    "it": {
+     "DOCX": "",
+     "HTML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/it/html/fedlex-data-admin-ch-eli-fga-2026-2863-it-html.html",
+     "PDF": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/it/pdf-a/fedlex-data-admin-ch-eli-fga-2026-2863-it-pdf-a.pdf",
+     "XML": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2863/it/xml/fedlex-data-admin-ch-eli-fga-2026-2863-it-xml.xml"
+    }
+   },
+   "geaendert": "2026-10-26T07:11:19.500+01:00",
+   "titel": "Vernehmlassungsverfahren. PARL. 26.425 s pa. Iv. SPK-S. Verfassungsanpassung betreffend die Bilateralen III, Entwurf 2: Schubert-Praxis",
    "umfang": "complete"
   },
   "eli/fga/2026/615": {

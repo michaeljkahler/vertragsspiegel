@@ -39,6 +39,15 @@
    "werkzeug": "pdftotext version 25.07.0",
    "xml": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2026/2174/de/xml/fedlex-data-admin-ch-eli-fga-2026-2174-de-xml.xml"
   },
+  "2863": {
+   "art": "Begleitgeschäft",
+   "datum": "2026-10-26",
+   "eli": "eli/fga/2026/2863",
+   "gemeldet": "2026-10-28",
+   "link": "https://fedlex.data.admin.ch/eli/fga/2026/2863",
+   "status": "gemeldet",
+   "titel": "Vernehmlassungsverfahren. PARL. 26.425 s pa. Iv. SPK-S. Verfassungsanpassung betreffend die Bilateralen III, Entwurf 2: Schubert-Praxis"
+  },
   "615": {
    "anhang": "eli/fgae/2026/42",
    "bytes": 6902829,
